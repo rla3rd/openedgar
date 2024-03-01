@@ -1,4 +1,4 @@
-# [OpenEDGAR](openedgar.io) by [LexPredict](https://lexpredict.com)
+# [OpenEDGAR]
 ## Setup and Installation Guide
 
 OpenEDGAR is designed to be run on Amazon Web Services to provide high-quality, reliable 
@@ -47,7 +47,7 @@ an AWS account is required for S3 usage and performance will be substantially re
 
     a. `$ cd /opt`
     
-    b. `$ git clone https://github.com/LexPredict/openedgar.git`
+    b. `$ git clone https://github.com/rla3rd/openedgar.git`
 
 11. Setup virtual environment
 
@@ -55,7 +55,7 @@ an AWS account is required for S3 usage and performance will be substantially re
     
     b. `$ virtualenv -p /usr/bin/python3 env`
     
-    c. `$ ./env/bin/pip install -r lexpredict_openedgar/requirements/full.txt`
+    c. `$ ./env/bin/pip install -r sec_openedgar/requirements/full.txt`
     
 12. Setup database. Note that the password chosen for openegar must be set as DJANGO_PASSWORD in the .env later
 
@@ -103,7 +103,7 @@ an AWS account is required for S3 usage and performance will be substantially re
 
 14. Update .env file. For local testing (downloading files locally, instead of to S3), set CLIENT_TYPE to LOCAL and DOWNLOAD_PATH to a local path
 
-    a. `$ cp lexpredict_openedgar/sample.env lexpredict_openedgar/.env`
+    a. `$ cp sec_openedgar/sample.env sec_openedgar/.env`
     
     b. Update DATABASE_URL
     
@@ -144,7 +144,7 @@ an AWS account is required for S3 usage and performance will be substantially re
     
 15. Initial database migration
 
-    a. `$ cd /opt/openedgar/lexpredict_openedgar`
+    a. `$ cd /opt/openedgar/sec_openedgar`
     
     b. `$ source ../env/bin/activate`
     
@@ -162,7 +162,7 @@ an AWS account is required for S3 usage and performance will be substantially re
     
 17. Setup Celery
 
-    a. `$ cd /opt/openedgar/lexpredict_openedgar`
+    a. `$ cd /opt/openedgar/sec_openedgar`
     
     b. `$ source ../env/bin/activate`
     
@@ -175,7 +175,7 @@ an AWS account is required for S3 usage and performance will be substantially re
 
 18. Build database of 10-Ks from 2018 from latest SEC EDGAR data
 
-    a. `$ cd /opt/openedgar/lexpredict_openedgar`
+    a. `$ cd /opt/openedgar/sec_openedgar`
     
     b. `$ source ../env/bin/activate`
     
