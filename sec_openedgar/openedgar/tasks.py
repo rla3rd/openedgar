@@ -23,6 +23,8 @@ SOFTWARE.
 """
 
 # Libraries
+import sys
+import traceback
 import datetime
 import hashlib
 import logging
@@ -40,10 +42,13 @@ from celery import shared_task
 from config.settings.base import S3_DOCUMENT_PATH
 from openedgar.clients.s3 import S3Client
 from openedgar.clients.local import LocalClient
-import openedgar.clients.edgar
-import openedgar.parsers.edgar
+import openedgar.clients.openedgar
+import openedgar.parsers.openedgar
 from openedgar.models import Filing, CompanyInfo, Company, FilingDocument, SearchQuery, SearchQueryTerm, \
     SearchQueryResult, FilingIndex
+    
+# edgartools
+import edgar
 
 # LexNLP imports
 import lexnlp.nlp.en.tokens
@@ -57,7 +62,97 @@ formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
 console.setFormatter(formatter)
 logger.addHandler(console)
 
-
+def process_cik_lookup_data():
+    """
+    populate company table
+    """
+    try:
+        df = edgar.get_cik_lookup_data()
+        ciknames = {}
+        company_objects = []
+        for row in df.itertuples():
+            ciknames[row.cik] = row.name
+        for cik in ciknames.keys():
+            company_objects.append(
+                Company(cik=cik, cik_name=ciknames[cik]))
+        Company.objects.bulk_create(
+            company_objects,
+            update_conflicts=True, 
+            update_fields=['cik_name'],
+            unique_fields=['cik'])
+    except Exception:
+        error = sys.exc_info()[0]
+        details = traceback.format_exc()
+        sys.stderr.write(f'{error} - {details}')
+        
+def process_companyinfo(cik=0, multiple=False):
+    try:
+        if cik == 0 or multiple:
+            companies = Company.objects.all().filter(cik__gte=cik).order_by('cik')
+        else:
+            companies = [Company.objects.get(cik=cik)]
+        for company in companies:
+            c = edgar.Company(company.cik)
+            cik = company.cik
+            ci = CompanyInfo()
+            ci.cik = company
+            ci.name = c.name
+            ci.is_company = c.is_company
+            ci.category = c.category
+            ci.description = c.description
+            ci.entity_type = c.entity_type
+            ci.ein = c.ein
+            ci.industry = c.industry
+            ci.sic = c.sic
+            ci.sic_description = c.sic_description
+            ci.state_of_incorporation = c.state_of_incorporation
+            ci.state_of_incorporation_description = c.state_of_incorporation_description
+            ci.fiscal_year_end = c.fiscal_year_end
+            ci.mailing_address = c.mailing_address.__dict__
+            ci.business_addres = c.business_address.__dict__
+            ci.phone = c.phone
+            ci.tickers = c.tickers
+            ci.exchanges = c.exchanges
+            ci.former_names = c.former_names
+            ci.flags = c.flags
+            ci.insider_transaction_for_owner_exists = c.insider_transaction_for_owner_exists
+            ci.insider_transaction_for_issuer_exists = c.insider_transaction_for_issuer_exists
+            ci.website = c.website
+            ci.investor_website = c.investor_website
+            try:
+                oci = CompanyInfo.objects.get(cik=c.cik)
+                if ci != oci:
+                    ci.name = oci.name
+                    ci.is_company = oci.is_company
+                    ci.category = oci.category
+                    ci.description = oci.description
+                    ci.entity_type = oci.entity_type
+                    ci.ein = oci.ein
+                    ci.industry = oci.industry
+                    ci.sic = oci.sic
+                    ci.sic_description = oci.sic_description
+                    ci.state_of_incorporation = oci.state_of_incorporation
+                    ci.state_of_incorporation_description = oci.state_of_incorporation_description
+                    ci.fiscal_year_end = oci.fiscal_year_end
+                    ci.mailing_address = oci.mailing_address.__dict__
+                    ci.business_addres = oci.business_address.__dict__
+                    ci.phone = oci.phone
+                    ci.tickers = oci.tickers
+                    ci.exchanges = oci.exchanges
+                    ci.former_names = oci.former_names
+                    ci.flags = oci.flags
+                    ci.insider_transaction_for_owner_exists = oci.insider_transaction_for_owner_exists
+                    ci.insider_transaction_for_issuer_exists = oci.insider_transaction_for_issuer_exists
+                    ci.website = oci.website
+                    ci.investor_website = oci.investor_website
+            except CompanyInfo.DoesNotExist:
+                pass
+            ci.save()
+    except Exception:
+        error = sys.exc_info()[0]
+        details = traceback.format_exc()
+        sys.stderr.write(f'{cik}: {error} - {details}')
+                
 def create_filing_documents(client, documents, filing, store_raw: bool = True, store_text: bool = True):
     """
     Create filing document records given a list of documents
@@ -163,6 +258,7 @@ def create_filing_error(row, filing_path: str):
         # Create company
         company = Company()
         company.cik = cik
+        company.cik_name = company_name
 
         try:
             company.save()
@@ -216,7 +312,7 @@ def process_filing_index(client_type: str, file_path: str, filing_index_buffer: 
     temp_file.close()
 
     # Get main filing data structure
-    filing_index_data = openedgar.parsers.edgar.parse_index_file(temp_file.name)
+    filing_index_data = openedgar.parsers.openedgar.parse_index_file(temp_file.name)
     logger.info("Parsed {0} records from index".format(filing_index_data.shape[0]))
 
     # Iterate through rows
@@ -252,7 +348,7 @@ def process_filing_index(client_type: str, file_path: str, filing_index_buffer: 
             if not client.path_exists(filing_path):
                 # Download
                 try:
-                    filing_buffer, _ = openedgar.clients.edgar.get_buffer("/Archives/{0}".format(filing_path))
+                    filing_buffer, _ = openedgar.clients.openedgar.get_buffer("/Archives/{0}".format(filing_path))
                 except RuntimeError as g:
                     logger.error("Unable to access resource {0} from EDGAR: {1}".format(filing_path, g))
                     bad_record_count += 1
@@ -334,7 +430,7 @@ def process_filing(client, file_path: str, filing_buffer: Union[str, bytes] = No
         filing_buffer = client.get_buffer(file_path)
 
     # Get main filing data structure
-    filing_data = openedgar.parsers.edgar.parse_filing(filing_buffer, extract=store_text)
+    filing_data = openedgar.parsers.openedgar.parse_filing(filing_buffer, extract=store_text)
     if filing_data["cik"] is None:
         logger.error("Unable to parse CIK from filing {0}; assuming broken and halting...".format(file_path))
         return None
@@ -436,7 +532,7 @@ def extract_filing(client, file_path: str, filing_buffer: Union[str, bytes] = No
         filing_buffer = client.get_buffer(file_path)
 
     # Get main filing data structure
-    _ = openedgar.parsers.edgar.parse_filing(filing_buffer)
+    _ = openedgar.parsers.openedgar.parse_filing(filing_buffer)
 
 
 @shared_task
