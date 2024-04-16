@@ -31,11 +31,12 @@ import time
 import dateutil.parser
 import lxml.html
 import requests
+import edgar
 
 # Project
 from typing import Union
 
-from config.settings.base import HTTP_SEC_HOST, HTTP_FAIL_SLEEP, HTTP_SEC_INDEX_PATH, HTTP_SLEEP_DEFAULT
+from config.settings.base import HTTP_SEC_HOST, HTTP_FAIL_SLEEP, HTTP_SEC_INDEX_PATH, HTTP_SLEEP_DEFAULT, EDGAR_IDENTITY
 
 # Setup logger
 logger = logging.getLogger(__name__)
@@ -45,6 +46,7 @@ console.setLevel(logging.INFO)
 formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
 console.setFormatter(formatter)
 logger.addHandler(console)
+edgar.set_identity(EDGAR_IDENTITY)
 
 
 def get_buffer(remote_path: str, base_path: str = HTTP_SEC_HOST):
@@ -157,32 +159,14 @@ def list_index_by_year(year: int):
     # Log entrance
     logger.info("Locating form index list for {0}".format(year))
 
-    # Form index list
-    year = str(year)
-    form_index_list = []
-
-    # Get year directory list
-    year_index_uri = urllib.parse.urljoin(HTTP_SEC_INDEX_PATH, str(year) + "/")
-    year_root_list = list_path(year_index_uri)
-    print(year_root_list)
-
-    # Get quarters
-    quarter_list = [f for f in year_root_list if "/QTR" in f]
-
-    # Iterate over quarters
-    for quarter in quarter_list:
-        quarter_root_list = list_path(quarter)
-        form_index_list.extend([q for q in quarter_root_list if "/form." in q.lower()])
-
-    # Cleanup double /
-    for i in range(len(form_index_list)):
-        form_index_list[i] = form_index_list[i].replace("//", "/")
-
+    # Form index dataframe
+    form_index_df = edgar.get_filings(year).to_pandas()
+    
     # Log exit
-    logger.info("Successfully located {0} form index files for {1}".format(len(form_index_list), year))
+    logger.info("Successfully located {0} form index files for {1}".format(form_index_df.shape[0], year))
 
     # Return
-    return form_index_list
+    return form_index_df
 
 
 def list_index(min_year: int = 1950, max_year: int = 2050):
@@ -195,36 +179,14 @@ def list_index(min_year: int = 1950, max_year: int = 2050):
     # Log entrance
     logger.info("Retrieving form index list")
 
-    # Retrieve lists
-    form_index_list = []
-    root_list = list_path(HTTP_SEC_INDEX_PATH)
-
-    # Iterate over all files in root
-    for root_file in root_list:
-        # Check if it's a year
-        try:
-            # Try for a year folder
-            last_token = root_file.strip("/").split("/")[-1]
-            year = int(last_token)
-            if year < min_year or year > max_year:
-                logger.info("Skipping year {0}".format(root_file))
-                continue
-
-            # Parse if it is
-            year_form_list = list_index_by_year(year)
-            form_index_list.extend(year_form_list)
-
-        except ValueError as e:
-            # Else, non-year
-            logger.error(e)
-            if root_file.startswith("form."):
-                form_index_list.append(root_file)
+    # Retrieve dataframe
+    form_index_df = edgar.get_filings(range(min_year, max_year + 1)).to_pandas()
 
     # Log exit
-    logger.info("Successfully located {0} form index files".format(len(form_index_list)))
+    logger.info("Successfully located {0} form index files from {1} to {2}".format(form_index_df.shape[0], min_year, max_year))
 
     # Return
-    return form_index_list
+    return form_index_df
 
 
 def get_company(cik: Union[int, str]):
