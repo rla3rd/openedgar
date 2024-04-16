@@ -73,6 +73,7 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     'crispy_forms',  # Form layouts
+    'crispy_bootstrap4',
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
@@ -96,9 +97,11 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+#    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware'
 ]
 
 # MIGRATIONS CONFIGURATION
@@ -337,3 +340,6 @@ S3_COMPRESSION_LEVEL = int(env('S3_COMPRESSION_LEVEL', default=6))
 TIKA_HOST = "localhost"
 TIKA_PORT = 9998
 TIKA_ENDPOINT = "http://{0}:{1}/tika".format(TIKA_HOST, TIKA_PORT)
+
+# Edgar Identity
+EDGAR_IDENTITY="Rick Albright rla3rd@gmail.com"

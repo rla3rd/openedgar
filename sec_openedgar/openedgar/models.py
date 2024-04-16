@@ -1,6 +1,6 @@
 """
 MIT License
-
+Copyright (c) 2024 Richard Albright
 Copyright (c) 2018 ContraxSuite, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,6 +25,7 @@ SOFTWARE.
 # Package imports
 import datetime
 import django.db.models
+from django.contrib.postgres.fields import ArrayField
 
 
 class Company(django.db.models.Model):
@@ -33,16 +34,16 @@ class Company(django.db.models.Model):
     """
 
     # Key fields
-    cik = django.db.models.BigIntegerField(db_index=True, primary_key=True)
-    last_name = django.db.models.CharField(max_length=1024, db_index=True)
+    cik = django.db.models.BigIntegerField(db_index=True, primary_key=True, unique=True)
+    cik_name = django.db.models.CharField(max_length=1024, db_index=True)
 
     def __str__(self):
         """
         String representation method
         :return:
         """
-        return "Company cik={0}, last_name={1}" \
-            .format(self.cik, self.last_name) \
+        return "Company cik={0}, cik_name={1}" \
+            .format(self.cik, self.cik_name) \
             .encode("utf-8", "ignore") \
             .decode("utf-8", "ignore")
 
@@ -53,14 +54,32 @@ class CompanyInfo(django.db.models.Model):
     a CIK/security on a given date.
     """
     # Fields
-    company = django.db.models.ForeignKey(Company, db_index=True, on_delete=django.db.models.CASCADE)
+    cik = django.db.models.ForeignKey(Company, db_column='cik', primary_key=True, unique=True, db_index=True, on_delete=django.db.models.CASCADE)
     name = django.db.models.CharField(max_length=1024, db_index=True)
-    sic = django.db.models.CharField(max_length=1024, db_index=True, null=True)
-    state_location = django.db.models.CharField(max_length=32, db_index=True, null=True)
-    state_incorporation = django.db.models.CharField(max_length=32, db_index=True, null=True)
-    business_address = django.db.models.CharField(max_length=1024, null=True)
-    date = django.db.models.DateField(default=django.utils.timezone.now, db_index=True)
-
+    is_company = django.db.models.BooleanField()
+    category = django.db.models.CharField(max_length=1024, null=True)
+    description = django.db.models.CharField(max_length=1024, null=True)
+    entity_type = django.db.models.CharField(max_length=1024, null=True)
+    ein = django.db.models.CharField(max_length=1024, null=True)
+    industry = django.db.models.CharField(max_length=1024, db_index=True, null=True)
+    sic = django.db.models.CharField(max_length=4, db_index=True, null=True)
+    sic_description = django.db.models.CharField(max_length=1024, db_index=True, null=True)
+    state_of_incorporation = django.db.models.CharField(max_length=32, db_index=True, null=True)
+    state_of_incorporation_description = django.db.models.CharField(max_length=1024, null=True)
+    fiscal_year_end = django.db.models.CharField(max_length=1024, null=True)
+    mailing_address = django.db.models.JSONField(null=True)
+    business_address = django.db.models.JSONField(null=True)
+    phone = django.db.models.CharField(max_length=20, null=True)
+    tickers = ArrayField(django.db.models.CharField(max_length=14), null=True)
+    exchanges = ArrayField(django.db.models.CharField(max_length=1024), null=True)
+    former_names = django.db.models.JSONField(null=True)
+    flags = django.db.models.CharField(max_length=1024, null=True)
+    insider_transaction_for_owner_exists = django.db.models.SmallIntegerField()
+    insider_transaction_for_issuer_exists = django.db.models.SmallIntegerField()
+    website = django.db.models.CharField(max_length=1024, null=True)
+    investor_website = django.db.models.CharField(max_length=1024, null=True)
+    asof = django.db.models.DateField(default=django.utils.timezone.now, db_index=True)
+    
     def __str__(self):
         """
         String representation method
