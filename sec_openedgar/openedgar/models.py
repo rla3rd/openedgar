@@ -91,6 +91,63 @@ class CompanyInfo(django.db.models.Model):
             .decode("utf-8", "ignore")
 
 
+class CompanyFiling(django.db.models.Model):
+    """
+    Company Filing, which stores a single filing record from an index.
+    """
+
+    # Key fields
+    form_type = django.db.models.CharField(max_length=64, db_index=True, null=True)
+    accession_number = django.db.models.CharField(max_length=1024, primary_key=True, null=False)
+    date_filed = django.db.models.DateField(db_index=True, null=True)
+    cik = django.db.models.ForeignKey(Company, db_column='cik', db_index=True, on_delete=django.db.models.CASCADE, null=False)
+    sha1 = django.db.models.CharField(max_length=1024, db_index=True, null=True)
+    s3_path = django.db.models.CharField(max_length=1024, db_index=True)
+    document_count = django.db.models.IntegerField(default=0)
+    is_processed = django.db.models.BooleanField(default=False, db_index=True)
+    is_error = django.db.models.BooleanField(default=False, db_index=True)
+
+    def __str__(self):
+        """
+        String representation method
+        :return:
+        """
+        return "Filing id={0}, cik={1}, form_type={2}, date_filed={3}" \
+            .format(self.id, self.company.cik if self.company else None, self.form_type, self.date_filed) \
+            .encode("utf-8", "ignore") \
+            .decode("utf-8", "ignore")
+
+
+class CompanyFacts(django.db.models.Model):
+    """
+    Company Facts, stored by accession number and fact
+    """
+    # Fields
+    id = django.db.models.AutoField(primary_key=True)
+    cik = django.db.models.ForeignKey(Company, db_column='cik', db_index=True, on_delete=django.db.models.CASCADE)
+    accession_number = django.db.models.ForeignKey(CompanyFiling, db_column='accession_number', db_index=True, on_delete=django.db.models.CASCADE)
+    fact = django.db.models.CharField(max_length=1024, db_index=True,  null=False)
+    namespace = django.db.models.CharField(max_length=1024, db_index=True)
+    value = django.db.models.FloatField(db_index=True)
+    start_date = django.db.models.DateField()
+    end_date = django.db.models.DateField()
+    datefiled = django.db.models.DateField(db_index=True)
+    fiscal_year = django.db.models.IntegerField(max_length=1024, db_index=True)
+    fiscal_period = django.db.models.CharField(max_length=1024, db_index=True)
+    formtype = django.db.models.CharField(max_length=1024)
+    frame = django.db.models.CharField(max_length=1024)
+    
+    def __str__(self):
+        """
+        String representation method
+        :return:
+        """
+        return "CompanyFact cik={0}, accession_number={1}, fact={2}" \
+            .format(self.cik, self.accession_number, self.fact) \
+            .encode("utf-8", "ignore") \
+            .decode("utf-8", "ignore")
+
+    
 class FilingIndex(django.db.models.Model):
     """
     Filing index, which stores links to forms grouped
@@ -115,34 +172,7 @@ class FilingIndex(django.db.models.Model):
             .format(self.edgar_url, self.date_published) \
             .encode("utf-8", "ignore") \
             .decode("utf-8", "ignore")
-
-
-class Filing(django.db.models.Model):
-    """
-    Filing, which stores a single filing record from an index.
-    """
-
-    # Key fields
-    form_type = django.db.models.CharField(max_length=64, db_index=True, null=True)
-    accession_number = django.db.models.CharField(max_length=1024, null=True)
-    date_filed = django.db.models.DateField(db_index=True, null=True)
-    company = django.db.models.ForeignKey(Company, db_index=True, on_delete=django.db.models.CASCADE, null=True)
-    sha1 = django.db.models.CharField(max_length=1024, db_index=True, null=True)
-    s3_path = django.db.models.CharField(max_length=1024, db_index=True)
-    document_count = django.db.models.IntegerField(default=0)
-    is_processed = django.db.models.BooleanField(default=False, db_index=True)
-    is_error = django.db.models.BooleanField(default=False, db_index=True)
-
-    def __str__(self):
-        """
-        String representation method
-        :return:
-        """
-        return "Filing id={0}, cik={1}, form_type={2}, date_filed={3}" \
-            .format(self.id, self.company.cik if self.company else None, self.form_type, self.date_filed) \
-            .encode("utf-8", "ignore") \
-            .decode("utf-8", "ignore")
-
+    
 
 class FilingDocument(django.db.models.Model):
     """
@@ -150,7 +180,7 @@ class FilingDocument(django.db.models.Model):
     """
 
     # Key fields
-    filing = django.db.models.ForeignKey(Filing, db_index=True, on_delete=django.db.models.CASCADE)
+    filing = django.db.models.ForeignKey(CompanyFiling, db_index=True, on_delete=django.db.models.CASCADE)
     type = django.db.models.CharField(max_length=1024, db_index=True, null=True)
     sequence = django.db.models.IntegerField(db_index=True, default=0)
     file_name = django.db.models.CharField(max_length=1024, null=True)

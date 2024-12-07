@@ -150,7 +150,7 @@ def list_path(remote_path: str):
     return good_url_list
 
 
-def list_index_by_year(year: int):
+def list_index_by_year(year: int, pandas: bool=False):
     """
     Get list of index files for a given year.
     :param year: filing year to retrieve
@@ -160,13 +160,16 @@ def list_index_by_year(year: int):
     logger.info("Locating form index list for {0}".format(year))
 
     # Form index dataframe
-    form_index_df = edgar.get_filings(year).to_pandas()
+    form_index = edgar.get_filings(year)
+    form_ct = len(form_index)
+    if pandas:
+        form_index = form_index.to_pandas()
     
     # Log exit
-    logger.info("Successfully located {0} form index files for {1}".format(form_index_df.shape[0], year))
+    logger.info("Successfully located {0} form index files for {1}".format(form_ct, year))
 
     # Return
-    return form_index_df
+    return form_index
 
 
 def list_index(min_year: int = 1950, max_year: int = 2050):
@@ -187,123 +190,6 @@ def list_index(min_year: int = 1950, max_year: int = 2050):
 
     # Return
     return form_index_df
-
-
-def get_company(cik: Union[int, str]):
-    """
-    Get company information by CIK.
-    :param cik: company CIK
-    :return:
-    """
-
-    # Log entrance
-    logger.info("Retrieving company info for CIK={0}".format(cik))
-
-    # Setup company URL
-    company_url = "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK={0}".format(cik)
-
-    # Retrieve buffer
-    remote_buffer = requests.get(company_url).content
-
-    # Parse buffer to HTML
-    html_doc = lxml.html.fromstring(remote_buffer)
-    content_div = html_doc.get_element_by_id("contentDiv")
-    company_info_div = list(content_div)[1]
-
-    # Extract key fields
-    company_data = {}
-
-    try:
-        raw_address = lxml.html.tostring(list(company_info_div)[0], method="text",
-                                         encoding="utf-8").decode("utf-8")
-        mailing_address = " ".join(raw_address.splitlines()[1:]).strip()
-        company_data["mailing_address"] = mailing_address
-    except Exception as e:  # pylint: disable=broad-except
-        logger.warning("Unable to parse mailing_address: {0}".format(e))
-        company_data["mailing_address"] = None
-
-    try:
-        raw_address = lxml.html.tostring(list(company_info_div)[1], method="text",
-                                         encoding="utf-8").decode("utf-8")
-        business_address = " ".join(raw_address.splitlines()[1:]).strip()
-        company_data["business_address"] = business_address
-    except Exception as e:  # pylint: disable=broad-except
-        logger.warning("Unable to parse business_address: {0}".format(e))
-        company_data["business_address"] = None
-
-    try:
-        company_data["name"] = list(list(company_info_div)[2])[0].text.strip()
-    except Exception as e:  # pylint: disable=broad-except
-        logger.warning("Unable to parse name: {0}".format(e))
-        company_data["name"] = None
-
-    try:
-        ident_info_p = list(list(company_info_div)[2])[1]
-        company_data["sic"] = list(ident_info_p)[1].text
-    except Exception as e:  # pylint: disable=broad-except
-        logger.warning("Unable to parse SIC: {0}".format(e))
-        company_data["sic"] = None
-
-    try:
-        ident_info_p = list(list(company_info_div)[2])[1]
-        company_data["state_location"] = list(ident_info_p)[3].text
-    except Exception as e:  # pylint: disable=broad-except
-        logger.warning("Unable to parse SIC: {0}".format(e))
-        company_data["state_location"] = None
-
-    try:
-        ident_info_p = list(list(company_info_div)[2])[1]
-        company_data["state_incorporation"] = list(ident_info_p)[4].text
-    except Exception as e:  # pylint: disable=broad-except
-        logger.warning("Unable to parse SIC: {0}".format(e))
-        company_data["state_incorporation"] = None
-
-    return company_data
-
-
-def get_cfia_index():
-    """
-    Get index of CFIA tables from 2006 for SIC/CIK lookup.
-    :return:
-    """
-    # Log entrance
-    logger.info("Retrieving CFIA 2006 index values")
-
-    # Retrieve page and parse to HTML
-    remote_buffer = requests.get("https://www.sec.gov/divisions/corpfin/organization/cfia.shtml").content
-    html_doc = lxml.html.fromstring(remote_buffer)
-
-    # Get index values
-    index_values = [a.attrib['href'].split('-').pop()[:-4] for a in html_doc.findall(".//a") if
-                    a.attrib['href'].startswith('cfia-')]
-    return index_values
-
-
-def get_cfia_table(index: str):
-    """
-    Get a table of CFIA 2006 data given an index to lookup.
-    :param index: index,  e.g., M or 123
-    :return:
-    """
-
-    # Log entrance
-    logger.info("Retrieving CFIA 2006 CIK/SIC values for index={0}".format(index))
-
-    # Get remote buffer and parse to HTML
-    cfia_url = "https://www.sec.gov/divisions/corpfin/organization/cfia-{0}.htm".format(index)
-    remote_buffer = requests.get(cfia_url).content
-    html_doc = lxml.html.fromstring(remote_buffer)
-
-    # Parse table into list of tuples
-    table_element = html_doc.get_element_by_id("cos")
-    table_data = []
-    for row in table_element.findall(".//tr"):
-        table_data.append((list(row)[0].text,
-                           list(row)[1].text,
-                           list(row)[2].text))
-
-    return table_data
-
 
 def get_cik_path(cik):
     """
