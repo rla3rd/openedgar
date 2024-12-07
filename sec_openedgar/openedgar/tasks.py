@@ -44,7 +44,7 @@ from openedgar.clients.s3 import S3Client
 from openedgar.clients.local import LocalClient
 import openedgar.clients.openedgar
 import openedgar.parsers.openedgar
-from openedgar.models import Filing, CompanyInfo, Company, FilingDocument, SearchQuery, SearchQueryTerm, \
+from openedgar.models import CompanyFiling, CompanyInfo, Company, FilingDocument, SearchQuery, SearchQueryTerm, \
     SearchQueryResult, FilingIndex
     
 # edgartools
@@ -147,7 +147,7 @@ def process_companyinfo(cik=0, multiple=False):
                     ci.investor_website = oci.investor_website
             except CompanyInfo.DoesNotExist:
                 pass
-            ci.save()
+            return ci
     except Exception:
         error = sys.exc_info()[0]
         details = traceback.format_exc()
@@ -332,14 +332,14 @@ def process_filing_index(client_type: str, file_path: str, filing_index_buffer: 
 
         # Check if filing record exists
         try:
-            filing = Filing.objects.get(s3_path=filing_path)
+            filing = CompanyFiling.objects.get(s3_path=filing_path)
             logger.info("Filing record already exists: {0}".format(filing))
-        except Filing.MultipleObjectsReturned as e:
+        except CompanyFiling.MultipleObjectsReturned as e:
             # Create new filing record
             logger.error("Multiple Filing records found for s3_path={0}, skipping...".format(filing_path))
             logger.info("Raw exception: {0}".format(e))
             continue
-        except Filing.DoesNotExist as f:
+        except CompanyFiling.DoesNotExist as f:
             # Create new filing record
             logger.info("No Filing record found for {0}, creating...".format(filing_path))
             logger.info("Raw exception: {0}".format(f))
@@ -418,9 +418,9 @@ def process_filing(client, file_path: str, filing_buffer: Union[str, bytes] = No
         if filing is not None:
             logger.error("Filing {0} has already been created in record {1}".format(file_path, filing))
             return None
-    except Filing.DoesNotExist:
+    except CompanyFiling.DoesNotExist:
         logger.info("No existing record found.")
-    except Filing.MultipleObjectsReturned:
+    except CompanyFiling.MultipleObjectsReturned:
         logger.error("Multiple existing record found.")
         return None
 
