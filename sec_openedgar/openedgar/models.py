@@ -85,8 +85,8 @@ class CompanyInfo(django.db.models.Model):
         String representation method
         :return:
         """
-        return "CompanyInfo cik={0}, name={1}, date={2}" \
-            .format(self.company.cik, self.name, self.date) \
+        return "CompanyInfo cik={0}, name={1}, asof={2}" \
+            .format(self.cik, self.name, self.asof) \
             .encode("utf-8", "ignore") \
             .decode("utf-8", "ignore")
 
