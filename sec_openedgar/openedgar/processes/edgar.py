@@ -27,11 +27,11 @@ from typing import Iterable
 import logging
 import os
 # Project
-import openedgar.clients.edgar
+import openedgar.clients.openedgar
 from openedgar.clients.s3 import S3Client
 from openedgar.clients.local import LocalClient
 import openedgar.clients.local
-import openedgar.parsers.edgar
+import openedgar.parsers.openedgar
 from openedgar.models import FilingDocument, SearchQueryTerm, SearchQuery, FilingIndex
 from openedgar.tasks import process_filing_index, search_filing_document_sha1
 
@@ -53,9 +53,9 @@ def download_filing_index_data(year: int = None):
     """
     # Get filing index list
     if year is not None:
-        filing_index_list = openedgar.clients.edgar.list_index_by_year(year)
+        filing_index_list = openedgar.clients.openedgar.list_index_by_year(year)
     else:
-        filing_index_list = openedgar.clients.edgar.list_index()
+        filing_index_list = openedgar.clients.openedgar.list_index()
 
     path_list = []
     configured_client = os.environ["CLIENT_TYPE"]
