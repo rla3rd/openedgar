@@ -45,7 +45,7 @@ from openedgar.clients.local import LocalClient
 import openedgar.clients.openedgar
 import openedgar.parsers.openedgar
 from openedgar.models import CompanyFiling, CompanyInfo, Company, FilingDocument, SearchQuery, SearchQueryTerm, \
-    SearchQueryResult, FilingIndex
+    SearchQueryResult
     
 # edgartools
 import edgar
@@ -152,7 +152,9 @@ def process_companyinfo(cik=0, multiple=False):
         error = sys.exc_info()[0]
         details = traceback.format_exc()
         sys.stderr.write(f'{cik}: {error} - {details}')
-                
+
+
+# this really really looks like its the full text document being used, due to start_pos and end_pos                
 def create_filing_documents(client, documents, filing, store_raw: bool = True, store_text: bool = True):
     """
     Create filing document records given a list of documents
@@ -231,10 +233,10 @@ def create_filing_error(row, filing_path: str):
         date_filed = None
 
     # Create empty error filing record
-    filing = Filing()
+    filing = CompanyFiling()
     filing.form_type = form_type
     filing.date_filed = date_filed
-    filing.s3_path = filing_path
+    filing.path = filing_path
     filing.is_error = True
     filing.is_processed = False
 
@@ -312,7 +314,7 @@ def process_filing_index(client_type: str, file_path: str, filing_index_buffer: 
     temp_file.close()
 
     # Get main filing data structure
-    filing_index_data = openedgar.parsers.openedgar.parse_index_file(temp_file.name)
+    filing_index_data = openedgar.clients.openedgar.list_index()
     logger.info("Parsed {0} records from index".format(filing_index_data.shape[0]))
 
     # Iterate through rows
@@ -332,7 +334,7 @@ def process_filing_index(client_type: str, file_path: str, filing_index_buffer: 
 
         # Check if filing record exists
         try:
-            filing = CompanyFiling.objects.get(s3_path=filing_path)
+            filing = CompanyFiling.objects.get(path=filing_path)
             logger.info("Filing record already exists: {0}".format(filing))
         except CompanyFiling.MultipleObjectsReturned as e:
             # Create new filing record
@@ -372,17 +374,19 @@ def process_filing_index(client_type: str, file_path: str, filing_index_buffer: 
                 create_filing_error(row, filing_path)
 
     # Create a filing index record
+    # this bit of code below is changed from FilingIndex
+    # to CompanyFiling, the columns have not been updated yet
     edgar_url = "/Archives/{0}".format(file_path).replace("//", "/")
     try:
-        filing_index = FilingIndex.objects.get(edgar_url=edgar_url)
+        filing_index = CompanyFiling.objects.get(edgar_url=edgar_url)
         filing_index.total_record_count = filing_index_data.shape[0]
         filing_index.bad_record_count = bad_record_count
         filing_index.is_processed = True
         filing_index.is_error = False
         filing_index.save()
         logger.info("Updated existing filing index record.")
-    except FilingIndex.DoesNotExist:
-        filing_index = FilingIndex()
+    except CompanyFiling.DoesNotExist:
+        filing_index = CompanyFiling()
         filing_index.edgar_url = edgar_url
         filing_index.date_published = None
         filing_index.date_downloaded = datetime.date.today()

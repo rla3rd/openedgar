@@ -172,7 +172,7 @@ def list_index_by_year(year: int, pandas: bool=False):
     return form_index
 
 
-def list_index(min_year: int = 1950, max_year: int = 2050):
+def list_index(min_year: int = 1950, max_year: int = 2050, pandas: bool=False):
     """
     Get the list of form index files on SEC HTTP.
     :param min_year: min filing year to begin listing
@@ -183,13 +183,16 @@ def list_index(min_year: int = 1950, max_year: int = 2050):
     logger.info("Retrieving form index list")
 
     # Retrieve dataframe
-    form_index_df = edgar.get_filings(range(min_year, max_year + 1)).to_pandas()
+    form_index = edgar.get_filings(range(min_year, max_year + 1))
+    form_ct = len(form_index)
+    if pandas:
+        form_index = form_index.to_pandas()
 
     # Log exit
-    logger.info("Successfully located {0} form index files from {1} to {2}".format(form_index_df.shape[0], min_year, max_year))
+    logger.info("Successfully located {0} form index files from {1} to {2}".format(form_ct, min_year, max_year))
 
     # Return
-    return form_index_df
+    return form_index
 
 def get_cik_path(cik):
     """
