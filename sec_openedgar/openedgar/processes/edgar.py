@@ -32,7 +32,7 @@ from openedgar.clients.s3 import S3Client
 from openedgar.clients.local import LocalClient
 import openedgar.clients.local
 import openedgar.parsers.openedgar
-from openedgar.models import FilingDocument, SearchQueryTerm, SearchQuery, FilingIndex
+from openedgar.models import FilingDocument, SearchQueryTerm, SearchQuery, CompanyFiling
 from openedgar.tasks import process_filing_index, search_filing_document_sha1
 
 # Logging setup
@@ -70,7 +70,8 @@ def download_filing_index_data(year: int = None):
         path_prefix = os.environ["DOWNLOAD_PATH"]
 
     # Now iterate through list to check if already on S3
-    for filing_index_path in filing_index_list:
+    for filing in filing_index_list:
+        filing_index_path = filing.text_url
         # Cleanup path
         if filing_index_path.startswith("/Archives/"):
             file_path = os.path.join(path_prefix, filing_index_path[len("/Archives/"):])
@@ -78,18 +79,22 @@ def download_filing_index_data(year: int = None):
             file_path = os.path.join(path_prefix, filing_index_path)
 
         # Check if exists in database
+        # this all needs updated to use accession number
         try:
-            filing_index = FilingIndex.objects.get(edgar_url=filing_index_path)
+            filing_index = CompanyFiling.objects.get(edgar_url=filing_index_path)
             is_processed = filing_index.is_processed
             logger.info("Index {0} already exists in DB.".format(filing_index_path))
-        except FilingIndex.DoesNotExist:
+        except CompanyFiling.DoesNotExist:
             is_processed = False
             logger.info("Index {0} does not exist in DB.".format(filing_index_path))
 
+        # we should be using edgartools to get the full document text
+        # openedgar clients should be used to get to/from local cache
+        # with edgartools wrapped if not present
         # Check if exists; download and upload to S3 if missing
         if not download_client.path_exists(file_path):
             # Download
-            buffer, _ = openedgar.clients.edgar.get_buffer(filing_index_path)
+            buffer, _ = openedgar.clients.openedgar.get_buffer(filing_index_path)
 
             # Upload
             download_client.put_buffer(file_path, buffer)

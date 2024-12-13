@@ -96,17 +96,23 @@ class CompanyFiling(django.db.models.Model):
     Company Filing, which stores a single filing record from an index.
     """
 
-    # Key fields
+    # Fields
     form_type = django.db.models.CharField(max_length=64, db_index=True, null=True)
     accession_number = django.db.models.CharField(max_length=1024, primary_key=True, null=False)
     date_filed = django.db.models.DateField(db_index=True, null=True)
     cik = django.db.models.ForeignKey(Company, db_column='cik', db_index=True, on_delete=django.db.models.CASCADE, null=False)
     sha1 = django.db.models.CharField(max_length=1024, db_index=True, null=True)
-    s3_path = django.db.models.CharField(max_length=1024, db_index=True)
+    path = django.db.models.CharField(max_length=1024, db_index=True)
     document_count = django.db.models.IntegerField(default=0)
+    processed_document_count = django.db.models.IntegerField(default=0)
     is_processed = django.db.models.BooleanField(default=False, db_index=True)
     is_error = django.db.models.BooleanField(default=False, db_index=True)
-
+    acceptance_datetime = django.db.models.DateField(db_index=True, null=True)
+    date_downloaded = django.db.models.DateField(default=django.utils.timezone.now, db_index=True)
+    document_url = django.db.models.CharField(max_length=1024)
+    homepage_url = django.db.models.CharField(max_length=1024)
+    text_url = django.db.models.CharField(max_length=1024)
+    
     def __str__(self):
         """
         String representation method
@@ -147,32 +153,6 @@ class CompanyFacts(django.db.models.Model):
             .encode("utf-8", "ignore") \
             .decode("utf-8", "ignore")
 
-    
-class FilingIndex(django.db.models.Model):
-    """
-    Filing index, which stores links to forms grouped
-    by various dimensions such as form type or CIK.
-    """
-
-    # Key fields
-    edgar_url = django.db.models.CharField(max_length=1024, primary_key=True)
-    date_published = django.db.models.DateField(db_index=True, null=True)
-    date_downloaded = django.db.models.DateField(default=django.utils.timezone.now, db_index=True)
-    total_record_count = django.db.models.IntegerField(default=0)
-    bad_record_count = django.db.models.IntegerField(default=0)
-    is_processed = django.db.models.BooleanField(default=False, db_index=True)
-    is_error = django.db.models.BooleanField(default=False, db_index=True)
-
-    def __str__(self):
-        """
-        String representation method
-        :return:
-        """
-        return "FilingIndex edgar_url={0}, date_published={1}" \
-            .format(self.edgar_url, self.date_published) \
-            .encode("utf-8", "ignore") \
-            .decode("utf-8", "ignore")
-    
 
 class FilingDocument(django.db.models.Model):
     """
