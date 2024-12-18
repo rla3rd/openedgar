@@ -1,6 +1,6 @@
 """
 MIT License
-
+Copyright (c) 2024 Richard Albright
 Copyright (c) 2018 ContraxSuite, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,6 +31,7 @@ import logging
 import tempfile
 import os
 import pathlib
+import pandas as pd
 from typing import Iterable, Union
 
 # Packages
@@ -44,7 +45,7 @@ from openedgar.clients.s3 import S3Client
 from openedgar.clients.local import LocalClient
 import openedgar.clients.openedgar
 import openedgar.parsers.openedgar
-from openedgar.models import CompanyFiling, CompanyInfo, Company, FilingDocument, SearchQuery, SearchQueryTerm, \
+from openedgar.models import Company, CompanyInfo, FilingIndex, Filing , FilingDocument, SearchQuery, SearchQueryTerm, \
     SearchQueryResult
     
 # edgartools
@@ -62,7 +63,7 @@ formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
 console.setFormatter(formatter)
 logger.addHandler(console)
 
-def process_cik_lookup_data():
+def process_company():
     """
     populate company table
     """
@@ -85,74 +86,271 @@ def process_cik_lookup_data():
         details = traceback.format_exc()
         sys.stderr.write(f'{error} - {details}')
         
-def process_companyinfo(cik=0, multiple=False):
+def process_companyinfo_cik(cik:int):
     try:
-        if cik == 0 or multiple:
-            companies = Company.objects.all().filter(cik__gte=cik).order_by('cik')
-        else:
-            companies = [Company.objects.get(cik=cik)]
-        for company in companies:
-            c = edgar.Company(company.cik)
-            cik = company.cik
-            ci = CompanyInfo()
-            ci.cik = company
-            ci.name = c.name
-            ci.is_company = c.is_company
-            ci.category = c.category
-            ci.description = c.description
-            ci.entity_type = c.entity_type
-            ci.ein = c.ein
-            ci.industry = c.industry
-            ci.sic = c.sic
-            ci.sic_description = c.sic_description
-            ci.state_of_incorporation = c.state_of_incorporation
-            ci.state_of_incorporation_description = c.state_of_incorporation_description
-            ci.fiscal_year_end = c.fiscal_year_end
-            ci.mailing_address = c.mailing_address.__dict__
-            ci.business_addres = c.business_address.__dict__
-            ci.phone = c.phone
-            ci.tickers = c.tickers
-            ci.exchanges = c.exchanges
-            ci.former_names = c.former_names
-            ci.flags = c.flags
-            ci.insider_transaction_for_owner_exists = c.insider_transaction_for_owner_exists
-            ci.insider_transaction_for_issuer_exists = c.insider_transaction_for_issuer_exists
-            ci.website = c.website
-            ci.investor_website = c.investor_website
-            try:
-                oci = CompanyInfo.objects.get(cik=c.cik)
-                if ci != oci:
-                    ci.name = oci.name
-                    ci.is_company = oci.is_company
-                    ci.category = oci.category
-                    ci.description = oci.description
-                    ci.entity_type = oci.entity_type
-                    ci.ein = oci.ein
-                    ci.industry = oci.industry
-                    ci.sic = oci.sic
-                    ci.sic_description = oci.sic_description
-                    ci.state_of_incorporation = oci.state_of_incorporation
-                    ci.state_of_incorporation_description = oci.state_of_incorporation_description
-                    ci.fiscal_year_end = oci.fiscal_year_end
-                    ci.mailing_address = oci.mailing_address.__dict__
-                    ci.business_addres = oci.business_address.__dict__
-                    ci.phone = oci.phone
-                    ci.tickers = oci.tickers
-                    ci.exchanges = oci.exchanges
-                    ci.former_names = oci.former_names
-                    ci.flags = oci.flags
-                    ci.insider_transaction_for_owner_exists = oci.insider_transaction_for_owner_exists
-                    ci.insider_transaction_for_issuer_exists = oci.insider_transaction_for_issuer_exists
-                    ci.website = oci.website
-                    ci.investor_website = oci.investor_website
-            except CompanyInfo.DoesNotExist:
-                pass
-            return ci
+        processed = False
+        company = Company.objects.get(cik=cik)
+        c = edgar.Company(company.cik)
+        cik = company.cik
+        ci = CompanyInfo()
+        ci.cik = company
+        ci.name = c.name
+        ci.is_company = c.is_company
+        ci.category = c.category
+        ci.description = c.description
+        ci.entity_type = c.entity_type
+        ci.ein = c.ein
+        ci.industry = c.industry
+        ci.sic = c.sic
+        ci.sic_description = c.sic_description
+        ci.state_of_incorporation = c.state_of_incorporation
+        ci.state_of_incorporation_description = c.state_of_incorporation_description
+        ci.fiscal_year_end = c.fiscal_year_end
+        ci.mailing_address = c.mailing_address.__dict__
+        ci.business_addres = c.business_address.__dict__
+        ci.phone = c.phone
+        ci.tickers = c.tickers
+        ci.exchanges = c.exchanges
+        ci.former_names = c.former_names
+        ci.flags = c.flags
+        ci.insider_transaction_for_owner_exists = c.insider_transaction_for_owner_exists
+        ci.insider_transaction_for_issuer_exists = c.insider_transaction_for_issuer_exists
+        ci.website = c.website
+        ci.investor_website = c.investor_website
+        try:
+            oci = CompanyInfo.objects.get(cik=c.cik)
+        except CompanyInfo.DoesNotExist:
+            oci = None
+        if oci != ci:
+            ci.processed = True
+            ci.save()
+        return processed
     except Exception:
         error = sys.exc_info()[0]
         details = traceback.format_exc()
         sys.stderr.write(f'{cik}: {error} - {details}')
 
+@shared_task
+def process_companyinfo(cik:int=0, multiple:bool=False, upsert:bool=False):
+    try:
+        print('Getting Company Objects')
+        company = None
+        if cik == 0 or multiple:
+            if not upsert:
+                # ciks in company not in companyinfo
+                company_ciks = set(
+                    Company.objects \
+                        .all() \
+                        .filter(cik__gte=cik) \
+                        .order_by('cik') \
+                        .values_list('cik', flat=True))
+                companyinfo_ciks = set(
+                    CompanyInfo.objects \
+                        .all() \
+                        .filter(cik__gte=cik) \
+                        .order_by('cik') \
+                        .values_list('cik', flat=True))
+                get_ciks = company_ciks.union(companyinfo_ciks) \
+                    - company_ciks.intersection(companyinfo_ciks)
+                companies = Company.objects.all().filter(cik__in=get_ciks).order_by('cik')
+            else:
+                # ciks >= passed in cik
+                companies = Company.objects.all().filter(cik__gte=cik).order_by('cik')
+        else:
+            # single cik
+            companies = [Company.objects.get(cik=cik)]
+        print(f'Got {len(companies)} Company Objects')
+        i = 0
+        total = len(companies)
+        for company in companies:
+            i += 1
+            processed = process_companyinfo_cik(company.cik)
+            if processed:
+                action = 'processed'
+            else:
+                action = 'skipped'
+            print(f"{action} {company.cik}: {i} of {total}")
+    except Exception:
+        error = sys.exc_info()[0]
+        details = traceback.format_exc()
+        if company is None:
+            err_cik = cik
+        else:
+            err_cik = company.cik
+        sys.stderr.write(f'{err_cik}: {error} - {details}')
+        
+def process_companyfacts_cik(cik:int):
+    try:
+        company = edgar.Company(cik)
+        facts = company.get_facts().to_pandas()
+        facts['id'] = facts.fact + '_' + facts.accn
+        for fact in facts.itertuples():
+            try:
+                cf = CompanyFact.objects.get(id=fact.id)
+            except CompanyFact.DoesNotExist:
+                cf = CompanyFact()
+            cf.id = fact.id
+            cf.cik = c
+            cf.accession_number = fact.accn
+            cf.fact = fact.fact
+            cf.namespace = fact.namespace
+            cf.value = fact.val
+            cf.start_date = fact.start
+            cf.end_date = fact.end
+            cf.datefiled = fact.filed
+            cf.fiscal_year = fact.fy
+            cf.fiscal_period = fact.fp
+            cf.formtype = cf.form
+            cf.frame = fact.frame
+            cf.save()
+    except Exception:
+        error = sys.exc_info()[0]
+        details = traceback.format_exc()
+        sys.stderr.write(f'{error} - {details}')
+        
+@shared_task
+def process_companyfacts(cik:int=0, multiple:bool=False, upsert:bool=False):
+    pass
+
+def process_filingindex_year(year:int, batch_size:int=1000, upsert:bool=False, formtypes:Iterable[str]=None):
+    filing_index = edgar.get_filings(year, form=formtypes)
+    if filing_index is not None:
+        filing_index = filing_index.to_pandas()
+        if formtypes is not None:
+            filing_index = filing_index[filing_index['form'].isin(formtypes)]
+        if not upsert:
+            accnos = FilingIndex.objects.all() \
+                .filter(date_filed__gte=datetime.date(year, 1, 1)) \
+                .filter(date_filed__lte=datetime.date(year, 12, 31)) \
+                .order_by('accession_number') \
+                .values_list('accession_number', flat=True)
+            filing_index = filing_index[~(filing_index['accession_number'].isin(accnos))]
+        filing_ct: int = filing_index.shape[0]
+        for start in range(0, filing_ct, batch_size):
+            end = min(start + batch_size, filing_ct)
+            filing_objects = []
+            filing_index.drop_duplicates(subset=['accession_number'], keep='last', inplace=True)
+            for filing in filing_index.iloc[start:end].itertuples():
+                f = FilingIndex()
+                try:
+                    company = Company.objects.get(cik=filing.cik)
+                except Company.DoesNotExist:
+                    company = Company.objects.create(cik=filing.cik, cik_name=filing.company)
+                f.accession_number = filing.accession_number
+                f.form_type = filing.form
+                f.date_filed = filing.filing_date
+                f.cik = company
+                f.company = filing.company
+                try:
+                    of = FilingIndex.objects.get(accession_number=f.accession_number)
+                except FilingIndex.DoesNotExist:
+                    of = None
+                if f != of:
+                    filing_objects.append(f)
+            FilingIndex.objects.bulk_create(
+                filing_objects,
+                update_conflicts=True, 
+                unique_fields=['accession_number'],
+                update_fields=['cik', 'company', 'form_type', 'date_filed']
+                )
+            print(f"FilingIndex Batch {year}: {start} - {end}")
+            
+@shared_task  
+def process_filingindex(backfill:bool=False, upsert:bool=False, formtypes:Iterable[str]=None):
+    try:
+        if not backfill:
+            """
+            Get list of index files for a given year.
+            :param year: filing year to retrieve
+            :return:
+            """
+            year = datetime.date.today().year
+            
+            # Log entrance
+            logger.info("Locating form index list for {0}".format(year))
+
+            # Form index dataframe
+            process_filingindex_year(year, upsert=upsert)
+          
+        else:
+            min_year: int = 1950
+            max_year: int = 2050
+            # Log entrance
+            logger.info("Retrieving form index list")
+
+            # Retrieve dataframe
+            for year in range(min_year, max_year + 1):
+                process_filingindex_year(year, upsert=upsert)
+        
+    except Exception:
+        error = sys.exc_info()[0]
+        details = traceback.format_exc()
+        sys.stderr.write(f'{error} - {details}')
+        
+def process_filings(year:int=None, upsert=False, backfill:bool=False):
+    try:
+        if not backfill:
+            """
+            Get list of index files for a given year.
+            :param year: filing year to retrieve
+            :return:
+            """
+            if year is None:
+                year = datetime.date.today().year
+            
+            # Log entrance
+            logger.info("Locating form index list for {0}".format(year))
+
+            # Form index dataframe
+            filings = edgar.get_filings(year)
+            filing_ct: int = len(filings)
+            
+            # Log exit
+            logger.info("Successfully located {0} form index files for {1}".format(filing_ct, year))
+        else:
+            min_year: int = 1950
+            max_year: int = 2050
+            # Log entrance
+            logger.info("Retrieving form index list")
+
+            # Retrieve dataframe
+            filings = edgar.get_filings(range(min_year, max_year + 1))
+            filing_ct: int = len(filings)
+            
+            # Log exit
+            logger.info("Successfully located {0} form index files from {1} to {2}".format(filing_ct, min_year, max_year))
+        
+        filing_objects = []  
+        for filing in filings:
+            f = Filing()
+            try:
+                company = Company.objects.get(cik=filing.cik)
+            except Company.DoesNotExist:
+                company = Company.objects.create(cik=filing.cik, cik_name=filing.company)
+            f.document_count = filing.header.document_count
+            f.acceptance_datetime = filing.header.acceptance_datetime
+            f.accession_number = filing.accession_number
+            f.form_type = filing.form
+            f.date_filed = filing.filing_date
+            f.cik = company
+            f.company = filing.company
+            f.document_url = filing.document.url
+            f.homepage_url = filing.homepage_url
+            f.text_url = filing.text_url
+            try:
+                of = Filing.objects.get(accession_number=f.accession_number)
+            except Filing.DoesNotExist:
+                of = None
+            if f != of:
+                filing_objects.append(f)
+        Filing.objects.bulk_create(
+            filing_objects,
+            update_conflicts=True, 
+            unique_fields=['accession_number'])
+    except Exception:
+        error = sys.exc_info()[0]
+        details = traceback.format_exc()
+        sys.stderr.write(f'{error} - {details}')
 
 # this really really looks like its the full text document being used, due to start_pos and end_pos                
 def create_filing_documents(client, documents, filing, store_raw: bool = True, store_text: bool = True):
@@ -334,14 +532,14 @@ def process_filing_index(client_type: str, file_path: str, filing_index_buffer: 
 
         # Check if filing record exists
         try:
-            filing = CompanyFiling.objects.get(path=filing_path)
+            filing = Filing.objects.get(path=filing_path)
             logger.info("Filing record already exists: {0}".format(filing))
-        except CompanyFiling.MultipleObjectsReturned as e:
+        except Filing.MultipleObjectsReturned as e:
             # Create new filing record
             logger.error("Multiple Filing records found for s3_path={0}, skipping...".format(filing_path))
             logger.info("Raw exception: {0}".format(e))
             continue
-        except CompanyFiling.DoesNotExist as f:
+        except Filing.DoesNotExist as f:
             # Create new filing record
             logger.info("No Filing record found for {0}, creating...".format(filing_path))
             logger.info("Raw exception: {0}".format(f))
@@ -378,15 +576,15 @@ def process_filing_index(client_type: str, file_path: str, filing_index_buffer: 
     # to CompanyFiling, the columns have not been updated yet
     edgar_url = "/Archives/{0}".format(file_path).replace("//", "/")
     try:
-        filing_index = CompanyFiling.objects.get(edgar_url=edgar_url)
+        filing_index = Filing.objects.get(edgar_url=edgar_url)
         filing_index.total_record_count = filing_index_data.shape[0]
         filing_index.bad_record_count = bad_record_count
         filing_index.is_processed = True
         filing_index.is_error = False
         filing_index.save()
         logger.info("Updated existing filing index record.")
-    except CompanyFiling.DoesNotExist:
-        filing_index = CompanyFiling()
+    except Filing.DoesNotExist:
+        filing_index = Filing()
         filing_index.edgar_url = edgar_url
         filing_index.date_published = None
         filing_index.date_downloaded = datetime.date.today()

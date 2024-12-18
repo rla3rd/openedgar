@@ -91,16 +91,38 @@ class CompanyInfo(django.db.models.Model):
             .decode("utf-8", "ignore")
 
 
-class CompanyFiling(django.db.models.Model):
+class FilingIndex(django.db.models.Model):
+    """
+    Filing Index, listing of all filings by formtype and cik
+    """
+    # Fields
+    form_type = django.db.models.CharField(max_length=64, db_index=True, null=True)
+    company = django.db.models.CharField(max_length=1024, db_index=True, null=True)
+    cik = django.db.models.ForeignKey(Company, db_column='cik', db_index=True, on_delete=django.db.models.CASCADE, null=False)
+    date_filed = django.db.models.DateField(db_index=True, null=True)
+    accession_number = django.db.models.CharField(max_length=1024, primary_key=True, null=False)
+    
+    def __str__(self):
+        """
+        String representation method
+        :return:
+        """
+        return "accession_number={0} copmany={1} cik={2}, form_type={3}, date_filed={4}" \
+            .format(self.accession_number, self.company, self.cik, self.form_type, self.date_filed) \
+            .encode("utf-8", "ignore") \
+            .decode("utf-8", "ignore")
+    
+
+class Filing(django.db.models.Model):
     """
     Company Filing, which stores a single filing record from an index.
     """
-
     # Fields
     form_type = django.db.models.CharField(max_length=64, db_index=True, null=True)
     accession_number = django.db.models.CharField(max_length=1024, primary_key=True, null=False)
     date_filed = django.db.models.DateField(db_index=True, null=True)
     cik = django.db.models.ForeignKey(Company, db_column='cik', db_index=True, on_delete=django.db.models.CASCADE, null=False)
+    company = django.db.models.CharField(max_length=1024, db_index=True, null=True)
     sha1 = django.db.models.CharField(max_length=1024, db_index=True, null=True)
     path = django.db.models.CharField(max_length=1024, db_index=True)
     document_count = django.db.models.IntegerField(default=0)
@@ -108,10 +130,10 @@ class CompanyFiling(django.db.models.Model):
     is_processed = django.db.models.BooleanField(default=False, db_index=True)
     is_error = django.db.models.BooleanField(default=False, db_index=True)
     acceptance_datetime = django.db.models.DateField(db_index=True, null=True)
-    date_downloaded = django.db.models.DateField(default=django.utils.timezone.now, db_index=True)
-    document_url = django.db.models.CharField(max_length=1024)
-    homepage_url = django.db.models.CharField(max_length=1024)
-    text_url = django.db.models.CharField(max_length=1024)
+    date_downloaded = django.db.models.DateField(db_index=True, null=True)
+    document_url = django.db.models.CharField(max_length=1024, null=True)
+    homepage_url = django.db.models.CharField(max_length=1024, null=True)
+    text_url = django.db.models.CharField(max_length=1024, null=True)
     
     def __str__(self):
         """
@@ -124,15 +146,31 @@ class CompanyFiling(django.db.models.Model):
             .decode("utf-8", "ignore")
 
 
+class FactIndex(django.db.models.Model):
+    fact = django.db.models.CharField(max_length=1024, primary_key=True,  null=False)
+    label = django.db.models.CharField(max_length=1024, null=False)
+    description = django.db.models.CharField(max_length=1024, null=False)
+
+    def __str__(self):
+        """
+        String representation method
+        :return:
+        """
+        return "FactIndex fact={0}" \
+            .format(self.fact) \
+            .encode("utf-8", "ignore") \
+            .decode("utf-8", "ignore")
+
+
 class CompanyFacts(django.db.models.Model):
     """
     Company Facts, stored by accession number and fact
     """
     # Fields
-    id = django.db.models.AutoField(primary_key=True)
+    id = django.db.models.CharField(max_length=1024, primary_key=True)
     cik = django.db.models.ForeignKey(Company, db_column='cik', db_index=True, on_delete=django.db.models.CASCADE)
-    accession_number = django.db.models.ForeignKey(CompanyFiling, db_column='accession_number', db_index=True, on_delete=django.db.models.CASCADE)
-    fact = django.db.models.CharField(max_length=1024, db_index=True,  null=False)
+    accession_number = django.db.models.ForeignKey(Filing, db_column='accession_number', db_index=True, on_delete=django.db.models.CASCADE)
+    fact = django.db.models.ForeignKey(FactIndex, db_column="fact", db_index=True, on_delete=django.db.models.CASCADE)
     namespace = django.db.models.CharField(max_length=1024, db_index=True)
     value = django.db.models.FloatField(db_index=True)
     start_date = django.db.models.DateField()
@@ -160,7 +198,7 @@ class FilingDocument(django.db.models.Model):
     """
 
     # Key fields
-    filing = django.db.models.ForeignKey(CompanyFiling, db_index=True, on_delete=django.db.models.CASCADE)
+    filing = django.db.models.ForeignKey(Filing, db_index=True, on_delete=django.db.models.CASCADE)
     type = django.db.models.CharField(max_length=1024, db_index=True, null=True)
     sequence = django.db.models.IntegerField(db_index=True, default=0)
     file_name = django.db.models.CharField(max_length=1024, null=True)
