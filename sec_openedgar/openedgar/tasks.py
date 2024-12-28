@@ -43,13 +43,28 @@ from celery import shared_task
 from config.settings.base import S3_DOCUMENT_PATH
 from openedgar.clients.s3 import S3Client
 from openedgar.clients.local import LocalClient
+from edgar.entities import NoCompanyFactsFound
 import openedgar.clients.openedgar
 import openedgar.parsers.openedgar
-from openedgar.models import Company, CompanyInfo, FilingIndex, Filing , FilingDocument, SearchQuery, SearchQueryTerm, \
-    SearchQueryResult
+from openedgar.models import Company
+from openedgar.models import CompanyFact
+from openedgar.models import CompanyInfo
+from openedgar.models import FactIndex
+from openedgar.models import FilingIndex
+from openedgar.models import Filing
+from openedgar.models import FilingDocument
+from openedgar.models import FormIndex
+from openedgar.models import SearchQuery
+from openedgar.models import SearchQueryTerm
+from openedgar.models import SearchQueryResult
     
 # edgartools
 import edgar
+from edgar import forms as frm
+edgar.use_local_storage()
+
+# import tabula for formtypes
+import tabula
 
 # LexNLP imports
 import lexnlp.nlp.en.tokens
@@ -62,6 +77,35 @@ console.setLevel(logging.INFO)
 formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
 console.setFormatter(formatter)
 logger.addHandler(console)
+
+def download_data():
+    edgar.download_edgar_data()
+
+def process_formtypes():
+    try:
+        pdf_path = "https://www.sec.gov/info/edgar/forms/edgform.pdf"
+        dfs = tabula.read_pdf(pdf_path, user_agent=os.getenv('EDGAR_IDENTITY'), pages='2-31', lattice=True)
+        forms = pd.concat(dfs)
+        forms['Submission Type'] = forms['Submission Type'].str.replace('\r', ' ')
+        forms.reset_index(inplace=True, drop=True)
+        forms = forms[['Submission Type', 'Description']][~pd.isnull(forms['Submission Type'])].copy()
+        forms['Submission Type'] = forms['Submission Type'].str.split(', ')
+        forms = forms.explode('Submission Type')
+        forms.rename(columns={'Submission Type': 'Form'}, inplace=True)
+        forms.reset_index(inplace=True, drop=True)
+        for form in forms.itertuples():
+            try:
+                f = FormIndex.objects.get(form=form.Form)
+            except:
+                f = FormIndex()
+
+            f.form = form.Form
+            f.description = form.Description
+            f.save()
+    except Exception:
+        error = sys.exc_info()[0]
+        details = traceback.format_exc()
+        sys.stderr.write(f'{error} - {details}')
 
 def process_company():
     """
@@ -180,29 +224,76 @@ def process_companyinfo(cik:int=0, multiple:bool=False, upsert:bool=False):
         sys.stderr.write(f'{err_cik}: {error} - {details}')
         
 def process_companyfacts_cik(cik:int):
+    processed = False
     try:
         company = edgar.Company(cik)
-        facts = company.get_facts().to_pandas()
-        facts['id'] = facts.fact + '_' + facts.accn
-        for fact in facts.itertuples():
-            try:
-                cf = CompanyFact.objects.get(id=fact.id)
-            except CompanyFact.DoesNotExist:
-                cf = CompanyFact()
-            cf.id = fact.id
-            cf.cik = c
-            cf.accession_number = fact.accn
-            cf.fact = fact.fact
-            cf.namespace = fact.namespace
-            cf.value = fact.val
-            cf.start_date = fact.start
-            cf.end_date = fact.end
-            cf.datefiled = fact.filed
-            cf.fiscal_year = fact.fy
-            cf.fiscal_period = fact.fp
-            cf.formtype = cf.form
-            cf.frame = fact.frame
-            cf.save()
+        if company is not None:
+            facts = company.get_facts()
+            if facts is not None:
+                if hasattr(facts, 'fact_meta'):
+                    for fact_index in facts.fact_meta.itertuples():
+                        try:
+                            fi = FactIndex.objects.get(fact=fact_index.fact)
+                        except FactIndex.DoesNotExist:
+                            fi = FactIndex()
+                        fi.fact = fact_index.fact
+                        fi.label = fact_index.label
+                        fi.description = fact_index.description
+                        fi.save()
+                    facts = facts.to_pandas()
+                    facts['id'] = facts.fact + '_' + facts.accn
+                    facts.drop_duplicates(subset=['id'], keep='last', inplace=True)
+                    fact_objects = []
+                    for fact in facts.itertuples():
+                        try:
+                            cf = CompanyFact.objects.get(id=fact.id)
+                        except CompanyFact.DoesNotExist:
+                            cf = CompanyFact()
+                        try:
+                            fi = FilingIndex.objects.get(accession_number=fact.accn)
+                        except FilingIndex.DoesNotExist:
+                            fi = FilingIndex.objects.create(accession_number=fact.accn)
+                        cf.accession_number = fi
+                        try:
+                            fact_idx = FactIndex.objects.get(fact=fact.fact)
+                        except FactIndex.DoesNotExist:
+                            fact_idx = FactIndex().objects.create(fact=fact.fact)
+                        cf.fact = fact_idx
+                        try:
+                            c = Company.objects.get(cik=cik)
+                        except Company.DoesNotExist:
+                            c = Company.objects.create(cik=cik)
+                        cf.cik = c
+                        try:
+                            ft = FormIndex.objects.get(form=fact.form)
+                        except FormIndex.DoesNotExist:
+                            ft = FormIndex.objects.create(form=fact.form)
+                        cf.formtype = ft
+                        cf.id = fact.id
+                        cf.namespace = fact.namespace
+                        cf.value = fact.val
+                        cf.start_date = fact.start
+                        cf.end_date = fact.end
+                        cf.datefiled = fact.filed
+                        cf.fiscal_year = fact.fy
+                        cf.fiscal_period = fact.fp
+                        cf.frame = fact.frame
+                        fact_objects.append(cf)
+                    CompanyFact.objects.bulk_create(
+                        fact_objects,
+                        update_conflicts=True, 
+                        unique_fields=['id'],
+                        update_fields=[
+                            'namespace',
+                            'value',
+                            'start_date',
+                            'end_date',
+                            'datefiled',
+                            'fiscal_year',
+                            'fiscal_period',
+                            'frame'])
+                    processed = True
+        return processed
     except Exception:
         error = sys.exc_info()[0]
         details = traceback.format_exc()
@@ -210,7 +301,61 @@ def process_companyfacts_cik(cik:int):
         
 @shared_task
 def process_companyfacts(cik:int=0, multiple:bool=False, upsert:bool=False):
-    pass
+    try:
+        print('Getting CompanyInfo Objects')
+        company = None
+        if cik == 0 or multiple:
+            if not upsert:
+                # ciks in company not in companyinfo
+                company_ciks = set(
+                    CompanyInfo.objects \
+                        .all() \
+                        .filter(cik__gte=cik) \
+                        .filter(is_company=True) \
+                        .order_by('cik') \
+                        .values_list('cik', flat=True))
+                companyfact_ciks = set(
+                    CompanyFact.objects \
+                        .all() \
+                        .filter(cik__gte=cik) \
+                        .order_by('cik') \
+                        .values_list('cik', flat=True))
+                ciks = company_ciks.union(companyfact_ciks) \
+                    - company_ciks.intersection(companyfact_ciks)
+              
+            else:
+                # ciks >= passed in cik 
+                ciks = CompanyInfo.objects \
+                    .all() \
+                    .filter(cik__gte=cik) \
+                    .filter(is_company=True) \
+                    .order_by('cik') \
+                    .values_list('cik', flat=True)
+        else:
+            # single cik
+            ciks = CompanyInfo.objects \
+                .get(cik=cik) \
+                .filter(is_company=True) \
+                .values_list('cik', flat=True)
+        print(f'Got {len(ciks)} CIKs')
+        i = 0
+        total = len(ciks)
+        for cik in ciks:
+            i += 1
+            processed = process_companyfacts_cik(cik)
+            if processed:
+                action = 'processed'
+            else:
+                action = 'skipped'
+            print(f"{action} {cik}: {i} of {total}")
+    except Exception:
+        error = sys.exc_info()[0]
+        details = traceback.format_exc()
+        if company is None:
+            err_cik = cik
+        else:
+            err_cik = company.cik
+        sys.stderr.write(f'{err_cik}: {error} - {details}')
 
 def process_filingindex_year(year:int, batch_size:int=1000, upsert:bool=False, formtypes:Iterable[str]=None):
     filing_index = edgar.get_filings(year, form=formtypes)
@@ -237,7 +382,11 @@ def process_filingindex_year(year:int, batch_size:int=1000, upsert:bool=False, f
                 except Company.DoesNotExist:
                     company = Company.objects.create(cik=filing.cik, cik_name=filing.company)
                 f.accession_number = filing.accession_number
-                f.form_type = filing.form
+                try:
+                    frm = FormIndex.objects.get(form=filing.form)
+                except FormIndex.DoesNotExist:
+                    frm = FormIndex.objects.create(form=filing.form)
+                f.form_type = frm
                 f.date_filed = filing.filing_date
                 f.cik = company
                 f.company = filing.company
