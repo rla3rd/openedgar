@@ -191,7 +191,6 @@ class CompanyFact(django.db.models.Model):
     fact = django.db.models.ForeignKey(FactIndex, db_column="fact", db_index=True, on_delete=django.db.models.CASCADE)
     namespace = django.db.models.CharField(max_length=1024, db_index=True)
     value = django.db.models.FloatField(db_index=True)
-    start_date = django.db.models.DateField(null=True)
     end_date = django.db.models.DateField(null=True)
     datefiled = django.db.models.DateField(db_index=True)
     fiscal_year = django.db.models.IntegerField(db_index=True)

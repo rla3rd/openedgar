@@ -272,7 +272,6 @@ def process_companyfacts_cik(cik:int):
                         cf.id = fact.id
                         cf.namespace = fact.namespace
                         cf.value = fact.val
-                        cf.start_date = fact.start
                         cf.end_date = fact.end
                         cf.datefiled = fact.filed
                         cf.fiscal_year = fact.fy
@@ -286,7 +285,6 @@ def process_companyfacts_cik(cik:int):
                         update_fields=[
                             'namespace',
                             'value',
-                            'start_date',
                             'end_date',
                             'datefiled',
                             'fiscal_year',
