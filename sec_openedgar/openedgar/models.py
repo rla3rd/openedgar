@@ -91,12 +91,30 @@ class CompanyInfo(django.db.models.Model):
             .decode("utf-8", "ignore")
 
 
+class FormIndex(django.db.models.Model):
+    """
+    Form index, which stores a list of form types.
+    """
+    form = django.db.models.CharField(max_length=64, primary_key=True, null=False)
+    description = django.db.models.CharField(max_length=1024, null=True)
+
+    def __str__(self):
+        """
+        String representation method
+        :return:
+        """
+        return "FormIndex form_type={0}" \
+            .format(self.form_type) \
+            .encode("utf-8", "ignore") \
+            .decode("utf-8", "ignore")
+
+    
 class FilingIndex(django.db.models.Model):
     """
     Filing Index, listing of all filings by formtype and cik
     """
     # Fields
-    form_type = django.db.models.CharField(max_length=64, db_index=True, null=True)
+    form_type = django.db.models.ForeignKey(FormIndex, db_column='form', db_index=True, on_delete=django.db.models.CASCADE, null=True)
     company = django.db.models.CharField(max_length=1024, db_index=True, null=True)
     cik = django.db.models.ForeignKey(Company, db_column='cik', db_index=True, on_delete=django.db.models.CASCADE, null=False)
     date_filed = django.db.models.DateField(db_index=True, null=True)
@@ -118,7 +136,7 @@ class Filing(django.db.models.Model):
     Company Filing, which stores a single filing record from an index.
     """
     # Fields
-    form_type = django.db.models.CharField(max_length=64, db_index=True, null=True)
+    form_type = django.db.models.ForeignKey(FormIndex, db_column='form', max_length=64, db_index=True, on_delete=django.db.models.CASCADE, null=True)
     accession_number = django.db.models.CharField(max_length=1024, primary_key=True, null=False)
     date_filed = django.db.models.DateField(db_index=True, null=True)
     cik = django.db.models.ForeignKey(Company, db_column='cik', db_index=True, on_delete=django.db.models.CASCADE, null=False)
@@ -148,8 +166,8 @@ class Filing(django.db.models.Model):
 
 class FactIndex(django.db.models.Model):
     fact = django.db.models.CharField(max_length=1024, primary_key=True,  null=False)
-    label = django.db.models.CharField(max_length=1024, null=False)
-    description = django.db.models.CharField(max_length=1024, null=False)
+    label = django.db.models.CharField(max_length=1024, null=True)
+    description = django.db.models.CharField(max_length=2048, null=True)
 
     def __str__(self):
         """
@@ -162,24 +180,24 @@ class FactIndex(django.db.models.Model):
             .decode("utf-8", "ignore")
 
 
-class CompanyFacts(django.db.models.Model):
+class CompanyFact(django.db.models.Model):
     """
     Company Facts, stored by accession number and fact
     """
     # Fields
     id = django.db.models.CharField(max_length=1024, primary_key=True)
     cik = django.db.models.ForeignKey(Company, db_column='cik', db_index=True, on_delete=django.db.models.CASCADE)
-    accession_number = django.db.models.ForeignKey(Filing, db_column='accession_number', db_index=True, on_delete=django.db.models.CASCADE)
+    accession_number = django.db.models.ForeignKey(FilingIndex, db_column='accession_number', db_index=True, on_delete=django.db.models.CASCADE)
     fact = django.db.models.ForeignKey(FactIndex, db_column="fact", db_index=True, on_delete=django.db.models.CASCADE)
     namespace = django.db.models.CharField(max_length=1024, db_index=True)
     value = django.db.models.FloatField(db_index=True)
-    start_date = django.db.models.DateField()
-    end_date = django.db.models.DateField()
+    start_date = django.db.models.DateField(null=True)
+    end_date = django.db.models.DateField(null=True)
     datefiled = django.db.models.DateField(db_index=True)
-    fiscal_year = django.db.models.IntegerField(max_length=1024, db_index=True)
+    fiscal_year = django.db.models.IntegerField(db_index=True)
     fiscal_period = django.db.models.CharField(max_length=1024, db_index=True)
-    formtype = django.db.models.CharField(max_length=1024)
-    frame = django.db.models.CharField(max_length=1024)
+    formtype = django.db.models.ForeignKey(FormIndex, db_column='form', on_delete=django.db.models.CASCADE, max_length=1024)
+    frame = django.db.models.CharField(max_length=1024, null=True)
     
     def __str__(self):
         """
