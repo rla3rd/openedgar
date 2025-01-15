@@ -31,8 +31,13 @@ import logging
 import tempfile
 import os
 import pathlib
+import tarfile
+import io
+import zstd
+import orjson as json
 import pandas as pd
-from typing import Iterable, Union
+from bs4 import BeautifulSoup
+from typing import Iterable, Union, Optional, Dict, List
 
 # Packages
 import dateutil.parser
@@ -57,7 +62,7 @@ from openedgar.models import FormIndex
 from openedgar.models import SearchQuery
 from openedgar.models import SearchQueryTerm
 from openedgar.models import SearchQueryResult
-    
+ 
 # edgartools
 import edgar
 from edgar import forms as frm
@@ -80,6 +85,68 @@ logger.addHandler(console)
 
 def download_data():
     edgar.download_edgar_data()
+    
+def download_bulk_filings(year=None, quarter=None, verbose=False):
+    data_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR"))
+    base_url = 'https://www.sec.gov/Archives/edgar/Feed/'
+    page = edgar.httprequests.get_with_retry(base_url)
+    soup = BeautifulSoup(page, features="lxml")
+    table = soup.find("table")
+
+    if year:
+        years = [year]
+    else:
+        years = []
+        for tr in table.find_all('tr'):
+            row = tr.find_all('td')
+            if len(row) > 0:
+                year = row[0].find('a').attrs['href'].replace("/", "")
+                if year != "":
+                    if int(year) >= 1997:
+                        years.append(int(year))
+
+        years.sort()
+
+    for year in years:
+        year_page = edgar.httprequests.get_with_retry(f"{base_url}{year}/")
+        year_soup = BeautifulSoup(year_page, features="lxml")
+        year_table = year_soup.find("table")
+        if quarter:
+            quarters = [f"QTR{quarter}"]
+        else:
+            quarters = []
+            for tr in year_table.find_all('tr'):
+                row = tr.find_all('td')
+                if len(row) > 0:
+                    qtr = row[0].find('a').attrs['href'].replace("/", "")
+                    if qtr in ("QTR1", "QTR2", "QTR3", "QTR4"):
+                        quarters.append(qtr)
+        for quarter in quarters:
+            quarter_page = edgar.httprequests.get_with_retry(f"{base_url}{year}/{quarter}/")
+            quarter_soup = BeautifulSoup(quarter_page, features="lxml")
+            quarter_table = quarter_soup.find("table")
+            for tr in quarter_table.find_all('tr'):
+                row = tr.find_all('td')
+                if len(row) > 0:
+                    filename = row[0].find('a').attrs['href']
+                    if filename.split(".")[-1] == 'gz':
+                        file_url = f"{base_url}{year}/{quarter}/{filename}"
+                        if verbose:
+                            print(file_url)
+                        file_data = edgar.httprequests.get_with_retry(file_url)
+                        with tarfile.open(fileobj=io.BytesIO(file_data.content)) as tar:
+                            for member in tar.getmembers():
+                                if member.isreg():
+                                    f = tar.extractfile(member)
+                                    file_path = data_dir / "data" / str(year) / quarter / f"{member.name}.zstd"
+                                    content = f.read()
+                                    compressed_content=zstd.compress(content)
+                                    file_path.parent.mkdir(parents=True, exist_ok=True)
+                                    file = file_path.open('wb')
+                                    file.write(compressed_content)
+                                    file.flush()
+                                    file.close()
+                            tar.close()
 
 def process_formtypes():
     try:
@@ -223,6 +290,20 @@ def process_companyinfo(cik:int=0, multiple:bool=False, upsert:bool=False):
             err_cik = company.cik
         sys.stderr.write(f'{err_cik}: {error} - {details}')
         
+def process_companyfacts_bulk():
+    data_path = pathlib.Path(os.getenv('EDGAR_LOCAL_DATA_DIR'))
+    facts_path = data_path / 'companyfacts'
+    facts_files = facts_path.glob('*.json')
+    
+    results = []
+    for filenm in facts_files:
+        cik = int(filenm.stem[3:])
+        res = process_companyfacts_cik.s(cik).apply_async(serializer='json')
+        results.append(res)
+    for res in results:
+        res.get()
+    
+@shared_task
 def process_companyfacts_cik(cik:int):
     processed = False
     try:
@@ -246,28 +327,43 @@ def process_companyfacts_cik(cik:int):
                     fact_objects = []
                     for fact in facts.itertuples():
                         try:
-                            cf = CompanyFact.objects.get(id=fact.id)
-                        except CompanyFact.DoesNotExist:
-                            cf = CompanyFact()
-                        try:
-                            fi = FilingIndex.objects.get(accession_number=fact.accn)
-                        except FilingIndex.DoesNotExist:
-                            fi = FilingIndex.objects.create(accession_number=fact.accn)
-                        cf.accession_number = fi
+                            ft = FormIndex.objects.get(form=fact.form)
+                        except FormIndex.DoesNotExist:
+                            ft = FormIndex.objects.create(form=fact.form)
                         try:
                             fact_idx = FactIndex.objects.get(fact=fact.fact)
                         except FactIndex.DoesNotExist:
                             fact_idx = FactIndex().objects.create(fact=fact.fact)
-                        cf.fact = fact_idx
                         try:
                             c = Company.objects.get(cik=cik)
                         except Company.DoesNotExist:
                             c = Company.objects.create(cik=cik)
-                        cf.cik = c
                         try:
-                            ft = FormIndex.objects.get(form=fact.form)
-                        except FormIndex.DoesNotExist:
-                            ft = FormIndex.objects.create(form=fact.form)
+                            fi = FilingIndex.objects.get(accession_number=fact.accn)
+                        except FilingIndex.DoesNotExist:
+                            fi = FilingIndex.objects.create(
+                                accession_number=fact.accn,
+                                cik=c)
+                        try:
+                            cf = CompanyFact.objects.get(id=fact.id)
+                        except CompanyFact.DoesNotExist:
+                            cf = CompanyFact(
+                                id=fact.id,
+                                cik=c,
+                                fact=fact_idx,
+                                formtype=ft,
+                                namespace=fact.namespace,
+                                value=fact.val,
+                                end_date=fact.end,
+                                datefiled=fact.filed,
+                                fiscal_year=fact.fy,
+                                fiscal_period=fact.fp,
+                                frame=fact.frame,
+                                accession_number=fi)
+                        
+                        cf.cik = c
+                        cf.accession_number = fi
+                        cf.fact = fact_idx
                         cf.formtype = ft
                         cf.id = fact.id
                         cf.namespace = fact.namespace
@@ -291,11 +387,14 @@ def process_companyfacts_cik(cik:int):
                             'fiscal_period',
                             'frame'])
                     processed = True
-        return processed
     except Exception:
         error = sys.exc_info()[0]
         details = traceback.format_exc()
         sys.stderr.write(f'{error} - {details}')
+        processed = False
+    finally:
+        print(cik, processed)
+    return processed
         
 @shared_task
 def process_companyfacts(cik:int=0, multiple:bool=False, upsert:bool=False):
