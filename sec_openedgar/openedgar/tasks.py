@@ -137,8 +137,8 @@ def download_bulk_filings(year=None, qtr=None, verbose=False, backfill=False):
                         file_url = f"{base_url}{year}/{quarter}/{filename}"
                         if verbose:
                             print(file_url)
-                        file_data = edgar.httprequests.get_with_retry(file_url)
                         try:
+                            file_data = edgar.httprequests.get_with_retry(file_url)
                             with tarfile.open(fileobj=io.BytesIO(file_data.content)) as tar:
                                 for member in tar.getmembers():
                                     if member.isreg():
