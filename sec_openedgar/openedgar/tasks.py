@@ -86,6 +86,38 @@ logger.addHandler(console)
 def download_data():
     edgar.download_edgar_data()
     
+def get_text_quarter(month):
+    if month in ("01", "02", "03"):
+        return "QTR1"
+    elif month in ("04", "05", "06"):
+        return "QTR2"
+    elif month in ("07", "08", "09"):
+        return "QTR3"
+    elif month in ("10", "11", "12"):
+        return "QTR4"
+    
+def download_bulk_filings_ondate(file_url):
+    data_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR"))
+    filename = file_url.split("/")[-1]
+    date = filename.split(".")[0]
+    year = date[:4]
+    quarter = get_text_quarter(date[4:6])
+    file_data = edgar.httprequests.get_with_retry(file_url)
+    with tarfile.open(fileobj=io.BytesIO(file_data.content)) as tar:
+        for member in tar.getmembers():
+            if member.isreg():
+                f = tar.extractfile(member)
+                content = f.read()
+                compressed_content=zstd.compress(content)
+                file_path = data_dir / "data" / str(year) / quarter / f"{member.name}.zstd"
+                file_path.parent.mkdir(parents=True, exist_ok=True)
+                file = file_path.open('wb')
+                file.write(compressed_content)
+                file.flush()
+                file.close()
+        tar.close()
+    
+    
 def download_bulk_filings(year=None, quarter=None, verbose=False):
     data_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR"))
     base_url = 'https://www.sec.gov/Archives/edgar/Feed/'
@@ -133,20 +165,7 @@ def download_bulk_filings(year=None, quarter=None, verbose=False):
                         file_url = f"{base_url}{year}/{quarter}/{filename}"
                         if verbose:
                             print(file_url)
-                        file_data = edgar.httprequests.get_with_retry(file_url)
-                        with tarfile.open(fileobj=io.BytesIO(file_data.content)) as tar:
-                            for member in tar.getmembers():
-                                if member.isreg():
-                                    f = tar.extractfile(member)
-                                    file_path = data_dir / "data" / str(year) / quarter / f"{member.name}.zstd"
-                                    content = f.read()
-                                    compressed_content=zstd.compress(content)
-                                    file_path.parent.mkdir(parents=True, exist_ok=True)
-                                    file = file_path.open('wb')
-                                    file.write(compressed_content)
-                                    file.flush()
-                                    file.close()
-                            tar.close()
+                        download_bulk_filings_ondate(file_url)
 
 def process_formtypes():
     try:
