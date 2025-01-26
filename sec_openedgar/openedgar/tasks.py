@@ -102,20 +102,25 @@ def download_bulk_filings_ondate(file_url):
     date = filename.split(".")[0]
     year = date[:4]
     quarter = get_text_quarter(date[4:6])
-    file_data = edgar.httprequests.get_with_retry(file_url)
-    with tarfile.open(fileobj=io.BytesIO(file_data.content)) as tar:
-        for member in tar.getmembers():
-            if member.isreg():
-                f = tar.extractfile(member)
-                content = f.read()
-                compressed_content=zstd.compress(content)
-                file_path = data_dir / "data" / str(year) / quarter / f"{member.name}.zstd"
-                file_path.parent.mkdir(parents=True, exist_ok=True)
-                file = file_path.open('wb')
-                file.write(compressed_content)
-                file.flush()
-                file.close()
-        tar.close()
+    try:
+        file_data = edgar.httprequests.get_with_retry(file_url)
+        with tarfile.open(fileobj=io.BytesIO(file_data.content)) as tar:
+            for member in tar.getmembers():
+                if member.isreg():
+                    f = tar.extractfile(member)
+                    content = f.read()
+                    compressed_content=zstd.compress(content)
+                    file_path = data_dir / "data" / str(year) / quarter / f"{member.name}.zstd"
+                    file_path.parent.mkdir(parents=True, exist_ok=True)
+                    file = file_path.open('wb')
+                    file.write(compressed_content)
+                    file.flush()
+                    file.close()
+            tar.close()
+    except Exception:
+        error = sys.exc_info()[0]
+        details = traceback.format_exc()
+        sys.stderr.write(f'{file_url}: {error} - {details}')
     
     
 def download_bulk_filings(year=None, quarter=None, verbose=False):
@@ -124,37 +129,41 @@ def download_bulk_filings(year=None, quarter=None, verbose=False):
     page = edgar.httprequests.get_with_retry(base_url)
     soup = BeautifulSoup(page, features="lxml")
     table = soup.find("table")
-
-    if year:
-        years = [year]
-    else:
+    
+    begin_year = 1997
+    if backfill:
+        if year:
+            begin_year = year
         years = []
         for tr in table.find_all('tr'):
             row = tr.find_all('td')
             if len(row) > 0:
-                year = row[0].find('a').attrs['href'].replace("/", "")
-                if year != "":
-                    if int(year) >= 1997:
-                        years.append(int(year))
-
-        years.sort()
-
+                yr = row[0].find('a').attrs['href'].replace("/", "")
+                if yr != "":
+                    if int(yr) >= begin_year:
+                        years.append(int(yr))
+    else:
+        years = [year]
+    years.sort()
     for year in years:
         year_page = edgar.httprequests.get_with_retry(f"{base_url}{year}/")
         year_soup = BeautifulSoup(year_page, features="lxml")
         year_table = year_soup.find("table")
-        if quarter:
-            quarters = [f"QTR{quarter}"]
+        if qtr:
+            quarters = [f"QTR{qtr}"]
         else:
             quarters = []
             for tr in year_table.find_all('tr'):
                 row = tr.find_all('td')
                 if len(row) > 0:
-                    qtr = row[0].find('a').attrs['href'].replace("/", "")
-                    if qtr in ("QTR1", "QTR2", "QTR3", "QTR4"):
-                        quarters.append(qtr)
+                    text_qtr = row[0].find('a').attrs['href'].replace("/", "")
+                    if text_qtr in ("QTR1", "QTR2", "QTR3", "QTR4"):
+                        quarters.append(text_qtr)
         for quarter in quarters:
-            quarter_page = edgar.httprequests.get_with_retry(f"{base_url}{year}/{quarter}/")
+            quarter_url = f"{base_url}{year}/{quarter}/"
+            if verbose:
+                print(quarter_url)
+            quarter_page = edgar.httprequests.get_with_retry(quarter_url)
             quarter_soup = BeautifulSoup(quarter_page, features="lxml")
             quarter_table = quarter_soup.find("table")
             for tr in quarter_table.find_all('tr'):
