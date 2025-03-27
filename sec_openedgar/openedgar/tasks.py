@@ -32,6 +32,7 @@ import tempfile
 import os
 import pathlib
 import tarfile
+from tarfile import ReadError
 import io
 import zstd
 import orjson as json
@@ -96,7 +97,29 @@ def get_text_quarter(month):
     elif month in ("10", "11", "12"):
         return "QTR4"
     
-def download_bulk_filings_ondate(file_url):
+def process_builk_filing_file(filename):
+    data_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR"))
+    filename = filename.split("/")[-1]
+    date = filename.split(".")[0]
+    year = date[:4]
+    quarter = get_text_quarter(date[4:6])
+    file_path = data_dir / "data" / filename
+    with tarfile.open(file_path) as tar:
+        members = tar.getmembers()
+        for member in members:
+            if member.isreg():
+                f = tar.extractfile(member)
+                content = f.read()
+                compressed_content=zstd.compress(content)
+                file_path = data_dir / "data" / str(year) / quarter / f"{member.name}.zstd"
+                file_path.parent.mkdir(parents=True, exist_ok=True)
+                file = file_path.open('wb')
+                file.write(compressed_content)
+                file.flush()
+                file.close()
+        tar.close()
+    
+def download_bulk_filings_url(file_url):
     data_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR"))
     filename = file_url.split("/")[-1]
     date = filename.split(".")[0]
@@ -105,7 +128,8 @@ def download_bulk_filings_ondate(file_url):
     try:
         file_data = edgar.httprequests.get_with_retry(file_url)
         with tarfile.open(fileobj=io.BytesIO(file_data.content)) as tar:
-            for member in tar.getmembers():
+            members = tar.getmembers()
+            for member in members:
                 if member.isreg():
                     f = tar.extractfile(member)
                     content = f.read()
@@ -123,8 +147,7 @@ def download_bulk_filings_ondate(file_url):
         sys.stderr.write(f'{file_url}: {error} - {details}')
     
     
-def download_bulk_filings(year=None, quarter=None, verbose=False):
-    data_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR"))
+def download_bulk_filings(year=None, qtr=None, backfill=True, verbose=False):
     base_url = 'https://www.sec.gov/Archives/edgar/Feed/'
     page = edgar.httprequests.get_with_retry(base_url)
     soup = BeautifulSoup(page, features="lxml")
@@ -174,7 +197,7 @@ def download_bulk_filings(year=None, quarter=None, verbose=False):
                         file_url = f"{base_url}{year}/{quarter}/{filename}"
                         if verbose:
                             print(file_url)
-                        download_bulk_filings_ondate(file_url)
+                        download_bulk_filings_url(file_url)
 
 def process_formtypes():
     try:
