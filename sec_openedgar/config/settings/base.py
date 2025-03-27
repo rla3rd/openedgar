@@ -305,7 +305,7 @@ CELERY_RESULT_PERSISTENT = False
 
 #: Only add pickle to this list if your broker is secured
 #: from unwanted access (see userguide/security.html)
-CELERY_ACCEPT_CONTENT = ['pickle']
+CELERY_ACCEPT_CONTENT = ['pickle','json','application/text']
 CELERY_TASK_SERIALIZER = 'pickle'
 ########## END CELERY
 

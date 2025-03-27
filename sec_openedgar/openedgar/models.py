@@ -54,7 +54,7 @@ class CompanyInfo(django.db.models.Model):
     a CIK/security on a given date.
     """
     # Fields
-    cik = django.db.models.ForeignKey(Company, db_column='cik', primary_key=True, unique=True, db_index=True, on_delete=django.db.models.CASCADE)
+    cik = django.db.models.OneToOneField(Company, db_column='cik', primary_key=True, db_index=True, on_delete=django.db.models.CASCADE)
     name = django.db.models.CharField(max_length=1024, db_index=True)
     is_company = django.db.models.BooleanField()
     category = django.db.models.CharField(max_length=1024, null=True)
@@ -107,7 +107,28 @@ class FormIndex(django.db.models.Model):
             .format(self.form_type) \
             .encode("utf-8", "ignore") \
             .decode("utf-8", "ignore")
-
+            
+class BulkFilingIndex(django.db.models.Model):
+    """
+    Bulk Filing Index, listing of all bulk filing files by date
+    """
+    filename = django.db.models.CharField(max_length=1024, primary_key=True, null=False)
+    year = django.db.models.IntegerField(db_index=True, null=False)
+    quarter = django.db.models.IntegerField(db_index=True, null=False)
+    processed = django.db.models.DateField(db_index=True, null=True, default=False)
+    error = django.db.models.BooleanField(default=False, db_index=True)
+    ignored = django.db.models.BooleanField(default=False, db_index=True)
+    
+    def __str__(self):
+        """
+        String representation method
+        :return:
+        """
+        return "BulkFilingIndex filename={0} year={1} quarter={2} processed={3} error={4} ignored={5}" \
+            .format(self.filename, self.year, self.quarter, self.processed, self.error, self.ignored) \
+            .encode("utf-8", "ignore") \
+            .decode("utf-8", "ignore")
+    
     
 class FilingIndex(django.db.models.Model):
     """
@@ -125,7 +146,7 @@ class FilingIndex(django.db.models.Model):
         String representation method
         :return:
         """
-        return "accession_number={0} copmany={1} cik={2}, form_type={3}, date_filed={4}" \
+        return "accession_number={0} company={1} cik={2}, form_type={3}, date_filed={4}" \
             .format(self.accession_number, self.company, self.cik, self.form_type, self.date_filed) \
             .encode("utf-8", "ignore") \
             .decode("utf-8", "ignore")
