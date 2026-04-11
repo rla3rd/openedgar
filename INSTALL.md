@@ -50,13 +50,15 @@ an AWS account is required for S3 usage and performance will be substantially re
     b. `$ git clone https://github.com/rla3rd/openedgar.git`
 
 11. Setup virtual environment
-
+s
     a. `$ cd /opt/openedgar`
     
-    b. `$ virtualenv -p /usr/bin/python3 env`
+    b. `$ python3 -m venv vsenv`
     
-    c. `$ ./env/bin/pip install -r sec_openedgar/requirements/full.txt`
+    c. `$ source venv/bin/activate`
     
+    d. `$ pip install -r sec_openedgar/requirements/full.txt`
+    s
 12. Setup database. Note that the password chosen for openegar must be set as DJANGO_PASSWORD in the .env later
 
     a. `$ sudo -u postgres createuser -l -P -s openedgar`

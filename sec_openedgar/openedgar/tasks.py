@@ -46,10 +46,9 @@ import django.db.utils
 from celery import shared_task
 
 # Project
-from config.settings.base import S3_DOCUMENT_PATH
+from config.settings.base import S3_DOCUMENT_PATH, EDGAR_IDENTITY
 from openedgar.clients.s3 import S3Client
 from openedgar.clients.local import LocalClient
-from edgar.entities import NoCompanyFactsFound
 import openedgar.clients.openedgar
 import openedgar.parsers.openedgar
 from openedgar.models import Company
@@ -67,13 +66,12 @@ from openedgar.models import SearchQueryResult
 # edgartools
 import edgar
 from edgar import forms as frm
+edgar.set_identity(EDGAR_IDENTITY)
 edgar.use_local_storage()
 
 # import tabula for formtypes
 import tabula
 
-# LexNLP imports
-import lexnlp.nlp.en.tokens
 
 # Logging setup
 logger = logging.getLogger(__name__)
@@ -97,7 +95,7 @@ def get_text_quarter(month):
     elif month in ("10", "11", "12"):
         return "QTR4"
     
-def process_builk_filing_file(filename):
+def process_builk_filing_file(filename, replace=False):
     data_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR"))
     filename = filename.split("/")[-1]
     date = filename.split(".")[0]
@@ -108,18 +106,20 @@ def process_builk_filing_file(filename):
         members = tar.getmembers()
         for member in members:
             if member.isreg():
+                out_file_path = data_dir / "data" / str(year) / quarter / f"{member.name}.zstd"
+                if not replace and out_file_path.exists():
+                    continue
                 f = tar.extractfile(member)
                 content = f.read()
                 compressed_content=zstd.compress(content)
-                file_path = data_dir / "data" / str(year) / quarter / f"{member.name}.zstd"
-                file_path.parent.mkdir(parents=True, exist_ok=True)
-                file = file_path.open('wb')
+                out_file_path.parent.mkdir(parents=True, exist_ok=True)
+                file = out_file_path.open('wb')
                 file.write(compressed_content)
                 file.flush()
                 file.close()
         tar.close()
     
-def download_bulk_filings_url(file_url):
+def download_bulk_filings_url(file_url, replace=False):
     data_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR"))
     filename = file_url.split("/")[-1]
     date = filename.split(".")[0]
@@ -131,10 +131,12 @@ def download_bulk_filings_url(file_url):
             members = tar.getmembers()
             for member in members:
                 if member.isreg():
+                    file_path = data_dir / "data" / str(year) / quarter / f"{member.name}.zstd"
+                    if not replace and file_path.exists():
+                        continue
                     f = tar.extractfile(member)
                     content = f.read()
                     compressed_content=zstd.compress(content)
-                    file_path = data_dir / "data" / str(year) / quarter / f"{member.name}.zstd"
                     file_path.parent.mkdir(parents=True, exist_ok=True)
                     file = file_path.open('wb')
                     file.write(compressed_content)
@@ -147,7 +149,7 @@ def download_bulk_filings_url(file_url):
         sys.stderr.write(f'{file_url}: {error} - {details}')
     
     
-def download_bulk_filings(year=None, qtr=None, backfill=True, verbose=False):
+def download_bulk_filings(year=None, qtr=None, backfill=True, verbose=False, replace=False):
     base_url = 'https://www.sec.gov/Archives/edgar/Feed/'
     page = edgar.httprequests.get_with_retry(base_url)
     soup = BeautifulSoup(page, features="lxml")
@@ -197,7 +199,7 @@ def download_bulk_filings(year=None, qtr=None, backfill=True, verbose=False):
                         file_url = f"{base_url}{year}/{quarter}/{filename}"
                         if verbose:
                             print(file_url)
-                        download_bulk_filings_url(file_url)
+                        download_bulk_filings_url(file_url, replace=replace)
 
 def process_formtypes():
     try:
@@ -256,29 +258,29 @@ def process_companyinfo_cik(cik:int):
         cik = company.cik
         ci = CompanyInfo()
         ci.cik = company
-        ci.name = c.name
-        ci.is_company = c.is_company
-        ci.category = c.category
-        ci.description = c.description
-        ci.entity_type = c.entity_type
-        ci.ein = c.ein
-        ci.industry = c.industry
-        ci.sic = c.sic
-        ci.sic_description = c.sic_description
-        ci.state_of_incorporation = c.state_of_incorporation
-        ci.state_of_incorporation_description = c.state_of_incorporation_description
-        ci.fiscal_year_end = c.fiscal_year_end
-        ci.mailing_address = c.mailing_address.__dict__
-        ci.business_addres = c.business_address.__dict__
-        ci.phone = c.phone
-        ci.tickers = c.tickers
-        ci.exchanges = c.exchanges
-        ci.former_names = c.former_names
-        ci.flags = c.flags
-        ci.insider_transaction_for_owner_exists = c.insider_transaction_for_owner_exists
-        ci.insider_transaction_for_issuer_exists = c.insider_transaction_for_issuer_exists
-        ci.website = c.website
-        ci.investor_website = c.investor_website
+        ci.name = getattr(c, 'name', None)
+        ci.is_company = True
+        ci.category = getattr(c, 'category', None)
+        ci.description = getattr(c, 'description', None)
+        ci.entity_type = getattr(c, 'entity_type', None)
+        ci.ein = getattr(c, 'ein', None)
+        ci.industry = getattr(c, 'industry', None)
+        ci.sic = getattr(c, 'sic', None)
+        ci.sic_description = getattr(c, 'sic_description', None)
+        ci.state_of_incorporation = getattr(c, 'state_of_incorporation', None)
+        ci.state_of_incorporation_description = getattr(c, 'state_of_incorporation_description', None)
+        ci.fiscal_year_end = getattr(c, 'fiscal_year_end', None)
+        ci.mailing_address = getattr(c, 'mailing_address', None).__dict__ if getattr(c, 'mailing_address', None) else None
+        ci.business_address = getattr(c, 'business_address', None).__dict__ if getattr(c, 'business_address', None) else None
+        ci.phone = getattr(c, 'phone', None)
+        ci.tickers = getattr(c, 'tickers', [])
+        ci.exchanges = getattr(c, 'exchanges', [])
+        ci.former_names = getattr(c, 'former_names', None)
+        ci.flags = getattr(c, 'flags', None)
+        ci.insider_transaction_for_owner_exists = getattr(c, 'insider_transaction_for_owner_exists', 0)
+        ci.insider_transaction_for_issuer_exists = getattr(c, 'insider_transaction_for_issuer_exists', 0)
+        ci.website = getattr(c, 'website', None)
+        ci.investor_website = getattr(c, 'investor_website', None)
         try:
             oci = CompanyInfo.objects.get(cik=c.cik)
         except CompanyInfo.DoesNotExist:
@@ -362,82 +364,85 @@ def process_companyfacts_cik(cik:int):
         if company is not None:
             facts = company.get_facts()
             if facts is not None:
-                if hasattr(facts, 'fact_meta'):
-                    for fact_index in facts.fact_meta.itertuples():
-                        try:
-                            fi = FactIndex.objects.get(fact=fact_index.fact)
-                        except FactIndex.DoesNotExist:
-                            fi = FactIndex()
-                        fi.fact = fact_index.fact
-                        fi.label = fact_index.label
-                        fi.description = fact_index.description
-                        fi.save()
-                    facts = facts.to_pandas()
-                    facts['id'] = facts.fact + '_' + facts.accn
-                    facts.drop_duplicates(subset=['id'], keep='last', inplace=True)
-                    fact_objects = []
-                    for fact in facts.itertuples():
-                        try:
-                            ft = FormIndex.objects.get(form=fact.form)
-                        except FormIndex.DoesNotExist:
-                            ft = FormIndex.objects.create(form=fact.form)
-                        try:
-                            fact_idx = FactIndex.objects.get(fact=fact.fact)
-                        except FactIndex.DoesNotExist:
-                            fact_idx = FactIndex().objects.create(fact=fact.fact)
-                        try:
-                            c = Company.objects.get(cik=cik)
-                        except Company.DoesNotExist:
-                            c = Company.objects.create(cik=cik)
-                        try:
-                            fi = FilingIndex.objects.get(accession_number=fact.accn)
-                        except FilingIndex.DoesNotExist:
-                            fi = FilingIndex.objects.create(
-                                accession_number=fact.accn,
-                                cik=c)
-                        try:
-                            cf = CompanyFact.objects.get(id=fact.id)
-                        except CompanyFact.DoesNotExist:
-                            cf = CompanyFact(
-                                id=fact.id,
-                                cik=c,
-                                fact=fact_idx,
-                                formtype=ft,
-                                namespace=fact.namespace,
-                                value=fact.val,
-                                end_date=fact.end,
-                                datefiled=fact.filed,
-                                fiscal_year=fact.fy,
-                                fiscal_period=fact.fp,
-                                frame=fact.frame,
-                                accession_number=fi)
-                        
-                        cf.cik = c
-                        cf.accession_number = fi
-                        cf.fact = fact_idx
-                        cf.formtype = ft
-                        cf.id = fact.id
-                        cf.namespace = fact.namespace
-                        cf.value = fact.val
-                        cf.end_date = fact.end
-                        cf.datefiled = fact.filed
-                        cf.fiscal_year = fact.fy
-                        cf.fiscal_period = fact.fp
-                        cf.frame = fact.frame
-                        fact_objects.append(cf)
-                    CompanyFact.objects.bulk_create(
-                        fact_objects,
-                        update_conflicts=True, 
-                        unique_fields=['id'],
-                        update_fields=[
-                            'namespace',
-                            'value',
-                            'end_date',
-                            'datefiled',
-                            'fiscal_year',
-                            'fiscal_period',
-                            'frame'])
-                    processed = True
+                all_facts = facts.get_all_facts()
+                
+                # Pre-save unique FactIndex entries
+                seen_facts = {}
+                for fact in all_facts:
+                    if fact.concept not in seen_facts:
+                        seen_facts[fact.concept] = {'label': getattr(fact, 'label', ''), 'description': ''}
+                
+                for concept, data in seen_facts.items():
+                    try:
+                        fi = FactIndex.objects.get(fact=concept)
+                    except FactIndex.DoesNotExist:
+                        fi = FactIndex()
+                    fi.fact = concept
+                    fi.label = data['label']
+                    fi.description = data['description']
+                    fi.save()
+
+                # Process all facts
+                fact_objects = []
+                # Keep track of unique fact IDs to avoid bulk_create duplicate entries
+                seen_ids = set()
+                
+                for fact in all_facts:
+                    # edgartools 5.x FinancialFact attributes mappings
+                    fact_id = f"{fact.concept}_{fact.accession}"
+                    if fact_id in seen_ids:
+                        continue
+                    seen_ids.add(fact_id)
+
+                    try:
+                        ft = FormIndex.objects.get(form=fact.form_type)
+                    except FormIndex.DoesNotExist:
+                        ft = FormIndex.objects.create(form=fact.form_type)
+                    try:
+                        fact_idx = FactIndex.objects.get(fact=fact.concept)
+                    except FactIndex.DoesNotExist:
+                        fact_idx = FactIndex.objects.create(fact=fact.concept)
+                    try:
+                        c = Company.objects.get(cik=cik)
+                    except Company.DoesNotExist:
+                        c = Company.objects.create(cik=cik)
+                    try:
+                        fi = FilingIndex.objects.get(accession_number=fact.accession)
+                    except FilingIndex.DoesNotExist:
+                        fi = FilingIndex.objects.create(
+                            accession_number=fact.accession,
+                            cik=c)
+                    
+                    try:
+                        cf = CompanyFact.objects.get(id=fact_id)
+                    except CompanyFact.DoesNotExist:
+                        cf = CompanyFact(id=fact_id, cik=c, fact=fact_idx, formtype=ft, accession_number=fi)
+
+                    cf.namespace = getattr(fact, 'taxonomy', 'us-gaap')
+                    cf.value = getattr(fact, 'numeric_value', getattr(fact, 'value', 0.0))
+                    if cf.value is None: cf.value = 0.0
+                    cf.end_date = getattr(fact, 'period_end', None)
+                    cf.datefiled = getattr(fact, 'filing_date', None)
+                    cf.fiscal_year = getattr(fact, 'fiscal_year', 0)
+                    if cf.fiscal_year is None: cf.fiscal_year = 0
+                    cf.fiscal_period = getattr(fact, 'fiscal_period', '')
+                    cf.frame = ''
+
+                    fact_objects.append(cf)
+
+                CompanyFact.objects.bulk_create(
+                    fact_objects,
+                    update_conflicts=True, 
+                    unique_fields=['id'],
+                    update_fields=[
+                        'namespace',
+                        'value',
+                        'end_date',
+                        'datefiled',
+                        'fiscal_year',
+                        'fiscal_period',
+                        'frame'])
+                processed = True
     except Exception:
         error = sys.exc_info()[0]
         details = traceback.format_exc()
@@ -506,7 +511,7 @@ def process_companyfacts(cik:int=0, multiple:bool=False, upsert:bool=False):
         sys.stderr.write(f'{err_cik}: {error} - {details}')
 
 def process_filingindex_year(year:int, batch_size:int=1000, upsert:bool=False, formtypes:Iterable[str]=None):
-    filing_index = edgar.get_filings(year, form=formtypes)
+    filing_index = edgar.get_filings(year)
     if filing_index is not None:
         filing_index = filing_index.to_pandas()
         if formtypes is not None:
@@ -1065,18 +1070,10 @@ def search_filing_document_sha1(client, sha1: str, term_list: Iterable[str], sea
     # Get contents
     if not token_search and not stem_search:
         document_contents = document_buffer
-    elif token_search:
-        document_contents = lexnlp.nlp.en.tokens.get_token_list(document_buffer)
-    elif stem_search:
-        document_contents = lexnlp.nlp.en.tokens.get_stem_list(document_buffer)
 
     # For term in term list
     counts = {}
     for term in term_list:
-        # term_tokens = lexnlp.nlp.en.tokens.get_token_list(term)
-
-        if stem_search:
-            term = lexnlp.nlp.en.tokens.DEFAULT_STEMMER.stem(term)
 
         if case_sensitive:
             counts[term] = document_contents.count(term)
