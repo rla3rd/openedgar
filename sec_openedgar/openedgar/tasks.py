@@ -703,22 +703,24 @@ def create_filing_documents(client, documents, filing, store_raw: bool = True, s
 
         # Upload raw if requested
         if store_raw and len(document["content"]) > 0:
-            raw_path = pathlib.Path(S3_DOCUMENT_PATH, "raw", f"{document['sha1']}.zst").as_posix()
+            doc_type = "".join(x for x in document["type"] if x.isalnum()).lower()
+            raw_path = pathlib.Path(S3_DOCUMENT_PATH, "raw", f"{filing.accession_number}.{doc_type}.zst").as_posix()
             if not client.path_exists(raw_path):
                 client.put_buffer(raw_path, document["content"])
-                logger.info("Uploaded raw file for filing={0}, sequence={1}, sha1={2}"
-                            .format(filing, document["sequence"], document["sha1"]))
+                logger.info("Uploaded raw file for filing={0}, doc_type={1}"
+                            .format(filing, doc_type))
             else:
-                logger.info("Raw file for filing={0}, sequence={1}, sha1={2} already exists on S3"
-                            .format(filing, document["sequence"], document["sha1"]))
+                logger.info("Raw file for filing={0}, doc_type={1} already exists on S3"
+                            .format(filing, doc_type))
 
         # Upload text to S3 if requested
         if store_text and document["content_text"] is not None:
-            raw_path = pathlib.Path(S3_DOCUMENT_PATH, "text", f"{document['sha1']}.zst").as_posix()
-            if not client.path_exists(raw_path):
-                client.put_buffer(raw_path, document["content_text"], write_bytes=False)
-                logger.info("Uploaded text contents for filing={0}, sequence={1}, sha1={2}"
-                            .format(filing, document["sequence"], document["sha1"]))
+            doc_type = "".join(x for x in document["type"] if x.isalnum()).lower()
+            text_path = pathlib.Path(S3_DOCUMENT_PATH, "text", f"{filing.accession_number}.{doc_type}.zst").as_posix()
+            if not client.path_exists(text_path):
+                client.put_buffer(text_path, document["content_text"], write_bytes=False)
+                logger.info("Uploaded text contents for filing={0}, doc_type={1}"
+                            .format(filing, doc_type))
                 
                 # RAG Ingestion: Chunk and ingest into HyperStreamDB with autovectorization
                 try:
@@ -733,8 +735,8 @@ def create_filing_documents(client, documents, filing, store_raw: bool = True, s
                 except Exception as e:
                     logger.error(f"RAG Ingestion failed for {filing.accession_number}: {e}")
             else:
-                logger.info("Text contents for filing={0}, sequence={1}, sha1={2} already exists on S3"
-                            .format(filing, document["sequence"], document["sha1"]))
+                logger.info("Text contents for filing={0}, doc_type={1} already exists on S3"
+                            .format(filing, doc_type))
 
     # Create in bulk
     FilingDocument.objects.bulk_create(document_records)

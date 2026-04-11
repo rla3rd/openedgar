@@ -69,27 +69,27 @@ def ingest_file(file_path: pathlib.Path, client: LocalClient):
             }
         )
 
-        # 6. Save to CAS Lake (Individual .zst)
-        # Format: documents/raw/{sha1}.zst
-        raw_cas_path = f"documents/raw/{sha1}.zst"
+        # 6. Save to Data Lake (Accession-Indexed)
+        # Format: documents/raw/{accession}.{ext}.zst
+        raw_cas_path = f"documents/raw/{accession}.{ext}.zst"
         if not client.path_exists(raw_cas_path):
             client.put_buffer(raw_cas_path, raw_content)
 
         # 7. Fast Parsing (selectolax)
         text_content = extract_text(raw_content, content_type="text/html")
-        text_sha1 = compute_sha1(text_content.encode('utf-8'))
         
-        text_cas_path = f"documents/text/{text_sha1}.zst"
+        text_cas_path = f"documents/text/{accession}.{ext}.zst"
         if not client.path_exists(text_cas_path):
             client.put_buffer(text_cas_path, text_content)
 
         # 8. Sync FilingDocument (The entity standard)
         FilingDocument.objects.get_or_create(
             filing=filing,
-            file_name=filename,
-            sha1=sha1,
+            type=ext.upper(),
             defaults={
-                'content_type': 'text/html' if 'htm' in ext else 'text/plain',
+                'file_name': f"{accession}.{ext}",
+                'sha1': sha1,
+                'content_type': 'text/html' if 'htm' in ext or 'nc' in ext else 'text/plain',
                 'is_processed': True,
                 'sequence': 1
             }
