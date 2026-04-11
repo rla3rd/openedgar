@@ -63,41 +63,41 @@ def ingest_file(file_path: pathlib.Path, client: LocalClient):
             accession_number=accession,
             defaults={
                 'cik': company,
-                'date_filed': datetime(year, 1, 1).date(), # Placeholder if unknown, updated during parse
+                'date_filed': datetime(year, 1, 1).date(),
                 'is_processed': False,
                 'sha1': sha1
             }
         )
 
-        # 6. Save to Data Lake (Accession-Indexed)
-        # Format: documents/raw/{accession}.{ext}.zst
-        raw_cas_path = f"documents/raw/{accession}.{ext}.zst"
-        if not client.path_exists(raw_cas_path):
-            client.put_buffer(raw_cas_path, raw_content)
-
-        # 7. Fast Parsing (selectolax)
+        # 6. Extract Clean Text
         text_content = extract_text(raw_content, content_type="text/html")
         
-        text_cas_path = f"documents/text/{accession}.{ext}.zst"
-        if not client.path_exists(text_cas_path):
-            client.put_buffer(text_cas_path, text_content)
+        # 7. Store in CAS Lake (Deduplicated Content-Addressable Storage)
+        # We store the cleaned text as the primary asset.
+        content_sha1, cas_path = client.put_cas_buffer(text_content)
 
-        # 8. Sync FilingDocument (The entity standard)
+        # 8. Sync FilingDocument Metadata (The Reverse Map)
+        # This links (Accession, Seq) -> Content SHA1
         FilingDocument.objects.get_or_create(
             filing=filing,
-            type=ext.upper(),
+            sequence=1,
             defaults={
+                'type': ext.upper(),
                 'file_name': f"{accession}.{ext}",
-                'sha1': sha1,
+                'sha1': content_sha1,
                 'content_type': 'text/html' if 'htm' in ext or 'nc' in ext else 'text/plain',
                 'is_processed': True,
-                'sequence': 1
             }
         )
         
-        # Mark as processed
+        # 9. Cleanup & Success
         filing.is_processed = True
         filing.save()
+        
+        # Delete source file to save space (since it's now in the CAS lake)
+        os.remove(file_path)
+        logger.info(f"Successfully ingested and PURGED: {file_path} -> {content_sha1}")
+        
         return True
 
     except Exception as e:

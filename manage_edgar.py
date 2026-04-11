@@ -100,5 +100,22 @@ def run_script(script_path: str):
     # Executes script with access to Django ORM
     os.system(f"python manage.py runscript {script_path}")
 
+@app.command()
+def find(sha1: str):
+    """
+    Reverse lookup: Find all Accession Numbers that contain a document with this SHA1 hash.
+    Useful for tracing shared exhibits and boilerplate across the SEC archive.
+    """
+    from openedgar.models import FilingDocument
+    docs = FilingDocument.objects.filter(sha1=sha1).select_related('filing')
+    
+    if not docs.exists():
+        typer.secho(f"No results found for hash: {sha1}", fg="yellow")
+        return
+        
+    typer.secho(f"Found {docs.count()} filings containing content hash: {sha1}", fg="green", bold=True)
+    for doc in docs:
+        typer.echo(f"- {doc.filing.accession_number} (Type: {doc.type}, Seq: {doc.sequence})")
+
 if __name__ == "__main__":
     app()

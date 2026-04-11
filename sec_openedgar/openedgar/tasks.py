@@ -701,42 +701,31 @@ def create_filing_documents(client, documents, filing, store_raw: bool = True, s
         filing_doc.is_error = len(document["content"]) > 0
         document_records.append(filing_doc)
 
-        # Upload raw if requested
-        if store_raw and len(document["content"]) > 0:
-            doc_type = "".join(x for x in document["type"] if x.isalnum()).lower()
-            raw_path = pathlib.Path(S3_DOCUMENT_PATH, "raw", f"{filing.accession_number}.{doc_type}.zst").as_posix()
-            if not client.path_exists(raw_path):
-                client.put_buffer(raw_path, document["content"])
-                logger.info("Uploaded raw file for filing={0}, doc_type={1}"
-                            .format(filing, doc_type))
-            else:
-                logger.info("Raw file for filing={0}, doc_type={1} already exists on S3"
-                            .format(filing, doc_type))
-
-        # Upload text to S3 if requested
+        # Use CAS for storage (Deduplicated Content-Addressable Storage)
+        # We store the cleaned text only, or both if needed, but always via hash.
         if store_text and document["content_text"] is not None:
-            doc_type = "".join(x for x in document["type"] if x.isalnum()).lower()
-            text_path = pathlib.Path(S3_DOCUMENT_PATH, "text", f"{filing.accession_number}.{doc_type}.zst").as_posix()
-            if not client.path_exists(text_path):
-                client.put_buffer(text_path, document["content_text"], write_bytes=False)
-                logger.info("Uploaded text contents for filing={0}, doc_type={1}"
-                            .format(filing, doc_type))
-                
-                # RAG Ingestion: Chunk and ingest into HyperStreamDB with autovectorization
-                try:
-                    pipeline = get_rag_pipeline()
-                    pipeline.ingest_filing_chunks(
-                        cik=filing.cik.cik,
-                        accession_number=filing.accession_number,
-                        form_type=filing.form_type,
-                        date_filed=str(filing.date_filed),
-                        markdown=document["content_text"]
-                    )
-                except Exception as e:
-                    logger.error(f"RAG Ingestion failed for {filing.accession_number}: {e}")
-            else:
-                logger.info("Text contents for filing={0}, doc_type={1} already exists on S3"
-                            .format(filing, doc_type))
+            sha1, cas_path = client.put_cas_buffer(document["content_text"])
+            
+            # Update the record with the actual content hash
+            filing_doc.sha1 = sha1
+            logger.info("Stored document in CAS: filing={0}, doc_type={1}, sha1={2}"
+                        .format(filing, document["type"], sha1))
+            
+            # RAG Ingestion: Chunk and ingest into HyperStreamDB with autovectorization
+            try:
+                pipeline = get_rag_pipeline()
+                pipeline.ingest_filing_chunks(
+                    cik=filing.cik.cik,
+                    accession_number=filing.accession_number,
+                    form_type=filing.form_type,
+                    date_filed=str(filing.date_filed),
+                    markdown=document["content_text"]
+                )
+            except Exception as e:
+                logger.error(f"RAG Ingestion failed for {filing.accession_number}: {e}")
+        elif store_raw and len(document["content"]) > 0:
+            sha1, cas_path = client.put_cas_buffer(document["content"])
+            filing_doc.sha1 = sha1
 
     # Create in bulk
     FilingDocument.objects.bulk_create(document_records)

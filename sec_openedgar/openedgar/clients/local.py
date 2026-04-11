@@ -23,8 +23,14 @@ SOFTWARE.
 # Libraries
 import logging
 import os
+import pathlib
+import hashlib
 import zstandard as zstd
+from typing import Union
 from pathlib import Path
+
+# Project settings
+from config.settings.base import EDGAR_LOCAL_DATA_DIR
 
 # Setup logger
 logger = logging.getLogger(__name__)
@@ -39,7 +45,8 @@ logger.addHandler(console)
 class LocalClient:
 
     def __init__(self):
-        logger.info("Initialized local client")
+        self.base_dir = EDGAR_LOCAL_DATA_DIR
+        logger.info(f"Initialized local client at {self.base_dir}")
 
     def path_exists(self, path: str):
         return os.path.exists(path)
@@ -60,6 +67,34 @@ class LocalClient:
             mode = "wb" if write_bytes else "w"
             with open(file_path, mode=mode) as localfile:
                 localfile.write(buffer)
+
+    def put_cas_buffer(self, buffer: Union[str, bytes], folder: str = "documents/content"):
+        """
+        Performs Content-Addressable Storage (CAS). 
+        Calculates SHA1, saves file as {sha1}.zst if missing.
+        Returns (sha1, path)
+        """
+        
+        # 1. Calculate SHA1
+        if isinstance(buffer, str):
+            content_bytes = buffer.encode('utf-8')
+        else:
+            content_bytes = buffer
+            
+        sha1 = hashlib.sha1(content_bytes).hexdigest()
+        
+        # 2. Pathing
+        rel_path = f"{folder}/{sha1}.zst"
+        full_path = Path(self.base_dir) / rel_path
+        
+        # 3. Deduplicate (Write if absent)
+        if not full_path.exists():
+            full_path.parent.mkdir(parents=True, exist_ok=True)
+            cctx = zstd.ZstdCompressor(level=19) # High compression for lake
+            with open(full_path, 'wb') as f:
+                f.write(cctx.compress(content_bytes))
+                
+        return sha1, rel_path
 
     def get_buffer(self, file_path: str):
         # 1. Try compressed .zst version first

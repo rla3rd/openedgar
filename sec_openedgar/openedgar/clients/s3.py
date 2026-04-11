@@ -31,10 +31,11 @@ import botocore.exceptions
 
 # Project
 import zlib
-
+import hashlib
+import zstandard as zstd
 from typing import Union
-
-from config.settings.base import S3_ACCESS_KEY, S3_BUCKET, S3_COMPRESSION_LEVEL, S3_SECRET_KEY
+from botocore.client import Config
+from config.settings.base import S3_ACCESS_KEY, S3_BUCKET, S3_COMPRESSION_LEVEL, S3_SECRET_KEY, S3_ENDPOINT, S3_USE_SSL, S3_VERIFY
 
 # Setup logger
 logger = logging.getLogger(__name__)
@@ -57,8 +58,17 @@ class S3Client:
         :return: returns boto3 S3 resource object
         """
         # Create S3 resource
-        s3 = boto3.resource('s3', aws_access_key_id=S3_ACCESS_KEY, aws_secret_access_key=S3_SECRET_KEY)
-        return s3
+        params = {
+            'aws_access_key_id': S3_ACCESS_KEY,
+            'aws_secret_access_key': S3_SECRET_KEY,
+            'use_ssl': S3_USE_SSL,
+            'verify': S3_VERIFY
+        }
+        if S3_ENDPOINT:
+            params['endpoint_url'] = S3_ENDPOINT
+            params['config'] = Config(s3={'addressing_style': 'path'})
+            
+        return boto3.resource('s3', **params)
 
     def get_client(self):
         """
@@ -66,8 +76,17 @@ class S3Client:
         :return: returns boto3 S3 client object
         """
         # Create S3 client
-        client = boto3.client('s3', aws_access_key_id=S3_ACCESS_KEY, aws_secret_access_key=S3_SECRET_KEY)
-        return client
+        params = {
+            'aws_access_key_id': S3_ACCESS_KEY,
+            'aws_secret_access_key': S3_SECRET_KEY,
+            'use_ssl': S3_USE_SSL,
+            'verify': S3_VERIFY
+        }
+        if S3_ENDPOINT:
+            params['endpoint_url'] = S3_ENDPOINT
+            params['config'] = Config(s3={'addressing_style': 'path'})
+            
+        return boto3.client('s3', **params)
 
     def get_bucket(self):
         """
@@ -259,3 +278,30 @@ class S3Client:
         """
         with open(local_path, "rb") as in_file:
             self.put_buffer(remote_path, in_file.read(), client, deflate)
+
+    def put_cas_buffer(self, buffer: Union[str, bytes], folder: str = "documents/content", client=None):
+        """
+        Performs Content-Addressable Storage (CAS). 
+        Calculates SHA1, saves file to S3 as {folder}/{sha1}.zst if missing.
+        Returns (sha1, path)
+        """
+        if client is None:
+            client = self.get_client()
+
+        # 1. Calculate SHA1
+        if isinstance(buffer, str):
+            content_bytes = buffer.encode('utf-8')
+        else:
+            content_bytes = buffer
+        sha1 = hashlib.sha1(content_bytes).hexdigest()
+
+        # 2. Pathing
+        rel_path = f"{folder}/{sha1}.zst"
+
+        # 3. Deduplicate (Write if absent)
+        if not self.path_exists(rel_path, client=client):
+            cctx = zstd.ZstdCompressor(level=19) # High compression for lake
+            compressed_content = cctx.compress(content_bytes)
+            client.put_object(Bucket=S3_BUCKET, Key=rel_path, Body=compressed_content)
+                
+        return sha1, rel_path
