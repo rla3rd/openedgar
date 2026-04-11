@@ -355,11 +355,6 @@ S3_DOCUMENT_PATH = env('S3_DOCUMENT_PATH', default="openedgar")
 S3_PREFIX = env('S3_PREFIX', default="documents")
 S3_COMPRESSION_LEVEL = int(env('S3_COMPRESSION_LEVEL', default=6))
 
-# Tika configuration
-TIKA_HOST = "localhost"
-TIKA_PORT = 9998
-TIKA_ENDPOINT = "http://{0}:{1}/tika".format(TIKA_HOST, TIKA_PORT)
-
 # Edgar Identity
 EDGAR_IDENTITY="Rick Albright rla3rd@gmail.com"
 
