@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}AI Analyst Dashboard - OpenEdgar{% endblock %}
+
+{% block css %}
+{{ block.super }}
+<style>
+    :root {
+        --glass-bg: rgba(255, 255, 255, 0.05);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --accent-emerald: #10b981;
+        --accent-ruby: #ef4444;
+        --bg-dark: #0f172a;
+        --text-dim: #94a3b8;
+    }
+
+    body {
+        background-color: var(--bg-dark);
+        color: #f8fafc;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .navbar {
+        background: rgba(15, 23, 42, 0.8) !important;
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--glass-border);
+    }
+
+    .navbar-brand, .nav-link {
+        color: #f8fafc !important;
+    }
+
+    .dashboard-container {
+        display: grid;
+        grid-template-columns: 1fr 350px;
+        gap: 2rem;
+        margin-top: 2rem;
+        min-height: calc(100vh - 150px);
+    }
+
+    .main-chat-area {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .glass-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--glass-border);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        transition: transform 0.2s ease;
+    }
+
+    .search-container {
+        position: sticky;
+        top: 1rem;
+        z-index: 10;
+    }
+
+    .search-input {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--glass-border);
+        color: white;
+        border-radius: 0.75rem;
+        padding: 1rem 1.5rem;
+        width: 100%;
+        font-size: 1.1rem;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+        border-color: var(--accent-emerald);
+        box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+    }
+
+    .chat-bubble {
+        max-width: 90%;
+        margin-bottom: 1.5rem;
+    }
+
+    .chat-bubble.user {
+        align-self: flex-end;
+        background: rgba(16, 185, 129, 0.1);
+        border-right: 4px solid var(--accent-emerald);
+    }
+
+    .chat-bubble.ai {
+        align-self: flex-start;
+        background: rgba(255, 255, 255, 0.05);
+        border-left: 4px solid #3b82f6;
+    }
+
+    .source-panel {
+        position: sticky;
+        top: 2rem;
+        height: fit-content;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+    }
+
+    .source-item {
+        margin-bottom: 1rem;
+        font-size: 0.85rem;
+        border-bottom: 1px solid var(--glass-border);
+        padding-bottom: 0.75rem;
+    }
+
+    .source-meta {
+        color: var(--accent-emerald);
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .badge-table {
+        background: var(--accent-ruby);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.7rem;
+    }
+
+    .loading-spinner {
+        display: none;
+        margin-left: 1rem;
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    .hidden { display: none; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="main-chat-area">
+        <div class="glass-card search-container">
+            <div style="display: flex; align-items: center;">
+                <input type="text" id="queryInput" class="search-input" placeholder="Ask about NVIDIA risk factors or Apple's quarterly revenue...">
+                <div id="loader" class="loading-spinner"></div>
+            </div>
+            <div style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-dim);">
+                Powered by Qwen 3.5 35B • BGE-M3 Embeddings • sec2md Structure
+            </div>
+        </div>
+
+        <div id="chatHistory" class="chat-area d-flex flex-column">
+            <!-- Dynamic Content -->
+            <div class="glass-card chat-bubble ai">
+                Welcome back, Analyst. I have indexed the latest SEC filings. What would you like to investigate today?
+            </div>
+        </div>
+    </div>
+
+    <div class="source-panel glass-card">
+        <h5 style="margin-bottom: 1.5rem; font-weight: 700; color: var(--accent-emerald);">Source Evidence</h5>
+        <div id="sourceContainer">
+            <div style="color: var(--text-dim); text-align: center; margin-top: 2rem;">
+                Evidence fragments will appear here after your first query.
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    const queryInput = document.getElementById('queryInput');
+    const chatHistory = document.getElementById('chatHistory');
+    const sourceContainer = document.getElementById('sourceContainer');
+    const loader = document.getElementById('loader');
+
+    queryInput.addEventListener('keypress', async (e) => {
+        if (e.key === 'Enter') {
+            const query = queryInput.value.trim();
+            if (!query) return;
+
+            // Add user bubble
+            appendBubble('user', query);
+            queryInput.value = '';
+            loader.style.display = 'block';
+
+            try {
+                const response = await fetch('/api/chat/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({ query })
+                });
+
+                const data = await response.json();
+                loader.style.display = 'none';
+
+                if (data.error) {
+                    appendBubble('ai', `Error: ${data.error}`);
+                } else {
+                    appendBubble('ai', data.response);
+                    renderSources(data.fragments);
+                }
+            } catch (err) {
+                loader.style.display = 'none';
+                appendBubble('ai', "I encountered a connection error. Please ensure the local LLM server is reachable.");
+                console.error(err);
+            }
+        }
+    });
+
+    function appendBubble(role, text) {
+        const bubble = document.createElement('div');
+        bubble.className = `glass-card chat-bubble ${role}`;
+        bubble.innerText = text;
+        chatHistory.prepend(bubble);
+        bubble.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function renderSources(fragments) {
+        sourceContainer.innerHTML = '';
+        if (!fragments || fragments.length === 0) {
+            sourceContainer.innerHTML = '<div style="color: var(--text-dim);">No direct evidence fragments found.</div>';
+            return;
+        }
+
+        fragments.forEach(f => {
+            const item = document.createElement('div');
+            item.className = 'source-item';
+            
+            const hasTable = f.metadata && f.metadata.has_table ? '<span class="badge-table">Table</span>' : '';
+            const section = f.section_id || 'Filing Fragment';
+            
+            item.innerHTML = `
+                <div class="source-meta">
+                    <span>${f.form_type} (${f.date_filed})</span>
+                    ${hasTable}
+                </div>
+                <div style="font-weight: 600; margin-bottom: 0.5rem; color: #cbd5e1;">${section}</div>
+                <div style="color: var(--text-dim); line-height: 1.4;">${f.content.substring(0, 250)}...</div>
+            `;
+            sourceContainer.appendChild(item);
+        });
+    }
+</script>
+{% endblock %}

@@ -81,7 +81,6 @@ DEBUG_TOOLBAR_CONFIG = {
 
 # django-extensions
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ['django_extensions', ]
 
 # TESTING
 # ------------------------------------------------------------------------------
@@ -93,5 +92,5 @@ CELERY_ALWAYS_EAGER = False
 
 ########## END CELERY
 
-# Your local stuff: Below this line define 3rd party library settings
+# Your local stuff: Below this line install local apps
 # ------------------------------------------------------------------------------

@@ -27,26 +27,15 @@ import logging
 import urllib.parse
 import time
 
-# Packages
-import dateutil.parser
-import lxml.html
-import requests
-import edgar
-
 # Project
 from typing import Union
-
+from bs4 import BeautifulSoup
+import requests
+from openedgar.sec_api import sec_api
 from config.settings.base import HTTP_SEC_HOST, HTTP_FAIL_SLEEP, HTTP_SEC_INDEX_PATH, HTTP_SLEEP_DEFAULT, EDGAR_IDENTITY
 
 # Setup logger
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-console = logging.StreamHandler()
-console.setLevel(logging.INFO)
-formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
-console.setFormatter(formatter)
-logger.addHandler(console)
-edgar.set_identity(EDGAR_IDENTITY)
 
 
 def get_buffer(remote_path: str, base_path: str = HTTP_SEC_HOST):
@@ -124,25 +113,24 @@ def list_path(remote_path: str):
         return []
 
     # Parse buffer to HTML
-    html_doc = lxml.html.fromstring(remote_buffer)
+    soup = BeautifulSoup(remote_buffer, 'html.parser')
 
     try:
-        # Find links in directory listing
-        link_list = html_doc.get_element_by_id("main-content").xpath(".//a")
-        good_link_list = [l for l in link_list if "Parent Directory" not in
-                          lxml.html.tostring(l, method="text", encoding="utf-8").decode("utf-8")]
+        # SEC Index pages use different structures; look for links in the main table
+        links = soup.find_all('a')
         good_url_list = []
-
-        # Populate new URL list
-        for l in good_link_list:
-            # Get raw HREF
-            href = l.attrib["href"]
+        
+        for link in links:
+            href = link.get('href')
+            if not href or "Parent Directory" in link.text:
+                continue
+                
             if href.startswith("/"):
                 good_url_list.append(href)
             else:
-                good_url_list.append("/".join(s for s in [remote_path, href.lstrip("/")]))
-    except KeyError as e:
-        logger.error("Unable to find main-content tag in {0}; {1}".format(remote_path, e))
+                good_url_list.append("/".join(s for s in [remote_path.rstrip("/"), href.lstrip("/")]))
+    except Exception as e:
+        logger.error(f"Unable to parse directory listing from {remote_path}: {e}")
         return None
 
     # Log

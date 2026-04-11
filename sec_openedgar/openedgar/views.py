@@ -3,7 +3,7 @@ from django.views.generic import View
 from django.http import JsonResponse
 import json
 import logging
-from .processes.rag_pipeline import RAGPipeline
+from .processes.rag_pipeline import ModernRAGPipeline
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +13,7 @@ class RAGChatView(View):
     GET: Returns the dashboard template.
     POST: Processes a search/chat query and returns semantic fragments + LLM response.
     """
-    def get(self, request, *args, **kwargs):
+    async def get(self, request, *args, **kwargs):
         return render(request, 'pages/rag_dashboard.html')
 
     async def post(self, request, *args, **kwargs):
@@ -24,10 +24,10 @@ class RAGChatView(View):
             if not query:
                 return JsonResponse({'error': 'No query provided'}, status=400)
             
-            pipeline = RAGPipeline()
+            pipeline = ModernRAGPipeline()
             
             # Step 1: Perform RAG search
-            results_df = pipeline.query_rag(query)
+            results_df = pipeline.query(query)
             
             if results_df is None or results_df.empty:
                 return JsonResponse({

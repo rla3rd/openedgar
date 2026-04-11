@@ -24,6 +24,7 @@ SOFTWARE.
 
 # Libraries
 import binascii
+import datetime
 import gzip
 import hashlib
 import io
@@ -37,10 +38,12 @@ from typing import Union
 # Packages
 import dateutil.parser
 import pandas
-import tika.parser
-
-# Project imports
-from config.settings.base import TIKA_ENDPOINT
+import sec2md
+from docling.document_converter import DocumentConverter
+from docling.datamodel.base_models import InputFormat
+from docling.datamodel.pipeline_options import PdfPipelineOptions
+import tempfile
+from .registry import registry
 
 # Setup logger
 logger = logging.getLogger(__name__)
@@ -88,19 +91,65 @@ def uudecode(buffer: Union[bytes, str]):
     return out_file.getvalue()
 
 
-def extract_text(buffer: Union[bytes, str]):
-    """
-    Extract text from a document using tika.
-    :param buffer: buffer to send to tika
-    :return:
-    """
-    # Extract HTML using Tika
-    tika_results = tika.parser.from_buffer(buffer, TIKA_ENDPOINT)
+# Initialize Docling Converter Gloablly
+converter = DocumentConverter()
 
-    if "content" in tika_results:
-        return tika_results["content"]
+def extract_text(buffer: Union[bytes, str], content_type: str = None, form_type: str = None):
+    """
+    Extract text/markdown from a document using a hybrid pipeline:
+    - Registry: Rules-based specialized parsers (e.g. Ownership)
+    - HTML: sec2md (optimized for SEC structure)
+    - PDF/Complex: Docling (layout-aware parsing)
+    """
+    try:
+        if isinstance(buffer, str):
+            buffer = buffer.encode('utf-8')
+        
+        # 1. Check specialized parser registry first
+        if form_type:
+            specialized_md = registry.to_markdown(buffer, form_type)
+            if specialized_md:
+                return specialized_md
+            
+        # 2. Hybrid Logic (HTML/PDF)
+        if content_type == "text/html":
+            decoded = buffer.decode('utf-8', errors='ignore')
+            try:
+                # Ultra-fast path using C-based Modest engine (selectolax)
+                from selectolax.parser import HTMLParser
+                tree = HTMLParser(decoded)
+                # Strip out style and script tags completely
+                for node in tree.css('script, style, meta, head'):
+                    node.decompose()
+                return tree.body.text(separator=' ', strip=True) if tree.body else tree.text(strip=True)
+            except ImportError:
+                try:
+                    # Optimized for primary SEC filings but significantly slower
+                    return sec2md.convert_to_markdown(decoded)
+                except Exception as e:
+                    logger.warning(f"sec2md conversion failed, falling back to docling: {e}")
+        
+        # Docling handles PDF, HTML fallback, Docx, etc with deep layout analysis
+        suffix = ".html"
+        if content_type == "application/pdf":
+            suffix = ".pdf"
+        elif "xml" in str(content_type).lower():
+            suffix = ".xml"
+            
+        with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+            tmp.write(buffer)
+            tmp_path = tmp.name
+            
+        try:
+            result = converter.convert(tmp_path)
+            return result.document.export_to_markdown()
+        finally:
+            if os.path.exists(tmp_path):
+                os.remove(tmp_path)
 
-    return ""
+    except Exception as e:
+        logger.error(f"Text extraction failed ({content_type}): {e}")
+        return ""
 
 
 def parse_index_file(file_name: str, double_gz: bool = False):
@@ -237,6 +286,7 @@ def parse_filing(buffer: Union[bytes, str], extract: bool = False):
                    "company_name": None,
                    "cik": None,
                    "sic": None,
+                   "trading_symbol": None,
                    "irs_number": None,
                    "state_incorporation": None,
                    "state_location": None}
@@ -305,6 +355,7 @@ def parse_filing(buffer: Union[bytes, str], extract: bool = False):
             filing_data["company_name"] = extract_filing_header_field(header, "COMPANY CONFORMED NAME")
             filing_data["cik"] = extract_filing_header_field(header, "CENTRAL INDEX KEY")
             filing_data["sic"] = extract_filing_header_field(header, "STANDARD INDUSTRIAL CLASSIFICATION")
+            filing_data["trading_symbol"] = extract_filing_header_field(header, "TRADING SYMBOL")
             filing_data["irs_number"] = extract_filing_header_field(header, "IRS NUMBER")
             filing_data["state_incorporation"] = extract_filing_header_field(header, "STATE OF INCORPORATION")
             filing_data["state_location"] = extract_filing_header_field(header, "STATE")
@@ -316,7 +367,7 @@ def parse_filing(buffer: Union[bytes, str], extract: bool = False):
 
         # Parse document
         document_buffer = buffer[p0:(p1 + len(end_tag))]
-        document_data = parse_filing_document(document_buffer, extract=extract)
+        document_data = parse_filing_document(document_buffer, extract=extract, form_type=filing_data["form_type"])
         document_data["start_pos"] = p0
         document_data["end_pos"] = (p1 + len(end_tag))
         filing_data["documents"].append(document_data)
@@ -325,15 +376,18 @@ def parse_filing(buffer: Union[bytes, str], extract: bool = False):
     return filing_data
 
 
-def parse_filing_document(document_buffer: Union[bytes, str], extract: bool = False):
+def parse_filing_document(document_buffer: Union[bytes, str], extract: bool = False, form_type: str = None):
     """
     Parse a document buffer into metadata and contents.
     :param document_buffer: raw document buffer
     :param extract: whether to pass to Tika for text extraction
+    :param form_type: SEC form type for registry routing
     :return:
     """
     # Parse segment
-    doc_type = re.findall("<TYPE>(.+)", document_buffer)
+    doc_type_matches = re.findall("<TYPE>(.+)", document_buffer)
+    doc_type = doc_type_matches[0] if doc_type_matches else form_type # Fallback to primary form type
+    
     doc_sequence = re.findall("<SEQUENCE>(.+)", document_buffer)
     doc_file_name = re.findall("<FILENAME>(.+)", document_buffer)
     doc_description = re.findall("<DESCRIPTION>(.+)", document_buffer)
@@ -382,9 +436,9 @@ def parse_filing_document(document_buffer: Union[bytes, str], extract: bool = Fa
         doc_content = uudecode(doc_content)
     doc_sha1 = hashlib.sha1(doc_content).hexdigest()
 
-    # extract text from tika if requested
+    # extract text using hybrid pipeline if requested
     if extract:
-        doc_content_text = extract_text(doc_content)
+        doc_content_text = extract_text(doc_content, content_type=content_type, form_type=doc_type)
     else:
         doc_content_text = None
 

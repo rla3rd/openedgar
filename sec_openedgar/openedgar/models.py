@@ -29,6 +29,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.utils import timezone
 
 # Wagtail imports
+from django.conf import settings
 from wagtail.models import Page
 from wagtail.fields import StreamField, RichTextField
 from wagtail import blocks
@@ -41,11 +42,24 @@ from wagtail.snippets.models import register_snippet
 class Company(django.db.models.Model):
     """
     Company, which stores a CIK/security company info.
+    Part of the core Security Master.
     """
 
     # Key fields
     cik = django.db.models.BigIntegerField(db_index=True, primary_key=True, unique=True)
     cik_name = django.db.models.CharField(max_length=1024, db_index=True)
+    
+    # Modern Security Master fields
+    ticker = django.db.models.CharField(max_length=12, db_index=True, null=True, blank=True)
+    exchange = django.db.models.CharField(max_length=32, db_index=True, null=True, blank=True)
+    sic_code = django.db.models.CharField(max_length=4, db_index=True, null=True, blank=True)
+    
+    # Global Identifiers (Symbology)
+    figi = django.db.models.CharField(max_length=12, db_index=True, null=True, blank=True, help_text="OpenFIGI Identifier")
+    cusip = django.db.models.CharField(max_length=9, db_index=True, null=True, blank=True)
+    isin = django.db.models.CharField(max_length=12, db_index=True, null=True, blank=True)
+    
+    is_active = django.db.models.BooleanField(default=True, db_index=True)
 
     def __str__(self):
         """
@@ -403,3 +417,40 @@ class AnalystDashboardPage(Page):
     def get_template(self, request, *args, **kwargs):
         # We can use our existing premium dashboard template
         return 'pages/rag_dashboard.html'
+
+# --- Analyst & Security Master Layer ---
+
+@register_snippet
+class AnalystProfile(django.db.models.Model):
+    """
+    Extended user profile for financial analysts.
+    Manages coverage and permissions for multi-tenant research.
+    """
+    user = django.db.models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=django.db.models.CASCADE, related_name='analyst_profile')
+    job_title = django.db.models.CharField(max_length=255, blank=True)
+    coverage_industries = ArrayField(django.db.models.CharField(max_length=4), help_text="List of SIC codes covered by this analyst.", blank=True, default=list)
+    
+    panels = [
+        FieldPanel('user'),
+        FieldPanel('job_title'),
+        FieldPanel('coverage_industries'),
+    ]
+
+    def __str__(self):
+        return f"Analyst: {self.user.username} ({self.job_title})"
+
+@register_snippet
+class CoverageAssignment(django.db.models.Model):
+    """
+    Explicit assignment of a specific stock (CIK) to an analyst.
+    """
+    analyst = django.db.models.ForeignKey(AnalystProfile, on_delete=django.db.models.CASCADE, related_name='assignments')
+    company = django.db.models.ForeignKey(Company, on_delete=django.db.models.CASCADE)
+    date_assigned = django.db.models.DateField(auto_now_add=True)
+    is_primary = django.db.models.BooleanField(default=True, help_text="Is this the lead analyst for this stock?")
+
+    class Meta:
+        unique_together = ('analyst', 'company')
+
+    def __str__(self):
+        return f"{self.analyst.user.username} -> {self.company.cik_name}"

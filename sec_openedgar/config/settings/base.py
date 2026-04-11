@@ -94,6 +94,7 @@ THIRD_PARTY_APPS = [
 
     'modelcluster',
     'taggit',
+    'django_extensions',
 ]
 
 # Apps specific for this project go here.

@@ -1,0 +1,208 @@
+Help on built-in function open_table in module hyperstreamdb.hyperstreamdb:
+
+open_table(uri)
+
+Help on class Table in module hyperstreamdb:
+
+class Table(builtins.object)
+ |  Table(uri: str, inner_table: Optional[Table] = None, device: Optional[Any] = None, index_all: bool = True, primary_key: Optional[str] = None, explain: bool = False)
+ |
+ |  Enhanced HyperStreamDB Table with auto-vectorization and embedding registry support.
+ |
+ |  Methods defined here:
+ |
+ |  __getattr__(self, name)
+ |      Delegate other calls to the Rust implementation.
+ |
+ |  __init__(self, uri: str, inner_table: Optional[Table] = None, device: Optional[Any] = None, index_all: bool = True, primary_key: Optional[str] = None, explain: bool = False)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |
+ |  __repr__(self)
+ |      Return repr(self).
+ |
+ |  add_index(self, column: str, tokenizer: Optional[str] = None, device: Optional[str] = None)
+ |      Add an index to a column (convenience wrapper).
+ |
+ |  add_index_columns(self, columns: List[str], tokenizer: Optional[str] = None)
+ |      Add columns to the indexing configuration.
+ |
+ |      Args:
+ |          columns: List of column names to index.
+ |          tokenizer: Optional tokenizer name from the registry.
+ |
+ |  add_primary_key(self, column: str)
+ |      Atomically add a column to the primary key.
+ |      This performs a validation check for duplicates across all existing data.
+ |      If validation fails, the change is NOT committed.
+ |
+ |  commit(self)
+ |      Commit temporary segments to the table.
+ |
+ |  define_embedding(self, column: str, function: Union[str, hyperstreamdb.embeddings.EmbeddingFunction], vector_column: Optional[str] = None)
+ |      Link a source column to an embedding function for automatic vectorization.
+ |
+ |      Args:
+ |          column: The source text column.
+ |          function: Registered function name or EmbeddingFunction instance.
+ |          vector_column: Target vector column name (defaults to {column}_vector).
+ |
+ |  delete(self, filter: str)
+ |      Delete rows matching the filter expression.
+ |
+ |  drop_index(self, column: str)
+ |      Drop an index from a column (convenience wrapper).
+ |
+ |  drop_primary_key(self, column: str)
+ |      Atomically remove a column from the primary key.
+ |
+ |  filter(self, expr: Optional[str] = None, vector_filter: Union[Dict[str, Any], List[float], NoneType] = None, **kwargs) -> 'Query'
+ |      Start a fluent query or apply immediate filters.
+ |
+ |  query(self) -> hyperstreamdb.Query
+ |      Start a fluent query.
+ |
+ |  read(self, filter: Optional[str] = None, vector_filter: Union[Dict[str, Any], List[float], NoneType] = None, columns: Optional[List[str]] = None, device: Optional[Any] = None, **kwargs)
+ |      Read table to Arrow Table (alias for to_arrow).
+ |
+ |  search(self, column: str, query: List[float], k: int = 10, filter: Optional[str] = None, device: Optional[Any] = None, **kwargs)
+ |      Alias for vector_search.
+ |
+ |  set_index_config(self, column: str, enabled: bool = True, tokenizer: Optional[str] = None, device: Optional[str] = None)
+ |      Set indexing configuration for a specific column.
+ |
+ |      Args:
+ |          column: Name of the column to configure.
+ |          enabled: Whether to enable indexing for this column (default: True).
+ |          tokenizer: Tokenizer name from the registry ('identity', 'whitespace', 'standard').
+ |          device: Compute device ('cpu', 'cuda', 'mps') if specific processing is needed.
+ |
+ |  set_partition_spec(self, spec: List[Dict[str, Any]])
+ |      Update the table's partition specification.
+ |
+ |      Args:
+ |          spec: List of partition fields, each being a dict with:
+ |              - source_id: int (or source_ids: List[int])
+ |              - name: str
+ |              - transform: str
+ |              - field_id: int (optional)
+ |
+ |  set_sort_order(self, columns: List[str], ascending: List[bool])
+ |      Set the table's default sort order for future data writes.
+ |
+ |  sql(self, query: str) -> Any
+ |      Execute a SQL query against the table.
+ |      The table is registered as 't'.
+ |
+ |  to_arrow(self, filter: Optional[str] = None, vector_filter: Union[Dict[str, Any], List[float], NoneType] = None, columns: Optional[List[str]] = None, device: Optional[Any] = None, **kwargs)
+ |      Read table to Arrow Table with auto-vectorization of search queries and flexible parameters.
+ |
+ |      Parameters:
+ |          filter: Optional scalar WHERE clause (e.g., "category = 'news'")
+ |          vector_filter: Dict with vector search params:
+ |              - column: str (required) - vector column name
+ |              - query: list (required) - query vector
+ |              - k: int (required) - number of results
+ |              - metric: str (optional) - 'l2'|'cosine'|'innerproduct'|'l1'|'hamming'|'jaccard' (default: l2)
+ |              - ef_search: int (optional) - HNSW ef parameter for tuning
+ |              - probes: int (optional) - IVF probes parameter for tuning
+ |          columns: Optional list of column names to select
+ |          device: Optional compute device (GPU/CPU)
+ |          **kwargs: Extra params (merged into vector_filter if present)
+ |
+ |  to_pandas(self, filter: Optional[str] = None, vector_filter: Union[Dict[str, Any], List[float], NoneType] = None, columns: Optional[List[str]] = None, device: Optional[Any] = None, **kwargs)
+ |      Read table to Pandas with auto-vectorization of search queries and flexible parameters.
+ |
+ |      Parameters:
+ |          filter: Optional scalar WHERE clause (e.g., "category = 'news'")
+ |          vector_filter: Dict with vector search params:
+ |              - column: str (required) - vector column name
+ |              - query: list (required) - query vector
+ |              - k: int (required) - number of results
+ |              - metric: str (optional) - 'l2'|'cosine'|'innerproduct'|'l1'|'hamming'|'jaccard' (default: l2)
+ |              - ef_search: int (optional) - HNSW ef parameter for tuning
+ |              - probes: int (optional) - IVF probes parameter for tuning
+ |          columns: Optional list of column names to select
+ |          device: Optional compute device (GPU/CPU)
+ |          **kwargs: Extra params (merged into vector_filter if present)
+ |
+ |      Example:
+ |          # Vector search with cosine metric
+ |          df = table.to_pandas(vector_filter={
+ |              "column": "embedding",
+ |              "query": [1.0, 2.0, 3.0],
+ |              "k": 5,
+ |              "metric": "cosine",
+ |              "ef_search": 200  # Tune HNSW search quality
+ |          })
+ |
+ |  truncate(self)
+ |      Clear all data from the table while keeping the schema.
+ |
+ |  upsert(self, data: Any, key_column: Union[str, List[str]], mode: str = 'merge_on_read', device: Optional[Any] = None)
+ |      Update or insert data using a key column (or list of columns) to avoid duplicates.
+ |
+ |  vacuum(self, retention_versions: int = 1)
+ |      Physically delete unreferenced data and manifest files to reclaim space.
+ |
+ |      Args:
+ |          retention_versions: Number of snapshots to keep (default 1).
+ |
+ |  vector_search(self, column: str, query: List[float], k: int = 10, filter: Optional[str] = None, device: Optional[Any] = None, **kwargs)
+ |      Backward compatibility alias for to_pandas with vector filter.
+ |
+ |  wait_for_background_tasks(self)
+ |      Wait for all background tasks (like index building) to complete.
+ |
+ |  write(self, data: Any, device: Optional[Any] = None, mode: str = 'append')
+ |      Write data to the table, automatically generating embeddings for configured columns.
+ |
+ |      Args:
+ |          data: pandas.DataFrame, pyarrow.Table, polars.DataFrame, numpy.ndarray, torch.Tensor, or List[Dict].
+ |          device: Optional Device for GPU acceleration.
+ |          mode: 'append' (default) or 'overwrite' (clears table first).
+ |
+ |  write_arrow(self, table: 'pa.Table', device: Optional[Any] = None)
+ |      High-level Arrow ingestion with auto-vectorization.
+ |
+ |  write_pandas(self, df: pandas.DataFrame, device: Optional[Any] = None)
+ |      High-level Pandas ingestion with auto-vectorization.
+ |
+ |  ----------------------------------------------------------------------
+ |  Class methods defined here:
+ |
+ |  create(uri: str, schema, device: Optional[Any] = None) -> 'Table'
+ |      Create a new table with an explicit schema.
+ |
+ |  create_partitioned(uri: str, schema, partition_spec: Dict[str, Any], device: Optional[Any] = None) -> 'Table'
+ |      Create a new table with an explicit schema and partitioning.
+ |
+ |  register_external(uri: str, iceberg_metadata_uri: str, device: Optional[Any] = None) -> 'Table'
+ |      Register an existing Iceberg table.
+ |
+ |  ----------------------------------------------------------------------
+ |  Readonly properties defined here:
+ |
+ |  row_count
+ |      Get total row count in the table.
+ |
+ |  statistics
+ |      Get full table statistics.
+ |
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |
+ |  __dict__
+ |      dictionary for instance variables
+ |
+ |  __weakref__
+ |      list of weak references to the object
+ |
+ |  autocommit
+ |      Get or set the autocommit state of the table.
+ |
+ |  index_all
+ |      Whether to index all compatible columns by default.
+ |
+ |  primary_key
+ |      Get the current primary key column.
+

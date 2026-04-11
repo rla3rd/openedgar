@@ -23,6 +23,8 @@ SOFTWARE.
 # Libraries
 import logging
 import os
+import zstandard as zstd
+from pathlib import Path
 
 # Setup logger
 logger = logging.getLogger(__name__)
@@ -46,13 +48,30 @@ class LocalClient:
         dir_name = os.path.dirname(file_path)
         if not os.path.exists(dir_name):
             os.makedirs(dir_name)
-        if write_bytes:
-            mode="wb"
+        
+        if file_path.endswith('.zst'):
+            cctx = zstd.ZstdCompressor(level=3)
+            # Ensure buffer is bytes
+            if not isinstance(buffer, bytes):
+                buffer = buffer.encode('utf-8')
+            with open(file_path, 'wb') as f:
+                f.write(cctx.compress(buffer))
         else:
-            mode="w"
-        with open(file_path, mode=mode) as localfile:
-            localfile.write(buffer)
+            mode = "wb" if write_bytes else "w"
+            with open(file_path, mode=mode) as localfile:
+                localfile.write(buffer)
 
     def get_buffer(self, file_path: str):
-        with open(file_path, mode='rb') as localfile:
-            return localfile.read()
+        # 1. Try compressed .zst version first
+        zst_path = file_path if file_path.endswith('.zst') else f"{file_path}.zst"
+        if os.path.exists(zst_path):
+            dctx = zstd.ZstdDecompressor()
+            with open(zst_path, 'rb') as f:
+                return dctx.decompress(f.read())
+        
+        # 2. Fallback to uncompressed plain file
+        if os.path.exists(file_path):
+            with open(file_path, mode='rb') as localfile:
+                return localfile.read()
+        
+        raise FileNotFoundError(f"Could not find filing at {file_path} or {file_path}.zst")
