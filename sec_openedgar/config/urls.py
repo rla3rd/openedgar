@@ -29,10 +29,15 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from openedgar.views import RAGChatView
+
+from wagtail.admin import urls as wagtailadmin_urls
+from wagtail import urls as wagtail_urls
+from wagtail.documents import urls as wagtaildocs_urls
 
 urlpatterns = [
-                  re_path(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
-                  re_path(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+                  # API endpoints
+                  re_path(r'^api/chat/$', RAGChatView.as_view(), name='rag_chat'),
 
                   # Django Admin, use {% url 'admin:index' %}
                   re_path(settings.ADMIN_URL, admin.site.urls),
@@ -40,6 +45,11 @@ urlpatterns = [
                   # User management
                   re_path(r'^users/', include('sec_openedgar.users.urls', namespace='users')),
                   re_path(r'^accounts/', include('allauth.urls')),
+
+                  # Wagtail
+                  re_path(r'^cms/', include(wagtailadmin_urls)),
+                  re_path(r'^documents/', include(wagtaildocs_urls)),
+                  re_path(r'', include(wagtail_urls)),
 
                   # Your stuff: custom urls includes go here
 

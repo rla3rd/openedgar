@@ -26,8 +26,18 @@ SOFTWARE.
 import datetime
 import django.db.models
 from django.contrib.postgres.fields import ArrayField
+from django.utils import timezone
+
+# Wagtail imports
+from wagtail.models import Page
+from wagtail.fields import StreamField, RichTextField
+from wagtail import blocks
+from wagtail.admin.panels import FieldPanel
+from wagtail.snippets.models import register_snippet
 
 
+
+@register_snippet
 class Company(django.db.models.Model):
     """
     Company, which stores a CIK/security company info.
@@ -91,6 +101,8 @@ class CompanyInfo(django.db.models.Model):
             .decode("utf-8", "ignore")
 
 
+
+@register_snippet
 class FormIndex(django.db.models.Model):
     """
     Form index, which stores a list of form types.
@@ -152,6 +164,8 @@ class FilingIndex(django.db.models.Model):
             .decode("utf-8", "ignore")
     
 
+
+@register_snippet
 class Filing(django.db.models.Model):
     """
     Company Filing, which stores a single filing record from an index.
@@ -311,3 +325,81 @@ class SearchQueryResult(django.db.models.Model):
         :return:
         """
         return "SearchQueryTerm search_query={0}, term={1}".format(self.search_query, self.term)
+
+# --- Wagtail CMS Models ---
+
+class SECIndexPage(Page):
+    """Root page for SEC Analysis reports."""
+    intro = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro')
+    ]
+
+    subpage_types = ['openedgar.FilingAnalysisPage']
+
+
+class FilingAnalysisPage(Page):
+    """A detailed AI-generated analysis report for a specific SEC filing."""
+    cik = django.db.models.BigIntegerField()
+    company_name = django.db.models.CharField(max_length=1024)
+    form_type = django.db.models.CharField(max_length=64)
+    date_filed = django.db.models.DateField()
+    
+    analysis_content = StreamField([
+        ('heading', blocks.CharBlock(form_classname="title")),
+        ('paragraph', blocks.RichTextBlock()),
+        ('ai_opinion', blocks.TextBlock(help_text="The LLM's primary conclusion.")),
+        ('supporting_fragment', blocks.StructBlock([
+            ('section', blocks.CharBlock()),
+            ('content', blocks.TextBlock()),
+            ('has_table', blocks.BooleanBlock(required=False)),
+        ])),
+    ], use_json_field=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('cik'),
+        FieldPanel('company_name'),
+        FieldPanel('form_type'),
+        FieldPanel('date_filed'),
+        FieldPanel('analysis_content'),
+    ]
+
+    parent_page_types = ['openedgar.SECIndexPage']
+
+
+class HomePage(Page):
+    """Modern Wagtail-based Home Page."""
+    body = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body'),
+    ]
+
+    max_count = 1
+
+
+class AboutPage(Page):
+    """Modern Wagtail-based About Page."""
+    body = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body'),
+    ]
+
+    max_count = 1
+
+
+class AnalystDashboardPage(Page):
+    """The interactive RAG Analyst Dashboard, integrated into Wagtail."""
+    intro = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro'),
+    ]
+
+    max_count = 1
+
+    def get_template(self, request, *args, **kwargs):
+        # We can use our existing premium dashboard template
+        return 'pages/rag_dashboard.html'

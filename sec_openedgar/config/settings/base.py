@@ -78,6 +78,22 @@ THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    
+    # Wagtail
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail',
+
+    'modelcluster',
+    'taggit',
 ]
 
 # Apps specific for this project go here.
@@ -102,7 +118,8 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware'
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
 # MIGRATIONS CONFIGURATION
@@ -344,3 +361,11 @@ TIKA_ENDPOINT = "http://{0}:{1}/tika".format(TIKA_HOST, TIKA_PORT)
 
 # Edgar Identity
 EDGAR_IDENTITY="Rick Albright rla3rd@gmail.com"
+
+# RAG & LLM Configuration
+LM_STUDIO_ENDPOINT = env("LM_STUDIO_ENDPOINT", default="http://localhost:1234/v1")
+LLM_MODEL_NAME = env("LLM_MODEL_NAME", default="qwen-3-5-34b")
+HDB_PATH = env("HDB_PATH", default="./rag_db")
+
+# Wagtail
+WAGTAIL_SITE_NAME = 'OpenEdgar AI Analyst'

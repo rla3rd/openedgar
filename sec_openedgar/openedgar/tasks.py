@@ -28,17 +28,23 @@ import traceback
 import datetime
 import hashlib
 import logging
-import tempfile
+import logging
 import os
 import pathlib
 import tarfile
+import asyncio
+import aiohttp
+import zstandard as zstd
+import spacy
 from tarfile import ReadError
 import io
-import zstd
 import orjson as json
 import pandas as pd
 from bs4 import BeautifulSoup
 from typing import Iterable, Union, Optional, Dict, List
+import asyncio
+import aiohttp
+import zstandard as zstd
 
 # Packages
 import dateutil.parser
@@ -46,9 +52,10 @@ import django.db.utils
 from celery import shared_task
 
 # Project
-from config.settings.base import S3_DOCUMENT_PATH, EDGAR_IDENTITY
+from config.settings.base import S3_DOCUMENT_PATH
 from openedgar.clients.s3 import S3Client
 from openedgar.clients.local import LocalClient
+from edgar.entities import NoCompanyFactsFound
 import openedgar.clients.openedgar
 import openedgar.parsers.openedgar
 from openedgar.models import Company
@@ -66,12 +73,74 @@ from openedgar.models import SearchQueryResult
 # edgartools
 import edgar
 from edgar import forms as frm
-edgar.set_identity(EDGAR_IDENTITY)
 edgar.use_local_storage()
 
 # import tabula for formtypes
 import tabula
 
+class AsyncDownloader:
+    def __init__(self, rate_limit=5):
+        self.semaphore = asyncio.Semaphore(rate_limit)
+        self.headers = {"User-Agent": os.getenv("EDGAR_IDENTITY", "DefaultAgent/1.0")}
+
+    async def fetch(self, session, url):
+        async with self.semaphore:
+            try:
+                async with session.get(url, headers=self.headers) as response:
+                    if response.status == 200:
+                        return await response.read()
+                    elif response.status == 429:
+                        retry_after = int(response.headers.get("Retry-After", 600))
+                        logger.warning(f"Rate limited. Retrying after {retry_after}s")
+                        await asyncio.sleep(retry_after)
+                        return await self.fetch(session, url)
+                    else:
+                        logger.error(f"Failed to fetch {url}: Status {response.status}")
+                        return None
+            except Exception as e:
+                logger.error(f"Error fetching {url}: {e}")
+                return None
+
+    async def download_and_compress(self, session, url, output_path):
+        content = await self.fetch(session, url)
+        if content:
+            # Ensure the directory exists
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            
+            # Using zstandard for compression
+            cctx = zstd.ZstdCompressor(level=3)
+            compressed = cctx.compress(content)
+            
+            with open(output_path, "wb") as f:
+                f.write(compressed)
+            return True
+        return False
+
+def compress_content_zstd(content: bytes) -> bytes:
+    """Helper to compress content using zstandard."""
+    cctx = zstd.ZstdCompressor(level=3)
+    return cctx.compress(content)
+
+# spaCy for modern NLP
+nlp = None
+try:
+    nlp = spacy.load("en_core_web_sm")
+except (IOError, ImportError):
+    # Model will be loaded on demand or user will be prompted
+    pass
+
+def get_spacy_nlp():
+    global nlp
+    if nlp is None:
+        try:
+            nlp = spacy.load("en_core_web_sm")
+        except:
+            # Fallback for CI or minimal environments
+            import spacy
+            from spacy.lang.en import English
+            nlp = English()
+            nlp.add_pipe('sentencizer')
+    return nlp
 
 # Logging setup
 logger = logging.getLogger(__name__)
@@ -82,125 +151,92 @@ formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
 console.setFormatter(formatter)
 logger.addHandler(console)
 
-def download_data():
-    edgar.download_edgar_data()
-    
-def get_text_quarter(month):
-    if month in ("01", "02", "03"):
-        return "QTR1"
-    elif month in ("04", "05", "06"):
-        return "QTR2"
-    elif month in ("07", "08", "09"):
-        return "QTR3"
-    elif month in ("10", "11", "12"):
-        return "QTR4"
-    
-def process_builk_filing_file(filename, replace=False):
-    data_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR"))
-    filename = filename.split("/")[-1]
-    date = filename.split(".")[0]
-    year = date[:4]
-    quarter = get_text_quarter(date[4:6])
-    file_path = data_dir / "data" / filename
-    with tarfile.open(file_path) as tar:
-        members = tar.getmembers()
-        for member in members:
-            if member.isreg():
-                out_file_path = data_dir / "data" / str(year) / quarter / f"{member.name}.zstd"
-                if not replace and out_file_path.exists():
-                    continue
-                f = tar.extractfile(member)
-                content = f.read()
-                compressed_content=zstd.compress(content)
-                out_file_path.parent.mkdir(parents=True, exist_ok=True)
-                file = out_file_path.open('wb')
-                file.write(compressed_content)
-                file.flush()
-                file.close()
-        tar.close()
-    
-def download_bulk_filings_url(file_url, replace=False):
-    data_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR"))
-    filename = file_url.split("/")[-1]
-    date = filename.split(".")[0]
-    year = date[:4]
-    quarter = get_text_quarter(date[4:6])
-    try:
-        file_data = edgar.httprequests.get_with_retry(file_url)
-        with tarfile.open(fileobj=io.BytesIO(file_data.content)) as tar:
-            members = tar.getmembers()
-            for member in members:
-                if member.isreg():
-                    file_path = data_dir / "data" / str(year) / quarter / f"{member.name}.zstd"
-                    if not replace and file_path.exists():
-                        continue
-                    f = tar.extractfile(member)
-                    content = f.read()
-                    compressed_content=zstd.compress(content)
-                    file_path.parent.mkdir(parents=True, exist_ok=True)
-                    file = file_path.open('wb')
-                    file.write(compressed_content)
-                    file.flush()
-                    file.close()
-            tar.close()
-    except Exception:
-        error = sys.exc_info()[0]
-        details = traceback.format_exc()
-        sys.stderr.write(f'{file_url}: {error} - {details}')
-    
-    
-def download_bulk_filings(year=None, qtr=None, backfill=True, verbose=False, replace=False):
+async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbose=False):
     base_url = 'https://www.sec.gov/Archives/edgar/Feed/'
-    page = edgar.httprequests.get_with_retry(base_url)
-    soup = BeautifulSoup(page, features="lxml")
-    table = soup.find("table")
+    downloader = AsyncDownloader()
     
-    begin_year = 1997
-    if backfill:
-        if year:
-            begin_year = year
-        years = []
-        for tr in table.find_all('tr'):
-            row = tr.find_all('td')
-            if len(row) > 0:
-                yr = row[0].find('a').attrs['href'].replace("/", "")
-                if yr != "":
-                    if int(yr) >= begin_year:
-                        years.append(int(yr))
-    else:
-        years = [year]
-    years.sort()
-    for year in years:
-        year_page = edgar.httprequests.get_with_retry(f"{base_url}{year}/")
-        year_soup = BeautifulSoup(year_page, features="lxml")
-        year_table = year_soup.find("table")
-        if qtr:
-            quarters = [f"QTR{qtr}"]
+    async with aiohttp.ClientSession() as session:
+        page_content = await downloader.fetch(session, base_url)
+        if not page_content:
+            return
+            
+        soup = BeautifulSoup(page_content, features="lxml")
+        table = soup.find("table")
+        
+        begin_year = 1997
+        if backfill:
+            if year:
+                begin_year = year
+            years = []
+            for tr in table.find_all('tr'):
+                row = tr.find_all('td')
+                if len(row) > 0:
+                    yr = row[0].find('a').attrs['href'].replace("/", "")
+                    if yr != "":
+                        if int(yr) >= begin_year:
+                            years.append(int(yr))
         else:
-            quarters = []
-            for tr in year_table.find_all('tr'):
-                row = tr.find_all('td')
-                if len(row) > 0:
-                    text_qtr = row[0].find('a').attrs['href'].replace("/", "")
-                    if text_qtr in ("QTR1", "QTR2", "QTR3", "QTR4"):
-                        quarters.append(text_qtr)
-        for quarter in quarters:
-            quarter_url = f"{base_url}{year}/{quarter}/"
-            if verbose:
-                print(quarter_url)
-            quarter_page = edgar.httprequests.get_with_retry(quarter_url)
-            quarter_soup = BeautifulSoup(quarter_page, features="lxml")
-            quarter_table = quarter_soup.find("table")
-            for tr in quarter_table.find_all('tr'):
-                row = tr.find_all('td')
-                if len(row) > 0:
-                    filename = row[0].find('a').attrs['href']
-                    if filename.split(".")[-1] == 'gz':
-                        file_url = f"{base_url}{year}/{quarter}/{filename}"
-                        if verbose:
-                            print(file_url)
-                        download_bulk_filings_url(file_url, replace=replace)
+            years = [year]
+        years.sort()
+        
+        data_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR"))
+        
+        for year in years:
+            year_url = f"{base_url}{year}/"
+            year_page = await downloader.fetch(session, year_url)
+            if not year_page:
+                continue
+                
+            year_soup = BeautifulSoup(year_page, features="lxml")
+            year_table = year_soup.find("table")
+            
+            if qtr:
+                quarters = [f"QTR{qtr}"]
+            else:
+                quarters = []
+                for tr in year_table.find_all('tr'):
+                    row = tr.find_all('td')
+                    if len(row) > 0:
+                        text_qtr = row[0].find('a').attrs['href'].replace("/", "")
+                        if text_qtr in ("QTR1", "QTR2", "QTR3", "QTR4"):
+                            quarters.append(text_qtr)
+                            
+            for quarter in quarters:
+                quarter_url = f"{base_url}{year}/{quarter}/"
+                if verbose:
+                    print(quarter_url)
+                    
+                quarter_page = await downloader.fetch(session, quarter_url)
+                if not quarter_page:
+                    continue
+                    
+                quarter_soup = BeautifulSoup(quarter_page, features="lxml")
+                quarter_table = quarter_soup.find("table")
+                
+                download_tasks = []
+                for tr in quarter_table.find_all('tr'):
+                    row = tr.find_all('td')
+                    if len(row) > 0:
+                        filename = row[0].find('a').attrs['href']
+                        if filename.split(".")[-1] == 'gz':
+                            file_url = f"{base_url}{year}/{quarter}/{filename}"
+                            # Original date usually comes from filename: e.g. 20240101.tar.gz
+                            date_part = filename.split(".")[0]
+                            output_path = data_dir / "data" / str(year) / quarter / f"{date_part}.tar.zst"
+                            
+                            if verbose:
+                                print(f"Queuing download: {file_url}")
+                                
+                            download_tasks.append(downloader.download_and_compress(session, file_url, output_path))
+                
+                if download_tasks:
+                    results = await asyncio.gather(*download_tasks)
+                    if verbose:
+                        print(f"Downloaded and compressed {sum(results)} files for {year} {quarter}")
 
+def download_bulk_filings(year=None, qtr=None, backfill=True, verbose=False):
+    """Wrapper to run the async download task."""
+    asyncio.run(download_bulk_filings_async(year=year, qtr=qtr, backfill=backfill, verbose=verbose))
 def process_formtypes():
     try:
         pdf_path = "https://www.sec.gov/info/edgar/forms/edgform.pdf"
@@ -258,29 +294,29 @@ def process_companyinfo_cik(cik:int):
         cik = company.cik
         ci = CompanyInfo()
         ci.cik = company
-        ci.name = getattr(c, 'name', None)
-        ci.is_company = True
-        ci.category = getattr(c, 'category', None)
-        ci.description = getattr(c, 'description', None)
-        ci.entity_type = getattr(c, 'entity_type', None)
-        ci.ein = getattr(c, 'ein', None)
-        ci.industry = getattr(c, 'industry', None)
-        ci.sic = getattr(c, 'sic', None)
-        ci.sic_description = getattr(c, 'sic_description', None)
-        ci.state_of_incorporation = getattr(c, 'state_of_incorporation', None)
-        ci.state_of_incorporation_description = getattr(c, 'state_of_incorporation_description', None)
-        ci.fiscal_year_end = getattr(c, 'fiscal_year_end', None)
-        ci.mailing_address = getattr(c, 'mailing_address', None).__dict__ if getattr(c, 'mailing_address', None) else None
-        ci.business_address = getattr(c, 'business_address', None).__dict__ if getattr(c, 'business_address', None) else None
-        ci.phone = getattr(c, 'phone', None)
-        ci.tickers = getattr(c, 'tickers', [])
-        ci.exchanges = getattr(c, 'exchanges', [])
-        ci.former_names = getattr(c, 'former_names', None)
-        ci.flags = getattr(c, 'flags', None)
-        ci.insider_transaction_for_owner_exists = getattr(c, 'insider_transaction_for_owner_exists', 0)
-        ci.insider_transaction_for_issuer_exists = getattr(c, 'insider_transaction_for_issuer_exists', 0)
-        ci.website = getattr(c, 'website', None)
-        ci.investor_website = getattr(c, 'investor_website', None)
+        ci.name = c.name
+        ci.is_company = c.is_company
+        ci.category = c.category
+        ci.description = c.description
+        ci.entity_type = c.entity_type
+        ci.ein = c.ein
+        ci.industry = c.industry
+        ci.sic = c.sic
+        ci.sic_description = c.sic_description
+        ci.state_of_incorporation = c.state_of_incorporation
+        ci.state_of_incorporation_description = c.state_of_incorporation_description
+        ci.fiscal_year_end = c.fiscal_year_end
+        ci.mailing_address = c.mailing_address.__dict__
+        ci.business_addres = c.business_address.__dict__
+        ci.phone = c.phone
+        ci.tickers = c.tickers
+        ci.exchanges = c.exchanges
+        ci.former_names = c.former_names
+        ci.flags = c.flags
+        ci.insider_transaction_for_owner_exists = c.insider_transaction_for_owner_exists
+        ci.insider_transaction_for_issuer_exists = c.insider_transaction_for_issuer_exists
+        ci.website = c.website
+        ci.investor_website = c.investor_website
         try:
             oci = CompanyInfo.objects.get(cik=c.cik)
         except CompanyInfo.DoesNotExist:
@@ -364,85 +400,82 @@ def process_companyfacts_cik(cik:int):
         if company is not None:
             facts = company.get_facts()
             if facts is not None:
-                all_facts = facts.get_all_facts()
-                
-                # Pre-save unique FactIndex entries
-                seen_facts = {}
-                for fact in all_facts:
-                    if fact.concept not in seen_facts:
-                        seen_facts[fact.concept] = {'label': getattr(fact, 'label', ''), 'description': ''}
-                
-                for concept, data in seen_facts.items():
-                    try:
-                        fi = FactIndex.objects.get(fact=concept)
-                    except FactIndex.DoesNotExist:
-                        fi = FactIndex()
-                    fi.fact = concept
-                    fi.label = data['label']
-                    fi.description = data['description']
-                    fi.save()
-
-                # Process all facts
-                fact_objects = []
-                # Keep track of unique fact IDs to avoid bulk_create duplicate entries
-                seen_ids = set()
-                
-                for fact in all_facts:
-                    # edgartools 5.x FinancialFact attributes mappings
-                    fact_id = f"{fact.concept}_{fact.accession}"
-                    if fact_id in seen_ids:
-                        continue
-                    seen_ids.add(fact_id)
-
-                    try:
-                        ft = FormIndex.objects.get(form=fact.form_type)
-                    except FormIndex.DoesNotExist:
-                        ft = FormIndex.objects.create(form=fact.form_type)
-                    try:
-                        fact_idx = FactIndex.objects.get(fact=fact.concept)
-                    except FactIndex.DoesNotExist:
-                        fact_idx = FactIndex.objects.create(fact=fact.concept)
-                    try:
-                        c = Company.objects.get(cik=cik)
-                    except Company.DoesNotExist:
-                        c = Company.objects.create(cik=cik)
-                    try:
-                        fi = FilingIndex.objects.get(accession_number=fact.accession)
-                    except FilingIndex.DoesNotExist:
-                        fi = FilingIndex.objects.create(
-                            accession_number=fact.accession,
-                            cik=c)
-                    
-                    try:
-                        cf = CompanyFact.objects.get(id=fact_id)
-                    except CompanyFact.DoesNotExist:
-                        cf = CompanyFact(id=fact_id, cik=c, fact=fact_idx, formtype=ft, accession_number=fi)
-
-                    cf.namespace = getattr(fact, 'taxonomy', 'us-gaap')
-                    cf.value = getattr(fact, 'numeric_value', getattr(fact, 'value', 0.0))
-                    if cf.value is None: cf.value = 0.0
-                    cf.end_date = getattr(fact, 'period_end', None)
-                    cf.datefiled = getattr(fact, 'filing_date', None)
-                    cf.fiscal_year = getattr(fact, 'fiscal_year', 0)
-                    if cf.fiscal_year is None: cf.fiscal_year = 0
-                    cf.fiscal_period = getattr(fact, 'fiscal_period', '')
-                    cf.frame = ''
-
-                    fact_objects.append(cf)
-
-                CompanyFact.objects.bulk_create(
-                    fact_objects,
-                    update_conflicts=True, 
-                    unique_fields=['id'],
-                    update_fields=[
-                        'namespace',
-                        'value',
-                        'end_date',
-                        'datefiled',
-                        'fiscal_year',
-                        'fiscal_period',
-                        'frame'])
-                processed = True
+                if hasattr(facts, 'fact_meta'):
+                    for fact_index in facts.fact_meta.itertuples():
+                        try:
+                            fi = FactIndex.objects.get(fact=fact_index.fact)
+                        except FactIndex.DoesNotExist:
+                            fi = FactIndex()
+                        fi.fact = fact_index.fact
+                        fi.label = fact_index.label
+                        fi.description = fact_index.description
+                        fi.save()
+                    facts = facts.to_pandas()
+                    facts['id'] = facts.fact + '_' + facts.accn
+                    facts.drop_duplicates(subset=['id'], keep='last', inplace=True)
+                    fact_objects = []
+                    for fact in facts.itertuples():
+                        try:
+                            ft = FormIndex.objects.get(form=fact.form)
+                        except FormIndex.DoesNotExist:
+                            ft = FormIndex.objects.create(form=fact.form)
+                        try:
+                            fact_idx = FactIndex.objects.get(fact=fact.fact)
+                        except FactIndex.DoesNotExist:
+                            fact_idx = FactIndex().objects.create(fact=fact.fact)
+                        try:
+                            c = Company.objects.get(cik=cik)
+                        except Company.DoesNotExist:
+                            c = Company.objects.create(cik=cik)
+                        try:
+                            fi = FilingIndex.objects.get(accession_number=fact.accn)
+                        except FilingIndex.DoesNotExist:
+                            fi = FilingIndex.objects.create(
+                                accession_number=fact.accn,
+                                cik=c)
+                        try:
+                            cf = CompanyFact.objects.get(id=fact.id)
+                        except CompanyFact.DoesNotExist:
+                            cf = CompanyFact(
+                                id=fact.id,
+                                cik=c,
+                                fact=fact_idx,
+                                formtype=ft,
+                                namespace=fact.namespace,
+                                value=fact.val,
+                                end_date=fact.end,
+                                datefiled=fact.filed,
+                                fiscal_year=fact.fy,
+                                fiscal_period=fact.fp,
+                                frame=fact.frame,
+                                accession_number=fi)
+                        
+                        cf.cik = c
+                        cf.accession_number = fi
+                        cf.fact = fact_idx
+                        cf.formtype = ft
+                        cf.id = fact.id
+                        cf.namespace = fact.namespace
+                        cf.value = fact.val
+                        cf.end_date = fact.end
+                        cf.datefiled = fact.filed
+                        cf.fiscal_year = fact.fy
+                        cf.fiscal_period = fact.fp
+                        cf.frame = fact.frame
+                        fact_objects.append(cf)
+                    CompanyFact.objects.bulk_create(
+                        fact_objects,
+                        update_conflicts=True, 
+                        unique_fields=['id'],
+                        update_fields=[
+                            'namespace',
+                            'value',
+                            'end_date',
+                            'datefiled',
+                            'fiscal_year',
+                            'fiscal_period',
+                            'frame'])
+                    processed = True
     except Exception:
         error = sys.exc_info()[0]
         details = traceback.format_exc()
@@ -511,7 +544,7 @@ def process_companyfacts(cik:int=0, multiple:bool=False, upsert:bool=False):
         sys.stderr.write(f'{err_cik}: {error} - {details}')
 
 def process_filingindex_year(year:int, batch_size:int=1000, upsert:bool=False, formtypes:Iterable[str]=None):
-    filing_index = edgar.get_filings(year)
+    filing_index = edgar.get_filings(year, form=formtypes)
     if filing_index is not None:
         filing_index = filing_index.to_pandas()
         if formtypes is not None:
@@ -1068,12 +1101,22 @@ def search_filing_document_sha1(client, sha1: str, term_list: Iterable[str], sea
     # TODO: Don't search same SHA1 repeatedly, but need to coordinate with calling process
 
     # Get contents
+    nlp_engine = get_spacy_nlp()
     if not token_search and not stem_search:
         document_contents = document_buffer
+    elif token_search:
+        doc = nlp_engine(document_buffer)
+        document_contents = [token.text for token in doc]
+    elif stem_search:
+        doc = nlp_engine(document_buffer)
+        document_contents = [token.lemma_ for token in doc]
 
     # For term in term list
     counts = {}
     for term in term_list:
+        if stem_search:
+            term_doc = nlp_engine(term)
+            term = term_doc[0].lemma_ if len(term_doc) > 0 else term
 
         if case_sensitive:
             counts[term] = document_contents.count(term)
