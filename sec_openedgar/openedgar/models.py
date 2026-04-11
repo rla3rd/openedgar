@@ -196,6 +196,9 @@ class Filing(django.db.models.Model):
     processed_document_count = django.db.models.IntegerField(default=0)
     is_processed = django.db.models.BooleanField(default=False, db_index=True)
     is_error = django.db.models.BooleanField(default=False, db_index=True)
+    
+    # High-Performance JSONB RAG Document mapping
+    documents_index = django.db.models.JSONField(null=True, blank=True)
     acceptance_datetime = django.db.models.DateField(db_index=True, null=True)
     date_downloaded = django.db.models.DateField(db_index=True, null=True)
     document_url = django.db.models.CharField(max_length=1024, null=True)

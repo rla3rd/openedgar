@@ -43,15 +43,30 @@ class AdvancedSECRatelimiter:
 
 class SecAPI:
     def __init__(self, identity: str = None):
-        self.identity = identity or os.getenv("EDGAR_IDENTITY", "User user@example.com")
-        self.client = httpx.Client(
-            headers={
-                "User-Agent": self.identity,
-                "Accept-Encoding": "gzip, deflate"
-            },
-            timeout=30.0,
-            http2=True  # SEC supports HTTP/2, helps with connection multiplexing
-        )
+        # We'll fetch this lazily to ensure settings are loaded
+        self._identity = identity
+        self._client = None
+        self.limiter = AdvancedSECRatelimiter(capacity=10, fill_rate=9.5)
+        
+    @property
+    def identity(self):
+        if self._identity:
+            return self._identity
+        from django.conf import settings
+        return getattr(settings, "EDGAR_IDENTITY", os.getenv("EDGAR_IDENTITY", "User user@example.com"))
+
+    @property
+    def client(self):
+        if self._client is None:
+            self._client = httpx.Client(
+                headers={
+                    "User-Agent": self.identity,
+                    "Accept-Encoding": "gzip, deflate"
+                },
+                timeout=30.0,
+                http2=True
+            )
+        return self._client
         self.limiter = AdvancedSECRatelimiter(capacity=10, fill_rate=9.5)
         
         # Pre-compile SGML extraction regexes for high performance header parsing

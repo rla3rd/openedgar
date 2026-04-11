@@ -30,7 +30,9 @@ from typing import Union
 from pathlib import Path
 
 # Project settings
-from config.settings.base import EDGAR_LOCAL_DATA_DIR
+from django.conf import settings
+import os
+EDGAR_LOCAL_DATA_DIR = os.getenv("EDGAR_LOCAL_DATA_DIR", getattr(settings, "EDGAR_LOCAL_DATA_DIR", "/media/data"))
 
 # Setup logger
 logger = logging.getLogger(__name__)
@@ -97,16 +99,17 @@ class LocalClient:
         return sha1, rel_path
 
     def get_buffer(self, file_path: str):
-        # 1. Try compressed .zst version first
-        zst_path = file_path if file_path.endswith('.zst') else f"{file_path}.zst"
-        if os.path.exists(zst_path):
-            dctx = zstd.ZstdDecompressor()
-            with open(zst_path, 'rb') as f:
-                return dctx.decompress(f.read())
+        # 1. Try compressed .zst or .zstd version first
+        zst_paths = [file_path] if file_path.endswith(('.zst', '.zstd')) else [f"{file_path}.zst", f"{file_path}.zstd"]
+        for path in zst_paths:
+            if os.path.exists(path):
+                dctx = zstd.ZstdDecompressor()
+                with open(path, 'rb') as f:
+                    return dctx.decompress(f.read())
         
         # 2. Fallback to uncompressed plain file
         if os.path.exists(file_path):
             with open(file_path, mode='rb') as localfile:
                 return localfile.read()
         
-        raise FileNotFoundError(f"Could not find filing at {file_path} or {file_path}.zst")
+        raise FileNotFoundError(f"Could not find filing at {file_path} (or with .zst / .zstd extensions)")

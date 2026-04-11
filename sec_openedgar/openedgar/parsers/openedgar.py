@@ -44,6 +44,7 @@ from docling.datamodel.base_models import InputFormat
 from docling.datamodel.pipeline_options import PdfPipelineOptions
 import tempfile
 from .registry import registry
+import secsgml2
 
 # Setup logger
 logger = logging.getLogger(__name__)
@@ -91,8 +92,15 @@ def uudecode(buffer: Union[bytes, str]):
     return out_file.getvalue()
 
 
-# Initialize Docling Converter Gloablly
-converter = DocumentConverter()
+# Initialize Docling Converter Lazily (to avoid CUDA multiprocessing issues)
+_converter = None
+
+def get_converter():
+    global _converter
+    if _converter is None:
+        from docling.document_converter import DocumentConverter
+        _converter = DocumentConverter()
+    return _converter
 
 def extract_text(buffer: Union[bytes, str], content_type: str = None, form_type: str = None):
     """
@@ -111,7 +119,7 @@ def extract_text(buffer: Union[bytes, str], content_type: str = None, form_type:
             if specialized_md:
                 return specialized_md
             
-        # 2. Hybrid Logic (HTML/PDF)
+        # 2. Hybrid Logic (HTML/PDF/XML)
         if content_type == "text/html":
             decoded = buffer.decode('utf-8', errors='ignore')
             try:
@@ -129,11 +137,23 @@ def extract_text(buffer: Union[bytes, str], content_type: str = None, form_type:
                 except Exception as e:
                     logger.warning(f"sec2md conversion failed, falling back to docling: {e}")
         
+        elif "xml" in str(content_type).lower():
+            # For XML, we often just want the clean text if it's not a specialized form
+            try:
+                decoded = buffer.decode('utf-8', errors='ignore')
+                from selectolax.parser import HTMLParser
+                tree = HTMLParser(decoded)
+                return tree.text(separator=' ', strip=True)
+            except Exception as e:
+                logger.warning(f"XML text extraction failed: {e}")
+
         # Docling handles PDF, HTML fallback, Docx, etc with deep layout analysis
         suffix = ".html"
         if content_type == "application/pdf":
             suffix = ".pdf"
         elif "xml" in str(content_type).lower():
+            # If we fall through to docling for XML, it might fail anyway, 
+            # but we'll try it as a last resort if it matches docling's supported formats
             suffix = ".xml"
             
         with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
@@ -141,7 +161,8 @@ def extract_text(buffer: Union[bytes, str], content_type: str = None, form_type:
             tmp_path = tmp.name
             
         try:
-            result = converter.convert(tmp_path)
+            conv = get_converter()
+            result = conv.convert(tmp_path)
             return result.document.export_to_markdown()
         finally:
             if os.path.exists(tmp_path):
@@ -252,19 +273,38 @@ def parse_index_file(file_name: str, double_gz: bool = False):
 
 def extract_filing_header_field(buffer: Union[bytes, str], field: str):
     """
-    Extract a given field from an SEC-HEADER buffer.
-    :param buffer: SEC-HEADER buffer
-    :param field: field to extract
-    :return:
+    Extract a given field from an SEC-HEADER buffer using robust regex.
+    Handles 'FIELD: VALUE', 'FIELD \t VALUE', 'FIELD-NAME: VALUE', and '<FIELD-NAME>VALUE'.
     """
-    # Get name
-    field_string = "{0}:".format(field)
-    if field_string not in buffer:
-        return None
-
-    p0 = buffer.find(field_string) + len(field_string)
-    p1 = buffer.find("\n", p0)
-    return buffer[p0:p1].strip()
+    import re
+    if isinstance(buffer, bytes):
+        buffer = buffer.decode("utf-8", errors="ignore")
+    
+    # Normalize field for regex (handle spaces as spaces or hyphens)
+    field_slug = field.replace(" ", r"[ -]")
+    
+    # Try multiple patterns: 
+    # 1. <FIELD>VALUE
+    # 2. FIELD: VALUE
+    # 3. FIELD  VALUE (spaces)
+    # We allow optional leading whitespace and handle the closing tag char '>'
+    patterns = [
+        rf"<{field_slug}>\s*(.*)$",              # SGML Tag (Priority)
+        rf"^\s*(?:{field_slug})\s*[:>]?\s*(.*)$", # Line start + optional colon/tag-end
+        rf"(?:{field_slug})\s*[:>]?\s*(.*)$",      # Mid-line (fallback)
+    ]
+    
+    for pattern in patterns:
+        match = re.search(pattern, buffer, re.IGNORECASE | re.MULTILINE)
+        if match:
+            val = match.group(1).split("\n")[0].strip()
+            # If we caught a tag-based value, strip the closing tag if it exists on the same line
+            val = re.sub(r"</.*?>", "", val).strip()
+            # Final safety strip for tag remnants
+            val = val.lstrip(">").strip()
+            if val:
+                return val
+    return None
 
 
 def parse_filing(buffer: Union[bytes, str], extract: bool = False):
@@ -307,58 +347,143 @@ def parse_filing(buffer: Union[bytes, str], extract: bool = False):
                 return filing_data
 
     # Check for SEC-HEADER block
-    if "<SEC-HEADER>" in buffer or "<IMS-HEADER>" in buffer:
-        # Get header subset
-        if "<SEC-HEADER>" in buffer:
-            header_p0 = buffer.find("<SEC-HEADER>")
-            header_p1 = buffer.find("</SEC-HEADER>")
-        elif "<IMS-HEADER>" in buffer:
-            header_p0 = buffer.find("<IMS-HEADER>")
-            header_p1 = buffer.find("</IMS-HEADER>")
-        else:
-            header_p0 = -1
-            header_p1 = -1
+    # Check for SEC-HEADER block with fallback
+    header_p0 = -1
+    header_p1 = -1
+    tag_len = 0
+    
+    if "<SEC-HEADER>" in buffer:
+        header_p0 = buffer.find("<SEC-HEADER>")
+        header_p1 = buffer.find("</SEC-HEADER>")
+        tag_len = len("<SEC-HEADER>")
+    elif "<IMS-HEADER>" in buffer:
+        header_p0 = buffer.find("<IMS-HEADER>")
+        header_p1 = buffer.find("</IMS-HEADER>")
+        tag_len = len("<IMS-HEADER>")
+    
+    # If no tags, fallback to the area before the first <DOCUMENT>
+    if header_p0 == -1 or header_p1 == -1:
+        header_p0 = 0
+        header_p1 = buffer.find("<DOCUMENT>")
+        tag_len = 0
+        
+    if header_p1 == -1: # No documents?! Just use the whole thing
+        header_p1 = len(buffer)
+        
+    # Extract and Parse valid header
+    header = buffer[header_p0 + tag_len:header_p1]
+    
+    # Extract and Parse valid header using high-performance secsgml2
+    header_bytes = header.encode("utf-8", errors="ignore")
+    raw_metadata, _ = secsgml2.parse_sgml_content_into_memory(header_bytes)
+    
+    # 0. Sanitize metadata (PostgreSQL jsonb does not allow null bytes \u0000)
+    def sanitize(val, is_key=False):
+        if isinstance(val, dict):
+            new_dict = {}
+            for k, v in val.items():
+                k_clean = sanitize(k, is_key=True)
+                
+                # ULTIMATE FIX: Proactive Accession Number detection by value pattern
+                # If the value looks like an ACN, force the key to 'accession-number'
+                if isinstance(v, str) and re.match(r"^\d{10}-\d{2}-\d{6}$", v):
+                    k_clean = "accession-number"
+                elif re.match(r"^[^\w\s-]{2,}", k_clean) or not k_clean or len(k_clean) < 3:
+                    # If the key is garbage/mangled and we haven't identified it, 
+                    # we should be careful about keeping it if it has nulls or binary
+                    pass
 
-        if header_p0 == -1 or header_p1 == -1:
-            logger.error("Invalid HEADER block found in document")
-        else:
-            # Parse valid header
-            header = buffer[header_p0 + len("<SEC-HEADER>"):header_p1]
+                new_dict[k_clean] = sanitize(v)
+            return new_dict
+        elif isinstance(val, list):
+            return [sanitize(i) for i in val]
+        elif isinstance(val, str):
+            # Strip nulls, non-printable, and non-ASCII
+            res = val.replace('\x00', '').replace('\u0000', '')
+            if is_key:
+                res = "".join(c for c in res if c.isprintable() and ord(c) < 128)
+            return res.strip()
+        return val
+    
+    metadata = sanitize(raw_metadata)
 
-            # Get name
-            filing_data["accession_number"] = extract_filing_header_field(header, "ACCESSION NUMBER")
-            filing_data["form_type"] = extract_filing_header_field(header, "CONFORMED SUBMISSION TYPE")
+    # Map secsgml2 metadata (handling hyphenated keys and nested structures)
+    # 1. Robust Accession Number recovery (handles binary key mangling)
+    acn = metadata.get("accession-number") or metadata.get("ACCESSION-NUMBER")
+    if not acn:
+        # Fallback: Search all values for something that looks like an ACN
+        for k, v in metadata.items():
+            if isinstance(v, str) and re.match(r"^\d{10}-\d{2}-\d{6}$", v):
+                acn = v
+                break
+    filing_data["accession_number"] = acn
 
-            try:
-                document_count_value = extract_filing_header_field(header, "PUBLIC DOCUMENT COUNT")
-                filing_data["document_count"] = int(document_count_value)
-            except ValueError as _:
-                logger.warning("Unable to set document_count")
-                filing_data["document_count"] = None
+    filing_data["form_type"] = (metadata.get("type") or 
+                               metadata.get("conformed-submission-type") or 
+                               metadata.get("TYPE"))
+    
+    doc_count = metadata.get("public-document-count") or metadata.get("PUBLIC-DOCUMENT-COUNT")
+    try:
+        filing_data["document_count"] = int(doc_count) if doc_count else None
+    except (ValueError, TypeError):
+        filing_data["document_count"] = None
 
-            try:
-                reporting_period_value = extract_filing_header_field(header, "CONFORMED PERIOD OF REPORT")
-                filing_data["reporting_period"] = dateutil.parser.parse(
-                    reporting_period_value).date() if reporting_period_value is not None else None
-            except ValueError as _:
-                logger.warning("Unable to set reporting_period")
-                filing_data["reporting_period"] = None
+    period = (metadata.get("conformed-period-of-report") or 
+              metadata.get("period") or 
+              metadata.get("PERIOD"))
+    if period:
+        try:
+            filing_data["reporting_period"] = dateutil.parser.parse(str(period)).date()
+        except Exception:
+            filing_data["reporting_period"] = None
 
-            try:
-                date_filed_value = extract_filing_header_field(header, "FILED AS OF DATE")
-                filing_data["date_filed"] = dateutil.parser.parse(
-                    date_filed_value).date() if date_filed_value is not None else None
-            except ValueError as _:
-                logger.warning("Unable to set date_filed")
-                filing_data["date_filed"] = None
+    filed = (metadata.get("filing-date") or 
+             metadata.get("filed-as-of-date") or 
+             metadata.get("FILING_DATE") or
+             metadata.get("DATE_FILED"))
+    if filed:
+        try:
+            filing_data["date_filed"] = dateutil.parser.parse(str(filed)).date()
+        except Exception:
+            filing_data["date_filed"] = None
 
-            filing_data["company_name"] = extract_filing_header_field(header, "COMPANY CONFORMED NAME")
-            filing_data["cik"] = extract_filing_header_field(header, "CENTRAL INDEX KEY")
-            filing_data["sic"] = extract_filing_header_field(header, "STANDARD INDUSTRIAL CLASSIFICATION")
-            filing_data["trading_symbol"] = extract_filing_header_field(header, "TRADING SYMBOL")
-            filing_data["irs_number"] = extract_filing_header_field(header, "IRS NUMBER")
-            filing_data["state_incorporation"] = extract_filing_header_field(header, "STATE OF INCORPORATION")
-            filing_data["state_location"] = extract_filing_header_field(header, "STATE")
+    # 2. Extract Entity Data (Prioritize SUBJECT-COMPANY for issuers, fall back to FILED-BY)
+    entities = [metadata.get("subject-company"), metadata.get("filed-by"), metadata.get("reporting-owner")]
+    for entity in entities:
+        if not entity or not isinstance(entity, dict):
+            continue
+        
+        cdata = entity.get("company-data") or entity.get("owner-data") or {}
+        if not cdata:
+            continue
+            
+        filing_data["company_name"] = cdata.get("conformed-name") or cdata.get("name")
+        filing_data["cik"] = cdata.get("cik")
+        filing_data["sic"] = cdata.get("assigned-sic") or cdata.get("sic")
+        filing_data["irs_number"] = cdata.get("irs-number") or cdata.get("irs")
+        filing_data["state_incorporation"] = cdata.get("state-of-incorporation") or cdata.get("state")
+        
+        # If we found the primary issuer, stop
+        if filing_data["company_name"]:
+            break
+
+    # Final cleanup of CIKs (padding to 10 digits)
+    if filing_data["cik"]:
+        filing_data["cik"] = str(filing_data["cik"]).zfill(10)
+
+    # Include full raw metadata    # Capture the raw SGML header ONLY for the sidecar
+    start_tag_bytes = "<DOCUMENT>"
+    p0 = buffer.find(start_tag_bytes)
+    header = buffer[:p0] if p0 != -1 else buffer
+
+    filing_data["raw_header"] = header
+    filing_data["full_metadata"] = metadata
+    
+    # Enrich filing documents with secsgml2 metadata (like size_bytes)
+    # Note: filing_data["documents"] already contains parsed docs, 
+    # but we want to ensure the secsgml2-specific 'documents' list is available 
+    # for the offset calculator.
+    filing_data["secsgml_documents"] = metadata.get("documents", [])
 
     # Parse and yield by doc
     p0 = buffer.find(start_tag)
@@ -384,13 +509,19 @@ def parse_filing_document(document_buffer: Union[bytes, str], extract: bool = Fa
     :param form_type: SEC form type for registry routing
     :return:
     """
-    # Parse segment
-    doc_type_matches = re.findall("<TYPE>(.+)", document_buffer)
-    doc_type = doc_type_matches[0] if doc_type_matches else form_type # Fallback to primary form type
+    # Robust regex for document metadata tags
+    import re
+    doc_type_matches = re.findall(r"<TYPE>\s*(.*)", document_buffer, re.IGNORECASE)
+    doc_type = doc_type_matches[0].strip() if doc_type_matches else form_type
     
-    doc_sequence = re.findall("<SEQUENCE>(.+)", document_buffer)
-    doc_file_name = re.findall("<FILENAME>(.+)", document_buffer)
-    doc_description = re.findall("<DESCRIPTION>(.+)", document_buffer)
+    doc_sequence_matches = re.findall(r"<SEQUENCE>\s*(.*)", document_buffer, re.IGNORECASE)
+    doc_sequence = doc_sequence_matches[0].strip() if doc_sequence_matches else None
+    
+    doc_file_name_matches = re.findall(r"<FILENAME>\s*(.*)", document_buffer, re.IGNORECASE)
+    doc_file_name = doc_file_name_matches[0].strip() if doc_file_name_matches else None
+    
+    doc_description_matches = re.findall(r"<DESCRIPTION>\s*(.*)", document_buffer, re.IGNORECASE)
+    doc_description = doc_description_matches[0].strip() if doc_description_matches else None
 
     # Start and end tags
     content_p0 = document_buffer.rfind("</", 0, document_buffer.rfind("</"))
@@ -419,8 +550,8 @@ def parse_filing_document(document_buffer: Union[bytes, str], extract: bool = Fa
         content_type = "application/xml"
     elif doc_text_head.startswith("\nbegin "):
         is_uuencoded = True
-        if len(doc_file_name) > 0:
-            content_type = mimetypes.guess_type(os.path.basename(doc_file_name[0]))
+        if doc_file_name:
+            content_type = mimetypes.guess_type(os.path.basename(doc_file_name))
             if content_type is None:
                 content_type = "application/octet-stream"
             else:
@@ -442,10 +573,10 @@ def parse_filing_document(document_buffer: Union[bytes, str], extract: bool = Fa
     else:
         doc_content_text = None
 
-    return {"type": doc_type[0] if len(doc_type) > 0 else None,
-            "sequence": doc_sequence[0] if len(doc_sequence) > 0 else None,
-            "file_name": doc_file_name[0] if len(doc_file_name) > 0 else None,
-            "description": doc_description[0] if len(doc_description) > 0 else None,
+    return {"type": doc_type,
+            "sequence": doc_sequence,
+            "file_name": doc_file_name,
+            "description": doc_description,
             "content_type": content_type,
             "sha1": doc_sha1,
             "content": doc_content,

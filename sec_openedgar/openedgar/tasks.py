@@ -59,7 +59,12 @@ from openedgar.clients.s3 import S3Client
 from openedgar.clients.local import LocalClient
 import openedgar.clients.openedgar
 import openedgar.parsers.openedgar
-from openedgar.models import Company, CompanyFact, CompanyInfo, FactIndex, FilingIndex, Filing, FilingDocument, FormIndex, SearchQuery, SearchQueryTerm, SearchQueryResult
+try:
+    from openedgar.models import Company, CompanyFact, CompanyInfo, FactIndex, FilingIndex, Filing, FilingDocument, FormIndex, SearchQuery, SearchQueryTerm, SearchQueryResult
+except Exception:
+    # This may fail in spawned worker processes before django.setup() is called.
+    # We handle this by importing models locally within the worker functions.
+    pass
 from openedgar.sec_api import sec_api
 import hyperstreamdb as hs
 from openedgar.processes.rag_pipeline import ModernRAGPipeline
@@ -79,48 +84,79 @@ import tabula
 class AsyncDownloader:
     def __init__(self, rate_limit=5):
         self.semaphore = asyncio.Semaphore(rate_limit)
-        self.headers = {"User-Agent": os.getenv("EDGAR_IDENTITY", "DefaultAgent/1.0")}
+        self.extractions = []
+        self._headers = None
 
-    async def stream_to_disk(self, session, url, output_path):
-        async with self.semaphore:
-            try:
-                import aiofiles
-                output_path.parent.mkdir(parents=True, exist_ok=True)
-                async with session.get(url, headers=self.headers) as response:
-                    if response.status == 200:
-                        async with aiofiles.open(output_path, 'wb') as f:
-                            async for chunk in response.content.iter_chunked(1024 * 1024):
-                                await f.write(chunk)
-                        return True
-                    elif response.status == 429:
-                        retry_after = int(response.headers.get("Retry-After", 600))
-                        logger.warning(f"Rate limited. Retrying after {retry_after}s")
-                        await asyncio.sleep(retry_after)
-                        return await self.stream_to_disk(session, url, output_path)
-                    else:
-                        logger.error(f"Failed to fetch {url}: Status {response.status}")
-                        return False
-            except Exception as e:
-                logger.error(f"Error fetching {url}: {e}")
-                return False
+    @property
+    def headers(self):
+        if self._headers is None:
+            from django.conf import settings
+            identity = getattr(settings, "EDGAR_IDENTITY", os.getenv("EDGAR_IDENTITY", "User user@example.com"))
+            self._headers = {"User-Agent": identity}
+        return self._headers
 
-    async def fetch_text(self, session, url):
-        """Used for small HTML/Index pages, returns text."""
+    async def stream_to_disk(self, session, url, output_path, max_retries=5):
         async with self.semaphore:
-            try:
-                async with session.get(url, headers=self.headers) as response:
-                    if response.status == 200:
-                        return await response.text()
-            except Exception as e:
-                logger.error(f"Error fetching {url}: {e}")
+            for attempt in range(max_retries):
+                try:
+                    import aiofiles
+                    output_path.parent.mkdir(parents=True, exist_ok=True)
+                    async with session.get(url, headers=self.headers, timeout=600) as response:
+                        if response.status == 200:
+                            async with aiofiles.open(output_path, 'wb') as f:
+                                async for chunk in response.content.iter_chunked(1024 * 1024):
+                                    await f.write(chunk)
+                            return True
+                        elif response.status == 429:
+                            retry_after = int(response.headers.get("Retry-After", 60))
+                            logger.warning(f"Rate limited on {url}. Waiting {retry_after}s (Attempt {attempt+1}/{max_retries})")
+                            await asyncio.sleep(retry_after)
+                        else:
+                            logger.error(f"Failed to fetch {url}: Status {response.status}")
+                            if response.status >= 500: # Retry on server errors
+                                await asyncio.sleep(2 ** attempt)
+                                continue
+                            return False
+                except (aiohttp.ClientError, asyncio.TimeoutError) as e:
+                    logger.warning(f"Network error fetching {url} (Attempt {attempt+1}/{max_retries}): {e}")
+                    await asyncio.sleep(2 ** attempt)
+                except Exception as e:
+                    logger.error(f"Unexpected error fetching {url} (Attempt {attempt+1}/{max_retries}): {e}")
+                    await asyncio.sleep(2 ** attempt)
+            
+            logger.error(f"Exhausted retries for {url}")
+            return False
+
+    async def fetch_text(self, session, url, max_retries=5):
+        """Used for small HTML/Index pages, returns text with automatic 429 handling."""
+        for attempt in range(max_retries):
+            async with self.semaphore:
+                try:
+                    async with session.get(url, headers=self.headers) as response:
+                        if response.status == 200:
+                            return await response.text()
+                        elif response.status == 429:
+                            retry_after = int(response.headers.get("Retry-After", 10))
+                            print(f"Rate limited on {url}. Waiting {retry_after}s... (Attempt {attempt+1}/{max_retries})")
+                            await asyncio.sleep(retry_after)
+                            continue
+                        else:
+                            print(f"Error fetching {url}: HTTP {response.status}")
+                            if response.status >= 500:
+                                await asyncio.sleep(2 ** attempt)
+                                continue
+                            return None
+                except Exception as e:
+                    print(f"Network error on {url} (Attempt {attempt+1}): {str(e)}")
+                    await asyncio.sleep(2 ** attempt)
         return None
 
-    async def download_and_compress(self, session, url, output_path):
-        """Streams the tar.gz to a temp file, extracts, and uses HyperStreamDB directly."""
+    async def download_and_compress(self, session, url, output_path, verbose=False, replace=False):
+        """Streams the tar.gz exactly as it is to disk and queues background extraction."""
         import tempfile
         import shutil
-        import tarfile
-        
+        import pathlib
+
         # 1. Stream the tar.gz exactly as it is to a temp file
         with tempfile.NamedTemporaryFile(delete=False, suffix=".tar.gz") as tmp:
             tmp_path = pathlib.Path(tmp.name)
@@ -130,15 +166,26 @@ class AsyncDownloader:
             if tmp_path.exists(): tmp_path.unlink()
             return False
             
-        # 2. Extract into final zstd chunks or direct to HyperStreamDB
+        # 2. Extract into final zstd chunks in the background
         try:
-            # We will stream the SEC tar directly to the output folder as .zst chunks
-            # High-throughput text extraction happens in the background task
             if tmp_path.exists():
+                output_path.parent.mkdir(parents=True, exist_ok=True)
                 shutil.move(str(tmp_path), str(output_path))
+                
+            # Trigger background extraction and track the future
+            if verbose: print(f"  Download complete. Queuing extraction for {output_path.name}...")
+            loop = asyncio.get_event_loop()
+            task = loop.run_in_executor(None, extract_and_compress_tar_feed, str(output_path), True, verbose, replace)
+            
+            # Store metadata for potential retries
+            self.extractions.append({
+                "url": url,
+                "path": output_path,
+                "future": task
+            })
             return True
         except Exception as e:
-            logger.error(f"Failed handling SEC feed {url}: {e}")
+            logger.error(f"Error handling SEC feed {url}: {e}")
             if tmp_path.exists(): tmp_path.unlink()
             return False
 
@@ -177,6 +224,208 @@ formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
 console.setFormatter(formatter)
 logger.addHandler(console)
 
+def format_metadata_to_markdown(d, depth=0):
+    """
+    Recursive formatter to transform nested metadata into a structured ALL-CAPS Markdown report.
+    """
+    md = ""
+    indent = "  " * depth
+    prefix = "### " if depth == 0 else "#### " if depth == 1 else ""
+    for k, v in d.items():
+        title = k.replace("-", " ").replace("_", " ").upper()
+        if isinstance(v, dict):
+            md += f"\n{prefix}{title}\n"
+            md += format_metadata_to_markdown(v, depth + 1)
+        elif isinstance(v, list):
+            md += f"\n{prefix}{title}\n"
+            for item in v:
+                if isinstance(item, dict):
+                    md += format_metadata_to_markdown(item, depth + 1)
+                else:
+                    md += f"{indent}{item}\n"
+        elif v:
+            md += f"{indent}**{title}**: {v}\n"
+    return md
+
+def _process_and_archive_filing(content_bytes: bytes, output_dir: pathlib.Path, fallback_acc: str, verbose: bool = False, replace: bool = True) -> bool:
+    """
+    Unified engine to parse a filing, generate dual sidecars, 
+    calculate random-access offsets, and sync the JSONB index to PostgreSQL.
+    """
+    try:
+        from openedgar.parsers.openedgar import parse_filing
+        # Quick existence check if replace is False
+        # We use the main sidecar as the 'canary' for completion
+        acc_num_canary = fallback_acc # Default until we parse
+        parsed = parse_filing(content_bytes, extract=False)
+        
+        if not (parsed and "documents" in parsed):
+            return False
+            
+        # Sanitize Accession Number
+        acc_num = (parsed.get("accession_number") or fallback_acc).strip().replace(" ", "").replace(">", "")
+        
+        # --- Skip Logic ---
+        md_path = output_dir / f"{acc_num}.sgml.md.zst"
+        if not replace and md_path.exists():
+            if verbose: print(f"  Skipping existing {acc_num}...")
+            return True
+
+        if verbose: print(f"  Archiving {acc_num}...")
+        
+        # Calculate Byte-Offsets for Random Access
+        full_meta = parsed.get('full_metadata', {})
+        try:
+            from secsgml2.utils import calculate_documents_locations_in_tar
+            calculate_documents_locations_in_tar(full_meta)
+        except Exception as e:
+            logger.warning(f"Failed to calculate offsets for {acc_num}: {e}")
+
+        # Use the shared formatter
+        metadata_md = f"# SEC Filing Metadata (Structured)\n"
+        metadata_md += format_metadata_to_markdown(full_meta)
+        metadata_md += f"\n## Documents\n"
+        
+        raw_sgml_header = parsed.get("raw_header", b"")
+        processed_count = 0
+        documents_index_data = {
+            "header": full_meta,
+            "documents": []
+        }
+
+        # Use pyzstd for all compression
+        import pyzstd
+
+        # Handle each document
+        for doc in parsed["documents"]:
+            seq = str(doc.get("sequence", "1")).zfill(2)
+            raw_type = str(doc.get("type", "doc") or "doc").lower()
+            clean_type = raw_type.replace("/", "")
+            doc_type_prefix = clean_type[:4].replace(" ", "").strip()
+            
+            chunk_name = f"{acc_num}.{doc_type_prefix}{seq}.zst"
+            chunk_path = output_dir / chunk_name
+            
+            doc_file_name = doc.get('file_name', 'unknown')
+            doc_sha1 = doc.get('sha1', 'unknown')
+            
+            # Semantic Header for Sidecar
+            metadata_md += f"\n#### DOCUMENT {seq}: {raw_type.upper()}\n"
+            metadata_md += f"**FILENAME**: `{doc_file_name}`\n"
+            metadata_md += f"**RESOURCE**: `{chunk_name}`\n"
+            metadata_md += f"**SHA1**: `{doc_sha1}`\n"
+            
+            # Payload compression
+            payload = doc.get("content_text") or doc.get("content", b"")
+            if isinstance(payload, str):
+                payload = payload.encode('utf-8')
+            
+            with open(chunk_path, "wb") as f_out:
+                f_out.write(pyzstd.compress(payload))
+                
+            documents_index_data["documents"].append({
+                "type": raw_type,
+                "sequence": seq,
+                "filename": doc_file_name,
+                "sha1": doc_sha1,
+                "path": chunk_name
+            })
+            processed_count += 1
+
+        # Sidecar 1: Structured Markdown
+        md_path = output_dir / f"{acc_num}.sgml.md.zst"
+        with open(md_path, "wb") as f_out:
+            f_out.write(pyzstd.compress(metadata_md.encode('utf-8')))
+            
+        # Sidecar 2: Raw SGML Header
+        if raw_sgml_header:
+            header_path = output_dir / f"{acc_num}.sgml.zst"
+            raw_bytes = raw_sgml_header if isinstance(raw_sgml_header, bytes) else raw_sgml_header.encode('utf-8', errors='ignore')
+            with open(header_path, "wb") as f_out:
+                f_out.write(pyzstd.compress(raw_bytes))
+
+        # Sync to PostgreSQL
+        try:
+            from openedgar.models import Filing
+            Filing.objects.filter(accession_number=acc_num).update(
+                documents_index=documents_index_data,
+                is_processed=True,
+                processed_document_count=processed_count
+            )
+        except Exception as e:
+            logger.error(f"Failed to sync Golden Source index for {acc_num}: {e}")
+
+        return True
+    except Exception as e:
+        logger.error(f"Error processing filing {fallback_acc}: {e}")
+        return False
+
+def extract_and_compress_tar_feed(tar_file_path: str, remove_after: bool = False, verbose: bool = False, replace: bool = True):
+    """
+    Extracts SEC Bulk Feed tar.gz files and streams each record into Zstandard chunks.
+    """
+    import tarfile
+    import os
+    tar_path = pathlib.Path(tar_file_path)
+    if not tar_path.exists():
+        return False
+        
+    output_dir = tar_path.parent
+    if verbose: print(f"Extracting {tar_path.name}...")
+    
+    try:
+        processed_tally = 0
+        with tarfile.open(tar_path, "r:gz") as tar:
+            for member in tar.getmembers():
+                if member.isfile() and member.name.endswith(".nc"):
+                    member_stream = tar.extractfile(member)
+                    if member_stream is not None:
+                        fallback_acc = os.path.basename(member.name).replace(".nc", "")
+                        _process_and_archive_filing(member_stream.read(), output_dir, fallback_acc, verbose=verbose, replace=replace)
+                        processed_tally += 1
+                        if verbose and processed_tally % 100 == 0:
+                            print(f"  Progress: {processed_tally} filings extracted from {tar_path.name}")
+        
+        if remove_after:
+            import shutil
+            raw_dir = output_dir / "RAW"
+            raw_dir.mkdir(parents=True, exist_ok=True)
+            shutil.move(str(tar_path), str(raw_dir / tar_path.name))
+        return True
+    except Exception as e:
+        logger.error(f"Failed processing tarball {tar_file_path}: {e}")
+        # If the file is corrupted or failed to extract, delete it so it can be re-downloaded
+        if tar_path.exists():
+            logger.warning(f"Corrupted archive detected; deleting {tar_path.name} for re-download retry.")
+            tar_path.unlink()
+        return False
+
+def convert_legacy_zstd_worker(zstd_file_path: str) -> bool:
+    """
+    Modernizes a legacy .zstd filing by converting it to the dual-sidecar Format.
+    Deletes the original .zstd once archived.
+    """
+    zstd_path = pathlib.Path(zstd_file_path)
+    if not zstd_path.exists(): return False
+        
+    try:
+        import pyzstd
+        with open(zstd_path, "rb") as f_in:
+            content_bytes = pyzstd.decompress(f_in.read())
+            
+        fallback_acc = zstd_path.name.split('.')[0]
+        success = _process_and_archive_filing(content_bytes, zstd_path.parent, fallback_acc)
+        
+        if success:
+            import shutil
+            raw_dir = zstd_path.parent / "RAW"
+            raw_dir.mkdir(parents=True, exist_ok=True)
+            shutil.move(str(zstd_path), str(raw_dir / zstd_path.name))
+        return success
+    except Exception as e:
+        logger.error(f"Failed converting legacy file {zstd_file_path}: {e}")
+        return False
+
 def get_text_quarter(month):
     if month in ("01", "02", "03"):
         return "QTR1"
@@ -187,13 +436,15 @@ def get_text_quarter(month):
     elif month in ("10", "11", "12"):
         return "QTR4"
 
-async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbose=False, days=None):
+async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbose=False, days=None, replace=False):
     base_url = 'https://www.sec.gov/Archives/edgar/Feed/'
     downloader = AsyncDownloader()
     
+    if verbose: print(f"Connecting to SEC Root Feed at {base_url}...")
     async with aiohttp.ClientSession() as session:
         page_content = await downloader.fetch_text(session, base_url)
         if not page_content:
+            if verbose: print(f"CRITICAL: Failed to connect to SEC Root Feed at {base_url}. This usually means your 'EDGAR_IDENTITY' (User-Agent) is missing or you are being rate-limited.")
             return
             
         soup = BeautifulSoup(page_content, features="html.parser")
@@ -222,8 +473,10 @@ async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbos
         
         for year in years:
             year_url = f"{base_url}{year}/"
+            if verbose: print(f"Checking year {year} index at {year_url}...")
             year_page = await downloader.fetch_text(session, year_url)
             if not year_page:
+                if verbose: print(f"Failed to fetch year index for {year}")
                 continue
                 
             year_soup = BeautifulSoup(year_page, features="html.parser")
@@ -251,11 +504,13 @@ async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbos
                             
             for quarter in quarters:
                 qtr_url = f"{base_url}{year}/{quarter}/"
+                if verbose: print(f"Checking quarter {quarter} index at {qtr_url}...")
                 qtr_page = await downloader.fetch_text(session, qtr_url)
                 if not qtr_page:
+                    if verbose: print(f"Failed to fetch quarter index for {quarter}")
                     continue
                     
-                quarter_soup = BeautifulSoup(qtr_page, features="lxml")
+                quarter_soup = BeautifulSoup(qtr_page, features="html.parser")
                 quarter_table = quarter_soup.find("table")
                 
                 download_tasks = []
@@ -269,25 +524,85 @@ async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbos
                                 day_prefix = filename.split(".")[0] # e.g. 20240101
                                 if day_prefix not in [str(d) for d in days]:
                                     continue
-                                    
+                            
                             file_url = f"{base_url}{year}/{quarter}/{filename}"
-                            # Original date usually comes from filename: e.g. 20240101.tar.gz
-                            date_part = filename.split(".")[0]
                             output_path = data_dir / "data" / str(year) / quarter / filename
                             
-                            if verbose:
-                                print(f"Queuing download: {file_url}")
-                                
-                            download_tasks.append(downloader.download_and_compress(session, file_url, output_path))
+                            # --- Skip Logic (Download) ---
+                            raw_path = output_path.parent / "RAW" / output_path.name
+                            if not replace and (output_path.exists() or raw_path.exists()):
+                                if verbose: print(f"  Skipping existing feed: {filename}")
+                                # Trigger extraction for existing file anyway to ensure documents are processed
+                                target_path = raw_path if raw_path.exists() else output_path
+                                loop = asyncio.get_event_loop()
+                                task = loop.run_in_executor(None, extract_and_compress_tar_feed, str(target_path), False, verbose, replace)
+                                downloader.extractions.append({
+                                    "url": file_url,
+                                    "path": output_path,
+                                    "future": task
+                                })
+                                continue
+
+                            download_tasks.append((file_url, output_path))
                 
                 if download_tasks:
-                    results = await asyncio.gather(*download_tasks)
+                    from tqdm import tqdm
+                    # We process synchronously per day for the tqdm visualization, 
+                    # but the extractions still happen in background executors.
+                    desc = f"Ingesting {year} {quarter}"
+                    results_count = 0
+                    failure_count = 0
+                    pbar = tqdm(total=len(download_tasks), desc=desc, disable=not verbose)
+                    for file_url, output_path in download_tasks:
+                        # Extract date from filename (e.g. 20240101.tar.gz)
+                        date_str = output_path.name.split('.')[0]
+                        status = f" | Errs: {failure_count}" if failure_count > 0 else ""
+                        pbar.set_description(f"{desc} ({date_str}){status}")
+                        
+                        success = await downloader.download_and_compress(session, file_url, output_path, verbose=False)
+                        if success: 
+                            results_count += 1
+                            pbar.update(1)
+                        else:
+                            failure_count += 1
+                    pbar.close()
+                    
+                    # --- Finalization & Self-Healing Retry ---
+                    if downloader.extractions:
+                        if verbose: print(f"  Awaiting background worker synchronization for {quarter}...")
+                        extraction_results = await asyncio.gather(*[e["future"] for e in downloader.extractions])
+                        
+                        # Identify failures for immediate retry
+                        failed_items = []
+                        for i, success in enumerate(extraction_results):
+                            if not success:
+                                failed_items.append(downloader.extractions[i])
+                        
+                        if failed_items:
+                            if verbose: print(f"  Detected {len(failed_items)} failed extractions. Triggering forced re-download...")
+                            # Clear old tasks before re-queueing
+                            processed_before_retry = [e for e in downloader.extractions if e not in failed_items]
+                            downloader.extractions = [] 
+                            
+                            retry_tasks = []
+                            for item in failed_items:
+                                # Force replace=True for the retry attempt
+                                retry_tasks.append(downloader.download_and_compress(session, item["url"], item["path"], verbose=verbose, replace=True))
+                            
+                            if retry_tasks:
+                                await asyncio.gather(*retry_tasks)
+                                # Final wait for the NEW retry extractions
+                                if verbose: print(f"  Awaiting rescue extraction results...")
+                                await asyncio.gather(*[e["future"] for e in downloader.extractions])
+                        
+                        downloader.extractions = [] # Reset for next quarter
+                    
                     if verbose:
-                        print(f"Downloaded and compressed {sum(results)} files for {year} {quarter}")
+                        print(f"  Finished {year} {quarter}: Processed {results_count} daily feeds.")
 
 def download_bulk_filings(year=None, qtr=None, backfill=True, verbose=False, replace=False, days=None):
     """Wrapper to run the async download task."""
-    asyncio.run(download_bulk_filings_async(year=year, qtr=qtr, backfill=backfill, verbose=verbose, days=days))
+    asyncio.run(download_bulk_filings_async(year=year, qtr=qtr, backfill=backfill, verbose=verbose, days=days, replace=replace))
 def process_formtypes():
     try:
         pdf_path = "https://www.sec.gov/info/edgar/forms/edgform.pdf"
@@ -713,6 +1028,10 @@ def create_filing_documents(client, documents, filing, store_raw: bool = True, s
 
     # Iterate through documents
     document_records = []
+    
+    # JSONB Array tracker for master Filing RAG performance
+    documents_index_data = []
+    
     for document in documents:
         # Create DB object
         filing_doc = FilingDocument()
@@ -754,9 +1073,22 @@ def create_filing_documents(client, documents, filing, store_raw: bool = True, s
         elif store_raw and len(document["content"]) > 0:
             sha1, cas_path = client.put_cas_buffer(document["content"])
             filing_doc.sha1 = sha1
+            
+        # Append structurally mapped chunk signature to the fast JSON pointer
+        documents_index_data.append({
+            "sequence": document.get("sequence", 1),
+            "type": document.get("type", "doc"),
+            "file_name": document.get("file_name", "unknown"),
+            "sha1": filing_doc.sha1
+        })
 
-    # Create in bulk
+    # Create in bulk for older non-indexed relational systems
     FilingDocument.objects.bulk_create(document_records)
+    
+    # Securely commit the newly mapped Array Index globally backwards to the overarching Filing
+    if hasattr(filing, 'documents_index'):
+        filing.documents_index = documents_index_data
+        filing.save(update_fields=['documents_index', 'is_processed'])
     return len(document_records)
 
 @shared_task
