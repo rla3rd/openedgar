@@ -8,6 +8,12 @@ class Command(BaseCommand):
         parser.add_argument('--year', type=int, help='Year to download', default=None)
         parser.add_argument('--qtr', type=int, help='Quarter to download (1-4)', default=None)
         parser.add_argument(
+            '--days',
+            nargs='+',
+            help='Specific days to download (format YYYYMMDD)',
+            default=None,
+        )
+        parser.add_argument(
             '--no-backfill',
             action='store_true',
             help='Do not backfill from 1997',
@@ -26,12 +32,13 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         year = options['year']
         qtr = options['qtr']
+        days = options['days']
         backfill = not options['no_backfill']
         verbose = options['verbose']
         replace = options['replace']
 
         self.stdout.write(self.style.SUCCESS(
-            f'Starting bulk download: year={year}, qtr={qtr}, backfill={backfill}, replace={replace}'
+            f'Starting bulk download: year={year}, qtr={qtr}, days={days}, backfill={backfill}, replace={replace}'
         ))
         
         # Call the existing function from tasks.py
@@ -40,7 +47,8 @@ class Command(BaseCommand):
             qtr=qtr,
             backfill=backfill,
             verbose=verbose,
-            replace=replace
+            replace=replace,
+            days=days
         )
         
         self.stdout.write(self.style.SUCCESS('Download complete!'))
