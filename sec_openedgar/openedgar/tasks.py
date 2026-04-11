@@ -177,7 +177,17 @@ formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
 console.setFormatter(formatter)
 logger.addHandler(console)
 
-async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbose=False):
+def get_text_quarter(month):
+    if month in ("01", "02", "03"):
+        return "QTR1"
+    elif month in ("04", "05", "06"):
+        return "QTR2"
+    elif month in ("07", "08", "09"):
+        return "QTR3"
+    elif month in ("10", "11", "12"):
+        return "QTR4"
+
+async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbose=False, days=None):
     base_url = 'https://www.sec.gov/Archives/edgar/Feed/'
     downloader = AsyncDownloader()
     
@@ -189,8 +199,11 @@ async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbos
         soup = BeautifulSoup(page_content, features="html.parser")
         table = soup.find("table")
         
+        
         begin_year = 1997
-        if backfill:
+        if days:
+            years = sorted(list(set(int(str(d)[:4]) for d in days)))
+        elif backfill:
             if year:
                 begin_year = year
             years = []
@@ -216,7 +229,16 @@ async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbos
             year_soup = BeautifulSoup(year_page, features="html.parser")
             year_table = year_soup.find("table")
             
-            if qtr:
+            if days:
+                # Filter days for this year
+                year_days = [str(d) for d in days if str(d).startswith(str(year))]
+                # Derive quarters needed for these days
+                needed_quarters = set()
+                for d in year_days:
+                    month = d[4:6]
+                    needed_quarters.add(get_text_quarter(month))
+                quarters = sorted(list(needed_quarters))
+            elif qtr:
                 quarters = [f"QTR{qtr}"]
             else:
                 quarters = []
@@ -242,6 +264,12 @@ async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbos
                     if len(row) > 0:
                         filename = row[0].find('a').attrs['href']
                         if filename.split(".")[-1] == 'gz':
+                            # Check if we are filtering by specific days
+                            if days:
+                                day_prefix = filename.split(".")[0] # e.g. 20240101
+                                if day_prefix not in [str(d) for d in days]:
+                                    continue
+                                    
                             file_url = f"{base_url}{year}/{quarter}/{filename}"
                             # Original date usually comes from filename: e.g. 20240101.tar.gz
                             date_part = filename.split(".")[0]
@@ -257,9 +285,9 @@ async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbos
                     if verbose:
                         print(f"Downloaded and compressed {sum(results)} files for {year} {quarter}")
 
-def download_bulk_filings(year=None, qtr=None, backfill=True, verbose=False):
+def download_bulk_filings(year=None, qtr=None, backfill=True, verbose=False, replace=False, days=None):
     """Wrapper to run the async download task."""
-    asyncio.run(download_bulk_filings_async(year=year, qtr=qtr, backfill=backfill, verbose=verbose))
+    asyncio.run(download_bulk_filings_async(year=year, qtr=qtr, backfill=backfill, verbose=verbose, days=days))
 def process_formtypes():
     try:
         pdf_path = "https://www.sec.gov/info/edgar/forms/edgform.pdf"
