@@ -12,19 +12,19 @@ from transformers import TrainingArguments
 from unsloth.chat_templates import get_chat_template
 
 def main():
-    max_seq_length = 4096 
+    max_seq_length = 4096 # Full context restored for 14B model
     dtype = None # Auto detection
     load_in_4bit = True 
 
-    # 1. Load Base Model
+    # 1. Load Base Model (14B fits easily on 3090 with 4k context)
     model, tokenizer = FastLanguageModel.from_pretrained(
-        model_name = "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+        model_name = "unsloth/Qwen2.5-Coder-14B-Instruct-bnb-4bit",
         max_seq_length = max_seq_length,
         dtype = dtype,
         load_in_4bit = load_in_4bit,
     )
 
-    # 2. Add LoRA Adapters
+    # 2. Add LoRA Adapters (Standard configuration for 14B)
     model = FastLanguageModel.get_peft_model(
         model,
         r = 16, 
@@ -35,7 +35,6 @@ def main():
         bias = "none",
         use_gradient_checkpointing = "unsloth",
         random_state = 3407,
-        use_rslora = False,
     )
 
     # 3. Apply ChatML Template
@@ -52,7 +51,7 @@ def main():
         return { "text" : texts }
 
     # 4. Load Dataset
-    dataset_path = "sec_research/finetuning/qwen_30b_train_1500.jsonl"
+    dataset_path = "sec_openedgar/sec_research/finetuning/qwen_30b_train_1500.jsonl"
     print(f"Loading {dataset_path}...")
     dataset = load_dataset("json", data_files=dataset_path, split="train")
     dataset = dataset.map(formatting_prompts_func, batched=True)
@@ -67,15 +66,15 @@ def main():
         dataset_num_proc = 2,
         packing = False,
         args = TrainingArguments(
-            per_device_train_batch_size = 2,
-            gradient_accumulation_steps = 4,
+            per_device_train_batch_size = 1,
+            gradient_accumulation_steps = 8,
             warmup_steps = 10,
             num_train_epochs = 1,
             learning_rate = 2e-4,
             fp16 = not torch.cuda.is_bf16_supported(),
             bf16 = torch.cuda.is_bf16_supported(),
             logging_steps = 1,
-            optim = "adamw_8bit",
+            optim = "paged_adamw_8bit",
             weight_decay = 0.01,
             lr_scheduler_type = "linear",
             seed = 3407,
