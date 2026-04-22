@@ -457,3 +457,236 @@ class CoverageAssignment(django.db.models.Model):
 
     def __str__(self):
         return f"{self.analyst.user.username} -> {self.company.cik_name}"
+
+
+# --- Ownership Form Ground Truth (Insider Transactions Data Sets) ---
+
+class OwnershipSubmission(django.db.models.Model):
+    """
+    Normalized Filing metadata for Ownership Forms (3, 4, 5).
+    Matches SEC 'SUBMISSION' table.
+    """
+    accession_number = django.db.models.ForeignKey(Filing, on_delete=django.db.models.CASCADE, primary_key=True)
+    filing_date = django.db.models.DateField(db_index=True)
+    period_of_report = django.db.models.DateField(null=True, db_index=True)
+    issuer_cik = django.db.models.ForeignKey(Company, related_name='issuer_ownerships', on_delete=django.db.models.CASCADE)
+    issuer_name = django.db.models.CharField(max_length=1024)
+    issuer_trading_symbol = django.db.models.CharField(max_length=12, null=True, blank=True)
+    issuer_foreign_trading_symbol = django.db.models.CharField(max_length=12, null=True, blank=True)
+    form_type = django.db.models.CharField(max_length=12)
+    schema_version = django.db.models.CharField(max_length=32, null=True, blank=True)
+    remarks = django.db.models.TextField(null=True)
+    
+    # New flags
+    not_subject_to_section_16 = django.db.models.BooleanField(default=False)
+    is_rule_10b5_1_plan = django.db.models.BooleanField(default=False)
+    date_of_original_submission = django.db.models.DateField(null=True, blank=True)
+    no_securities_owned = django.db.models.BooleanField(default=False)
+    
+    class Meta:
+        pass
+
+    def __str__(self):
+        return f"Submission: {self.accession_number} ({self.form_type})"
+
+class OwnershipReportingOwner(django.db.models.Model):
+    """
+    Matches SEC 'REPORTINGOWNER' table.
+    """
+    submission = django.db.models.ForeignKey(OwnershipSubmission, related_name='reporting_owners', on_delete=django.db.models.CASCADE)
+    rptowner_cik = django.db.models.BigIntegerField(db_index=True, null=True)
+    rptowner_ccc = django.db.models.CharField(max_length=20, null=True, blank=True)
+    rptowner_name = django.db.models.CharField(max_length=1024)
+    is_director = django.db.models.BooleanField(default=False)
+    is_officer = django.db.models.BooleanField(default=False)
+    is_10pctowner = django.db.models.BooleanField(default=False)
+    is_other = django.db.models.BooleanField(default=False)
+    officer_title = django.db.models.CharField(max_length=1024, null=True)
+    
+    # Address fields
+    rptowner_street1 = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    rptowner_street2 = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    rptowner_city = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    rptowner_state = django.db.models.CharField(max_length=10, null=True, blank=True)
+    rptowner_zip = django.db.models.CharField(max_length=20, null=True, blank=True)
+    rptowner_non_us_address_flag = django.db.models.BooleanField(default=False)
+    rptowner_non_us_state_territory = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    rptowner_country = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    rptowner_state_description = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    rptowner_good_address = django.db.models.BooleanField(default=False)
+    
+    # New flags
+    is_director_nominee = django.db.models.BooleanField(default=False)
+    other_text = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    
+    class Meta:
+        unique_together = ('submission', 'rptowner_cik')
+
+class OwnershipNonDerivTransaction(django.db.models.Model):
+    """
+    Matches SEC 'NONDERIV_TRANS' table (Table I).
+    """
+    submission = django.db.models.ForeignKey(OwnershipSubmission, related_name='non_deriv_transactions', on_delete=django.db.models.CASCADE)
+    sequence_key = django.db.models.IntegerField()
+    rptowner_cik = django.db.models.BigIntegerField()
+    security_title = django.db.models.CharField(max_length=1024)
+    transaction_date = django.db.models.DateField(null=True)
+    transaction_code = django.db.models.CharField(max_length=2, null=True)
+    transaction_shares = django.db.models.FloatField(null=True)
+    transaction_price_per_share = django.db.models.FloatField(null=True)
+    transaction_total_value = django.db.models.FloatField(null=True)
+    transaction_acquired_disposed_code = django.db.models.CharField(max_length=1, null=True)
+    shares_owned_following_transaction = django.db.models.FloatField(null=True)
+    value_owned_following_transaction = django.db.models.FloatField(null=True)
+    direct_or_indirect_ownership = django.db.models.CharField(max_length=1, null=True)
+    nature_of_ownership = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    
+    # New flags
+    deemed_execution_date = django.db.models.DateField(null=True, blank=True)
+    transaction_form_type = django.db.models.CharField(max_length=1, null=True, blank=True)
+    equity_swap_involved = django.db.models.BooleanField(default=False)
+    transaction_timeliness = django.db.models.CharField(max_length=10, null=True, blank=True)
+
+    # Footnote fields
+    security_title_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    transaction_date_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    deemed_execution_date_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    transaction_code_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    transaction_timeliness_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    transaction_shares_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    transaction_price_per_share_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    transaction_total_value_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    transaction_acquired_disposed_code_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    shares_owned_following_transaction_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    value_owned_following_transaction_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    value_owned_following_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    direct_or_indirect_ownership_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    nature_of_ownership_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+
+class OwnershipNonDerivHolding(django.db.models.Model):
+    """
+    Matches SEC 'NONDERIV_HOLDING' table.
+    """
+    submission = django.db.models.ForeignKey(OwnershipSubmission, related_name='non_deriv_holdings', on_delete=django.db.models.CASCADE)
+    sequence_key = django.db.models.IntegerField()
+    rptowner_cik = django.db.models.BigIntegerField()
+    security_title = django.db.models.CharField(max_length=1024)
+    shares_owned_following_transaction = django.db.models.FloatField(null=True)
+    value_owned_following_transaction = django.db.models.FloatField(null=True)
+    direct_or_indirect_ownership = django.db.models.CharField(max_length=1, null=True)
+    nature_of_ownership = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    
+    # New flags
+    transaction_form_type = django.db.models.CharField(max_length=1, null=True, blank=True)
+
+    # Footnote fields
+    security_title_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    shares_owned_following_transaction_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    value_owned_following_transaction_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    value_owned_following_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    direct_or_indirect_ownership_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    nature_of_ownership_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+
+class OwnershipDerivTransaction(django.db.models.Model):
+    """
+    Matches SEC 'DERIV_TRANS' table (Table II).
+    """
+    submission = django.db.models.ForeignKey(OwnershipSubmission, related_name='deriv_transactions', on_delete=django.db.models.CASCADE)
+    sequence_key = django.db.models.IntegerField()
+    security_title = django.db.models.CharField(max_length=1024)
+    conversion_or_exercise_price = django.db.models.FloatField(null=True)
+    transaction_date = django.db.models.DateField(null=True)
+    transaction_code = django.db.models.CharField(max_length=2, null=True)
+    exercise_date = django.db.models.DateField(null=True)
+    expiration_date = django.db.models.DateField(null=True)
+    underlying_security_title = django.db.models.CharField(max_length=1024, null=True)
+    underlying_security_shares = django.db.models.FloatField(null=True)
+    underlying_security_value = django.db.models.FloatField(null=True)
+    transaction_acquired_disposed_code = django.db.models.CharField(max_length=1, null=True)
+    shares_owned_following_transaction = django.db.models.FloatField(null=True)
+    value_owned_following_transaction = django.db.models.FloatField(null=True)
+    direct_or_indirect_ownership = django.db.models.CharField(max_length=1, null=True)
+    nature_of_ownership = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    
+    # New flags
+    deemed_execution_date = django.db.models.DateField(null=True, blank=True)
+    transaction_form_type = django.db.models.CharField(max_length=1, null=True, blank=True)
+    equity_swap_involved = django.db.models.BooleanField(default=False)
+    transaction_timeliness = django.db.models.CharField(max_length=10, null=True, blank=True)
+
+    # Footnote fields
+    security_title_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    conversion_or_exercise_price_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    transaction_date_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    deemed_execution_date_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    transaction_code_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    transaction_timeliness_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    exercise_date_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    expiration_date_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    underlying_security_title_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    underlying_security_shares_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    underlying_security_value_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    transaction_acquired_disposed_code_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    shares_owned_following_transaction_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    value_owned_following_transaction_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    value_owned_following_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    direct_or_indirect_ownership_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    nature_of_ownership_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+
+class OwnershipDerivHolding(django.db.models.Model):
+    """
+    Matches SEC 'DERIV_HOLDING' table.
+    """
+    submission = django.db.models.ForeignKey(OwnershipSubmission, related_name='deriv_holdings', on_delete=django.db.models.CASCADE)
+    sequence_key = django.db.models.IntegerField()
+    security_title = django.db.models.CharField(max_length=1024)
+    conversion_or_exercise_price = django.db.models.FloatField(null=True)
+    exercise_date = django.db.models.DateField(null=True)
+    expiration_date = django.db.models.DateField(null=True)
+    underlying_security_title = django.db.models.CharField(max_length=1024, null=True)
+    underlying_security_shares = django.db.models.FloatField(null=True)
+    underlying_security_value = django.db.models.FloatField(null=True)
+    shares_owned_following_transaction = django.db.models.FloatField(null=True)
+    value_owned_following_transaction = django.db.models.FloatField(null=True)
+    direct_or_indirect_ownership = django.db.models.CharField(max_length=1, null=True)
+    nature_of_ownership = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    
+    # New flags
+    transaction_form_type = django.db.models.CharField(max_length=1, null=True, blank=True)
+
+    # Footnote fields
+    security_title_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    conversion_or_exercise_price_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    exercise_date_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    expiration_date_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    underlying_security_title_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    underlying_security_shares_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    underlying_security_value_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    shares_owned_following_transaction_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    value_owned_following_transaction_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    value_owned_following_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    direct_or_indirect_ownership_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+    nature_of_ownership_fn = django.db.models.CharField(max_length=1024, null=True, blank=True)
+
+class OwnershipFootnote(django.db.models.Model):
+    """
+    Matches SEC 'FOOTNOTES' table.
+    Provides lookup for numbered footnotes used in transactions and holdings.
+    """
+    submission = django.db.models.ForeignKey(OwnershipSubmission, related_name='footnotes', on_delete=django.db.models.CASCADE)
+    footnote_id = django.db.models.CharField(max_length=10)
+    footnote_text = django.db.models.TextField()
+    
+    class Meta:
+        unique_together = ('submission', 'footnote_id')
+
+class OwnershipSignature(django.db.models.Model):
+    """
+    Matches SEC 'SIGNATURE' data.
+    """
+    submission = django.db.models.ForeignKey(OwnershipSubmission, related_name='signatures', on_delete=django.db.models.CASCADE)
+    signature_name = django.db.models.CharField(max_length=1024)
+    signature_date = django.db.models.DateField()
+    
+    def __str__(self):
+        return f"Signature: {self.signature_name} ({self.signature_date})"

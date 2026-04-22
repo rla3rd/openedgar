@@ -1,0 +1,10 @@
+channels:
+  - anaconda
+  - conda-forge
+  - auto
+  - defaults
+report_errors: true
+auto_activate_base: true
+ssl_verify: true
+solver: libmamba
+channel_priority: disabled

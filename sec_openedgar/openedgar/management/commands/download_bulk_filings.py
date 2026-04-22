@@ -28,6 +28,17 @@ class Command(BaseCommand):
             action='store_true',
             help='Replace existing downloaded files on disk',
         )
+        parser.add_argument(
+            '--download-only',
+            action='store_true',
+            help='Download files to disk but do not extract yet',
+        )
+        parser.add_argument(
+            '--forms',
+            nargs='+',
+            default=None,
+            help='Limit processing to specific form types (e.g. 3 4 5 10-K)'
+        )
 
     def handle(self, *args, **options):
         year = options['year']
@@ -36,9 +47,11 @@ class Command(BaseCommand):
         backfill = not options['no_backfill']
         verbose = options['verbose']
         replace = options['replace']
+        forms = options['forms']
+        download_only = options['download_only']
 
         self.stdout.write(self.style.SUCCESS(
-            f'Starting bulk download: year={year}, qtr={qtr}, days={days}, backfill={backfill}, replace={replace}'
+            f'Starting bulk download: year={year}, qtr={qtr}, days={days}, forms={forms}, download_only={download_only}, replace={replace}'
         ))
         
         # Call the existing function from tasks.py
@@ -48,7 +61,9 @@ class Command(BaseCommand):
             backfill=backfill,
             verbose=verbose,
             replace=replace,
-            days=days
+            days=days,
+            forms=forms,
+            download_only=download_only
         )
         
         self.stdout.write(self.style.SUCCESS('Download complete!'))

@@ -28,25 +28,21 @@ import traceback
 import datetime
 import hashlib
 import logging
-import logging
 import os
 import pathlib
+from openedgar.parsers.ownership_parser import OwnershipParser
 import requests
 import sec2md
 import spacy
 import asyncio
 import aiohttp
 import zstandard as zstd
-import spacy
 from tarfile import ReadError
 import io
 import orjson as json
 import pandas as pd
 from bs4 import BeautifulSoup
 from typing import Iterable, Union, Optional, Dict, List
-import asyncio
-import aiohttp
-import zstandard as zstd
 
 # Packages
 import dateutil.parser
@@ -95,7 +91,7 @@ class AsyncDownloader:
             self._headers = {"User-Agent": identity}
         return self._headers
 
-    async def stream_to_disk(self, session, url, output_path, max_retries=5):
+    async def stream_to_disk(self, session, url, output_path, max_retries=5, verbose=False):
         async with self.semaphore:
             for attempt in range(max_retries):
                 try:
@@ -103,9 +99,32 @@ class AsyncDownloader:
                     output_path.parent.mkdir(parents=True, exist_ok=True)
                     async with session.get(url, headers=self.headers, timeout=600) as response:
                         if response.status == 200:
+                            total_size = int(response.headers.get('content-length', 0))
+                            from tqdm import tqdm
+                            file_pbar = tqdm(total=total_size, unit='B', unit_scale=True, desc=f"  Downloading {output_path.name}", leave=False, disable=not verbose)
+                            
+                            import zlib
+                            import pyzstd
+                            decompressor = zlib.decompressobj(zlib.MAX_WBITS | 16) # Handle Gzip header
+                            compressor = pyzstd.ZstdCompressor(3)
+                            
                             async with aiofiles.open(output_path, 'wb') as f:
                                 async for chunk in response.content.iter_chunked(1024 * 1024):
-                                    await f.write(chunk)
+                                    # Decompress incoming Gzip
+                                    raw_data = decompressor.decompress(chunk)
+                                    if raw_data:
+                                        # Compress to Zstd
+                                        zstd_data = compressor.compress(raw_data)
+                                        await f.write(zstd_data)
+                                    file_pbar.update(len(chunk))
+                                
+                                # Flush remainders
+                                last_raw = decompressor.flush()
+                                if last_raw:
+                                    await f.write(compressor.compress(last_raw))
+                                await f.write(compressor.flush())
+                                
+                            file_pbar.close()
                             return True
                         elif response.status == 429:
                             retry_after = int(response.headers.get("Retry-After", 60))
@@ -151,17 +170,15 @@ class AsyncDownloader:
                     await asyncio.sleep(2 ** attempt)
         return None
 
-    async def download_and_compress(self, session, url, output_path, verbose=False, replace=False):
+    async def download_and_compress(self, session, url, output_path, verbose=False, replace=False, download_only=False, forms=None, pbar=None):
         """Streams the tar.gz exactly as it is to disk and queues background extraction."""
         import tempfile
         import shutil
-        import pathlib
-
-        # 1. Stream the tar.gz exactly as it is to a temp file
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".tar.gz") as tmp:
+        # 1. Stream from SEC (gzip) and convert to .tar.zst on-the-fly
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".tar.zst") as tmp:
             tmp_path = pathlib.Path(tmp.name)
             
-        success = await self.stream_to_disk(session, url, tmp_path)
+        success = await self.stream_to_disk(session, url, tmp_path, verbose=verbose)
         if not success:
             if tmp_path.exists(): tmp_path.unlink()
             return False
@@ -169,13 +186,25 @@ class AsyncDownloader:
         # 2. Extract into final zstd chunks in the background
         try:
             if tmp_path.exists():
-                output_path.parent.mkdir(parents=True, exist_ok=True)
-                shutil.move(str(tmp_path), str(output_path))
+                final_dest = output_path
+                if download_only:
+                    # Move directly to RAW as a cache for later processing
+                    raw_dir = output_path.parent / "RAW"
+                    raw_dir.mkdir(parents=True, exist_ok=True)
+                    final_dest = raw_dir / output_path.name
+                    
+                final_dest.parent.mkdir(parents=True, exist_ok=True)
+                shutil.move(str(tmp_path), str(final_dest))
+                
+            if download_only:
+                if verbose: print(f"  Download complete for {output_path.name} (Staged in RAW mode).")
+                if pbar: pbar.update(1)
+                return True
                 
             # Trigger background extraction and track the future
             if verbose: print(f"  Download complete. Queuing extraction for {output_path.name}...")
             loop = asyncio.get_event_loop()
-            task = loop.run_in_executor(None, extract_and_compress_tar_feed, str(output_path), True, verbose, replace)
+            task = loop.run_in_executor(None, extract_and_compress_tar_feed, str(output_path), True, verbose, replace, forms)
             
             # Store metadata for potential retries
             self.extractions.append({
@@ -247,7 +276,13 @@ def format_metadata_to_markdown(d, depth=0):
             md += f"{indent}**{title}**: {v}\n"
     return md
 
-def _process_and_archive_filing(content_bytes: bytes, output_dir: pathlib.Path, fallback_acc: str, verbose: bool = False, replace: bool = True) -> bool:
+def _process_and_archive_filing(content_bytes: bytes, output_dir: pathlib.Path, fallback_acc: str, verbose: bool = False, replace: bool = True, forms: List[str] = None, extract_only: bool = False) -> bool:
+    """
+    Processes a single raw filing string (typically SGML).
+    If extract_only=True, it simply shatters the SGML into its component documents and sidecars
+    without performing high-fidelity synthesis or database updates.
+    """
+
     """
     Unified engine to parse a filing, generate dual sidecars, 
     calculate random-access offsets, and sync the JSONB index to PostgreSQL.
@@ -263,7 +298,17 @@ def _process_and_archive_filing(content_bytes: bytes, output_dir: pathlib.Path, 
             return False
             
         # Sanitize Accession Number
-        acc_num = (parsed.get("accession_number") or fallback_acc).strip().replace(" ", "").replace(">", "")
+        acc_num = (parsed.get("accession_number") or fallback_acc).strip()
+        acc_num = acc_num.split('\r')[0].split('\n')[0].replace(" ", "").replace(">", "")
+        form_type = str(parsed.get("form_type", "DOC")).strip().upper()
+        
+        # --- Form Filtering ---
+        if forms:
+            # Normalize forms to uppercase for matching
+            target_forms = [f.upper().strip() for f in forms]
+            if form_type not in target_forms:
+                if verbose: print(f"  Skipping non-matching form type: {form_type} for {acc_num}")
+                return True # Return true because we "successfully" skipped it
         
         # --- Skip Logic ---
         md_path = output_dir / f"{acc_num}.sgml.md.zst"
@@ -298,9 +343,10 @@ def _process_and_archive_filing(content_bytes: bytes, output_dir: pathlib.Path, 
 
         # Handle each document
         for doc in parsed["documents"]:
-            seq = str(doc.get("sequence", "1")).zfill(2)
+            seq = str(doc.get("sequence", "1")).strip()
+            seq = seq.split('\r')[0].split('\n')[0].zfill(2)
             raw_type = str(doc.get("type", "doc") or "doc").lower()
-            clean_type = raw_type.replace("/", "")
+            clean_type = raw_type.split('\r')[0].split('\n')[0].replace("/", "")
             doc_type_prefix = clean_type[:4].replace(" ", "").strip()
             
             chunk_name = f"{acc_num}.{doc_type_prefix}{seq}.zst"
@@ -332,12 +378,40 @@ def _process_and_archive_filing(content_bytes: bytes, output_dir: pathlib.Path, 
             })
             processed_count += 1
 
-        # Sidecar 1: Structured Markdown
-        md_path = output_dir / f"{acc_num}.sgml.md.zst"
-        with open(md_path, "wb") as f_out:
+        # --- Stage 2: Synthesis & DB Integration ---
+        if extract_only:
+            return True
+
+        # High-fidelity synthesis for Ownership Forms (Form 3, 4, 5)
+        if form_type in ('3', '4', '5', '3/A', '4/A', '5/A'):
+            if verbose: print(f"  Synthesizing high-fidelity Markdown for {acc_num}...")
+            try:
+                # Use the full raw content for synthesis to ensure sibling chunks/header discovery is self-contained if needed
+                # (Though here we have the full string content from secsgml2)
+                synthesizer = OwnershipParser()
+                md_content = synthesizer.synthesize(content_bytes.decode('utf-8', errors='ignore'), accession=acc_num)
+                
+                if not md_content.startswith("Error"):
+                    synth_path = output_dir / f"{acc_num}.out.md.zst"
+                    
+                    if synth_path.exists() and not replace:
+                        if verbose: print(f"    Skipping existing synthesis for {acc_num}...")
+                    else:
+                        with open(synth_path, "wb") as f_out:
+                            f_out.write(pyzstd.compress(md_content.encode('utf-8')))
+            except Exception as e:
+                logger.error(f"Failed high-fidelity synthesis for {acc_num}: {e}")
+
+        # Technical manifest sidecar (Basic metadata)
+        master_markdown = ""
+
+            
+        # Sidecar 2: Technical Manifest / Filing Header
+        header_md_path = output_dir / f"{acc_num}.sgml.md.zst"
+        with open(header_md_path, "wb") as f_out:
             f_out.write(pyzstd.compress(metadata_md.encode('utf-8')))
             
-        # Sidecar 2: Raw SGML Header
+        # Sidecar 3: Raw SGML Header
         if raw_sgml_header:
             header_path = output_dir / f"{acc_num}.sgml.zst"
             raw_bytes = raw_sgml_header if isinstance(raw_sgml_header, bytes) else raw_sgml_header.encode('utf-8', errors='ignore')
@@ -360,37 +434,87 @@ def _process_and_archive_filing(content_bytes: bytes, output_dir: pathlib.Path, 
         logger.error(f"Error processing filing {fallback_acc}: {e}")
         return False
 
-def extract_and_compress_tar_feed(tar_file_path: str, remove_after: bool = False, verbose: bool = False, replace: bool = True):
+def extract_and_compress_tar_feed(tar_file_path: str, remove_after: bool = False, verbose: bool = False, replace: bool = True, forms: List[str] = None, destination_dir: pathlib.Path = None, extract_only: bool = False):
     """
-    Extracts SEC Bulk Feed tar.gz files and streams each record into Zstandard chunks.
+    Extracts SEC Bulk Feed archives (.tar.gz or .tar.zst) and streams each record into Zstandard chunks.
     """
     import tarfile
     import os
+    import gzip
+    try:
+        import pyzstd
+    except ImportError:
+        pyzstd = None
+
     tar_path = pathlib.Path(tar_file_path)
     if not tar_path.exists():
         return False
         
-    output_dir = tar_path.parent
-    if verbose: print(f"Extracting {tar_path.name}...")
+    output_dir = destination_dir or tar_path.parent
+    output_dir.mkdir(parents=True, exist_ok=True)
+    if verbose: print(f"Extracting {tar_path.name} to {output_dir}...")
     
     try:
         processed_tally = 0
-        with tarfile.open(tar_path, "r:gz") as tar:
-            for member in tar.getmembers():
-                if member.isfile() and member.name.endswith(".nc"):
-                    member_stream = tar.extractfile(member)
-                    if member_stream is not None:
-                        fallback_acc = os.path.basename(member.name).replace(".nc", "")
-                        _process_and_archive_filing(member_stream.read(), output_dir, fallback_acc, verbose=verbose, replace=replace)
-                        processed_tally += 1
-                        if verbose and processed_tally % 100 == 0:
-                            print(f"  Progress: {processed_tally} filings extracted from {tar_path.name}")
+        
+        # Determine the appropriate decompressor based on extension
+        # We check both suffix and name for robustness
+        if tar_path.suffix == ".zst" or ".tar.zst" in tar_path.name:
+            if pyzstd is None:
+                raise ImportError("pyzstd is required for .zst files but not installed.")
+            zf = pyzstd.open(tar_path, "rb")
+        elif tar_path.suffix == ".gz" or ".tar.gz" in tar_path.name:
+            zf = gzip.open(tar_path, "rb")
+        else:
+            # Fallback to direct opening (e.g. for uncompressed .tar)
+            zf = open(tar_path, "rb")
+
+        from concurrent.futures import ThreadPoolExecutor
+        # Use a reasonable number of threads to overlap I/O and CPU (pyzstd/gzip release GIL)
+        # We cap it at 10 to avoid overwhelming the DB connection pool in a single process
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            futures = []
+            with zf:
+                with tarfile.open(fileobj=zf) as tar:
+                    for member in tar.getmembers():
+                        if member.isfile() and member.name.endswith(".nc"):
+                            member_stream = tar.extractfile(member)
+                            if member_stream is not None:
+                                fallback_acc = os.path.basename(member.name).replace(".nc", "")
+                                
+                                # Optimization: Early skip if file exists and we are not replacing
+                                if not replace:
+                                    md_path = output_dir / f"{fallback_acc}.sgml.md.zst"
+                                    if md_path.exists():
+                                        processed_tally += 1
+                                        continue
+
+                                content = member_stream.read()
+                                # Dispatch to thread pool
+                                futures.append(executor.submit(
+                                    _process_and_archive_filing, 
+                                    content, output_dir, fallback_acc, 
+                                    verbose=False, replace=replace, forms=forms, 
+                                    extract_only=extract_only
+                                ))
+                                processed_tally += 1
+                                if verbose and processed_tally % 100 == 0:
+                                    print(f"  Progress: {processed_tally} filings queued from {tar_path.name}")
+            
+            # Wait for completion and check results
+            for future in futures:
+                try:
+                    future.result()
+                except Exception as e:
+                    logger.error(f"Error in filing worker thread: {e}")
         
         if remove_after:
-            import shutil
-            raw_dir = output_dir / "RAW"
-            raw_dir.mkdir(parents=True, exist_ok=True)
-            shutil.move(str(tar_path), str(raw_dir / tar_path.name))
+            # Move to RAW folder relative to the original location or as specified
+            final_raw = tar_path.parent / "RAW"
+            final_raw.mkdir(parents=True, exist_ok=True)
+            if str(tar_path.parent) != str(final_raw):
+                import shutil
+                shutil.move(str(tar_path), str(final_raw / tar_path.name))
         return True
     except Exception as e:
         logger.error(f"Failed processing tarball {tar_file_path}: {e}")
@@ -400,7 +524,7 @@ def extract_and_compress_tar_feed(tar_file_path: str, remove_after: bool = False
             tar_path.unlink()
         return False
 
-def convert_legacy_zstd_worker(zstd_file_path: str) -> bool:
+def convert_legacy_zstd_worker(zstd_file_path: str, forms: List[str] = None) -> bool:
     """
     Modernizes a legacy .zstd filing by converting it to the dual-sidecar Format.
     Deletes the original .zstd once archived.
@@ -414,7 +538,7 @@ def convert_legacy_zstd_worker(zstd_file_path: str) -> bool:
             content_bytes = pyzstd.decompress(f_in.read())
             
         fallback_acc = zstd_path.name.split('.')[0]
-        success = _process_and_archive_filing(content_bytes, zstd_path.parent, fallback_acc)
+        success = _process_and_archive_filing(content_bytes, zstd_path.parent, fallback_acc, forms=forms)
         
         if success:
             import shutil
@@ -424,6 +548,78 @@ def convert_legacy_zstd_worker(zstd_file_path: str) -> bool:
         return success
     except Exception as e:
         logger.error(f"Failed converting legacy file {zstd_file_path}: {e}")
+        return False
+
+def migrate_archives_to_zstd_worker(file_path: Union[str, pathlib.Path], verbose=False, replace_original=False, threads=0) -> bool:
+    """
+    Converts a .tar.gz archive to .tar.zst with integrity verification.
+    Reused from migrate_archives_to_zstd.py script.
+    Optimized for HDD by using multi-threaded zstd for single-file sequential I/O.
+    """
+    import zlib
+    import pyzstd
+    import tarfile
+    import shutil
+    import pathlib
+    import gzip
+    import os
+    
+    if isinstance(file_path, str):
+        file_path = pathlib.Path(file_path)
+        
+    zst_path = file_path.parent / (file_path.name.replace('.tar.gz', '.tar.zst'))
+    
+    if zst_path.exists():
+        if verbose: print(f"  Skipping {file_path.name} (Zstd version exists)")
+        return True
+
+    # Use a temp file in the same directory to ensure atomic move on same filesystem
+    temp_zst = file_path.with_suffix('.zst.tmp')
+    
+    try:
+        # 1. Pipeline: Decompress Gzip -> Compress Zstd
+        # We use multi-threaded zstd to speed up the compression part of the pipeline
+        # while keeping the I/O sequential.
+        zstd_option = {pyzstd.CParameter.nbWorkers: threads}
+        compressor = pyzstd.ZstdCompressor(zstd_option)
+        
+        with gzip.open(file_path, 'rb') as f_in, open(temp_zst, 'wb') as f_out:
+            while True:
+                # 16MB buffer to stay sequential and avoid disk thrashing on HDDs
+                chunk = f_in.read(16 * 1024 * 1024)
+                if not chunk: break
+                f_out.write(compressor.compress(chunk))
+            
+            f_out.write(compressor.flush())
+
+        # 2. Integrity Verification
+        with pyzstd.open(temp_zst, "rb") as zf:
+            with tarfile.open(fileobj=zf) as tar:
+                # Checking the TOC catches most issues
+                _ = tar.getmembers()
+
+        # 3. Finalize
+        shutil.move(str(temp_zst), str(zst_path))
+        if verbose: print(f"  Successfully converted to {zst_path.name}")
+        
+        if replace_original:
+            file_path.unlink()
+            if verbose: print(f"  Deleted original {file_path.name}")
+            
+        return True
+
+    except Exception as e:
+        logger.error(f"ERROR converting {file_path.name}: {e}")
+        if temp_zst.exists(): temp_zst.unlink()
+        
+        # If the file is corrupted (unexpected end of data, etc), delete it 
+        # so it can be re-downloaded by the regular ingestion task.
+        err_str = str(e).lower()
+        if "unexpected end of data" in err_str or "not a gzipped file" in err_str:
+            logger.warning(f"Corrupted archive detected; deleting {file_path.name} to allow for re-download.")
+            if file_path.exists():
+                file_path.unlink()
+                
         return False
 
 def get_text_quarter(month):
@@ -436,135 +632,290 @@ def get_text_quarter(month):
     elif month in ("10", "11", "12"):
         return "QTR4"
 
-async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbose=False, days=None, replace=False):
+async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbose=False, days=None, replace=False, forms: List[str] = None, download_only=False):
     base_url = 'https://www.sec.gov/Archives/edgar/Feed/'
     downloader = AsyncDownloader()
     
-    if verbose: print(f"Connecting to SEC Root Feed at {base_url}...")
-    async with aiohttp.ClientSession() as session:
-        page_content = await downloader.fetch_text(session, base_url)
-        if not page_content:
-            if verbose: print(f"CRITICAL: Failed to connect to SEC Root Feed at {base_url}. This usually means your 'EDGAR_IDENTITY' (User-Agent) is missing or you are being rate-limited.")
-            return
-            
-        soup = BeautifulSoup(page_content, features="html.parser")
-        table = soup.find("table")
+    from openedgar.sec_api import sec_api
+    
+    # --- Targeted Mode (Central Index) ---
+    if forms:
+        if verbose: print(f"Targeted Mode: Ingesting forms {forms} via Central Index...")
         
-        
-        begin_year = 1997
-        if days:
-            years = sorted(list(set(int(str(d)[:4]) for d in days)))
-        elif backfill:
-            if year:
-                begin_year = year
-            years = []
-            for tr in table.find_all('tr'):
-                row = tr.find_all('td')
-                if len(row) > 0:
-                    yr = row[0].find('a').attrs['href'].replace("/", "")
-                    if yr != "":
-                        if int(yr) >= begin_year:
-                            years.append(int(yr))
+        # 1. Determine Years/Quarters
+        if year:
+             target_years = [year]
+        elif days:
+             target_years = sorted(list(set(int(str(d)[:4]) for d in days)))
         else:
+             import datetime
+             target_years = list(range(1997, datetime.datetime.now().year + 1))
+             
+        for yr in target_years:
+            qtrs = [qtr] if qtr else [1, 2, 3, 4]
+            for qt in qtrs:
+                if verbose: print(f"  Fetching Index for {yr} QTR{qt}...")
+                df = sec_api.get_filings_for_quarter(yr, qt)
+                if df.empty: continue
+                
+                # Filter by form type (case-insensitive and normalized)
+                target_forms = [f.upper().strip() for f in forms]
+                df_filtered = df[df['form'].str.upper().str.strip().isin(target_forms)]
+                
+                if df_filtered.empty:
+                    if verbose: print(f"    No matching forms found in {yr} QTR{qt}.")
+                    continue
+                    
+                if verbose: print(f"    Found {len(df_filtered)} filings to ingest.")
+                
+                # 2. Concurrent Throttled Download & Process
+                # We use a Semaphore to allow multiple pending requests while the RateLimiter sequences them
+                sem = asyncio.Semaphore(20) # Allow 20 concurrent requests to hide latency
+                
+                async def _throttled_ingest(row, pbar):
+                    async with sem:
+                        url = row['text_url']
+                        acc_num = row['accession_number']
+                        filing_date = row['date_filed'] # This is a date object or string 'YYYY-MM-DD'
+                        
+                        # Derive granular MM/DD paths
+                        date_parts = str(filing_date).split('-')
+                        if len(date_parts) >= 3:
+                            month, day = date_parts[1], date_parts[2]
+                            row_output_dir = output_dir / month / day
+                        else:
+                            row_output_dir = output_dir
+                            
+                        row_output_dir.mkdir(parents=True, exist_ok=True)
+
+                        try:
+                            # Check if skipping
+                            md_path = row_output_dir / f"{acc_num}.sgml.md.zst"
+                            if not replace and md_path.exists():
+                                return True
+                                
+                            # Download using the async rate-limited method
+                            resp = await sec_api._get_async(url)
+                            content = resp.content
+                            
+                            # Skip processing if download_only
+                            if download_only:
+                                output_path = row_output_dir / f"{acc_num}.sgml"
+                                with open(output_path, "wb") as f_out:
+                                    f_out.write(content)
+                                return True
+                            
+                            # Process into the granular directory
+                            return _process_and_archive_filing(content, row_output_dir, acc_num, verbose=False, replace=replace, forms=forms, extract_only=True)
+                        except Exception as e:
+                            logger.error(f"Failed to ingest filing {acc_num}: {e}")
+                            return False
+                        finally:
+                            pbar.update(1)
+
+                success_count = 0
+                from tqdm import tqdm
+                pbar = tqdm(total=len(df_filtered), desc=f"Ingesting {yr} QTR{qt}", disable=not verbose)
+                
+                data_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR", "/media/data"))
+                output_dir = data_dir / "data" / str(yr) / f"QTR{qt}"
+                output_dir.mkdir(parents=True, exist_ok=True)
+                
+                # Use asyncio.gather to run tasks concurrently
+                tasks = [_throttled_ingest(row, pbar) for _, row in df_filtered.iterrows()]
+                results = await asyncio.gather(*tasks)
+                success_count = sum(1 for r in results if r)
+                
+                pbar.close()
+                if verbose: print(f"  Finished {yr} QTR{qt}: Ingested {success_count} filings.")
+        return # Exit Targeted Mode
+        
+    # --- Bulk Mode (Daily Feeds) ---
+    async with aiohttp.ClientSession() as session:
+        if not year or backfill:
+            years = []
+            discovery_success = False
+            
+            # --- Try Network Discovery First ---
+            try:
+                if verbose: print(f"Connecting to SEC Root Feed at {base_url}...")
+                page_content = await downloader.fetch_text(session, base_url)
+                if page_content:
+                    soup = BeautifulSoup(page_content, features="html.parser")
+                    table = soup.find("table")
+                    
+                    # Use provided year as start_year, default to 1997
+                    start_year = year or begin_year
+                    
+                    if days:
+                        years = sorted(list(set(int(str(d)[:4]) for d in days)))
+                    elif backfill:
+                        for tr in table.find_all('tr'):
+                            row = tr.find_all('td')
+                            if len(row) > 0:
+                                yr_text = row[0].find('a').attrs['href'].replace("/", "")
+                                if yr_text != "" and yr_text.isdigit():
+                                    if int(yr_text) >= start_year:
+                                        years.append(int(yr_text))
+                    else:
+                        years = [datetime.datetime.now().year]
+                    discovery_success = True
+            except Exception as e:
+                if verbose: print(f"  Network discovery failed: {e}. Falling back to local filesystem...")
+            
+            # --- Local Filesystem Fallback ---
+            if not discovery_success or os.getenv("EDGAR_USE_LOCAL_DATA") == "1":
+                data_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR", "/media/data"))
+                local_years = []
+                if data_dir.exists():
+                    for p in data_dir.iterdir():
+                        if p.is_dir() and p.name.isdigit():
+                            yr = int(p.name)
+                            if yr >= (year or begin_year):
+                                local_years.append(yr)
+                
+                # Merge or replace based on state
+                if not years:
+                    years = sorted(local_years)
+                else:
+                    years = sorted(list(set(years) | set(local_years)))
+                    
+            if not years:
+                if verbose: print("CRITICAL: No years found for discovery (Network or Local). Check your connection and 'EDGAR_LOCAL_DATA_DIR'.")
+                return
+        else:
+            # Targeted Mode: Single Year (No Backfill)
             years = [year]
+            
         years.sort()
         
         data_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR"))
         
         for year in years:
-            year_url = f"{base_url}{year}/"
-            if verbose: print(f"Checking year {year} index at {year_url}...")
-            year_page = await downloader.fetch_text(session, year_url)
-            if not year_page:
-                if verbose: print(f"Failed to fetch year index for {year}")
-                continue
-                
-            year_soup = BeautifulSoup(year_page, features="html.parser")
-            year_table = year_soup.find("table")
+            data_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR"))
+            year_dir = data_dir / str(year)
             
-            if days:
-                # Filter days for this year
-                year_days = [str(d) for d in days if str(d).startswith(str(year))]
-                # Derive quarters needed for these days
-                needed_quarters = set()
-                for d in year_days:
-                    month = d[4:6]
-                    needed_quarters.add(get_text_quarter(month))
-                quarters = sorted(list(needed_quarters))
-            elif qtr:
-                quarters = [f"QTR{qtr}"]
-            else:
+            if not qtr:
                 quarters = []
-                for tr in year_table.find_all('tr'):
-                    row = tr.find_all('td')
-                    if len(row) > 0:
-                        text_qtr = row[0].find('a').attrs['href'].replace("/", "")
-                        if text_qtr in ("QTR1", "QTR2", "QTR3", "QTR4"):
-                            quarters.append(text_qtr)
+                discovery_success = False
+                year_url = f"{base_url}{year}/"
+                try:
+                    if verbose: print(f"Checking year {year} index at {year_url}...")
+                    year_page = await downloader.fetch_text(session, year_url)
+                    if year_page:
+                        year_soup = BeautifulSoup(year_page, features="html.parser")
+                        year_table = year_soup.find("table")
+                        for tr in year_table.find_all('tr'):
+                            row = tr.find_all('td')
+                            if len(row) > 0:
+                                qtr_text = row[0].find('a').attrs['href'].replace("/", "")
+                                if qtr_text.startswith("QTR"):
+                                    quarters.append(qtr_text)
+                        discovery_success = True
+                except Exception as e:
+                    if verbose: print(f"  Network QTR discovery failed for {year}: {e}. Checking local...")
+                
+                if not discovery_success or os.getenv("EDGAR_USE_LOCAL_DATA") == "1":
+                    if year_dir.exists():
+                        local_qtrs = [p.name for p in year_dir.iterdir() if p.is_dir() and p.name.startswith("QTR")]
+                        quarters = sorted(list(set(quarters) | set(local_qtrs)))
+            else:
+                quarters = [f"QTR{qtr}"]
                             
             for quarter in quarters:
                 qtr_url = f"{base_url}{year}/{quarter}/"
-                if verbose: print(f"Checking quarter {quarter} index at {qtr_url}...")
-                qtr_page = await downloader.fetch_text(session, qtr_url)
-                if not qtr_page:
-                    if verbose: print(f"Failed to fetch quarter index for {quarter}")
-                    continue
-                    
-                quarter_soup = BeautifulSoup(qtr_page, features="html.parser")
-                quarter_table = quarter_soup.find("table")
+                discovery_success = False
+                feeds = []
+                
+                try:
+                    if verbose: print(f"Checking quarter {quarter} index at {qtr_url}...")
+                    qtr_page = await downloader.fetch_text(session, qtr_url)
+                    if qtr_page:
+                        qtr_soup = BeautifulSoup(qtr_page, features="html.parser")
+                        qtr_table = qtr_soup.find("table")
+                        for tr in qtr_table.find_all('tr'):
+                            row = tr.find_all('td')
+                            if len(row) > 0:
+                                filename = row[0].find('a').attrs['href'].replace("/", "")
+                                if filename.endswith('.gz') or filename.endswith('.zst'):
+                                    feeds.append(filename)
+                        discovery_success = True
+                except Exception as e:
+                    if verbose: print(f"  Network Feed discovery failed for {year}/{quarter}: {e}. Checking local...")
+                
+                if not discovery_success or os.getenv("EDGAR_USE_LOCAL_DATA") == "1":
+                    raw_dir = year_dir / quarter / "RAW"
+                    if raw_dir.exists():
+                        local_feeds = [p.name for p in raw_dir.iterdir() if p.is_file() and (p.name.endswith('.gz') or p.name.endswith('.zst'))]
+                        feeds = sorted(list(set(feeds) | set(local_feeds)))
                 
                 download_tasks = []
-                for tr in quarter_table.find_all('tr'):
-                    row = tr.find_all('td')
-                    if len(row) > 0:
-                        filename = row[0].find('a').attrs['href']
-                        if filename.split(".")[-1] == 'gz':
-                            # Check if we are filtering by specific days
-                            if days:
-                                day_prefix = filename.split(".")[0] # e.g. 20240101
-                                if day_prefix not in [str(d) for d in days]:
-                                    continue
-                            
-                            file_url = f"{base_url}{year}/{quarter}/{filename}"
-                            output_path = data_dir / "data" / str(year) / quarter / filename
-                            
-                            # --- Skip Logic (Download) ---
-                            raw_path = output_path.parent / "RAW" / output_path.name
-                            if not replace and (output_path.exists() or raw_path.exists()):
-                                if verbose: print(f"  Skipping existing feed: {filename}")
-                                # Trigger extraction for existing file anyway to ensure documents are processed
-                                target_path = raw_path if raw_path.exists() else output_path
-                                loop = asyncio.get_event_loop()
-                                task = loop.run_in_executor(None, extract_and_compress_tar_feed, str(target_path), False, verbose, replace)
-                                downloader.extractions.append({
-                                    "url": file_url,
-                                    "path": output_path,
-                                    "future": task
-                                })
-                                continue
-
-                            download_tasks.append((file_url, output_path))
+                for filename in feeds:
+                    # Filter days if needed
+                    day_prefix = filename.split(".")[0]
+                    if days and day_prefix not in [str(d) for d in days]:
+                        continue
+                        
+                    # On disk we store as .zst
+                    zst_filename = filename.replace('.gz', '.zst')
+                    file_url = f"{base_url}{year}/{quarter}/{filename}"
+                    
+                    # Extract MM/DD for granular extraction
+                    month, day = day_prefix[4:6], day_prefix[6:8]
+                    
+                    # ARCHIVE PATH: Consistent with legacy spec (YYYY/QTRX/RAW)
+                    archive_path = data_dir / "data" / str(year) / quarter / "RAW" / zst_filename
+                    # EXTRACTION PATH: Granular to prevent filesystem saturation
+                    extraction_dir = data_dir / "data" / str(year) / quarter / month / day
+                    
+                    # --- Skip Logic (Download) ---
+                    legacy_gz = archive_path.with_suffix('.gz')
+                    # Check archive location first
+                    if not replace and archive_path.exists():
+                        if verbose: print(f"  Skipping existing feed: {zst_filename}")
+                        continue
+                    elif not replace and legacy_gz.exists():
+                        if verbose: print(f"  Found legacy archive {legacy_gz.name}, queueing migration to Zstd...")
+                        # We'll handle this as a special task in the parallel pool
+                        download_tasks.append(("MIGRATE", legacy_gz, extraction_dir))
+                        continue
+                    
+                    download_tasks.append((file_url, archive_path, extraction_dir))
                 
                 if download_tasks:
                     from tqdm import tqdm
-                    # We process synchronously per day for the tqdm visualization, 
-                    # but the extractions still happen in background executors.
                     desc = f"Ingesting {year} {quarter}"
-                    results_count = 0
-                    failure_count = 0
                     pbar = tqdm(total=len(download_tasks), desc=desc, disable=not verbose)
-                    for file_url, output_path in download_tasks:
-                        # Extract date from filename (e.g. 20240101.tar.gz)
-                        date_str = output_path.name.split('.')[0]
-                        status = f" | Errs: {failure_count}" if failure_count > 0 else ""
-                        pbar.set_description(f"{desc} ({date_str}){status}")
-                        
-                        success = await downloader.download_and_compress(session, file_url, output_path, verbose=False)
-                        if success: 
-                            results_count += 1
-                            pbar.update(1)
-                        else:
-                            failure_count += 1
+                    
+                    sem = asyncio.Semaphore(2) # Reduced to 2 concurrent large downloads to avoid 429s
+                    
+                    async def _throttled_download(file_url, archive_path, extraction_dir):
+                        async with sem:
+                            if file_url == "MIGRATE":
+                                # archive_path here is actually the legacy_gz path
+                                legacy_gz = archive_path
+                                zst_path = legacy_gz.with_suffix('.zst')
+                                loop = asyncio.get_event_loop()
+                                await loop.run_in_executor(None, migrate_archives_to_zstd_worker, legacy_gz, verbose, True)
+                                success = True
+                                archive_path = zst_path
+                            else:
+                                success = await downloader.download_and_compress(session, file_url, archive_path, verbose=verbose, replace=replace, download_only=download_only, forms=forms, pbar=pbar)
+                            
+                            if success and not download_only:
+                                # Trigger extraction to the granular directory
+                                loop = asyncio.get_event_loop()
+                                task = loop.run_in_executor(None, extract_and_compress_tar_feed, str(archive_path), False, verbose, replace, forms, extraction_dir)
+                                downloader.extractions.append({
+                                    "url": file_url,
+                                    "path": archive_path,
+                                    "future": task
+                                })
+                            return success
+
+                    download_results = await asyncio.gather(*[_throttled_download(url, path, ext_dir) for url, path, ext_dir in download_tasks])
+                    results_count = sum(1 for r in download_results if r)
+                    failure_count = len(download_results) - results_count
                     pbar.close()
                     
                     # --- Finalization & Self-Healing Retry ---
@@ -587,7 +938,7 @@ async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbos
                             retry_tasks = []
                             for item in failed_items:
                                 # Force replace=True for the retry attempt
-                                retry_tasks.append(downloader.download_and_compress(session, item["url"], item["path"], verbose=verbose, replace=True))
+                                retry_tasks.append(downloader.download_and_compress(session, item["url"], item["path"], verbose=verbose, replace=True, download_only=download_only, forms=forms))
                             
                             if retry_tasks:
                                 await asyncio.gather(*retry_tasks)
@@ -600,9 +951,155 @@ async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbos
                     if verbose:
                         print(f"  Finished {year} {quarter}: Processed {results_count} daily feeds.")
 
-def download_bulk_filings(year=None, qtr=None, backfill=True, verbose=False, replace=False, days=None):
-    """Wrapper to run the async download task."""
-    asyncio.run(download_bulk_filings_async(year=year, qtr=qtr, backfill=backfill, verbose=verbose, days=days, replace=replace))
+
+async def process_bulk_filings_async(year=None, qtr=None, days=None, forms: List[str] = None, replace: bool = False, verbose: bool = False):
+    """
+    Purely local processing: scans the filesystem for daily archives and processes them.
+    Does not attempt any network connections.
+    """
+    root_dir = pathlib.Path(os.getenv("EDGAR_LOCAL_DATA_DIR", "/media/data"))
+    data_dir = root_dir / "data"
+    if not data_dir.exists():
+        data_dir = root_dir # Fallback to root if 'data' subfolder isn't used
+        
+    if not data_dir.exists():
+        if verbose: print(f"CRITICAL: Data directory {data_dir} does not exist.")
+        return
+
+    # --- Year Discovery ---
+    years = []
+    found_years = [int(p.name) for p in data_dir.iterdir() if p.is_dir() and p.name.isdigit()]
+    
+    if not year:
+        years = found_years
+    else:
+        # Treat provided year as the starting floor
+        years = [yr for yr in found_years if yr >= year]
+    
+    years.sort()
+
+    for yr in years:
+        yr_dir = data_dir / str(yr)
+        if not yr_dir.exists():
+            continue
+
+        # --- Quarter Discovery ---
+        quarters = []
+        if not qtr:
+            for p in yr_dir.iterdir():
+                if p.is_dir() and p.name.startswith("QTR") and p.name[3:].isdigit():
+                    quarters.append(p.name)
+        else:
+            quarters = [f"QTR{qtr}"]
+        quarters.sort()
+
+        for qt in quarters:
+            raw_dir = yr_dir / qt / "RAW"
+            if not raw_dir.exists():
+                continue
+
+            # --- Feed Discovery ---
+            feeds_dict = {} # prefix -> filename
+            if not days:
+                for p in raw_dir.iterdir():
+                    if p.is_file() and (p.name.endswith(".nc.tar.gz") or p.name.endswith(".nc.tar.zst")):
+                        prefix = p.name.split(".")[0]
+                        # Prioritize .zst if both exist
+                        if prefix not in feeds_dict or p.name.endswith(".zst"):
+                            feeds_dict[prefix] = p.name
+            else:
+                for d in days:
+                    if str(d).startswith(str(yr)):
+                        # Look for existing file in RAW
+                        for ext in ('.nc.tar.zst', '.nc.tar.gz'):
+                            if (raw_dir / f"{d}{ext}").exists():
+                                feeds_dict[str(d)] = f"{d}{ext}"
+                                break
+            feeds = sorted(feeds_dict.values())
+
+            if not feeds:
+                continue
+
+            if verbose: print(f"Processing {yr} {qt}: Found {len(feeds)} archives.")
+            
+            from tqdm import tqdm
+            pbar = tqdm(total=len(feeds), desc=f"Processing {yr} {qt}", disable=not verbose)
+            
+            # Use ProcessPoolExecutor for true multi-core CPU-bound tasks
+            from concurrent.futures import ProcessPoolExecutor
+            cpu_count = os.cpu_count() or 4
+            # We use a slightly higher worker count than the semaphore to keep the pool warm
+            # but the semaphore controls the actual parallel I/O load.
+            executor = ProcessPoolExecutor(max_workers=cpu_count)
+            # Cap parallel feeds to avoid DB connection exhaustion (10 threads per feed * 8 feeds = 80 connections)
+            sem_limit = min(cpu_count, 8)
+            sem = asyncio.Semaphore(sem_limit) 
+            
+            async def _process_feed(filename):
+                async with sem:
+                    archive_path = raw_dir / filename
+                    loop = asyncio.get_event_loop()
+                    
+                    # Check if it needs conversion (.gz -> .zst)
+                    if archive_path.suffix == ".gz":
+                        if verbose: print(f"  Migrating legacy archive {filename} to Zstandard for performance...")
+                        # migrate_archives_to_zstd_worker is synchronous, run in executor
+                        await loop.run_in_executor(executor, migrate_archives_to_zstd_worker, archive_path, verbose, True)
+                        # Update archive_path to the new .zst location
+                        archive_path = archive_path.with_suffix('.zst')
+                    
+                    day_prefix = filename.split(".")[0]
+                    month, day = day_prefix[4:6], day_prefix[6:8]
+                    extraction_dir = yr_dir / qt / month / day
+                    
+                    # Use executor for CPU-bound extraction
+                    # extract_and_compress_tar_feed is where the bulk of the work happens
+                    await loop.run_in_executor(executor, extract_and_compress_tar_feed, str(archive_path), False, verbose, replace, forms, extraction_dir, True)
+                    pbar.update(1)
+
+            # Parallel execution of all feeds in the quarter
+            try:
+                await asyncio.gather(*[_process_feed(f) for f in feeds])
+            finally:
+                executor.shutdown(wait=True)
+            pbar.close()
+
+def process_bulk_filings(year=None, qtr=None, days=None, forms=None, replace=False, verbose=False):
+    import asyncio
+    try:
+        loop = asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        
+    loop.run_until_complete(process_bulk_filings_async(
+        year=year,
+        qtr=qtr,
+        days=days,
+        forms=forms,
+        replace=replace,
+        verbose=verbose
+    ))
+
+def download_bulk_filings(year=None, qtr=None, backfill=True, verbose=False, replace=False, days=None, forms=None, download_only=False):
+
+    import asyncio
+    try:
+        loop = asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        
+    loop.run_until_complete(download_bulk_filings_async(
+        year=year, 
+        qtr=qtr, 
+        backfill=backfill, 
+        verbose=verbose, 
+        days=days, 
+        replace=replace,
+        forms=forms,
+        download_only=download_only
+    ))
 def process_formtypes():
     try:
         pdf_path = "https://www.sec.gov/info/edgar/forms/edgform.pdf"

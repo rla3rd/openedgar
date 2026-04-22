@@ -56,6 +56,10 @@ coverage.xml
 *.mo
 *.pot
 
+# LLM / Research Caches
+unsloth_compiled_cache/
+mlx_adapters/
+
 # Django stuff:
 *.log
 local_settings.py

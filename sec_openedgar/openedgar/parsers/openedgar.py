@@ -42,9 +42,11 @@ import sec2md
 from docling.document_converter import DocumentConverter
 from docling.datamodel.base_models import InputFormat
 from docling.datamodel.pipeline_options import PdfPipelineOptions
-import tempfile
-from .registry import registry
+import pathlib
+from typing import Union, List, Dict
 import secsgml2
+from .registry import registry
+from .hybrid import convert_to_markdown # Unified synthesis entry point
 
 # Setup logger
 logger = logging.getLogger(__name__)
@@ -98,9 +100,129 @@ _converter = None
 def get_converter():
     global _converter
     if _converter is None:
-        from docling.document_converter import DocumentConverter
-        _converter = DocumentConverter()
+        from docling.document_converter import DocumentConverter, PdfFormatOption, HTMLFormatOption, XBRLFormatOption
+        from docling.datamodel.base_models import InputFormat
+        from docling.datamodel.pipeline_options import PdfPipelineOptions
+        
+        # Configure for Business-Fidelity (TableFormer, Chart Summarization, XBRL)
+        pipeline_options = PdfPipelineOptions()
+        pipeline_options.do_table_structure = True
+        pipeline_options.generate_picture_images = True # Needed for classification
+        
+        # Docling V2: Universal Financial Processor
+        _converter = DocumentConverter(
+            format_options={
+                InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_options),
+                InputFormat.HTML: HTMLFormatOption(pipeline_options=pipeline_options),
+                InputFormat.XML_XBRL: XBRLFormatOption() # Native XBRL financial parsing
+            }
+        )
     return _converter
+
+def semantic_markdown_splitter(markdown: str, chunk_size_kb: int = 500) -> List[Dict[str, Union[str, int]]]:
+    """
+    Split a large Markdown document into fragments.
+    Tries to split at Heading 1 (#) or Heading 2 (##) boundaries.
+    """
+    if not markdown:
+        return []
+
+    # Target size in bytes
+    limit = chunk_size_kb * 1024
+    
+    # Identify heading boundaries (# or ## at start of line)
+    # We use a lazy regex for boundaries
+    boundaries = [m.start() for m in re.finditer(r'^#{1,2}\s', markdown, re.MULTILINE)]
+    
+    fragments = []
+    current_start = 0
+    content_len = len(markdown)
+    
+    while current_start < content_len:
+        target_end = current_start + limit
+        
+        # If we are within the limit of the end, just take the rest
+        if target_end >= content_len:
+            fragments.append({
+                "content": markdown[current_start:],
+                "start_pos": current_start,
+                "end_pos": content_len
+            })
+            break
+            
+        # Find the best boundary near the target_end
+        # We look for a heading within 10% of the limit before the target_end
+        best_end = target_end
+        ideal_boundary_found = False
+        
+        # Search backwards from target_end for a boundary
+        for b in reversed(boundaries):
+            if current_start < b <= target_end:
+                # If the boundary is reasonably close to the limit (not tiny)
+                if (b - current_start) > (limit * 0.5):
+                    best_end = b
+                    ideal_boundary_found = True
+                    break
+        
+        # Fallback: If no heading boundary, split at last newline
+        if not ideal_boundary_found:
+            nl_pos = markdown.rfind('\n', current_start, target_end)
+            if nl_pos > current_start + (limit * 0.5):
+                 best_end = nl_pos + 1
+            
+        fragments.append({
+            "content": markdown[current_start:best_end].strip(),
+            "start_pos": current_start,
+            "end_pos": best_end
+        })
+        current_start = best_end
+        
+    return fragments
+
+def process_accession_synthesis(
+    sandbox_dir: str, 
+    primary_filename: str, 
+    engine: str = "auto",
+    chunk_size_kb: int = 500
+) -> List[Dict]:
+    """
+    Performs the full synthesis loop for an accession:
+    1. Converts primary doc to Markdown via Hybrid Engine (secmd/docling).
+    2. Fragments the Markdown semantically.
+    3. Returns list of fragments with offsets.
+    """
+    sandbox_path = pathlib.Path(sandbox_dir)
+    primary_path = sandbox_path / primary_filename
+    
+    if not primary_path.exists():
+        logger.error(f"Primary document {primary_filename} missing from sandbox {sandbox_dir}")
+        return []
+        
+    try:
+        # 1. Read buffer
+        with open(primary_path, "rb") as f:
+            buffer = f.read()
+            
+        # 2. Convert to Master Markdown
+        # Determine content type crudely (will be refined in hybrid.py)
+        content_type = mimetypes.guess_type(primary_filename)[0] or "text/html"
+        
+        master_md = convert_to_markdown(
+            buffer=buffer, 
+            content_type=content_type, 
+            engine=engine, 
+            filename=primary_filename
+        )
+        
+        if not master_md:
+            return []
+            
+        # 3. Fragment semantically (Zero Overlap)
+        return semantic_markdown_splitter(master_md, chunk_size_kb=chunk_size_kb)
+
+    except Exception as e:
+        logger.error(f"Accession synthesis failed for {primary_filename}: {e}")
+        return []
 
 def extract_text(buffer: Union[bytes, str], content_type: str = None, form_type: str = None):
     """
@@ -289,9 +411,9 @@ def extract_filing_header_field(buffer: Union[bytes, str], field: str):
     # 3. FIELD  VALUE (spaces)
     # We allow optional leading whitespace and handle the closing tag char '>'
     patterns = [
-        rf"<{field_slug}>\s*(.*)$",              # SGML Tag (Priority)
-        rf"^\s*(?:{field_slug})\s*[:>]?\s*(.*)$", # Line start + optional colon/tag-end
-        rf"(?:{field_slug})\s*[:>]?\s*(.*)$",      # Mid-line (fallback)
+        rf"<{field_slug}>\s*([^\r\n]*)$",              # SGML Tag (Priority)
+        rf"^\s*(?:{field_slug})\s*[:>]?\s*([^\r\n]*)$", # Line start + optional colon/tag-end
+        rf"(?:{field_slug})\s*[:>]?\s*([^\r\n]*)$",      # Mid-line (fallback)
     ]
     
     for pattern in patterns:
@@ -511,16 +633,16 @@ def parse_filing_document(document_buffer: Union[bytes, str], extract: bool = Fa
     """
     # Robust regex for document metadata tags
     import re
-    doc_type_matches = re.findall(r"<TYPE>\s*(.*)", document_buffer, re.IGNORECASE)
+    doc_type_matches = re.findall(r"<TYPE>\s*([^\r\n]*)", document_buffer, re.IGNORECASE)
     doc_type = doc_type_matches[0].strip() if doc_type_matches else form_type
     
-    doc_sequence_matches = re.findall(r"<SEQUENCE>\s*(.*)", document_buffer, re.IGNORECASE)
+    doc_sequence_matches = re.findall(r"<SEQUENCE>\s*([^\r\n]*)", document_buffer, re.IGNORECASE)
     doc_sequence = doc_sequence_matches[0].strip() if doc_sequence_matches else None
     
-    doc_file_name_matches = re.findall(r"<FILENAME>\s*(.*)", document_buffer, re.IGNORECASE)
+    doc_file_name_matches = re.findall(r"<FILENAME>\s*([^\r\n]*)", document_buffer, re.IGNORECASE)
     doc_file_name = doc_file_name_matches[0].strip() if doc_file_name_matches else None
     
-    doc_description_matches = re.findall(r"<DESCRIPTION>\s*(.*)", document_buffer, re.IGNORECASE)
+    doc_description_matches = re.findall(r"<DESCRIPTION>\s*([^\r\n]*)", document_buffer, re.IGNORECASE)
     doc_description = doc_description_matches[0].strip() if doc_description_matches else None
 
     # Start and end tags

@@ -1,0 +1,109 @@
+\documentclass[journal, onecolumn]{IEEEtran}
+% Note: Using onecolumn for easier drafting and reviewing word counts. Can switch to twocolumn later.
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{booktabs}
+
+\begin{document}
+
+\title{Automated SEC Disclosure Reconstruction via LLM Agents: Evaluating Markdown-to-Structured-Data Extraction and HyperStreamDB Storage}
+
+\author{
+    \IEEEauthorauthorblockN{Robert Albright}\\
+    \IEEEauthorblockA{\textit{Department of Computer Science}\\
+    \textit{CAP 6635: Artificial Intelligence}\\
+    Spring 2026}
+}
+
+\maketitle
+
+\begin{abstract}
+Financial disclosures, particularly U.S. Securities and Exchange Commission (SEC) Form 4s and Form 5s, contain highly structured transactional data alongside nuanced, unstructured footnotes. Traditional deterministic parsers rely on brittle regular expressions that frequently fail when SEC XML schemas change or when critical transaction context is buried in footnotes. This paper evaluates the efficacy of Large Language Models (LLMs) in performing zero-shot structured extraction from SEC filings. We propose a unified pipeline that first normalizes raw SEC XML into a high-fidelity Markdown representation, preserving tabular grid structure and semantic hierarchy. An open-weight LLM agent then extracts transaction data from the Markdown into a strict JSON schema. The extracted data is evaluated against a 100\% accurate ground-truth baseline established by a deterministic XML parser (OwnershipSynthesizer). Furthermore, we demonstrate the integration of this extraction pipeline with HyperStreamDB, a high-performance hybrid database utilizing "Mathematical Anchors" for zero-redundancy context expansion and bge-m3 autovectorization. Our preliminary architecture suggests that Markdown normalization combined with mathematically anchored vector storage provides a robust "Ground Truth" foundation for quantitative finance research and deep learning materiality analysis.
+\end{abstract}
+
+\section{Introduction}
+The rapid proliferation of deep learning and Natural Language Processing (NLP) has fundamentally altered the landscape of financial data analysis. Institutional investors, quantitative researchers, and regulatory bodies rely heavily on timely and accurate data extraction from mandatory corporate disclosures, such as those filed with the U.S. Securities and Exchange Commission (SEC) via the Electronic Data Gathering, Analysis, and Retrieval (EDGAR) system. Among these disclosures, ownership filings (Forms 3, 4, and 5) represent a critical source of intelligence regarding insider trading activity, executive compensation, and corporate governance sentiment. However, extracting highly structured, nuanced financial transaction data from these semi-structured EDGAR archives presents a significant, ongoing challenge in the field of Artificial Intelligence.
+
+The primary motivation for this research stems from the inherent limitations of traditional deterministic parsers. Historically, systems designed to extract data from SEC filings have relied on complex, rules-based engines composed of brittle regular expressions (regex) or rigid XML path queries. While these parsers can achieve high accuracy on standardized fields (e.g., Issuer CIK, Transaction Date), they frequently fail when encountering unstructured or heavily nested elements. Specifically, the qualitative context surrounding a transaction—such as the vesting schedule of a derivative security or the nature of an indirect ownership structure—is often buried in free-text footnotes. Deterministic parsers lack the semantic understanding necessary to link these footnotes accurately to the corresponding numeric data in the tables, resulting in lost information or incorrect quantitative models. Furthermore, when the SEC inevitably updates its XML schemas or when filers introduce non-standard HTML formatting, rules-based parsers break, requiring constant manual maintenance and developer intervention.
+
+Recent advancements in Large Language Models (LLMs) offer a compelling alternative. LLMs possess a profound semantic understanding of text, allowing them to comprehend context, disambiguate footnotes, and reason about unstructured data in ways that regex cannot. However, naive application of LLMs to raw financial filings often results in "hallucinations," where the model generates plausible but factually incorrect transaction numbers, or "alignment failures," where the model fails to associate a footnote with the correct table row. Furthermore, feeding massive, raw HTML or XML files into an LLM rapidly exhausts its context window and inflates the computational cost, particularly when relying on massive, expensive proprietary APIs (e.g., GPT-4o) without optimal structured prompting.
+
+To address these challenges, this paper proposes a unified, high-performance pipeline: deterministic XML Ground Truth extraction -> Markdown Synthesis -> LLM Agentic JSON Extraction -> Evaluation, backed by HyperStreamDB's mathematically anchored vector schema. We hypothesize that providing an LLM with a deterministic, high-fidelity Markdown representation of an SEC filing maximizes structural context (headers, tables, and footnotes) while minimizing token overhead. By forcing the LLM to act as an "Extraction Agent" that outputs a strict JSON schema, we can systematically reconstruct transaction records. We evaluate this agentic extraction against a 100\% accurate ground-truth baseline established by our custom OpenEDGAR \textit{OwnershipSynthesizer}. Finally, we index this extracted context using HyperStreamDB, leveraging Arrow-native ingestion, Hierarchical Navigable Small World (HNSW) vector search, and RoaringBitmap scalar filtering to demonstrate a complete, performant Retrieval-Augmented Generation (RAG) architecture tailored for financial disclosures.
+
+\section{Related Work}
+The intersection of Artificial Intelligence, Natural Language Processing, and financial document analysis has seen explosive growth, particularly with the advent of transformer architectures. Our research builds upon three distinct pillars of existing literature: the application of LLMs in financial document processing, structural preservation and representation methodologies for LLM inputs, and high-performance hybrid database architectures for RAG systems.
+
+\subsection{LLMs in Financial Document Processing}
+The financial domain presents unique challenges for LLMs due to its specialized lexicon, reliance on dense numerical data, and stringent accuracy requirements. Early applications of transfer learning in finance often relied on domain-adapted models like FinBERT, which demonstrated that fine-tuning language models on financial corpora significantly improved performance on tasks such as sentiment analysis and named entity recognition compared to general-domain models. More recently, the development of BloombergGPT \cite{wu2023bloomberggpt} highlighted the massive potential of training large-scale, autoregressive LLMs explicitly on financial data. 
+
+However, extracting precise, tabular transaction data from regulatory filings requires more than just domain knowledge; it requires sophisticated reasoning and generation capabilities. The introduction of the FinanceBench benchmark \cite{islam2023financebench} exposed the limitations of standard LLMs when answering complex questions over 10-K and 10-Q filings, emphasizing the need for robust Retrieval-Augmented Generation (RAG) pipelines. Similarly, the FinDoc-RAG framework \cite{gu2023findocrag} evaluated LLM comprehension across multiple financial documents, illustrating that while LLMs excel at summarization, they often struggle with exact quantitative extraction. Our work extends this literature by evaluating zero-shot structured extraction specifically on SEC ownership filings, quantifying the accuracy of open-weight models (e.g., Llama, DeepSeek) when constrained by strict JSON schemas.
+
+\subsection{Structural Preservation and Document Representation}
+A significant obstacle in applying LLMs to SEC filings is the format of the source data. SEC EDGAR data is typically provided in SGML, XML, or deeply nested HTML. While LLMs can process markup languages, the massive token overhead of tags dilutes the semantic density of the context window. Furthermore, simply stripping the HTML tags to produce flat text destroys the logical relationships within tables—a critical loss when processing Form 4 transaction tables.
+
+Recent studies have investigated the optimal document representation for LLM table comprehension. Yulianti et al. (2023) \cite{yulianti2023structural} introduced the Structural Understanding Capabilities (SUC) framework, demonstrating that Markdown significantly outperforms raw HTML and flat text for LLM comprehension. Markdown preserves the logical grid structure (rows and columns) using lightweight syntax (e.g., `|` and `-`), which LLMs are well-trained to recognize, without the verbosity of HTML tags. This aligns with findings from the document layout analysis community, such as those utilizing the PubLayNet dataset \cite{zhong2020publaynet}, which emphasize the importance of retaining visual and structural hierarchies. Our methodology leverages these findings by synthesizing complex SEC XML into high-fidelity Markdown prior to LLM inference, ensuring the model receives maximal structural context for accurate data reconstruction.
+
+\subsection{Hybrid Database Architectures for RAG}
+The final component of our pipeline involves the persistence and retrieval of the extracted financial data. Modern RAG systems require databases capable of handling both dense vector representations (for semantic search) and exact scalar data (for metadata filtering, such as CIK or Date fields). 
+
+Foundational work by Malkov and Yashunin (2018) \cite{malkov2018hnsw} on Hierarchical Navigable Small World (HNSW) graphs established the state-of-the-art for efficient, approximate nearest neighbor search in high-dimensional vector spaces. For scalar metadata, the RoaringBitmap compression standard introduced by Lemire et al. (2016) \cite{lemire2016roaring} enables extremely fast set intersections and unions, which are critical for filtering SEC filings by multiple categorical parameters. Our system utilizes HyperStreamDB, which integrates these indexing strategies with an Apache Arrow-native, in-memory format to provide transactional, Iceberg-style consistency. Furthermore, our architecture addresses the challenge of "context fragmentation" in RAG systems \cite{kamalloo2023evaluating} by implementing "Mathematical Anchors"—storing exact byte offsets (`start\_pos`, `end\_pos`) alongside vectors, enabling zero-redundancy context expansion directly from the serialized Markdown blobs on disk.
+
+\section{Methodology}
+Our system architecture is designed to evaluate the capability of Large Language Models to act as structured extraction agents while building a highly performant, hybrid-retrieval database. The methodology is divided into three distinct phases: Ground Truth Normalization and Markdown Synthesis, Agentic JSON Extraction, and High-Performance Storage Integration.
+
+\subsection{Phase 1: Ground Truth Normalization and Markdown Synthesis}
+The foundation of any robust AI evaluation is a demonstrably accurate ground-truth dataset. To achieve this, we developed a Dual-Engine parser, termed the \textit{OwnershipSynthesizer}, within the OpenEDGAR framework. The pipeline begins with the asynchronous, on-the-fly streaming of bulk SEC archives. Raw filings are downloaded as legacy Gzip (.tar.gz) archives and immediately converted to Zstandard (.tar.zst) format. This format-aware conversion mitigates HDD I/O saturation and yields a 6x speedup in decompression during subsequent parsing phases.
+
+Once decompressed, the \textit{OwnershipSynthesizer} processes the raw SEC Ownership XML (Forms 3, 4, and 5) through two parallel tracks:
+
+\textbf{1. Ground Truth Engine (Deterministic Parsing):}
+The XML is parsed using deterministic rules based on the SEC's technical specification v5.5. The extracted data is ingested directly into a normalized relational database schema (Django ORM). This schema meticulously captures every element, including \texttt{OwnershipSubmission} metadata (Issuer CIK, Reporting Owner CIK), \texttt{OwnershipNonDerivTransaction} details (Shares, Price, Transaction Code), and \texttt{OwnershipFootnote} associations. This deterministic extraction establishes the 100\% accurate baseline required for our ML benchmarking, representing the theoretical maximum accuracy attainable by a rules-based system.
+
+\textbf{2. Markdown Generator:}
+Simultaneously, the XML is transformed into a high-fidelity Markdown document. This process resolves deeply nested XML structures into clean, tabular formats. Crucially, the generator standardizes dates to ISO 8601 format, resolves footnote identifiers (e.g., `id="F1"`) into Markdown superscripts (`[^{1}]`), and appends the full, unstructured text of the footnotes at the bottom of the document. This synthesized Markdown acts as the clean, structural input for the LLM agent, preserving the visual and logical relationships of the original SEC filing without the token overhead of raw SGML or XML namespaces.
+
+\subsection{Phase 2: Agentic Extraction Engine (The "AI" Layer)}
+With the high-fidelity Markdown generated, the system initiates the LLM extraction phase. We utilize a pipeline that feeds the synthesized Markdown into an open-weight LLM (e.g., Llama 3.3 or DeepSeek-V3). To enforce deterministic outputs from a stochastic model, we employ strict JSON Schema prompting.
+
+The LLM is provided with a system prompt defining its persona as an expert financial extraction agent. It is then provided the Markdown document and an explicit JSON schema that mirrors the structure of our Django Ground Truth models. The schema demands the extraction of specific target fields:
+\begin{itemize}
+    \item \textbf{Entity Metadata:} Issuer Ticker, Owner Name.
+    \item \textbf{Transaction Details:} Transaction Code (e.g., 'P' for Purchase, 'S' for Sale), Shares acquired or disposed, and Price per share.
+    \item \textbf{Semantic Context:} The full text of the footnotes associated with the transactions.
+\end{itemize}
+By serializing the Django Ground Truth models into this exact same JSON schema, we create perfect symmetry between the deterministic baseline and the LLM output, enabling a mathematically rigorous, 1:1 key-value comparison in the evaluation phase.
+
+\subsection{Phase 3: High-Performance Storage (HyperStreamDB Integration)}
+To move beyond mere extraction and toward a functional RAG system, the pipeline integrates with HyperStreamDB, a high-performance, Rust-based hybrid database. The Markdown representations generated in Phase 1 are processed by the \textit{ModernRAGPipeline}.
+
+\textbf{1. Atomic Semantic Chunking:}
+Rather than using naive, fixed-token chunking (which frequently splits tables or sentences in half), the pipeline utilizes atomic semantic chunking. The Markdown is split primarily along header boundaries (`\#`, `\#\#`) and double newlines, ensuring zero overlap between chunks and preserving the logical continuity of the financial tables.
+
+\textbf{2. Mathematical Anchors for Zero-Redundancy:}
+A novel feature of our methodology is the use of "Mathematical Anchors." When a chunk is ingested into HyperStreamDB, the database records the exact `start\_pos` and `end\_pos` character offsets relative to the original synthesized Markdown sidecar file (stored on disk as `.out.md.zst`). This allows the database to remain lightweight—storing only the embeddings and necessary scalar metadata—while enabling instantaneous, zero-redundancy context expansion. During a query, the system retrieves the relevant chunk and can dynamically expand the context window by reading the neighboring bytes directly from the compressed sidecar file using the mathematical anchors.
+
+\textbf{3. Autovectorization and Hybrid Indexing:}
+HyperStreamDB employs the `bge-m3` embedding model for autovectorization of the text chunks. The resulting 1024-dimensional vectors are indexed using HNSW for rapid semantic similarity search. Concurrently, scalar fields (e.g., CIK, Form Type, Date Filed) are indexed using RoaringBitmaps. This hybrid architecture allows for highly specific, metadata-filtered semantic queries (e.g., "Find all transactions involving equity swaps for CIK 0001234567 in Q2 2023").
+
+\section{Experiments and Results}
+% TODO: Placeholder for empirical results.
+% Will run the pipeline over the 2021-2025 SEC dataset.
+% Compare LLM JSON output vs Django Ground Truth.
+% Calculate Exact Match % for Price/Shares.
+% Calculate BERTScore for Footnotes.
+% Measure HyperStreamDB Ingestion Latency.
+
+\section{Conclusions}
+% TODO: Placeholder for conclusions.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

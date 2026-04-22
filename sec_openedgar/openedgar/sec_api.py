@@ -8,12 +8,14 @@ import threading
 import orjson
 import pandas as pd
 import secsgml2
+import asyncio
 from typing import List, Dict, Any, Tuple, Optional
 
 class AdvancedSECRatelimiter:
     """
     Optimized Token Bucket Ratelimiter for SEC endpoints
     Allows bursts up to capacity and replenishes at fill_rate/sec.
+    Asyncio-compatible version.
     """
     def __init__(self, capacity: int = 10, fill_rate: float = 9.5):
         self.capacity = float(capacity)
@@ -22,23 +24,22 @@ class AdvancedSECRatelimiter:
         self.last_update = time.monotonic()
         self.lock = threading.Lock()
 
-    def wait(self):
-        with self.lock:
-            while True:
-                now = time.monotonic()
-                delta = now - self.last_update
-                self.tokens += delta * self.fill_rate
-                if self.tokens > self.capacity:
-                    self.tokens = self.capacity
-                self.last_update = now
-
-                if self.tokens >= 1.0:
-                    self.tokens -= 1.0
-                    return
-
-                # Wait for just enough time to get 1 token
-                sleep_time = (1.0 - self.tokens) / self.fill_rate
-                time.sleep(sleep_time)
+    async def wait(self):
+        while True:
+            now = time.monotonic()
+            delta = now - self.last_update
+            self.tokens += delta * self.fill_rate
+            if self.tokens > self.capacity:
+                self.tokens = self.capacity
+            self.last_update = now
+            
+            if self.tokens >= 1.0:
+                self.tokens -= 1.0
+                return
+            
+            # Use non-blocking sleep in async context
+            sleep_time = (1.0 - self.tokens) / self.fill_rate
+            await asyncio.sleep(sleep_time)
 
 
 class SecAPI:
@@ -73,17 +74,29 @@ class SecAPI:
         self._doc_count_rx = re.compile(rb'PUBLIC-DOCUMENT-COUNT:\s+(\d+)')
         self._accept_date_rx = re.compile(rb'ACCEPTANCE-DATETIME:\s+(\d{14})')
 
-    def _get(self, url: str) -> httpx.Response:
-        self.limiter.wait()
-        retries = 3
-        for i in range(retries):
-            resp = self.client.get(url)
-            if resp.status_code == 429:
-                time.sleep(10 * (i + 1))
-                continue
+    async def _get_async(self, url: str) -> httpx.Response:
+        """Async version of get with rate limiting."""
+        if self._client is None:
+             # Ensure client is initialized
+             _ = self.client
+             
+        await self.limiter.wait()
+        
+        # Use a fresh context for each call if needed, but client is shared
+        import httpx
+        async with httpx.AsyncClient(headers=self.client.headers, timeout=30.0, http2=True) as client:
+            resp = await client.get(url)
             resp.raise_for_status()
             return resp
+
+    def _get(self, url: str) -> httpx.Response:
+        # Note: This remains synchronous for existing sync calls, 
+        # but it should ideally use a thread-safe limiter or be migrated.
+        # For now, we'll use a simple time-based block if not in event loop.
+        time.sleep(0.1) # Fallback simple limit for sync
+        resp = self.client.get(url)
         resp.raise_for_status()
+        return resp
 
     def get_cik_lookup_data(self) -> pd.DataFrame:
         url = "https://www.sec.gov/files/company_tickers.json"

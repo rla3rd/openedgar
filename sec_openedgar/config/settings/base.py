@@ -103,6 +103,7 @@ LOCAL_APPS = [
     'sec_openedgar.users.apps.UsersConfig',
     # Your stuff: custom apps go here
     'openedgar',
+    'sec_research',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

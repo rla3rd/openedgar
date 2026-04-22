@@ -20,6 +20,18 @@ class Command(BaseCommand):
             action='store_true',
             help='Do not delete tar.gz files after successfully extracting and compressing',
         )
+        parser.add_argument(
+            '--forms',
+            nargs='+',
+            default=None,
+            help='Limit processing to specific form types (e.g. 3 4 5 10-K)'
+        )
+        parser.add_argument(
+            '--workers',
+            type=int,
+            default=4,
+            help='Number of parallel workers'
+        )
 
     def handle(self, *args, **options):
         # Set start method to 'spawn' to avoid CUDA multiprocessing issues
@@ -42,11 +54,17 @@ class Command(BaseCommand):
         year = options['year']
         qtr = options['qtr']
         remove_after = not options['keep']
+        forms = options['forms']
+        workers = options['workers']
 
         tarballs_queued = 0
         from concurrent.futures import ProcessPoolExecutor
         
-        with ProcessPoolExecutor(initializer=django_setup) as executor:
+        with ProcessPoolExecutor(max_workers=workers, initializer=django_setup) as executor:
+            import functools
+            # Use partial to pass the forms argument to the worker
+            worker_func = functools.partial(extract_and_compress_tar_feed, forms=forms, remove_after=remove_after, replace=True)
+            
             for year_dir in base_path.iterdir():
                 if not year_dir.is_dir():
                     continue
@@ -67,7 +85,7 @@ class Command(BaseCommand):
                     self.stdout.write(f"Scanning directory: {qtr_dir} ...")
                     for tar_path in qtr_dir.glob("*.tar.gz"):
                         self.stdout.write(f"Processing {tar_path}")
-                        executor.submit(extract_and_compress_tar_feed, str(tar_path), remove_after)
+                        executor.submit(worker_func, str(tar_path))
                         tarballs_queued += 1
 
         if tarballs_queued > 0:
