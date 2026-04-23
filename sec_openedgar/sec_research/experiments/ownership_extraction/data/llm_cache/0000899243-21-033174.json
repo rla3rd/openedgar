@@ -1,0 +1,50 @@
+{
+  "issuer": {
+    "issuer_cik": "0001561627",
+    "issuer_name": "ExOne Co",
+    "issuer_trading_symbol": "XONE"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001730351",
+      "rptowner_name": "Benec Loretta Lobes",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "officer_title": "Vice President, General Counsel & Corporate Secretary"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock, par value $0.01",
+      "security_title_fn": "",
+      "transaction_date": "2021-08-13",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "shares": 3465.0,
+      "shares_fn": "",
+      "price": 0.0,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 19899.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [],
+  "footnotes": {
+    "F1": "Grant of restricted stock under The ExOne Company 2013 Equity Incentive Plan. Restricted stock vests in three equal annual installments beginning on the first anniversary of the grant date.   As previously announced by The ExOne Company (the \"Company\"), on August 11, 2021 the Company entered into an Agreement and Plan of Merger with Desktop Metal, Inc. and two of its subsidiaries (the \"Merger Agreement\").  The restricted stock is subject to the terms of the Merger Agreement, and if the proposed merger transactions are consummated, will vest in accordance with the Company's Change of Control Severance Plan, as more fully described in the Company's Current Report on Form 8-K filed with the SEC on August 12, 2021."
+  },
+  "signatures": [
+    {
+      "signature_name": "Loretta Lobes Benec",
+      "signature_date": "2021-08-16"
+    }
+  ]
+}

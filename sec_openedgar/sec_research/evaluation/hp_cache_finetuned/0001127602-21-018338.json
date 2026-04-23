@@ -1,0 +1,110 @@
+{
+  "issuer": {
+    "issuer_cik": "0000093410",
+    "issuer_name": "CHEVRON CORP",
+    "issuer_trading_symbol": "CVX",
+    "period_of_report": "2021-05-26",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": 4,
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001225947",
+      "rptowner_name": "REED DEBRA L",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "6001 BOLLINGER CANYON ROAD",
+        "SAN RAMON, CA, 94583"
+      ],
+      "rptowner_city": "SAN RAMON",
+      "rptowner_state": "CA",
+      "rptowner_zip": "94583",
+      "rptowner_non_us_address_flag": false,
+      "original_owned_fn": [
+        "A"
+      ],
+      "transaction_acquired_fn": [],
+      "transaction_date_fn": [
+        "2021-05-26"
+      ],
+      "deemed_execution_date_fn": [],
+      "value_fn": [
+        "7794 [^2]"
+      ],
+      "owned_following_transaction_fn": [
+        "I (By Reed Revocable Trust)"
+      ]
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 0.0,
+      "shares_fn": [],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 7794.0,
+      "transaction_total_value_fn": [
+        "7794 [^2]"
+      ],
+      "owned_following_transaction": 4275.0,
+      "owned_following_transaction_fn": [
+        "I (By Reed Revocable Trust)"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": 4.0,
+      "transaction_form_type_fn": [
+        "A"
+      ]
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 4275.0,
+      "shares_owned_following_transaction_fn": [
+        "I (By Reed Revocable Trust)"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": 4.0,
+      "transaction_form_type_fn": [
+        "A"
+      ]
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "This number represents stock units issued under the Chevron Corporation Non-Employee Directors' Equity Compensation and Deferral Plan.",
+    "2": "This number includes the acquisition of dividend equivalent accruals on stock units (64) issued under the Chevron Corporation Non-Employee Directors' Equity Compensation and Deferral Plan."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Christopher A. Butner, Attorney-in-Fact for Debra L. Reed",
+      "signature_date": "2021-05-28",
+      "original": "Christopher A. Butner, Attorney-in-Fact for Debra L. Reed"
+    }
+  ]
+}

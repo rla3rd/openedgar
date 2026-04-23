@@ -1,0 +1,98 @@
+{
+  "issuer": {
+    "issuer_cik": "0000020212",
+    "issuer_name": "Churchill Downs Inc",
+    "issuer_trading_symbol": "CHDN",
+    "period_of_report": "2021-04-20",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001444804",
+      "rptowner_name": "Rankin R Alex",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "600 N. HURSTBOURNE PKWY",
+        "SUITE 400"
+      ],
+      "rptowner_city": "LOUISVILLE",
+      "rptowner_state": "KY",
+      "rptowner_zip": "40222",
+      "rptowner_non_us_address_flag": false,
+      "original_owned_fn": [
+        "Director"
+      ]
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-04-20",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "A"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 734.74,
+      "shares_fn": [
+        "^1"
+      ],
+      "price": 0.0,
+      "price_fn": [
+        "^2"
+      ],
+      "total_value": 44022.83,
+      "total_value_fn": [
+        "^3"
+      ],
+      "shares_owned_following_transaction": 44022.83,
+      "shares_owned_following_transaction_fn": [
+        "^3"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [
+        "^2"
+      ],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Restricted stock units granted in connection with 2021 director service which will vest one year from the anniversary of the grant date. Each restricted stock unit is the economic equivalent of one share of common stock. The vested restricted stock units are transferred upon the reporting person's completion of service as a director. The closing price of CHDN common stock on April 20, 2021, was used to determine the number of restricted stock units granted."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "^1": "Restricted stock units granted in connection with 2021 director service which will vest one year from the anniversary of the grant date. Each restricted stock unit is the economic equivalent of one share of common stock. The vested restricted stock units are transferred upon the reporting person's completion of service as a director.",
+    "^2": "Restricted stock units do not have a conversion price or expiration date.",
+    "^3": "Includes restricted stock units granted for service as a director and dividends awarded for such units. The equivalent shares of common stock related to the vested units will be transferred upon the reporting person's completion of service as a director."
+  },
+  "signatures": [
+    {
+      "signature_name": "Paula Chumbley Attorney-in-Fact for R. Alex Rankin",
+      "signature_date": "2021-04-22",
+      "original_owned_fn": [
+        "Attorney-in-Fact"
+      ]
+    }
+  ]
+}

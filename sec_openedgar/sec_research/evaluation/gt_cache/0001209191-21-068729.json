@@ -1,0 +1,91 @@
+{
+  "issuer": {
+    "issuer_cik": "0000898171",
+    "issuer_name": "UWHARRIE CAPITAL CORP",
+    "issuer_trading_symbol": "NONE",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-12-08",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001739547",
+      "rptowner_name": "Russell Randy T",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "is_director_nominee": false,
+      "officer_title": "",
+      "other_text": "",
+      "rptowner_street1": "PO BOX 338",
+      "rptowner_street2": "",
+      "rptowner_city": "ALBEMARLE",
+      "rptowner_state": "NC",
+      "rptowner_zip": "28002-0338",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock (Held by Self TOD Spouse)",
+      "security_title_fn": [],
+      "transaction_date": "2021-12-08",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 163.0,
+      "shares_fn": [
+        "2"
+      ],
+      "price": 9.2,
+      "price_fn": [
+        "3"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 2214.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 163.0 shares of Common Stock (Held by Self TOD Spouse) at $9.2 (Code A). [Note 2: The number of shares acquired by the reporting person is based on the amount of the Annual Retainer being paid divided by the trading price of the issuer's common stock acquired for this specific payment.] [Note 3: Represents the trading price for the issuer's common stock acquired for this specific payment.]"
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "This acquisition represents payment for a portion of the reporting person's Annual Retainer for serving in the capacity of Director.",
+    "2": "The number of shares acquired by the reporting person is based on the amount of the Annual Retainer being paid divided by the trading price of the issuer's common stock acquired for this specific payment.",
+    "3": "Represents the trading price for the issuer's common stock acquired for this specific payment."
+  },
+  "signatures": [
+    {
+      "signature_name": "Randy T. Russell by Tamara M. Singletary, EVP, Uwharrie Capital Corp",
+      "signature_date": "2021-12-09"
+    }
+  ]
+}

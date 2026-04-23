@@ -1,0 +1,175 @@
+{
+  "issuer": {
+    "issuer_cik": "0001000209",
+    "issuer_name": "MEDALLION FINANCIAL CORP",
+    "issuer_trading_symbol": "MFIN",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-03-04",
+  "date_of_original_submission": "",
+  "remarks": "Chief Credit Officer and Executive Vice President",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001698515",
+      "rptowner_name": "Munson Thomas J.",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Chief Credit Officer and Executive Vice President",
+      "rptowner_street1": "C/O MEDALLION FINANCIAL CORP.",
+      "rptowner_street2": "437 MADISON AVENUE",
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10022",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "New York",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-03-04",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 3927.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 23040.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Acquired 3,927 restricted shares of common stock under the Medallion Financial Corp. 2018 Equity Incentive Plan."
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 2347.0,
+      "shares_owned_following_transaction_fn": [
+        "2"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "See Footnote",
+      "nature_of_ownership_fn": [
+        "2"
+      ],
+      "transaction_form_type": "4"
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Common Stock (right to buy)",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 6.79,
+      "conversion_or_exercise_price_fn": [],
+      "transaction_date": "2021-03-04",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "exercise_date": "",
+      "exercise_date_fn": [
+        "3"
+      ],
+      "expiration_date": "2031-03-04",
+      "expiration_date_fn": [],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 7620.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 27018.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Acquired the right to buy 7,620 shares of common stock with a conversion or exercise price of $6.79, which will expire on March 4, 2031."
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Common Stock (right to buy)",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 6.79,
+      "conversion_or_exercise_price_fn": [],
+      "exercise_date": "",
+      "exercise_date_fn": [
+        "3"
+      ],
+      "expiration_date": "2031-03-04",
+      "expiration_date_fn": [],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 7620.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 27018.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    }
+  ],
+  "footnotes": {
+    "1": "Represents restricted shares of common stock awarded under the Medallion Financial Corp. 2018 Equity Incentive Plan which will vest in equal one-fourth increments on March 4, 2022, March 4, 2023, March 4, 2024 and March 4, 2025.",
+    "2": "These shares are held by Charles Schwab & Co., Inc. in an Individual Retirement Account for the benefit of Thomas J. Munson.",
+    "3": "One-fourth of the options will become exercisable on March 4, 2022, March 4, 2023, March 4, 2024 and March 4, 2025."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Thomas J. Munson",
+      "signature_date": "2021-03-08"
+    }
+  ]
+}

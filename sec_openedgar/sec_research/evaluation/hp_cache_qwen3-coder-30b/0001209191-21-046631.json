@@ -1,0 +1,169 @@
+{
+  "issuer": {
+    "issuer_cik": "0000351834",
+    "issuer_name": "SunOpta Inc.",
+    "issuer_trading_symbol": "STKL",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-07-10",
+  "date_of_original_submission": "",
+  "remarks": "[NULL]",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001701397",
+      "rptowner_name": "Duchscher Robert",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Chief Information Officer",
+      "rptowner_street1": "7301 OHMS LANE",
+      "rptowner_street2": "SUITE 600",
+      "rptowner_city": "EDINA",
+      "rptowner_state": "MN",
+      "rptowner_zip": "55439",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "Minnesota",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Shares",
+      "security_title_fn": [],
+      "transaction_date": "2021-07-10",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "M",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [
+        "1"
+      ],
+      "shares": 5696.0,
+      "shares_fn": [],
+      "price": 0.0,
+      "price_fn": [
+        "1"
+      ],
+      "transaction_total_value": 125215.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 125215.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting person acquired 5,696 common shares through a transaction with code M."
+    },
+    {
+      "security_title": "Common Shares",
+      "security_title_fn": [],
+      "transaction_date": "2021-07-10",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "F",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [
+        "2"
+      ],
+      "shares": 2803.0,
+      "shares_fn": [],
+      "price": 12.33,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 122412.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting person disposed of 2,803 common shares through a transaction with code F."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Performance Stock Units",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [
+        "1"
+      ],
+      "transaction_date": "2021-07-10",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "M",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "exercise_date": "",
+      "exercise_date_fn": [
+        "3"
+      ],
+      "expiration_date": "",
+      "expiration_date_fn": [
+        "4"
+      ],
+      "underlying_security_title": "Common Shares",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 5696.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 11392.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting person received 5,696 Performance Stock Units with a conversion or exercise price of $0.00, which represent a contingent right to receive one share of STKL common stock."
+    }
+  ],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Each Performance Stock Unit represents a contingent right to receive one share of STKL common stock.",
+    "2": "This line item reflects the deemed disposition of shares withheld by the Company to satisfy income tax withholding requirements in connection with the vesting of the PSUs.",
+    "3": "The reporting person was granted performance stock units (the \"Performance Units\") on July 10, 2020.  The vesting of the Performance Units is subject to the satisfaction of certain fiscal year EBITDA achieved during the period commencing on the grant date and ending on December 31, 2022 (the \"Performance Period\"). For the EBITDA performance conditions, 1/3 of the Performance Units will vest upon the Company achieving annual adjusted EBITDA of $80,000,000, another 1/3 will vest upon the Company achieving annual adjusted EBITDA of $100,000,000, and the final 1/3 will vest upon the Company achieving annual adjusted EBITDA of $110,000,000 during the Performance Period, and subject to continued employment through the end of the fiscal year the EBITDA performance condition is achieved.",
+    "4": "The Performance Stock Units do not have an expiration date."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Jill Barnett, attorney-in-fact",
+      "signature_date": "2021-07-13"
+    }
+  ]
+}

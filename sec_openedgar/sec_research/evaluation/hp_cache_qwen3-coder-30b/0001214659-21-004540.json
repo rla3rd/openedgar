@@ -1,0 +1,87 @@
+{
+  "issuer": {
+    "issuer_cik": "0001581280",
+    "issuer_name": "Twist Bioscience Corp",
+    "issuer_trading_symbol": "TWST",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-04-23",
+  "date_of_original_submission": "",
+  "remarks": "[NULL]",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001755970",
+      "rptowner_name": "Finn Patrick John",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Chief Commercial Officer",
+      "rptowner_street1": "C/O TWIST BIOSCIENCE CORPORATION",
+      "rptowner_street2": "681 GATEWAY BLVD.",
+      "rptowner_city": "SOUTH SAN FRANCISCO",
+      "rptowner_state": "CA",
+      "rptowner_zip": "94080",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "California",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-04-23",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "F",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 305.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 133.12,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 42439.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting person acquired 305 shares of common stock through a tax withholding event related to the vesting of Restricted Stock Units, with the shares withheld by the issuer to satisfy tax obligations."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Represents shares withheld by the Issuer to satisfy the Reporting Person's tax withholding obligation in connection with the vesting of certain Restricted Stock Units (\"RSUs\") previously granted to the Reporting Person. Such withholding is exempt from Section 16(b) pursuant to Rule 16b-3(e)."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ William Solis, as Attorney-in-Fact for Patrick John Finn",
+      "signature_date": "2021-04-27"
+    }
+  ]
+}

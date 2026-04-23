@@ -1,0 +1,122 @@
+{
+  "issuer": {
+    "issuer_cik": "0001777946",
+    "issuer_name": "IronNet, Inc.",
+    "issuer_trading_symbol": "IRNT",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-11-01",
+  "date_of_original_submission": "",
+  "remarks": "[NULL]",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001659719",
+      "rptowner_name": "Alexander Keith Brian",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": true,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Co-CEO, President & Chairman",
+      "rptowner_street1": "C/O IRONNET, INC., 7900 TYSONS ONE PLACE",
+      "rptowner_street2": "SUITE 400",
+      "rptowner_city": "MCLEAN",
+      "rptowner_state": "VA",
+      "rptowner_zip": "22102",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "Virginia",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-11-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 85997.0,
+      "shares_fn": [],
+      "price": 11.98,
+      "price_fn": [
+        "2"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 11261127.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Sold 85,997 shares of Common Stock at an average price of $11.98 per share."
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-11-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 4003.0,
+      "shares_fn": [],
+      "price": 12.76,
+      "price_fn": [
+        "3"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 11257124.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Sold 4,003 shares of Common Stock at an average price of $12.76 per share."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "These sales were effected pursuant to a Rule 10b5-1 trading plan adopted by the Reporting Person on September 17, 2021. The Reporting Person is party to a lockup agreement with the issuer entered into in connection with the business combination between the issuer (formerly known as LGL Systems Acquisition Corp.) and IronNet Cybersecurity, Inc. pursuant to which the Reporting Person agreed not to sell securities of the issuer, subject to certain exceptions, for a period of 180 days following the closing date of the business combination, which was August 26, 2021.  Under the terms of the lockup agreement, upon the effectiveness of the issuer's registration statement on Form S-1, which occurred on September 30, 2021, the lockup agreement expired with respect to an aggregate of 568,525 shares held by the Reporting Person.",
+    "2": "The price reported is a weighted average price. The shares were sold in multiple transactions at prices ranging from $11.63 to $12.62, inclusive. The Reporting Person undertakes to provide to the issuer, any security holder of the issuer, or the staff of the Securities and Exchange Commission, upon request, full information regarding the number of shares sold at each separate price within the range set forth in this footnote to this Form 4.",
+    "3": "The price reported is a weighted average price. The shares were sold in multiple transactions at prices ranging from $12.64 to $12.95, inclusive. The Reporting Person undertakes to provide to the issuer, any security holder of the issuer, or the staff of the Securities and Exchange Commission, upon request, full information regarding the number of shares sold at each separate price within the range set forth in this footnote to this Form 4."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Brian Leaf, Attorney-in-Fact",
+      "signature_date": "2021-11-03"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "issuer": {
+    "issuer_cik": "0000725363",
+    "issuer_name": "CEL SCI CORP",
+    "issuer_trading_symbol": ""
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001238028",
+      "rptowner_name": "TALOR EYAL",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "officer_title": "Chief Scientific Officer"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-10-19",
+      "transaction_date_fn": "",
+      "transaction_code": "S",
+      "transaction_code_fn": "",
+      "shares": 15000.0,
+      "shares_fn": "",
+      "price": 11.25,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 104899.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [],
+  "footnotes": {
+    "F1": "These shares were sold to pay the taxes due as a result of the milestone reached and subsequent vesting of restricted shares of common stock issued from the 2014 Incentive Stock Bonus Plan."
+  },
+  "signatures": [
+    {
+      "signature_name": "Eyal Talor",
+      "signature_date": "2021-10-21"
+    }
+  ]
+}

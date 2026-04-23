@@ -1,0 +1,117 @@
+{
+  "issuer": {
+    "issuer_cik": "0001690680",
+    "issuer_name": "NEWMARK GROUP, INC.",
+    "issuer_trading_symbol": "NMRK",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-05-14",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001250975",
+      "rptowner_name": "LUTNICK HOWARD W",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": true,
+      "is_other": false,
+      "is_director_nominee": false,
+      "officer_title": "Chairman",
+      "other_text": "",
+      "rptowner_street1": ".",
+      "rptowner_street2": "499 PARK AVENUE",
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10022",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Class A common stock, par value $0.01 per share",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-14",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "G",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "5",
+      "equity_swap_involved": false,
+      "shares": 1900.0,
+      "shares_fn": [],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 6495904.0,
+      "shares_owned_following_transaction_fn": [
+        "1",
+        "2"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner disposed 1900.0 shares of Class A common stock, par value $0.01 per share at $0.0 (Code G)."
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Class A common stock, par value $0.01 per share",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 5154130.0,
+      "shares_owned_following_transaction_fn": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "See footnotes",
+      "nature_of_ownership_fn": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "transaction_form_type": ""
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Represents a gift of Newmark Group, Inc. Class A common stock, par value $0.01 per share (the \"Class A Common Stock\"), by the reporting person to a charitable organization.",
+    "2": "The shares of Class A Common Stock held directly by the reporting person  following such gift represented herein consist of (i) 2,333,040 shares held by the reporting person, and (ii) 4,162,864 shares receivable by the reporting person pursuant to deferred stock distribution rights provided to certain current and former partners of Cantor Fitzgerald, L.P. (\"CFLP\") on April 1, 2008 (\"April 2008 distribution rights shares\") and\nFebruary 14, 2012 (\"February 2012 distribution rights shares\") (consisting of 3,591,626 April 2008 distribution rights shares and 571,238 February 2012 distribution rights shares).",
+    "3": "The reporting person's indirect pecuniary interest in 5,154,130 shares of Class A Common Stock consists of : (i) 951,076 April 2008 distribution rights shares and 74,536 February 2012 distribution rights shares receivable by CF Group Management, Inc. (\"CFGM\"), (ii) 1,687,724 shares of Class A Common Stock held in various trust, retirement and custodial accounts consisting of (a) 960,989 shares held in Mr. Lutnick's grantor retained annuity trust (GRAT), (b) 301,803 shares held by a trust for the benefit of descendants of Mr. Lutnick and his immediate family (the \"Trust\"), of which Mr. Lutnick's wife is one of two trustees and Mr. Lutnick has limited powers to remove and replace such trustees, (c) 112,405 shares held in a Keogh retirement account for Mr. Lutnick, (d) 249,498 shares held by trust accounts for the benefit of Mr. Lutnick and members of his immediate family,",
+    "4": "(continued from footnote 3) (e) 37,918 shares held in Mr. Lutnick's personal asset trust, of which he is the sole trustee, (f) 13,268 shares held in other retirement accounts, (g) 7,827 shares held in custodial accounts for the benefit of certain members of Mr. Lutnick's family under the Uniform Gifts to Minors Act, and (h) 4,016 shares of Class A Common Stock held in other retirement accounts for Mr. Lutnick's spouse; (iii) 746,955 shares represented by April 2008 distribution rights shares receivable by the Trust, (iv) 16,557 shares (representing the proportional interest of the spouse of the reporting person in shares owned by LFA LLC (\"LFA\")), (v) 82,589 shares represented by such spouse's proportional interest in the distribution rights shares receivable by LFA (consisting of 75,077 April 2008 distribution rights shares and 7,512 February 2012 distribution rights shares),",
+    "5": "(continued from footnote 4)  (vi) 278,772 shares held by KBCR Management Partners, LLC (\"KBCR\"), (vii) 1,083,644 distribution rights shares receivable by KBCR (consisting of 950,057 April 2008 distribution rights shares and 133,587 February 2012 distribution rights shares), and (viii) 232,277 shares held in the reporting person's 401(k) account as of April 30, 2021.",
+    "6": "CFGM is the Managing General Partner of CFLP, and the reporting person is the Chairman and Chief Executive Officer and also the trustee of an entity that is the sole stockholder of CFGM. KBCR is a non-managing General Partner of CFLP, and the reporting person is the managing member of KBCR. The reporting person is the managing member of LFA. The reporting person disclaims beneficial ownership of all shares held by CFLP, CFGM, KBCR and LFA in excess of his pecuniary interest, if any, and this report shall not be deemed an admission that he is the beneficial owner of, or has pecuniary interest in, any such excess shares for the purposes of Section 16 of the Exchange Act or for any other purpose."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Howard W. Lutnick",
+      "signature_date": "2021-05-21"
+    }
+  ]
+}

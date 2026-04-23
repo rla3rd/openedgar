@@ -1,0 +1,53 @@
+{
+  "issuer": {
+    "issuer_cik": "0001594686",
+    "issuer_name": "WASHINGTON PRIME GROUP INC.",
+    "issuer_trading_symbol": "WPG",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-10-21",
+  "date_of_original_submission": "",
+  "remarks": "The Second Amended Joint Chapter 11 Plan of Reorganization of Washington Prime Group Inc. and Its Debtor Subsidiaries (the \"Plan\"), as previously confirmed by the United States Bankruptcy Court for the Southern District of Texas, Houston Division, became effective on October 21, 2021.  In connection with and pursuant to the Plan, the reporting person ceased to be a Section 16  reporting person and surrendered to the Issuer, in transactions exempt under Rule 16b-3(e), all equity securities of the Issuer previously reported as beneficially owned by the reporting person.",
+  "not_subject_to_section_16": true,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001677304",
+      "rptowner_name": "Dillon John J",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "C/O WASHINGTON PRIME GROUP INC.",
+      "rptowner_street2": "180 EAST BROAD STREET",
+      "rptowner_city": "COLUMBUS",
+      "rptowner_state": "OH",
+      "rptowner_zip": "43215",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": ""
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Stephen E. Ifeduba, as attorney-in-fact",
+      "signature_date": "2021-10-22"
+    }
+  ]
+}

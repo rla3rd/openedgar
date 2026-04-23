@@ -1,0 +1,87 @@
+{
+  "issuer": {
+    "issuer_cik": "0001598674",
+    "issuer_name": "Casper Sleep Inc.",
+    "issuer_trading_symbol": "CSPR",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-03-05",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001791898",
+      "rptowner_name": "Truppman Jonathan",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "is_director_nominee": false,
+      "officer_title": "General Counsel and Secretary",
+      "other_text": "",
+      "rptowner_street1": "C/O CASPER SLEEP INC.",
+      "rptowner_street2": "3 WTC, 175 GREENWICH ST. FL. 39",
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10007",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-03-05",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 81878.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 214225.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 81878.0 shares of Common Stock at $0.0 (Code A). [Note 1: The Reporting Person received an award of 81,878 restricted stock units on March 5, 2021. The restricted stock units vest as to (i) 25% on March 5, 2022; (ii) 25% on March 5, 2023; (iii) 25% on March 5, 2024 and (iv) 25% on March 5, 2025. Each restricted stock unit represents a right to receive one share of Issuer common stock upon vesting.]"
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "The Reporting Person received an award of 81,878 restricted stock units on March 5, 2021. The restricted stock units vest as to (i) 25% on March 5, 2022; (ii) 25% on March 5, 2023; (iii) 25% on March 5, 2024 and (iv) 25% on March 5, 2025. Each restricted stock unit represents a right to receive one share of Issuer common stock upon vesting."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Fannie Chen, Attorney-in-Fact for Jonathan Truppman",
+      "signature_date": "2021-03-05"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "issuer": {
+    "issuer_cik": "0001428336",
+    "issuer_name": "HEALTHEQUITY, INC.",
+    "issuer_trading_symbol": "HQY",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-02-01",
+  "date_of_original_submission": "",
+  "remarks": "The Power of Attorney given by Mr. Parker was previously filed with the U.S. Securities & Exchange Commission on December 08, 2020 as an exhibit to a statement on Form 3 filed by Mr. Parker with respect to HealthEquity, Inc. and is hereby incorporated by reference.",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001831511",
+      "rptowner_name": "Parker Stuart B.",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "is_director_nominee": false,
+      "officer_title": "",
+      "other_text": "",
+      "rptowner_street1": "C/O HEALTHEQUITY, INC.",
+      "rptowner_street2": "15 W. SCENIC POINTE DR., STE. 100",
+      "rptowner_city": "DRAPER",
+      "rptowner_state": "UT",
+      "rptowner_zip": "84020",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-02-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 2266.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 4756.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 2266.0 shares of Common Stock at $0.0 (Code A). [Note 1: Each restricted stock unit represents a contingent right to receive one share of the issuer's common stock. The restricted stock units vest as to 1,133 shares on the date of the issuer's annual stockholder meeting held in the current fiscal year; the remainder will vest on January 31, 2022. Vested shares will be delivered to the reporting person upon the earlier of a change of control of the issuer (as defined in the issuer's 2014 equity incentive plan), or the reporting person's termination of service (as defined in the issuer's 2014 equity incentive plan), or the reporting person's death.]"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-02-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 775.0,
+      "shares_fn": [
+        "2"
+      ],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 5531.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 775.0 shares of Common Stock at $0.0 (Code A). [Note 2: Each restricted stock unit represents a contingent right to receive one share of the issuer's common stock. The restricted stock units vested as to 194 shares on February 1, 2021. The restricted stock units vest as to 194 shares on May 1 and August 1 of 2021; the remaining shares vest on November 1, 2021. Vested shares will be delivered to the reporting person upon the earlier of a change of control of the issuer (as defined in the issuer's 2014 equity incentive plan), or the reporting person's termination of service (as defined in the issuer's 2014 equity incentive plan), or the reporting person's death.]"
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Each restricted stock unit represents a contingent right to receive one share of the issuer's common stock. The restricted stock units vest as to 1,133 shares on the date of the issuer's annual stockholder meeting held in the current fiscal year; the remainder will vest on January 31, 2022. Vested shares will be delivered to the reporting person upon the earlier of a change of control of the issuer (as defined in the issuer's 2014 equity incentive plan), or the reporting person's termination of service (as defined in the issuer's 2014 equity incentive plan), or the reporting person's death.",
+    "2": "Each restricted stock unit represents a contingent right to receive one share of the issuer's common stock. The restricted stock units vested as to 194 shares on February 1, 2021. The restricted stock units vest as to 194 shares on May 1 and August 1 of 2021; the remaining shares vest on November 1, 2021. Vested shares will be delivered to the reporting person upon the earlier of a change of control of the issuer (as defined in the issuer's 2014 equity incentive plan), or the reporting person's termination of service (as defined in the issuer's 2014 equity incentive plan), or the reporting person's death."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Delano W. Ladd, attorney-in-fact",
+      "signature_date": "2021-02-02"
+    }
+  ]
+}

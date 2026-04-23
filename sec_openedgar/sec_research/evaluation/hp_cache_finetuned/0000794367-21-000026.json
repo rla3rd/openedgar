@@ -1,0 +1,164 @@
+{
+  "issuer": {
+    "issuer_cik": "0000794367",
+    "issuer_name": "Macy's, Inc.",
+    "issuer_trading_symbol": "M",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-05-21",
+  "date_of_original_submission": "2021-05-24",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001194702",
+      "rptowner_name": "BLAKE FRANCIS S",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "C/O MACY'S, INC.",
+        "151 WEST 34TH STREET",
+        "NEW YORK, NY, 10001"
+      ],
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10001",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_owned_following_transaction": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Restricted Stock Units",
+      "security_title_fn": [
+        "Restricted Stock Units"
+      ],
+      "transaction_date": "2021-05-21",
+      "transaction_date_fn": [
+        "2021-05-21"
+      ],
+      "deemed_execution_date": "2021-05-21",
+      "deemed_execution_date_fn": [
+        "2021-05-21"
+      ],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "A"
+      ],
+      "transaction_timeliness": "A",
+      "transaction_timeliness_fn": [
+        "A"
+      ],
+      "transaction_form_type": "Original Ownership",
+      "transaction_form_type_fn": [
+        "Original Ownership"
+      ]
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Restricted Stock Units",
+      "security_title_fn": [
+        "Restricted Stock Units"
+      ],
+      "shares_owned_following_transaction": 8516.0,
+      "shares_owned_following_transaction_fn": [
+        8516.0
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [
+        0.0
+      ],
+      "direct_or_indirect_ownership": "Director",
+      "direct_or_indirect_ownership_fn": [
+        "Director"
+      ],
+      "nature_of_ownership": "Restricted Ownership",
+      "nature_of_ownership_fn": [
+        "Restricted Ownership"
+      ],
+      "transaction_summary": "Restricted Stock Units owned following Original Ownership acquired on 2021-05-21"
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [
+        "Common Stock"
+      ],
+      "conversion_or_exercise_price": 8516.0,
+      "conversion_or_exercise_price_fn": [
+        8516.0
+      ],
+      "transaction_date": "2021-05-21",
+      "transaction_date_fn": [
+        "2021-05-21"
+      ],
+      "deemed_execution_date": "2021-05-21",
+      "deemed_execution_date_fn": [
+        "2021-05-21"
+      ],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "A"
+      ],
+      "transaction_timeliness": "A",
+      "transaction_timeliness_fn": [
+        "A"
+      ],
+      "transaction_form_type": "Ownership Fallback",
+      "transaction_form_type_fn": [
+        "Ownership Fallback"
+      ]
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [
+        "Common Stock"
+      ],
+      "shares_owned_following_transaction": 8516.0,
+      "shares_owned_following_transaction_fn": [
+        8516.0
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [
+        0.0
+      ],
+      "direct_or_indirect_ownership": "Director",
+      "direct_or_indirect_ownership_fn": [
+        "Director"
+      ],
+      "nature_of_ownership": "Restricted Ownership",
+      "nature_of_ownership_fn": [
+        "Restricted Ownership"
+      ],
+      "transaction_summary": "Common Stock owned following Ownership Fallback acquired on 2021-05-21"
+    }
+  ],
+  "footnotes": {
+    "1": "Each restricted stock unit represents the equivalent of one share of the Issuer's common stock.",
+    "2": "The restricted stock units vest on the earlier of one year from the grant date or the date of the Issuer's next annual meeting of shareholders. The vested shares will be automatically deferred and delivered to the reporting person six months after the reporting person's service on the Issuer's Board of Directors ends."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Steven R. Watts, as attorney-in-fact for Francis S. Blake pursuant to a Power of Attorney",
+      "signature_date": "2021-05-24",
+      "signature_date_fn": [
+        "2021-05-24"
+      ],
+      "good_address": false
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "issuer": {
+    "issuer_cik": "0000846475",
+    "issuer_name": "ZYNEX INC",
+    "issuer_trading_symbol": "ZYXI",
+    "period_of_report": "2021-07-29",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001322971",
+      "rptowner_name": "Sandgaard Thomas",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Chief Executive Officer",
+      "rptowner_street": [
+        "C/O ZYNEX, INC.,",
+        "9555 MAROON CIRCLE",
+        "ENGLEWOOD, CO, 80112"
+      ],
+      "rptowner_city": "ENGLEWOOD",
+      "rptowner_state": "CO",
+      "rptowner_zip": "80112",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock (Restricted Stock Award)",
+      "security_title_fn": [],
+      "transaction_date": "2021-07-29",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "transaction_form_type_fn": [
+        "Restricted Stock Award"
+      ],
+      "equity_swap": false,
+      "equity_swap_fn": [],
+      "shares": 4106.0,
+      "shares_fn": [
+        "Original Ownership"
+      ],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 5860.0,
+      "transaction_total_value_fn": [
+        "Owned Following Transaction"
+      ],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": false
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": []
+}

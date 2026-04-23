@@ -1,0 +1,126 @@
+{
+  "issuer": {
+    "issuer_cik": "0001356949",
+    "issuer_name": "Houston Wire & Cable CO",
+    "issuer_trading_symbol": "HWCC",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-06-15",
+  "date_of_original_submission": "2021-06-17",
+  "remarks": "",
+  "not_subject_to_section_16": true,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001372817",
+      "rptowner_name": "Sheffield William H",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "401 QUEENS QUAY WEST",
+      "rptowner_street2": "SUITE 104",
+      "rptowner_city": "TORONTO",
+      "rptowner_state": "A6",
+      "rptowner_zip": "M5V 2Y2",
+      "rptowner_non_us_address_flag": true,
+      "rptowner_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "COMMON STOCK",
+      "security_title_fn": [],
+      "transaction_date": "2021-06-15",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "D",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 30000.0,
+      "shares_fn": [],
+      "price": [
+        5.3
+      ],
+      "price_fn": [
+        "Pursuant to the Agreement and Plan of Merger (the \"Merger Agreement\"), dated as of March 24, 2021, by and among the Omni Cable, LLC, OCDFH Acquisition Sub Inc. (\"Merger Sub\") and Houston Wire & Cable Company (the \"Issuer\"), effective as of the effective time of the merger of Merger Sub with and into the Issuer (the \"Merger\"), these shares of the Issuer's common stock were canceled and converted into the right to receive $5.30 in cash per share (the \"Merger Consideration\")."
+      ],
+      "total_value": 0.0,
+      "total_value_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "RESTRICTED STOCK UNIT",
+      "security_title_fn": [
+        "Original Ownership"
+      ],
+      "conversion_or_exercise_price": [
+        5.3
+      ],
+      "conversion_or_exercise_price_fn": [
+        "Pursuant to the Merger Agreement, effective as of the effective time of the Merger,these restricted stock units were canceled and converted into the right to receive the Merger Consideration."
+      ],
+      "transaction_date": "2021-06-15",
+      "transaction_date_fn": [],
+      "deemed_execution_date": [
+        5.3
+      ],
+      "deemed_execution_date_fn": [
+        "Pursuant to the Merger Agreement, effective as of the effective time of the Merger,these restricted stock units were canceled and converted into the right to receive the Merger Consideration."
+      ],
+      "transaction_code": "D",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    },
+    {
+      "security_title": "STOCK UNIT",
+      "security_title_fn": [
+        "Original Ownership"
+      ],
+      "conversion_or_exercise_price": [
+        5.3
+      ],
+      "conversion_or_exercise_price_fn": [
+        "Pursuant to the Merger Agreement, effective as of the effective time of the Merger,these stock units were canceled and converted into the right to receive the Merger Consideration."
+      ],
+      "transaction_date": "2021-06-15",
+      "transaction_date_fn": [],
+      "deemed_execution_date": [
+        5.3
+      ],
+      "deemed_execution_date_fn": [
+        "Pursuant to the Merger Agreement, effective as of the effective time of the Merger,these stock units were canceled and converted into the right to receive the Merger Consideration."
+      ],
+      "transaction_code": "D",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "derivative_holdings": []
+}

@@ -1,0 +1,185 @@
+{
+  "issuer": {
+    "issuer_cik": "0001442626",
+    "issuer_name": "Bluerock Residential Growth REIT, Inc.",
+    "issuer_trading_symbol": "BRG",
+    "period_of_report": "2021-03-25",
+    "date_of_original_submission": "2021-03-29",
+    "remarks": "",
+    "not_subject_to_section_16": false,
+    "is_rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001575424",
+      "rptowner_name": "Babb James G. III",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Chief Investment Officer",
+      "rptowner_street": [
+        "1345 AVENUE OF THE AMERICAS,",
+        "32ND FLOOR"
+      ],
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10105",
+      "rptowner_non_us_address_flag": false,
+      "original_owned_fn": [
+        "Officer: Chief Investment Officer"
+      ]
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "LTIP Units",
+      "security_title_fn": [
+        "LTIP Units"
+      ],
+      "transaction_date": "2021-03-25",
+      "transaction_date_fn": [
+        "2021-03-25"
+      ],
+      "deemed_execution_date": "[^1]",
+      "deemed_execution_date_fn": [
+        "^1"
+      ],
+      "transaction_code": "D",
+      "transaction_code_fn": [
+        "D"
+      ],
+      "transaction_timeliness": "D",
+      "transaction_timeliness_fn": [
+        "D"
+      ],
+      "transaction_form_type": "Class A Common Stock",
+      "transaction_form_type_fn": [
+        "Class A Common Stock"
+      ],
+      "shares": 12234.0,
+      "shares_fn": [
+        12234.0
+      ],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 434584.0,
+      "transaction_total_value_fn": [
+        434584.0
+      ]
+    },
+    {
+      "security_title": "LTIP Units",
+      "security_title_fn": [
+        "LTIP Units"
+      ],
+      "transaction_date": "2021-03-25",
+      "transaction_date_fn": [
+        "2021-03-25"
+      ],
+      "deemed_execution_date": "[^2]",
+      "deemed_execution_date_fn": [
+        "^2"
+      ],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "A"
+      ],
+      "transaction_timeliness": "A",
+      "transaction_timeliness_fn": [
+        "A"
+      ],
+      "transaction_form_type": "Class A Common Stock",
+      "transaction_form_type_fn": [
+        "Class A Common Stock"
+      ],
+      "shares": 34339.0,
+      "shares_fn": [
+        34339.0
+      ],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 468923.0,
+      "transaction_total_value_fn": [
+        468923.0
+      ]
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Class A Common Stock",
+      "security_title_fn": [
+        "Class A Common Stock"
+      ],
+      "shares_owned_following_transaction": 12234.0,
+      "shares_owned_following_transaction_fn": [
+        12234.0
+      ],
+      "value_owned_following_transaction": 434584.0,
+      "value_owned_following_transaction_fn": [
+        434584.0
+      ],
+      "direct_or_indirect_ownership": "Issuer",
+      "direct_or_indirect_ownership_fn": [
+        "Issuer"
+      ],
+      "nature_of_ownership": "In Process of Ownership",
+      "nature_of_ownership_fn": [
+        "In Process of Ownership"
+      ],
+      "original_owned_fn": [
+        "LTIP Units",
+        "^1",
+        "D",
+        "Class A Common Stock"
+      ]
+    },
+    {
+      "security_title": "Class A Common Stock",
+      "security_title_fn": [
+        "Class A Common Stock"
+      ],
+      "shares_owned_following_transaction": 34339.0,
+      "shares_owned_following_transaction_fn": [
+        34339.0
+      ],
+      "value_owned_following_transaction": 468923.0,
+      "value_owned_following_transaction_fn": [
+        468923.0
+      ],
+      "direct_or_indirect_ownership": "Issuer",
+      "direct_or_indirect_ownership_fn": [
+        "Issuer"
+      ],
+      "nature_of_ownership": "Owned Following Transaction",
+      "nature_of_ownership_fn": [
+        "Owned Following Transaction"
+      ],
+      "original_owned_fn": [
+        "LTIP Units",
+        "^2",
+        "A",
+        "Class A Common Stock"
+      ]
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Represents the forfeiture of long-term incentive plan units (\"LTIP Units\") in Bluerock Residential Holdings, LP (the \"Operating Partnership\"), of which the Issuer is the general partner, granted to the reporting person on January 1, 2018 and October 4, 2018, which were eligible to vest subject to achievement of certain performance criteria and established targets over a three-year performance period. Upon grant, the maximum vesting amount was reported in Table II of Form 4. On March 25, 2021, the Issuer determined that, based on the Issuer's performance over the applicable performance period, 16,673 LTIP Units would vest and 12,234 LTIP Units would be forfeited.",
+    "2": "Represents LTIP Units in the Operating Partnership, of which the Issuer is the general partner. These LTIP Units are issued in payment of the annual incentive bonus for the fiscal year ended December 31, 2020. These LTIP Units are vested upon issuance and may convert to OP Units upon reaching capital account equivalency with the OP Units held by the Issuer, and may then be redeemed for cash or, at the option of the Issuer and after a one year holding period (including any period during which the LTIP Units were held), settled in shares of the Issuer's Class A common stock on a one-for-one basis."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Christopher J. Vohs, Attorney-in-fact",
+      "signature_date": "2021-03-29",
+      "original": "/s/ Christopher J. Vohs, Attorney-in-fact \n 2021-03-29"
+    }
+  ]
+}

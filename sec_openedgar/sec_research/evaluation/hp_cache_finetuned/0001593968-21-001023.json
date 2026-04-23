@@ -1,0 +1,88 @@
+{
+  "issuer": {
+    "issuer_cik": "0001396440",
+    "issuer_name": "Main Street Capital CORP",
+    "issuer_trading_symbol": "MAIN",
+    "period_of_report": "2021-03-15",
+    "date_of_original_submission": "2021-03-26",
+    "remarks": "",
+    "not_subject_to_section_16": false,
+    "is_rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": 4.0,
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001718494",
+      "rptowner_name": "Banner Valerie Lebeaux",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "1300 POST OAK BLVD 8TH FLOOR",
+        "HOUSTON, TX, 77056"
+      ],
+      "rptowner_foreign_state_territory": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 5.16,
+      "shares_fn": [],
+      "price": 38.39,
+      "price_fn": [],
+      "transaction_total_value": 26153.226,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 26153.226,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_original_owned_owned": "",
+      "nature_of_original_owned_owned_fn": [],
+      "transaction_summary": "Common Stock acquired under a dividend reinvestment plan, pursuant to a dividend reinvestment transaction exempt from Section 16 under Rule 16a-11."
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 102.095,
+      "shares_fn": [],
+      "price": 39.34,
+      "price_fn": [],
+      "transaction_total_value": 26255.321,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 26255.321,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_original_owned_owned": "",
+      "nature_of_original_owned_owned_fn": [],
+      "transaction_summary": "Common Stock acquired under a dividend reinvestment plan, pursuant to a dividend reinvestment transaction exempt from Section 16 under Rule 16a-11."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "The reporting person acquired these shares under a dividend reinvestment plan, pursuant to a dividend reinvestment transaction exempt from Section 16 under Rule 16a-11."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Jason B. Beauvais as Attorney-in-Fact for Valerie L. Banner",
+      "signature_date": "2021-03-26",
+      "original": "/s/ Jason B. Beauvais as Attorney-in-Fact for Valerie L. Banner 2021-03-26"
+    }
+  ]
+}

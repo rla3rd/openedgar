@@ -1,0 +1,195 @@
+{
+  "issuer": {
+    "issuer_cik": "0001325618",
+    "issuer_name": "IRADIMED CORP",
+    "issuer_trading_symbol": "IRMD",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-07-19",
+  "date_of_original_submission": "2021-07-21",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001613801",
+      "rptowner_name": "Susi Roger E.",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "President, CEO and Chairman",
+      "rptowner_street": [
+        "C/O IRADIMED CORPORATION",
+        "1025 WILLA SPRINGS DR.",
+        "WINTER SPRINGS, FL, 32708"
+      ],
+      "rptowner_foreign_state_territory": "",
+      "rptowner_good_address": true
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 5000.0,
+      "shares_owned_following_transaction_fn": [
+        "D"
+      ],
+      "value_owned_following_transaction": 961050.0,
+      "value_owned_following_transaction_fn": [
+        "I (By Roger E. Susi Revocable Trust)"
+      ],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [
+        "I (By Roger E. Susi Revocable Trust)"
+      ],
+      "nature_of_ownership": "10pctowner",
+      "nature_of_ownership_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": 4.0,
+      "transaction_form_type_fn": [
+        4
+      ],
+      "equity_swap_involved": false
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 5000.0,
+      "shares_owned_following_transaction_fn": [
+        "D"
+      ],
+      "value_owned_following_transaction": 956050.0,
+      "value_owned_following_transaction_fn": [
+        "I (By Roger E. Susi Revocable Trust)"
+      ],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [
+        "I (By Roger E. Susi Revocable Trust)"
+      ],
+      "nature_of_ownership": "10pctowner",
+      "nature_of_ownership_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": 4.0,
+      "transaction_form_type_fn": [
+        4
+      ],
+      "equity_swap_involved": false
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 2362500.0,
+      "shares_owned_following_transaction_fn": [
+        "I (By Matthew Susi 2008 Dynasty Trust)"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [
+        "I (By Matthew Susi 2008 Dynasty Trust)"
+      ],
+      "nature_of_ownership": "10pctowner",
+      "nature_of_ownership_fn": [],
+      "transaction_code": "",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": 0.0,
+      "transaction_form_type_fn": [],
+      "equity_swap_involved": false
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 2362500.0,
+      "shares_owned_following_transaction_fn": [
+        "I (By Phillip Susi 2008 Dynasty Trust)"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [
+        "I (By Phillip Susi 2008 Dynasty Trust)"
+      ],
+      "nature_of_ownership": "10pctowner",
+      "nature_of_ownership_fn": [],
+      "transaction_code": "",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": 0.0,
+      "transaction_form_type_fn": [],
+      "equity_swap_involved": false
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_code": "",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": 0.0,
+      "transaction_form_type_fn": [],
+      "equity_swap_involved": false
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_code": "",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": 0.0,
+      "transaction_form_type_fn": [],
+      "equity_swap_involved": false
+    }
+  ],
+  "footnotes": {
+    "1": "The sales reported in this Form 4 were effected pursuant to a Rule 10b5-1 trading plan adopted by the reporting person on June 15, 2021.",
+    "2": "This transaction was executed in multiple trades at prices ranging from $33.39 to $34.72. The price reported above reflects the weighted average sale price. The reporting person hereby undertakes to provide upon request to the SEC staff, the issuer or a security holder of the issuer full information regarding the number of shares and prices at which the transaction was effected.",
+    "3": "This transaction was executed in multiple trades at prices ranging from $33.24 to $35.10. The price reported above reflects the weighted average sale price. The reporting person hereby undertakes to provide upon request to the SEC staff, the issuer or a security holder of the issuer full information regarding the number of shares and prices at which the transaction was effected.",
+    "4": "The reporting person disclaims beneficial ownership of these securities except to the extent of his pecuniary interest therein, and the inclusion of these shares in this report shall not be deemed an admission of beneficial ownership of all the reported shares for purposes of Section 16 or for any other purpose."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Roger E. Susi",
+      "signature_date": "2021-07-21"
+    }
+  ]
+}

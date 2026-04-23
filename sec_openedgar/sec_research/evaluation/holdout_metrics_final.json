@@ -1,0 +1,1103 @@
+{
+  "processed": 500,
+  "fields": {
+    "date_of_original_submission": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 500,
+      "fp": 0,
+      "fn": 0
+    },
+    "derivative_holdings_conversion_or_exercise_price": {
+      "f1": 0.517483,
+      "precision": 0.411111,
+      "recall": 0.698113,
+      "tp": 37,
+      "fp": 53,
+      "fn": 16
+    },
+    "derivative_holdings_conversion_or_exercise_price_fn": {
+      "f1": 0.326531,
+      "precision": 0.205128,
+      "recall": 0.8,
+      "tp": 8,
+      "fp": 31,
+      "fn": 2
+    },
+    "derivative_holdings_direct_or_indirect_ownership": {
+      "f1": 0.547945,
+      "precision": 0.444444,
+      "recall": 0.714286,
+      "tp": 40,
+      "fp": 50,
+      "fn": 16
+    },
+    "derivative_holdings_direct_or_indirect_ownership_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "derivative_holdings_exercise_date": {
+      "f1": 0.980769,
+      "precision": 0.962264,
+      "recall": 1.0,
+      "tp": 102,
+      "fp": 4,
+      "fn": 0
+    },
+    "derivative_holdings_exercise_date_fn": {
+      "f1": 0.380952,
+      "precision": 0.289855,
+      "recall": 0.555556,
+      "tp": 20,
+      "fp": 49,
+      "fn": 16
+    },
+    "derivative_holdings_expiration_date": {
+      "f1": 0.828729,
+      "precision": 0.815217,
+      "recall": 0.842697,
+      "tp": 75,
+      "fp": 17,
+      "fn": 14
+    },
+    "derivative_holdings_expiration_date_fn": {
+      "f1": 0.285714,
+      "precision": 0.173913,
+      "recall": 0.8,
+      "tp": 8,
+      "fp": 38,
+      "fn": 2
+    },
+    "derivative_holdings_nature_of_ownership": {
+      "f1": 0.975845,
+      "precision": 0.95283,
+      "recall": 1.0,
+      "tp": 101,
+      "fp": 5,
+      "fn": 0
+    },
+    "derivative_holdings_nature_of_ownership_fn": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0
+    },
+    "derivative_holdings_security_title": {
+      "f1": 0.547945,
+      "precision": 0.444444,
+      "recall": 0.714286,
+      "tp": 40,
+      "fp": 50,
+      "fn": 16
+    },
+    "derivative_holdings_security_title_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 17,
+      "fn": 0
+    },
+    "derivative_holdings_shares_owned_following_transaction": {
+      "f1": 0.517483,
+      "precision": 0.411111,
+      "recall": 0.698113,
+      "tp": 37,
+      "fp": 53,
+      "fn": 16
+    },
+    "derivative_holdings_shares_owned_following_transaction_fn": {
+      "f1": 0.888889,
+      "precision": 0.8,
+      "recall": 1.0,
+      "tp": 4,
+      "fp": 1,
+      "fn": 0
+    },
+    "derivative_holdings_transaction_form_type": {
+      "f1": 0.623377,
+      "precision": 0.45283,
+      "recall": 1.0,
+      "tp": 48,
+      "fp": 58,
+      "fn": 0
+    },
+    "derivative_holdings_underlying_security_shares": {
+      "f1": 0.517483,
+      "precision": 0.411111,
+      "recall": 0.698113,
+      "tp": 37,
+      "fp": 53,
+      "fn": 16
+    },
+    "derivative_holdings_underlying_security_shares_fn": {
+      "f1": 0.6,
+      "precision": 0.428571,
+      "recall": 1.0,
+      "tp": 3,
+      "fp": 4,
+      "fn": 0
+    },
+    "derivative_holdings_underlying_security_title": {
+      "f1": 0.547945,
+      "precision": 0.444444,
+      "recall": 0.714286,
+      "tp": 40,
+      "fp": 50,
+      "fn": 16
+    },
+    "derivative_holdings_underlying_security_title_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "derivative_holdings_underlying_security_value": {
+      "f1": 0.517483,
+      "precision": 0.411111,
+      "recall": 0.698113,
+      "tp": 37,
+      "fp": 53,
+      "fn": 16
+    },
+    "derivative_holdings_underlying_security_value_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "derivative_holdings_value_owned_following_transaction": {
+      "f1": 0.517483,
+      "precision": 0.411111,
+      "recall": 0.698113,
+      "tp": 37,
+      "fp": 53,
+      "fn": 16
+    },
+    "derivative_transactions_conversion_or_exercise_price": {
+      "f1": 0.957555,
+      "precision": 0.930693,
+      "recall": 0.986014,
+      "tp": 282,
+      "fp": 21,
+      "fn": 4
+    },
+    "derivative_transactions_conversion_or_exercise_price_fn": {
+      "f1": 0.894569,
+      "precision": 0.952381,
+      "recall": 0.843373,
+      "tp": 140,
+      "fp": 7,
+      "fn": 26
+    },
+    "derivative_transactions_deemed_execution_date": {
+      "f1": 0.993355,
+      "precision": 1.0,
+      "recall": 0.986799,
+      "tp": 299,
+      "fp": 0,
+      "fn": 4
+    },
+    "derivative_transactions_deemed_execution_date_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 4,
+      "fn": 0
+    },
+    "derivative_transactions_direct_or_indirect_ownership": {
+      "f1": 0.919014,
+      "precision": 0.928826,
+      "recall": 0.909408,
+      "tp": 261,
+      "fp": 20,
+      "fn": 26
+    },
+    "derivative_transactions_direct_or_indirect_ownership_fn": {
+      "f1": 0.181818,
+      "precision": 0.111111,
+      "recall": 0.5,
+      "tp": 1,
+      "fp": 8,
+      "fn": 1
+    },
+    "derivative_transactions_equity_swap_involved": {
+      "f1": 0.940959,
+      "precision": 0.996094,
+      "recall": 0.891608,
+      "tp": 255,
+      "fp": 1,
+      "fn": 31
+    },
+    "derivative_transactions_exercise_date": {
+      "f1": 0.962329,
+      "precision": 0.949324,
+      "recall": 0.975694,
+      "tp": 281,
+      "fp": 15,
+      "fn": 7
+    },
+    "derivative_transactions_exercise_date_fn": {
+      "f1": 0.719424,
+      "precision": 0.974026,
+      "recall": 0.570342,
+      "tp": 150,
+      "fp": 4,
+      "fn": 113
+    },
+    "derivative_transactions_expiration_date": {
+      "f1": 0.923623,
+      "precision": 0.948905,
+      "recall": 0.899654,
+      "tp": 260,
+      "fp": 14,
+      "fn": 29
+    },
+    "derivative_transactions_expiration_date_fn": {
+      "f1": 0.681648,
+      "precision": 0.947917,
+      "recall": 0.532164,
+      "tp": 91,
+      "fp": 5,
+      "fn": 80
+    },
+    "derivative_transactions_nature_of_ownership": {
+      "f1": 0.90146,
+      "precision": 0.866667,
+      "recall": 0.939163,
+      "tp": 247,
+      "fp": 38,
+      "fn": 16
+    },
+    "derivative_transactions_nature_of_ownership_fn": {
+      "f1": 0.912281,
+      "precision": 0.83871,
+      "recall": 1.0,
+      "tp": 26,
+      "fp": 5,
+      "fn": 0
+    },
+    "derivative_transactions_price": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 81,
+      "fn": 0
+    },
+    "derivative_transactions_security_title": {
+      "f1": 0.959322,
+      "precision": 0.933993,
+      "recall": 0.986063,
+      "tp": 283,
+      "fp": 20,
+      "fn": 4
+    },
+    "derivative_transactions_security_title_fn": {
+      "f1": 0.377778,
+      "precision": 0.236111,
+      "recall": 0.944444,
+      "tp": 17,
+      "fp": 55,
+      "fn": 1
+    },
+    "derivative_transactions_shares": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 88,
+      "fn": 0
+    },
+    "derivative_transactions_shares_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 13,
+      "fn": 0
+    },
+    "derivative_transactions_shares_owned_following_transaction": {
+      "f1": 0.950764,
+      "precision": 0.924092,
+      "recall": 0.979021,
+      "tp": 280,
+      "fp": 23,
+      "fn": 6
+    },
+    "derivative_transactions_shares_owned_following_transaction_fn": {
+      "f1": 0.742857,
+      "precision": 0.684211,
+      "recall": 0.8125,
+      "tp": 13,
+      "fp": 6,
+      "fn": 3
+    },
+    "derivative_transactions_transaction_acquired_disposed_code": {
+      "f1": 0.978369,
+      "precision": 0.970297,
+      "recall": 0.986577,
+      "tp": 294,
+      "fp": 9,
+      "fn": 4
+    },
+    "derivative_transactions_transaction_code": {
+      "f1": 0.986799,
+      "precision": 0.986799,
+      "recall": 0.986799,
+      "tp": 299,
+      "fp": 4,
+      "fn": 4
+    },
+    "derivative_transactions_transaction_date": {
+      "f1": 0.993399,
+      "precision": 0.993399,
+      "recall": 0.993399,
+      "tp": 301,
+      "fp": 2,
+      "fn": 2
+    },
+    "derivative_transactions_transaction_date_fn": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 3,
+      "fp": 0,
+      "fn": 0
+    },
+    "derivative_transactions_transaction_form_type": {
+      "f1": 0.935543,
+      "precision": 0.992188,
+      "recall": 0.885017,
+      "tp": 254,
+      "fp": 2,
+      "fn": 33
+    },
+    "derivative_transactions_transaction_timeliness": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 287,
+      "fp": 0,
+      "fn": 0
+    },
+    "derivative_transactions_transaction_total_value": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 81,
+      "fn": 0
+    },
+    "derivative_transactions_underlying_security_shares": {
+      "f1": 0.807087,
+      "precision": 0.923423,
+      "recall": 0.716783,
+      "tp": 205,
+      "fp": 17,
+      "fn": 81
+    },
+    "derivative_transactions_underlying_security_shares_fn": {
+      "f1": 0.583333,
+      "precision": 0.466667,
+      "recall": 0.777778,
+      "tp": 7,
+      "fp": 8,
+      "fn": 2
+    },
+    "derivative_transactions_underlying_security_title": {
+      "f1": 0.784762,
+      "precision": 0.927928,
+      "recall": 0.679868,
+      "tp": 206,
+      "fp": 16,
+      "fn": 97
+    },
+    "derivative_transactions_underlying_security_title_fn": {
+      "f1": 0.588235,
+      "precision": 0.555556,
+      "recall": 0.625,
+      "tp": 5,
+      "fp": 4,
+      "fn": 3
+    },
+    "derivative_transactions_underlying_security_value": {
+      "f1": 0.737527,
+      "precision": 0.971429,
+      "recall": 0.594406,
+      "tp": 170,
+      "fp": 5,
+      "fn": 116
+    },
+    "derivative_transactions_underlying_security_value_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "derivative_transactions_value_owned_following_transaction": {
+      "f1": 0.911439,
+      "precision": 0.964844,
+      "recall": 0.863636,
+      "tp": 247,
+      "fp": 9,
+      "fn": 39
+    },
+    "footnotes_0": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 28,
+      "fn": 0
+    },
+    "footnotes_1": {
+      "f1": 0.94469,
+      "precision": 0.953125,
+      "recall": 0.936404,
+      "tp": 427,
+      "fp": 21,
+      "fn": 29
+    },
+    "footnotes_10": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    "footnotes_11": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    "footnotes_12": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0
+    },
+    "footnotes_2": {
+      "f1": 0.949565,
+      "precision": 0.968085,
+      "recall": 0.931741,
+      "tp": 273,
+      "fp": 9,
+      "fn": 20
+    },
+    "footnotes_3": {
+      "f1": 0.960227,
+      "precision": 0.976879,
+      "recall": 0.944134,
+      "tp": 169,
+      "fp": 4,
+      "fn": 10
+    },
+    "footnotes_4": {
+      "f1": 0.963351,
+      "precision": 0.968421,
+      "recall": 0.958333,
+      "tp": 92,
+      "fp": 3,
+      "fn": 4
+    },
+    "footnotes_5": {
+      "f1": 0.979167,
+      "precision": 0.979167,
+      "recall": 0.979167,
+      "tp": 47,
+      "fp": 1,
+      "fn": 1
+    },
+    "footnotes_6": {
+      "f1": 0.943396,
+      "precision": 0.961538,
+      "recall": 0.925926,
+      "tp": 25,
+      "fp": 1,
+      "fn": 2
+    },
+    "footnotes_7": {
+      "f1": 0.941176,
+      "precision": 0.941176,
+      "recall": 0.941176,
+      "tp": 16,
+      "fp": 1,
+      "fn": 1
+    },
+    "footnotes_8": {
+      "f1": 0.909091,
+      "precision": 0.909091,
+      "recall": 0.909091,
+      "tp": 10,
+      "fp": 1,
+      "fn": 1
+    },
+    "footnotes_9": {
+      "f1": 0.941176,
+      "precision": 1.0,
+      "recall": 0.888889,
+      "tp": 8,
+      "fp": 0,
+      "fn": 1
+    },
+    "form_type": {
+      "f1": 0.927039,
+      "precision": 1.0,
+      "recall": 0.864,
+      "tp": 432,
+      "fp": 0,
+      "fn": 68
+    },
+    "is_rule_10b5_plan": {
+      "f1": 0.982,
+      "precision": 0.982,
+      "recall": 0.982,
+      "tp": 491,
+      "fp": 9,
+      "fn": 9
+    },
+    "issuer_cik": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 500,
+      "fp": 0,
+      "fn": 0
+    },
+    "issuer_foreign_trading_symbol": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 500,
+      "fp": 0,
+      "fn": 0
+    },
+    "issuer_name": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 500,
+      "fp": 0,
+      "fn": 0
+    },
+    "issuer_schema_version": {
+      "f1": 0.927039,
+      "precision": 1.0,
+      "recall": 0.864,
+      "tp": 432,
+      "fp": 0,
+      "fn": 68
+    },
+    "issuer_trading_symbol": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 500,
+      "fp": 0,
+      "fn": 0
+    },
+    "no_securities_owned": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 500,
+      "fp": 0,
+      "fn": 0
+    },
+    "non_derivative_holdings_direct_or_indirect_ownership": {
+      "f1": 0.722323,
+      "precision": 0.625786,
+      "recall": 0.854077,
+      "tp": 199,
+      "fp": 119,
+      "fn": 34
+    },
+    "non_derivative_holdings_direct_or_indirect_ownership_fn": {
+      "f1": 0.545455,
+      "precision": 0.5,
+      "recall": 0.6,
+      "tp": 3,
+      "fp": 3,
+      "fn": 2
+    },
+    "non_derivative_holdings_nature_of_ownership": {
+      "f1": 0.890578,
+      "precision": 0.901538,
+      "recall": 0.87988,
+      "tp": 293,
+      "fp": 32,
+      "fn": 40
+    },
+    "non_derivative_holdings_nature_of_ownership_fn": {
+      "f1": 0.772727,
+      "precision": 0.723404,
+      "recall": 0.829268,
+      "tp": 34,
+      "fp": 13,
+      "fn": 7
+    },
+    "non_derivative_holdings_security_title": {
+      "f1": 0.698706,
+      "precision": 0.59434,
+      "recall": 0.847534,
+      "tp": 189,
+      "fp": 129,
+      "fn": 34
+    },
+    "non_derivative_holdings_security_title_fn": {
+      "f1": 0.571429,
+      "precision": 0.4,
+      "recall": 1.0,
+      "tp": 2,
+      "fp": 3,
+      "fn": 0
+    },
+    "non_derivative_holdings_shares_owned_following_transaction": {
+      "f1": 0.689013,
+      "precision": 0.581761,
+      "recall": 0.844749,
+      "tp": 185,
+      "fp": 133,
+      "fn": 34
+    },
+    "non_derivative_holdings_shares_owned_following_transaction_fn": {
+      "f1": 0.495238,
+      "precision": 0.361111,
+      "recall": 0.787879,
+      "tp": 26,
+      "fp": 46,
+      "fn": 7
+    },
+    "non_derivative_holdings_transaction_form_type": {
+      "f1": 0.63035,
+      "precision": 0.460227,
+      "recall": 1.0,
+      "tp": 162,
+      "fp": 190,
+      "fn": 0
+    },
+    "non_derivative_holdings_value_owned_following_transaction": {
+      "f1": 0.689013,
+      "precision": 0.581761,
+      "recall": 0.844749,
+      "tp": 185,
+      "fp": 133,
+      "fn": 34
+    },
+    "non_derivative_holdings_value_owned_following_transaction_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "non_derivative_transactions_deemed_execution_date": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 738,
+      "fp": 0,
+      "fn": 0
+    },
+    "non_derivative_transactions_direct_or_indirect_ownership": {
+      "f1": 0.953652,
+      "precision": 0.961756,
+      "recall": 0.945682,
+      "tp": 679,
+      "fp": 27,
+      "fn": 39
+    },
+    "non_derivative_transactions_direct_or_indirect_ownership_fn": {
+      "f1": 0.564103,
+      "precision": 0.5,
+      "recall": 0.647059,
+      "tp": 11,
+      "fp": 11,
+      "fn": 6
+    },
+    "non_derivative_transactions_equity_swap_involved": {
+      "f1": 0.933135,
+      "precision": 1.0,
+      "recall": 0.874652,
+      "tp": 628,
+      "fp": 0,
+      "fn": 90
+    },
+    "non_derivative_transactions_nature_of_ownership": {
+      "f1": 0.920056,
+      "precision": 0.892517,
+      "recall": 0.949349,
+      "tp": 656,
+      "fp": 79,
+      "fn": 35
+    },
+    "non_derivative_transactions_nature_of_ownership_fn": {
+      "f1": 0.900901,
+      "precision": 0.909091,
+      "recall": 0.892857,
+      "tp": 50,
+      "fp": 5,
+      "fn": 6
+    },
+    "non_derivative_transactions_price": {
+      "f1": 0.98489,
+      "precision": 0.971545,
+      "recall": 0.998607,
+      "tp": 717,
+      "fp": 21,
+      "fn": 1
+    },
+    "non_derivative_transactions_price_fn": {
+      "f1": 0.914661,
+      "precision": 0.928889,
+      "recall": 0.900862,
+      "tp": 209,
+      "fp": 16,
+      "fn": 23
+    },
+    "non_derivative_transactions_security_title": {
+      "f1": 0.986264,
+      "precision": 0.9729,
+      "recall": 1.0,
+      "tp": 718,
+      "fp": 20,
+      "fn": 0
+    },
+    "non_derivative_transactions_security_title_fn": {
+      "f1": 0.96,
+      "precision": 0.96,
+      "recall": 0.96,
+      "tp": 24,
+      "fp": 1,
+      "fn": 1
+    },
+    "non_derivative_transactions_shares": {
+      "f1": 0.986264,
+      "precision": 0.9729,
+      "recall": 1.0,
+      "tp": 718,
+      "fp": 20,
+      "fn": 0
+    },
+    "non_derivative_transactions_shares_fn": {
+      "f1": 0.832323,
+      "precision": 0.789272,
+      "recall": 0.880342,
+      "tp": 206,
+      "fp": 55,
+      "fn": 28
+    },
+    "non_derivative_transactions_shares_owned_following_transaction": {
+      "f1": 0.979396,
+      "precision": 0.966125,
+      "recall": 0.993036,
+      "tp": 713,
+      "fp": 25,
+      "fn": 5
+    },
+    "non_derivative_transactions_shares_owned_following_transaction_fn": {
+      "f1": 0.833333,
+      "precision": 0.903614,
+      "recall": 0.773196,
+      "tp": 75,
+      "fp": 8,
+      "fn": 22
+    },
+    "non_derivative_transactions_transaction_acquired_disposed_code": {
+      "f1": 0.997963,
+      "precision": 0.995935,
+      "recall": 1.0,
+      "tp": 735,
+      "fp": 3,
+      "fn": 0
+    },
+    "non_derivative_transactions_transaction_acquired_disposed_code_fn": {
+      "f1": 0.888889,
+      "precision": 1.0,
+      "recall": 0.8,
+      "tp": 4,
+      "fp": 0,
+      "fn": 1
+    },
+    "non_derivative_transactions_transaction_code": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 738,
+      "fp": 0,
+      "fn": 0
+    },
+    "non_derivative_transactions_transaction_date": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 738,
+      "fp": 0,
+      "fn": 0
+    },
+    "non_derivative_transactions_transaction_date_fn": {
+      "f1": 0.923077,
+      "precision": 0.857143,
+      "recall": 1.0,
+      "tp": 6,
+      "fp": 1,
+      "fn": 0
+    },
+    "non_derivative_transactions_transaction_form_type": {
+      "f1": 0.933135,
+      "precision": 1.0,
+      "recall": 0.874652,
+      "tp": 628,
+      "fp": 0,
+      "fn": 90
+    },
+    "non_derivative_transactions_transaction_timeliness": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 718,
+      "fp": 0,
+      "fn": 0
+    },
+    "non_derivative_transactions_transaction_total_value": {
+      "f1": 0.903418,
+      "precision": 0.968153,
+      "recall": 0.846797,
+      "tp": 608,
+      "fp": 20,
+      "fn": 110
+    },
+    "non_derivative_transactions_transaction_total_value_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 9,
+      "fn": 0
+    },
+    "non_derivative_transactions_value_owned_following_transaction": {
+      "f1": 0.915305,
+      "precision": 0.980892,
+      "recall": 0.857939,
+      "tp": 616,
+      "fp": 12,
+      "fn": 102
+    },
+    "non_derivative_transactions_value_owned_following_transaction_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 3,
+      "fn": 0
+    },
+    "not_subject_to_section_16": {
+      "f1": 0.994,
+      "precision": 0.994,
+      "recall": 0.994,
+      "tp": 497,
+      "fp": 3,
+      "fn": 3
+    },
+    "period_of_report": {
+      "f1": 0.927039,
+      "precision": 1.0,
+      "recall": 0.864,
+      "tp": 432,
+      "fp": 0,
+      "fn": 68
+    },
+    "remarks": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 500,
+      "fp": 0,
+      "fn": 0
+    },
+    "reporting_owners_ccc": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 522,
+      "fp": 0,
+      "fn": 0
+    },
+    "reporting_owners_cik": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 522,
+      "fp": 0,
+      "fn": 0
+    },
+    "reporting_owners_city": {
+      "f1": 0.921026,
+      "precision": 0.99117,
+      "recall": 0.860153,
+      "tp": 449,
+      "fp": 4,
+      "fn": 73
+    },
+    "reporting_owners_country": {
+      "f1": 0.990329,
+      "precision": 0.980843,
+      "recall": 1.0,
+      "tp": 512,
+      "fp": 10,
+      "fn": 0
+    },
+    "reporting_owners_good_address": {
+      "f1": 0.92623,
+      "precision": 0.995595,
+      "recall": 0.8659,
+      "tp": 452,
+      "fp": 2,
+      "fn": 70
+    },
+    "reporting_owners_is_10pctowner": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 522,
+      "fp": 0,
+      "fn": 0
+    },
+    "reporting_owners_is_director": {
+      "f1": 0.994253,
+      "precision": 0.994253,
+      "recall": 0.994253,
+      "tp": 519,
+      "fp": 3,
+      "fn": 3
+    },
+    "reporting_owners_is_director_nominee": {
+      "f1": 0.930328,
+      "precision": 1.0,
+      "recall": 0.869732,
+      "tp": 454,
+      "fp": 0,
+      "fn": 68
+    },
+    "reporting_owners_is_officer": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 522,
+      "fp": 0,
+      "fn": 0
+    },
+    "reporting_owners_is_other": {
+      "f1": 0.930328,
+      "precision": 1.0,
+      "recall": 0.869732,
+      "tp": 454,
+      "fp": 0,
+      "fn": 68
+    },
+    "reporting_owners_name": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 522,
+      "fp": 0,
+      "fn": 0
+    },
+    "reporting_owners_non_us_address_flag": {
+      "f1": 0.89959,
+      "precision": 0.96696,
+      "recall": 0.840996,
+      "tp": 439,
+      "fp": 15,
+      "fn": 83
+    },
+    "reporting_owners_non_us_state_territory": {
+      "f1": 0.985423,
+      "precision": 0.971264,
+      "recall": 1.0,
+      "tp": 507,
+      "fp": 15,
+      "fn": 0
+    },
+    "reporting_owners_officer_title": {
+      "f1": 0.979866,
+      "precision": 0.980806,
+      "recall": 0.978927,
+      "tp": 511,
+      "fp": 10,
+      "fn": 11
+    },
+    "reporting_owners_other_text": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 522,
+      "fp": 0,
+      "fn": 0
+    },
+    "reporting_owners_state": {
+      "f1": 0.927179,
+      "precision": 0.995595,
+      "recall": 0.867562,
+      "tp": 452,
+      "fp": 2,
+      "fn": 69
+    },
+    "reporting_owners_state_description": {
+      "f1": 0.457478,
+      "precision": 0.308911,
+      "recall": 0.881356,
+      "tp": 156,
+      "fp": 349,
+      "fn": 21
+    },
+    "reporting_owners_zip": {
+      "f1": 0.930328,
+      "precision": 1.0,
+      "recall": 0.869732,
+      "tp": 454,
+      "fp": 0,
+      "fn": 68
+    },
+    "signatures_signature_date": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 522,
+      "fp": 0,
+      "fn": 0
+    },
+    "signatures_signature_name": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 522,
+      "fp": 0,
+      "fn": 0
+    }
+  },
+  "avg_rougeL": 0.339463,
+  "avg_semantic_sim": 0.671673
+}

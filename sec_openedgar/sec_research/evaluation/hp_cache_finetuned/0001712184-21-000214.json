@@ -1,0 +1,86 @@
+{
+  "issuer": {
+    "issuer_cik": "0001712184",
+    "issuer_name": "Liberty Latin America Ltd.",
+    "issuer_trading_symbol": "LILA",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-09-30",
+  "date_of_original_submission": "2021-10-04",
+  "remarks": "The trading symbols for the Issuer's classes of common shares are LILA, LILAB, and LILAK.",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001724519",
+      "rptowner_name": "DE ANGOITIA ALFONSO",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "C/O LIBERTY LATIN AMERICA LTD.",
+        "1550 WEWATTA STREET, SUITE 710",
+        "DENVER, CO, 80202"
+      ],
+      "rptowner_foreign_state_territory": "",
+      "rptowner_good_address": true
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Class A Common Shares",
+      "security_title_fn": [],
+      "shares": 699.0,
+      "shares_fn": [
+        "[^1]"
+      ],
+      "price": 13.08,
+      "price_fn": [],
+      "transaction_total_value": 15848.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4",
+      "transaction_form_type_fn": []
+    },
+    {
+      "security_title": "Class C Common Shares",
+      "security_title_fn": [],
+      "shares": 1398.0,
+      "shares_fn": [
+        "[^1]"
+      ],
+      "price": 13.12,
+      "price_fn": [],
+      "transaction_total_value": 39266.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4",
+      "transaction_form_type_fn": []
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": []
+}

@@ -1,0 +1,103 @@
+{
+  "issuer": {
+    "issuer_cik": "0001574085",
+    "issuer_name": "Braemar Hotels & Resorts Inc.",
+    "issuer_trading_symbol": "BHR",
+    "period_of_report": "2021-05-14",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001313188",
+      "rptowner_name": "McWilliams Curtis B",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "14185 DALLAS PARKWAY",
+      "rptowner_street2": "SUITE 1200",
+      "rptowner_city": "DALLAS",
+      "rptowner_state": "TX",
+      "rptowner_zip": "75254",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_foreign_trading_symbol": "",
+      "schema_version": "X0306"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-14",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "P",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "transaction_form_type_fn": [
+        "Non-Derivative Securities"
+      ],
+      "a_or_foreign_owned": false,
+      "a_or_foreign_owned_fn": [],
+      "value": 2000.0,
+      "value_fn": [],
+      "total_value": 2000.0,
+      "total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_owned_following_transaction": false,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "I"
+      ],
+      "nature": "By Curtis B. McWilliams IRA",
+      "nature_fn": [
+        "By Curtis B. McWilliams IRA"
+      ]
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value": 61802.0,
+      "value_fn": [],
+      "total_value": 61802.0,
+      "total_value_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature": "",
+      "nature_fn": [],
+      "schema_version": "X0306"
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {},
+  "signatures": [
+    {
+      "signature_name": "/s/ Curtis B. McWilliams",
+      "signature_date": "2021-05-18",
+      "signature_date_fn": [],
+      "schema_version": "X0306"
+    }
+  ]
+}

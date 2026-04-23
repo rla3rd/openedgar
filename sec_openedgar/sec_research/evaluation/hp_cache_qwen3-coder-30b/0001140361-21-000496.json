@@ -1,0 +1,286 @@
+{
+  "issuer": {
+    "issuer_cik": "0001484612",
+    "issuer_name": "Outset Medical, Inc.",
+    "issuer_trading_symbol": "OM",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-01-05",
+  "date_of_original_submission": "",
+  "remarks": "Due to the limitations of the SEC EDGAR filing system, WP LLC is filing a separate Form 4 from the WPP Funds, WPX GP, WP X, WP X LP, WP X GP, WPP GP, WP Partners, WP Partners GP, and WP.",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001414561",
+      "rptowner_name": "Warburg Pincus X, L.P.",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": true,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "C/O WARBURG PINCUS LLC",
+      "rptowner_street2": "450 LEXINGTON AVENUE",
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10017",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "New York",
+      "rptowner_good_address": false
+    },
+    {
+      "rptowner_cik": "0001451560",
+      "rptowner_name": "Warburg Pincus X Partners, L.P.",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": true,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "C/O WARBURG PINCUS LLC",
+      "rptowner_street2": "450 LEXINGTON AVENUE",
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10017",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "New York",
+      "rptowner_good_address": false
+    },
+    {
+      "rptowner_cik": "0001770767",
+      "rptowner_name": "WP X Finance, L.P.",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": true,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "C/O WARBURG PINCUS LLC",
+      "rptowner_street2": "450 LEXINGTON AVENUE",
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10017",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "New York",
+      "rptowner_good_address": false
+    },
+    {
+      "rptowner_cik": "0001770772",
+      "rptowner_name": "WPX GP, L.P.",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": true,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "C/O WARBURG PINCUS LLC",
+      "rptowner_street2": "450 LEXINGTON AVENUE",
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10017",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "New York",
+      "rptowner_good_address": false
+    },
+    {
+      "rptowner_cik": "0001414565",
+      "rptowner_name": "Warburg Pincus Private Equity X, L.P.",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": true,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "C/O WARBURG PINCUS LLC",
+      "rptowner_street2": "450 LEXINGTON AVENUE",
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10017",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "New York",
+      "rptowner_good_address": false
+    },
+    {
+      "rptowner_cik": "0001414564",
+      "rptowner_name": "Warburg Pincus X GP L.P.",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": true,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "C/O WARBURG PINCUS LLC",
+      "rptowner_street2": "450 LEXINGTON AVENUE",
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10017",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "New York",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-01-05",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 17141.0,
+      "shares_fn": [
+        "1",
+        "3",
+        "4",
+        "5"
+      ],
+      "price": 50.35,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 146698.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "See footnotes",
+      "nature_of_ownership_fn": [
+        "1",
+        "3",
+        "4",
+        "5"
+      ],
+      "transaction_summary": "Sold 17,141 shares of Common Stock at $50.35 per share."
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-01-05",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 535793.0,
+      "shares_fn": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "price": 50.35,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 4585505.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "See footnotes",
+      "nature_of_ownership_fn": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "transaction_summary": "Sold 535,793 shares of Common Stock at $50.35 per share."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "These securities are held directly by Warburg Pincus X Partners, L.P., a Delaware limited partnership (\"WP X Partners\").",
+    "2": "These securities are held directly by WP X Finance, L.P., a Delaware limited partnership (\"WP X Finance\", and together with WP X Partners, the \"WPP Funds\"). WPX GP, L.P., a Delaware limited partnership (\"WPX GP\"), is the managing general partner of WP X Finance. Warburg Pincus Private Equity X, L.P., a Delaware limited partnership (\"WP X\"), is the general partner of WPX GP.",
+    "3": "Warburg Pincus X, L.P., a Delaware limited partnership (\"WP X LP\"), is the general partner of WP X and WP X Partners. Warburg Pincus X GP L.P., a Delaware limited partnership (\"WP X GP\"), is the general partner of WP X LP. WPP GP LLC, a Delaware limited liability company (\"WPP GP\"), is the general partner of WP X GP. Warburg Pincus Partners, L.P., a Delaware limited partnership (\"WP Partners\"), is the managing member of WPP GP. Warburg Pincus Partners GP LLC, a Delaware limited liability company (\"WP Partners GP\"), is the general partner of WP Partners. Warburg Pincus & Co., a New York general partnership (\"WP\"), is the managing member of WP Partners GP. Warburg Pincus LLC, a New York limited liability company (\"WP LLC\"), is the manager of the WPP Funds.",
+    "4": "Each of the WPP Funds, WPX GP, WP X, WP X LP, WP X GP, WPP GP, WP Partners, WP Partners GP, WP and WP LLC are collectively referred to herein as the \"Warburg Pincus Entities.\"",
+    "5": "Each of the Warburg Pincus Entities is a director-by-deputization solely for purposes of Section 16 of the Exchange Act."
+  },
+  "signatures": [
+    {
+      "signature_name": "WP X FINANCE, L.P. By: WPX GP, its mg gp By: WP X, its gp By: WP X LP, its gp By: WP X GP L.P., its gp By: WPP GP LLC, its gp By: WPP, L.P., its mm By: WPP GP LLC, its gp By: WP & Co., its mm By: /s/ Robert B. Knauss Name: Robert B. Knauss Title: Partner",
+      "signature_date": "2021-01-07"
+    },
+    {
+      "signature_name": "WPX GP, L.P. By: WP X, its gp By: WP X LP, its gp By: WP X GP L.P., its gp By: WPP GP LLC, its gp By: WPP, L.P., its mm By: WPP GP LLC, its gp By: WP & Co., its mm By: /s/ Robert B. Knauss Name: Robert B. Knauss Title: Partner",
+      "signature_date": "2021-01-07"
+    },
+    {
+      "signature_name": "WARBURG PINCUS PRIVATE EQUITY X, L.P. By: WP X, L.P., its gp By: WP X GP L.P., its gp By: WPP GP LLC, its gp By: WPP, L.P., its mm By: WPP GP LLC, its gp By: WP & Co., its mm By: /s/ Robert B. Knauss Name: Robert B. Knauss Title: Partner",
+      "signature_date": "2021-01-07"
+    },
+    {
+      "signature_name": "WARBURG PINCUS X PARTNERS, L.P. By: WP X, L.P., its gp By: WP X GP L.P., its gp By: WPP GP LLC, its gp By: WPP, L.P., its mm By: WPP GP LLC, its gp By: WP & Co., its mm By: /s/ Robert B. Knauss Name: Robert B. Knauss Title: Partner",
+      "signature_date": "2021-01-07"
+    },
+    {
+      "signature_name": "WARBURG PINCUS X, L.P. By: WP X GP L.P., its gp By: WPP GP LLC, its gp By: WPP, L.P., its mm By: WPP GP LLC, its gp By: WP & Co., its mm By: /s/ Robert B. Knauss Name: Robert B. Knauss Title: Partner",
+      "signature_date": "2021-01-07"
+    },
+    {
+      "signature_name": "WARBURG PINCUS X GP L.P. By: WPP GP LLC, its gp By: WPP, L.P., its mm By: WPP GP LLC, its gp By: WP & Co., its mm By: /s/ Robert B. Knauss Name: Robert B. Knauss Title: Partner",
+      "signature_date": "2021-01-07"
+    },
+    {
+      "signature_name": "WARBURG PINCUS PARTNERS, L.P. By: Warburg Pincus Partners GP LLC, its general partner By: Warburg Pincus & Co., its managing member By: /s/ Robert B. Knauss Name: Robert B. Knauss Title: Partner",
+      "signature_date": "2021-01-07"
+    },
+    {
+      "signature_name": "WARBURG PINCUS PARTNERS GP LLC By: Warburg Pincus & Co., its managing member By: /s/ Robert B. Knauss Name: Robert B. Knauss Title: Partner",
+      "signature_date": "2021-01-07"
+    },
+    {
+      "signature_name": "WARBURG PINCUS & CO. By: /s/ Robert B. Knauss Name: Robert B. Knauss Title: Partner",
+      "signature_date": "2021-01-07"
+    },
+    {
+      "signature_name": "WPP GP LLC By: Warburg Pincus Partners, L.P., its managing member By: Warburg Pincus Partners GP LLC, its general partner By: Warburg Pincus & Co., its managing member By: /s/ Robert B. Knauss Name: Robert B. Knauss Title: Partner",
+      "signature_date": "2021-01-07"
+    }
+  ]
+}

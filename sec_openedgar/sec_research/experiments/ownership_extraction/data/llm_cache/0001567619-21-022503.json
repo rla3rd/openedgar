@@ -1,0 +1,118 @@
+{
+  "issuer": {
+    "issuer_cik": "0001770787",
+    "issuer_name": "10x Genomics, Inc.",
+    "issuer_trading_symbol": "TXG"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001246406",
+      "rptowner_name": "CRUTCHFIELD BRADFORD",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "officer_title": "Chief Commercial Officer"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Class A Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-12-21",
+      "transaction_date_fn": "",
+      "transaction_code": "M",
+      "transaction_code_fn": "",
+      "shares": 4688.0,
+      "shares_fn": "",
+      "price": 1.2,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 47743.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Class A Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-12-21",
+      "transaction_date_fn": "",
+      "transaction_code": "M",
+      "transaction_code_fn": "",
+      "shares": 49910.0,
+      "shares_fn": "",
+      "price": 5.04,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 97653.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Stock Option (right to buy)",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 1.2,
+      "conversion_or_exercise_price_fn": "",
+      "transaction_date": "2021-12-21",
+      "transaction_date_fn": "",
+      "transaction_code": "M",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "",
+      "expiration_date": "2027-10-18",
+      "expiration_date_fn": "",
+      "underlying_security_title": "Class A Common Stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 4688.0,
+      "underlying_security_shares_fn": "[F1]",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Stock Option (right to buy)",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 5.04,
+      "conversion_or_exercise_price_fn": "",
+      "transaction_date": "2021-12-21",
+      "transaction_date_fn": "",
+      "transaction_code": "M",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "",
+      "expiration_date": "2028-11-02",
+      "expiration_date_fn": "",
+      "underlying_security_title": "Class A Common Stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 49910.0,
+      "underlying_security_shares_fn": "[F2]",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 61757.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "footnotes": {
+    "F1": "This option, originally for 25,000 shares, of which 25,000 shares have been exercised, vested as to 1/48th of the shares on October 1, 2017, and 1/48th of the shares subject to the option vested each month thereafter, subject to the Reporting Person continuing as a service provider through each such date.",
+    "F2": "This option, originally for 125,000 shares, of which 63,243 shares have been exercised, vested as to 1/48th of the shares on October 1, 2018, and 1/48th of the shares subject to the option vested each month thereafter, subject to the Reporting Person continuing as a service provider through each such date."
+  },
+  "signatures": [
+    {
+      "signature_name": "Eric S. Whitaker",
+      "signature_date": "2021-12-23"
+    }
+  ]
+}

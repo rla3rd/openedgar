@@ -1,0 +1,77 @@
+{
+  "issuer": {
+    "issuer_cik": "0001644488",
+    "issuer_name": "SHARING SERVICES GLOBAL Corp",
+    "issuer_trading_symbol": "SHRG",
+    "period_of_report": "2021-12-10",
+    "date_of_original_submission": "2023-05-09T14:06:07.860Z",
+    "remarks": "",
+    "not_subject_to_section_16": false,
+    "is_rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0000771999",
+      "rptowner_name": "DSS, INC.",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": false,
+      "is_10pctowner": true,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "6 FRAMARK DRIVE"
+      ],
+      "rptowner_city": "VICTOR",
+      "rptowner_state": "NY",
+      "rptowner_zip": "14564",
+      "rptowner_non_us_address_flag": false,
+      "original_owned_fn": [
+        "10pctowner"
+      ]
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-12-10",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "P",
+      "transaction_code_fn": [
+        "4"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 29000.0,
+      "shares_fn": [],
+      "price": 0.074,
+      "price_fn": [
+        "^2"
+      ],
+      "total_value": 91842310.0,
+      "total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 0.0,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "I"
+      ],
+      "nature_of_owned_owned": false,
+      "nature_of_owned_owned_fn": [],
+      "transaction_summary": "Common Stock owned following transaction through the Reporting Person's wholly-owned subsidiary, Decentralized Sharing Systems, Inc., a Nevada corporation."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": []
+}

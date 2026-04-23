@@ -1,0 +1,182 @@
+{
+  "issuer": {
+    "issuer_cik": "0001011570",
+    "issuer_name": "KNOLL INC",
+    "issuer_trading_symbol": "KNL",
+    "period_of_report": "2021-07-19",
+    "not_subject_to_section_16": true,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001115331",
+      "rptowner_name": "KENNEDY CHRISTOPHER G",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "313 WEST WOLF POINT PLAZA",
+      "rptowner_street2": "UNIT 407",
+      "rptowner_city": "CHICAGO",
+      "rptowner_state": "IL",
+      "rptowner_zip": "60654",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_foreign_trading_symbol": "",
+      "schema_version": "X0306"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-07-19",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "D",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 14896.0,
+      "shares_fn": [],
+      "price": [
+        11.0,
+        43.04
+      ],
+      "price_fn": [
+        "Nominal Value",
+        "Closing Price"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Original Ownership - Common Stock, nominal value $14896.0; closing price $43.04"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-07-19",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "D",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 37220.0,
+      "shares_fn": [],
+      "price": [
+        11.0,
+        43.04
+      ],
+      "price_fn": [
+        "Nominal Value",
+        "Closing Price"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Original Ownership - Common Stock, nominal value $37220.0; closing price $43.04"
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [],
+      "transaction_date": "",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Herman Miller common stock",
+      "security_title_fn": [
+        "Original Ownership"
+      ],
+      "conversion_or_exercise_price": 0.32,
+      "conversion_or_exercise_price_fn": [
+        "Acquired Following Transaction"
+      ],
+      "exercise_date": "",
+      "exercise_date_fn": [],
+      "expiration_date": "",
+      "expiration_date_fn": [],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [
+        "Original Ownership"
+      ],
+      "underlying_security_shares": 0.0,
+      "underlying_security_shares_fn": [],
+      "value_owned_following_transaction": 13510.72,
+      "value_owned_following_transaction_fn": [
+        "I (By Trust)"
+      ],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "Revocable living trust of which the reporting person is a trustee and beneficiary.",
+      "direct_or_indirect_ownership_fn": [
+        "Other Ownership"
+      ],
+      "nature_of_ownership": "Ownership",
+      "nature_of_ownership_fn": [
+        "Ownership"
+      ],
+      "transaction_summary": "Ownership - Herman Miller common stock, acquired following transaction; nominal value $13510.72"
+    }
+  ],
+  "footnotes": {
+    "1": "On July 19, 2021, pursuant to the Agreement and Plan of Merger, dated as of April 19, 2021 (the \"Merger Agreement\"), by and among Knoll, Inc. (\"Knoll\"), Herman Miller, Inc. (\"Herman Miller\") and Heat Merger Sub, Inc. (\"Merger Sub\"), Merger Sub merged with and into Knoll (the \"Merger\"), with Knoll surviving the Merger as a wholly-owned subsidiary of Herman Miller.",
+    "2": "Pursuant to the Merger Agreement, each share of Knoll common stock issued and outstanding immediately prior to the effective time of the Merger (including each outstanding Knoll restricted share held by the Reporting Person which vested per the terms of the Merger Agreement upon the effective time of the Merger) was converted into the right to receive (A) $11.00 in cash, without interest, and (B) 0.32 of a share of Herman Miller common stock, par value $0.20. On July 16, 2021 (the last full trading day prior to the Merger), the closing price of one share of Herman Miller common stock was $43.04.",
+    "3": "Revocable living trust of which the reporting person is a trustee and beneficiary."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Michael A. Pollner, Attorney-in-Fact",
+      "signature_date": "2021-07-21",
+      "original": "/s/ Michael A. Pollner, Attorney-in-Fact \n 2021-07-21"
+    }
+  ]
+}

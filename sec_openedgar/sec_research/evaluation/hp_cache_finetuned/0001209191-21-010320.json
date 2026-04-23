@@ -1,0 +1,105 @@
+{
+  "issuer": {
+    "issuer_cik": "0000831001",
+    "issuer_name": "CITIGROUP INC",
+    "issuer_trading_symbol": "C",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-02-11",
+  "date_of_original_submission": "2021-02-12",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001745277",
+      "rptowner_name": "Wechter Sara",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Head of Human Resources",
+      "rptowner_street": [
+        "CITIGROUP INC. CORPORATE LAW DEPT.",
+        "388 GREENWICH STREET"
+      ],
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10013",
+      "rptowner_non_us_address_flag": false,
+      "original_owned_fn": [
+        "A",
+        "4",
+        "A",
+        "0"
+      ],
+      "transaction_summary": "Ownership Filing issued to Sara Wechter, Head of Human Resources"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 17473.96,
+      "shares_fn": [
+        "^1"
+      ],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 52921.46,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 9.26,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "I"
+      ],
+      "nature_of_ownership": "By 401(K) Plan",
+      "nature_of_ownership_fn": [
+        "I"
+      ],
+      "transaction_summary": "Ownership Filing issued to Sara Wechter, Head of Human Resources"
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": false,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 9.26,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "I"
+      ],
+      "nature_of_ownership": "By 401(K) Plan",
+      "nature_of_ownership_fn": [
+        "I"
+      ],
+      "transaction_summary": "Ownership Filing issued to Sara Wechter, Head of Human Resources"
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Award of deferred stock pursuant to the Issuer's 2019 Stock Incentive Plan. This award vests in four equal annual installments beginning on January 20, 2022; none of the award is eligible for immediate sale."
+  },
+  "signatures": [
+    {
+      "signature_name": "Sara Wechter by Joseph B. Wollard, Attorney-in-Fact",
+      "signature_date": "2021-02-12",
+      "original_owned_fn": [
+        "I"
+      ]
+    }
+  ]
+}

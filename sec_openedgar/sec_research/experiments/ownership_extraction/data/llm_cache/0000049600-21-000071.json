@@ -1,0 +1,50 @@
+{
+  "issuer": {
+    "issuer_cik": "0000049600",
+    "issuer_name": "EASTGROUP PROPERTIES INC",
+    "issuer_trading_symbol": "EGP"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001189265",
+      "rptowner_name": "BOLTON H ERIC JR",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "officer_title": ""
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-06-04",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "shares": 638.0,
+      "shares_fn": "",
+      "price": 0.0,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 12570.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [],
+  "footnotes": {
+    "F1": "Reflects shares of common stock granted under the Issuer's 2013 Equity Incentive Plan, as amended, in respect of the annual equity retainer due to the Reporting Person for the Reporting Person's service as an independent director, in accordance with the Issuer's Independent Director Compensation Policy."
+  },
+  "signatures": [
+    {
+      "signature_name": "Whitney Denham",
+      "signature_date": "2021-06-07"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "issuer": {
+    "issuer_cik": "0001557376",
+    "issuer_name": "Organicell Regenerative Medicine, Inc.",
+    "issuer_trading_symbol": "BPSR",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-01-27",
+  "date_of_original_submission": "",
+  "remarks": "[NULL]",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001207638",
+      "rptowner_name": "BOTHWELL IAN T",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": true,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Chief Financial Officer",
+      "rptowner_street1": "4045 SHERIDAN AVE, SUITE 239",
+      "rptowner_street2": "",
+      "rptowner_city": "MIAMI",
+      "rptowner_state": "FL",
+      "rptowner_zip": "33140",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-01-27",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 5000000.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 0.0,
+      "price_fn": [
+        "2"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 140300000.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Acquired 5,000,000 shares of Common Stock under the Issuer's Board approved Management and Consultant Performance Plan."
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-02-10",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 5000000.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 0.0,
+      "price_fn": [
+        "3"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 145300000.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Acquired 5,000,000 shares of Common Stock under the Issuer's Board approved Management and Consultant Performance Plan."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "The shares were awarded pursuant to the Issuer's Board approved Management and Consultant Performance Plan.",
+    "2": "The closing trading price of the stock on the date of the grant was $0.086 per share.",
+    "3": "The closing trading price of the stock on the date of the grant was $0.1075 per share."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Ian Bothwell",
+      "signature_date": "2021-02-22"
+    }
+  ]
+}

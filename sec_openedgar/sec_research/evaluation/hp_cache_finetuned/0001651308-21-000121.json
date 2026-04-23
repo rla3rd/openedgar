@@ -1,0 +1,159 @@
+{
+  "issuer": {
+    "issuer_cik": "0001651308",
+    "issuer_name": "BeiGene, Ltd.",
+    "issuer_trading_symbol": "BGNE",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-06-16",
+  "date_of_original_submission": "2021-06-21",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001403322",
+      "rptowner_name": "Malley Thomas",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "C/O MOURANT GOVERNANCE SERVICES (CAYMAN)",
+      "rptowner_street2": "94 SOLARIS AVENUE",
+      "rptowner_city": "CAMANA BAY",
+      "rptowner_state": "GRAND CAYMAN",
+      "rptowner_zip": "KY-1108",
+      "rptowner_non_us_address_flag": true,
+      "rptowner_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Ordinary Shares [^1]",
+      "security_title_fn": [
+        "Provides securities underlying restricted share units. The restricted share units shall become fully vested on the earlier to occur of the first anniversary of the grant date or the date of the next annual general meeting; provided, however, that all vesting shall cease if the director resigns from the board of directors or otherwise ceases to serve as a director, unless the board determines otherwise. Unvested securities are subject to accelerated vesting upon a change in control or certain termination events."
+      ],
+      "shares": 7800.0,
+      "shares_fn": [],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 17082.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 17082.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        0
+      ],
+      "nature_of_ownership": "Foreign Ownership",
+      "nature_of_ownership_fn": [
+        6
+      ],
+      "transaction_form_type": "4",
+      "transaction_form_type_fn": [
+        4
+      ]
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "American Depositary Shares [^2]",
+      "security_title_fn": [
+        "Each American Depositary Share (\"ADS\") represents 13 ordinary shares."
+      ],
+      "shares_owned_following_transaction": 30000.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        0
+      ],
+      "nature_of_ownership": "Foreign Ownership",
+      "nature_of_ownership_fn": [
+        6
+      ],
+      "transaction_form_type": "4",
+      "transaction_form_type_fn": [
+        4
+      ]
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Share Option (Right to Buy)",
+      "security_title_fn": [
+        "The number of securities underlying each option and the exercise price therefor are represented in ordinary shares."
+      ],
+      "conversion_or_exercise_price": 26.53,
+      "conversion_or_exercise_price_fn": [
+        0
+      ],
+      "transaction_date": "2021-06-16",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        0
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "transaction_form_type_fn": [
+        4
+      ]
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Ordinary Shares",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 17498.0,
+      "shares_owned_following_transaction_fn": [
+        0
+      ],
+      "value_owned_following_transaction": 17498.0,
+      "value_owned_following_transaction_fn": [
+        0
+      ],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        0
+      ],
+      "nature_of_ownership": "Foreign Ownership",
+      "nature_of_ownership_fn": [
+        6
+      ],
+      "transaction_form_type": "4",
+      "transaction_form_type_fn": [
+        4
+      ]
+    }
+  ],
+  "footnotes": {
+    "1": "Represents securities underlying restricted share units. The restricted share units shall become fully vested on the earlier to occur of the first anniversary of the grant date or the date of the next annual general meeting; provided, however, that all vesting shall cease if the director resigns from the board of directors or otherwise ceases to serve as a director, unless the board determines otherwise. Unvested securities are subject to accelerated vesting upon a change in control or certain termination events.",
+    "2": "Each American Depositary Share (\"ADS\") represents 13 ordinary shares.",
+    "3": "The number of securities underlying each option and the exercise price therefor are represented in ordinary shares.",
+    "4": "The option shall become exercisable in full upon the earlier to occur of the first anniversary of the grant date or the date of the next annual general meeting; provided, however, that all vesting shall cease if the Reporting Person resigns from the board of directors or otherwise ceases to serve as a director, unless the board determines otherwise. Unvested securities are subject to accelerated vesting upon a change in control or certain termination events."
+  },
+  "signatures": [
+    {
+      "signature_name": "Qing Nian, as Attorney-in-Fact",
+      "signature_date": "2021-06-21",
+      "signature_date_fn": [],
+      "original": "/s/ Qing Nian, as Attorney-in-Fact | 2021-06-21"
+    }
+  ]
+}

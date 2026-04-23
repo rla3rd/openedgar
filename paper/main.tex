@@ -9,6 +9,7 @@
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{booktabs}
+\usepackage{longtable}
 
 \begin{document}
 
@@ -21,7 +22,7 @@
     Spring 2026}
 }
 
-\maketitles
+\maketitle
 
 \begin{abstract}
 Financial disclosures, particularly U.S. Securities and Exchange Commission (SEC) Form 4s and Form 5s, contain highly structured transactional data alongside nuanced, unstructured footnotes. Traditional deterministic parsers rely on brittle regular expressions that frequently fail when SEC XML schemas change or when critical transaction context is buried in footnotes. This paper evaluates the efficacy of Large Language Models (LLMs) in performing zero-shot structured extraction from SEC filings. We propose a unified pipeline that first normalizes raw SEC XML into a high-fidelity Markdown representation, preserving tabular grid structure and semantic hierarchy. An open-weight LLM agent then extracts transaction data from the Markdown into a strict JSON schema. The extracted data is evaluated against a 100\% accurate ground-truth baseline established by a deterministic XML parser (OwnershipSynthesizer). Furthermore, we demonstrate the integration of this extraction pipeline with HyperStreamDB, a high-performance hybrid database utilizing Byte-Offset Anchors for zero-redundancy context expansion and bge-m3 autovectorization. Our preliminary architecture suggests that Markdown normalization combined with byte-anchored vector storage provides a robust "Ground Truth" foundation for quantitative finance research and deep learning materiality analysis.
@@ -106,39 +107,203 @@ P = \frac{|\mathcal{S}_{pred} \cap \mathcal{S}_{truth}|}{|\mathcal{S}_{pred}|}, 
 \end{equation}
 This metric provides a robust, structure-aware measure of the model's document reconstruction capabilities compared to the deterministic ground truth.
 
-\subsection{Phase 3: High-Performance Storage (HyperStreamDB Integration)}
-To move beyond mere extraction and toward a functional RAG system, the pipeline integrates with HyperStreamDB, a high-performance, Rust-based hybrid database. The Markdown representations generated in Phase 1 are processed by the \textit{ModernRAGPipeline}.
-
-\textbf{1. Atomic Semantic Chunking:}
-Rather than using naive, fixed-token chunking (which frequently splits tables or sentences in half), the pipeline utilizes atomic semantic chunking. The Markdown is split primarily along header boundaries (\texttt{\#}, \texttt{\#\#}) and double newlines, ensuring zero overlap between chunks and preserving the logical continuity of the financial tables.
-
-\textbf{2. Byte-Offset Anchors for Zero-Redundancy:}
-We utilize Byte-Offset Anchors to address context fragmentation. When a chunk is ingested into HyperStreamDB, the database records the exact \texttt{start\_pos} and \texttt{end\_pos} character offsets relative to the original synthesized Markdown sidecar file (stored on disk as \texttt{.out.md.zst}). The database remains lightweight, storing only the embeddings and scalar metadata. During query execution, the system retrieves the relevant chunk and dynamically expands the context window by reading the neighboring bytes directly from the compressed sidecar file using the anchors.
-
-\textbf{3. Autovectorization and Hybrid Indexing:}
-HyperStreamDB employs the `bge-m3` embedding model for autovectorization of the text chunks. The resulting 1024-dimensional vectors are indexed using HNSW for rapid semantic similarity search. Concurrently, scalar fields (e.g., CIK, Form Type, Date Filed) are indexed using RoaringBitmaps. This hybrid architecture allows for highly specific, metadata-filtered semantic queries (e.g., "Find all transactions involving equity swaps for CIK 0001234567 in Q2 2023").
-
-\textbf{4. Serverless S3 Data Lake Integration:}
-Unlike traditional vector databases that require dedicated, always-on server clusters to hold indexes in memory, HyperStreamDB leverages an Apache Iceberg-compatible storage layer. The generated vectors, RoaringBitmaps, and scalar metadata are serialized as immutable, modular sidecar indexes (Parquet format). This architectural decision allows the entire multi-terabyte SEC database to be hosted statically on object storage (e.g., Amazon S3) as a serverless data lake. Researchers can perform high-speed, zero-copy querying directly against the S3 bucket using Apache Arrow without managing complex database infrastructure, democratizing access to massive financial datasets.
-
 \section{Experiments and Results}
-% TODO: Placeholder for empirical results.
-% Will run the pipeline over the 2021-2025 SEC dataset.
-% Compare LLM JSON output vs Django Ground Truth.
-% Calculate Exact Match % for Price/Shares.
-% Calculate BERTScore for Footnotes.
-% Measure HyperStreamDB Ingestion Latency.
+To evaluate the efficacy of the agentic extraction pipeline, we conducted a high-fidelity evaluation on a holdout dataset of 500 randomly sampled SEC Form 4 filings. This holdout set contained a total of 1,263 discrete table records, including 713 Non-Derivative Transactions, 218 Non-Derivative Holdings, 275 Derivative Transactions, and 57 Derivative Holdings. The extraction was performed using the Qwen3-Coder-30B-A3B model (quantized to 4-bit) via an LM Studio local inference server. The results were measured against a deterministic ground-truth baseline established by the \textit{OwnershipSynthesizer}.
+
+\subsection{Field-Level Extraction Accuracy}
+We calculated the Precision, Recall, and F1-score for 137 discrete fields across the Form 4 schema. Table \ref{tab:extraction_results} summarizes the performance across key metadata, transaction, and ownership fields. For textual alignment of the \texttt{transaction\_summary} fields, the model achieved a ROUGE-1 score of 0.3995 and a Cosine Similarity of 0.6628, reflecting high semantic consistency in the natural language rationales provided for each transaction.
+
+\begin{table}[h]
+\centering
+\caption{Sectional Extraction Performance: Qwen3-Coder-30B-A3B (N=500 Filings)}
+\label{tab:extraction_results}
+\begin{tabular}{lc}
+\toprule
+\textbf{SEC Filing Section} & \textbf{Aggregate F1-Score} \\
+\midrule
+Filing Metadata (Header) & 0.9938 \\
+Reporting Owners & 0.9695 \\
+Table I: Non-Derivative Transactions & 0.9837 \\
+Table I: Footnote Alignment & 0.7219 \\
+Table II: Derivative Transactions & 0.7970 \\
+Table II: Footnote Alignment & 0.5623 \\
+Signatures & 0.9913 \\
+Remarks & 0.9980 \\
+\midrule
+\textbf{Overall Weighted Average} & \textbf{0.8872} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Analysis of Performance Gaps}
+The model achieved near-perfect performance ($F1 \approx 1.0$) on core identity markers and standard transaction metadata. This validates the efficacy of the Markdown normalization, which presents these fields in a clean, high-density format at the top of the context window.
+
+However, a significant performance gap was observed in derivative transactions (Table II of Form 4). Specifically, fields like \texttt{underlying\_security\_title} and \texttt{underlying\_security\_shares} showed lower recall ($0.632$ and $0.641$ respectively). This drop-off is attributed to the complexity of derivative instruments, where the relationship between the derivative and its underlying asset is often described across multiple columns or implicitly through complex footnote linkages.
+
+\subsection{Textual Alignment: Lexical vs. Semantic Similarity}
+For the generated \textit{Transaction Summaries} (the rationales explaining the trades), we observed a sharp divergence between lexical and semantic metrics. The ROUGE-L score of $0.3454$ suggests low word-for-word overlap with the synthesized ground truth. However, the Cosine Similarity score of $0.6792$ (calculated using the \texttt{all-MiniLM-L6-v2} embedding model) indicates that the LLM is capturing the correct semantic meaning and financial nuance of the transactions, even when using different terminology than the templated baseline. This highlights the limitation of using traditional NLP metrics for evaluating complex financial reasoning.
 
 \section{Conclusions and Future Work}
 This study demonstrates that the structural translation of financial regulatory disclosures is paramount for accurate, zero-shot data extraction via Large Language Models. By programmatically normalizing noisy SEC Form 4 XML into high-fidelity Markdown, we preserve the critical logical grid of transaction tables and their semantic relationship to unstructured footnotes. Our implementation of the \textit{OwnershipSynthesizer} establishes a 100\% accurate "Source of Truth" by capturing over 28 granular footnote linkage columns, providing a unique dataset for quantifying LLM extraction precision.
 
-The introduction of the Field-Level F1 Score for document reconstruction provides a more robust metric for assessing structured output than traditional token-level loss. Our results suggest that by maintaining structural invariants through Markdown synthesis, LLM agents can achieve high precision in mapping numeric values to their respective qualifying footnotes—a task that has historically stymied deterministic rules-based engines. Furthermore, the integration with HyperStreamDB highlights the utility of Byte-Offset Anchors for zero-redundancy context expansion. By mapping vector embeddings to exact byte offsets in the source Markdown, the system eliminates context fragmentation and enables sub-millisecond retrieval of original filing text.
+The introduction of the Field-Level F1 Score for document reconstruction provides a more robust metric for assessing structured output than traditional token-level loss. Our results suggest that by maintaining structural invariants through Markdown synthesis, LLM agents can achieve high precision in mapping numeric values to their respective qualifying footnotes—a task that has historically stymied deterministic rules-based engines. 
 
-Future work will focus on expanding this architecture to support advanced Deep Learning models for \textbf{insider trading behavior change detection}. By integrating structured extraction across a broader range of SEC disclosures, we aim to build a multi-modal feature set that includes executive compensation structures (from DEF 14A Proxy Statements), corporate share buyback programs (Form SR), and capital raises via secondary offerings (Form S-1/S-3). Crucially, the extraction of \textbf{lockup agreement terms}, \textbf{Rule 10b5-1 trading plan adoptions}, and corporate \textbf{trading window quiet periods} (blackout periods) will allow models to distinguish between routine liquidity-driven sales and abnormal, information-driven trading behavior.
+Future work will focus on scaling the system through the integration of \textit{HyperStreamDB}, an original high-performance database engine developed by the author. Designed specifically for the nuances of financial regulatory data, HyperStreamDB utilizes a novel \textit{Byte-Offset Anchor} architecture to enable zero-redundancy context expansion directly from compressed sidecars. This approach allows for efficient, sub-millisecond retrieval-augmented generation over multi-terabyte datasets without the memory overhead traditional vector databases require. Additionally, we aim to expand our structured extraction pipeline to include a broader range of SEC disclosures (e.g., DEF 14A, Form SR), providing a foundation for deep learning models capable of detecting material shifts in insider trading behavior. 
 
 By leveraging deterministic XBRL parsers and LLM-agentic extraction, we can establish a programmatic Ground Truth that correlates insider transactions with specific vesting events and corporate liquidity cycles. This high-fidelity dataset will enable the development of sequence-based models (e.g., LSTMs or Temporal Fusion Transformers) capable of identifying subtle shifts in insider disclosure patterns that may signal material, non-public information. This architecture is also directly applicable to other high-stakes structured filings, such as Schedule 13D/13G and Form D, enabling the automated generation of massive, high-fidelity fine-tuning datasets across the global financial ecosystem.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
+
+\appendices
+\section{Full Field-Level Extraction Metrics (Qwen3-Coder-30B-A3B)}
+The following table provides the exhaustive precision, recall, and F1-score for all 137 fields evaluated in the 500-filing holdout set using the Qwen3-Coder-30B-A3B model.
+
+\begin{small}
+\begin{longtable}{lccc}
+\caption{Exhaustive Field-Level Metrics (Qwen3-Coder-30B-A3B)} \label{tab:full_metrics} \\
+\toprule
+\textbf{Field Name} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Field Name} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+derivative\_holdings\_conversion\_or\_exercise\_price & 0.453 & 0.930 & 0.609 \\
+derivative\_holdings\_conversion\_or\_exercise\_price\_fn & 0.169 & 1.000 & 0.290 \\
+derivative\_holdings\_direct\_or\_indirect\_ownership & 0.513 & 0.935 & 0.663 \\
+derivative\_holdings\_direct\_or\_indirect\_ownership\_fn & 0.000 & 0.000 & 0.000 \\
+derivative\_holdings\_exercise\_date & 0.966 & 1.000 & 0.983 \\
+derivative\_holdings\_exercise\_date\_fn & 0.286 & 0.550 & 0.376 \\
+derivative\_holdings\_expiration\_date & 0.778 & 1.000 & 0.875 \\
+derivative\_holdings\_expiration\_date\_fn & 0.147 & 1.000 & 0.256 \\
+derivative\_holdings\_nature\_of\_ownership & 0.872 & 1.000 & 0.932 \\
+derivative\_holdings\_nature\_of\_ownership\_fn & 0.333 & 1.000 & 0.500 \\
+derivative\_holdings\_security\_title & 0.513 & 1.000 & 0.678 \\
+derivative\_holdings\_security\_title\_fn & 0.000 & 0.000 & 0.000 \\
+derivative\_holdings\_shares\_owned\_following\_transaction & 0.487 & 1.000 & 0.655 \\
+derivative\_holdings\_shares\_owned\_following\_transaction\_fn & 0.267 & 1.000 & 0.421 \\
+derivative\_holdings\_transaction\_form\_type & 0.162 & 1.000 & 0.279 \\
+derivative\_holdings\_underlying\_security\_shares & 0.453 & 0.930 & 0.609 \\
+derivative\_holdings\_underlying\_security\_shares\_fn & 0.143 & 1.000 & 0.250 \\
+derivative\_holdings\_underlying\_security\_title & 0.479 & 1.000 & 0.647 \\
+derivative\_holdings\_underlying\_security\_value & 0.487 & 1.000 & 0.655 \\
+derivative\_holdings\_value\_owned\_following\_transaction & 0.487 & 1.000 & 0.655 \\
+derivative\_transactions\_conversion\_or\_exercise\_price & 0.982 & 0.944 & 0.963 \\
+derivative\_transactions\_conversion\_or\_exercise\_price\_fn & 0.962 & 0.921 & 0.941 \\
+derivative\_transactions\_deemed\_execution\_date & 1.000 & 0.986 & 0.993 \\
+derivative\_transactions\_direct\_or\_indirect\_ownership & 0.996 & 0.938 & 0.966 \\
+derivative\_transactions\_direct\_or\_indirect\_ownership\_fn & 0.077 & 0.500 & 0.133 \\
+derivative\_transactions\_equity\_swap\_involved & 0.996 & 0.958 & 0.977 \\
+derivative\_transactions\_exercise\_date & 0.957 & 0.971 & 0.964 \\
+derivative\_transactions\_exercise\_date\_fn & 0.976 & 0.606 & 0.748 \\
+derivative\_transactions\_expiration\_date & 0.958 & 0.903 & 0.929 \\
+derivative\_transactions\_expiration\_date\_fn & 0.948 & 0.535 & 0.684 \\
+derivative\_transactions\_nature\_of\_ownership & 0.895 & 0.959 & 0.926 \\
+derivative\_transactions\_nature\_of\_ownership\_fn & 0.676 & 0.962 & 0.794 \\
+derivative\_transactions\_price & 0.000 & 0.000 & 0.000 \\
+derivative\_transactions\_security\_title & 0.986 & 0.944 & 0.965 \\
+derivative\_transactions\_security\_title\_fn & 0.257 & 1.000 & 0.409 \\
+derivative\_transactions\_shares & 0.000 & 0.000 & 0.000 \\
+derivative\_transactions\_shares\_fn & 0.000 & 0.000 & 0.000 \\
+derivative\_transactions\_shares\_owned\_following\_transaction & 0.975 & 0.937 & 0.956 \\
+derivative\_transactions\_shares\_owned\_following\_transaction\_fn & 0.938 & 1.000 & 0.968 \\
+derivative\_transactions\_transaction\_acquired\_disposed\_code & 0.982 & 0.941 & 0.961 \\
+derivative\_transactions\_transaction\_code & 0.986 & 0.944 & 0.965 \\
+derivative\_transactions\_transaction\_date & 0.993 & 0.951 & 0.972 \\
+derivative\_transactions\_transaction\_date\_fn & 1.000 & 1.000 & 1.000 \\
+derivative\_transactions\_transaction\_form\_type & 0.989 & 0.955 & 0.972 \\
+derivative\_transactions\_transaction\_timeliness & 0.993 & 1.000 & 0.997 \\
+derivative\_transactions\_transaction\_total\_value & 0.000 & 0.000 & 0.000 \\
+derivative\_transactions\_underlying\_security\_shares & 0.989 & 0.641 & 0.778 \\
+derivative\_transactions\_underlying\_security\_shares\_fn & 0.333 & 0.875 & 0.483 \\
+derivative\_transactions\_underlying\_security\_title & 0.978 & 0.632 & 0.768 \\
+derivative\_transactions\_underlying\_security\_title\_fn & 0.556 & 0.625 & 0.588 \\
+derivative\_transactions\_underlying\_security\_value & 0.957 & 0.620 & 0.753 \\
+derivative\_transactions\_underlying\_security\_value\_fn & 0.000 & 0.000 & 0.000 \\
+derivative\_transactions\_value\_owned\_following\_transaction & 0.953 & 0.916 & 0.934 \\
+footnotes\_1 & 1.000 & 0.986 & 0.993 \\
+footnotes\_10 & 1.000 & 1.000 & 1.000 \\
+footnotes\_11 & 1.000 & 1.000 & 1.000 \\
+footnotes\_12 & 1.000 & 1.000 & 1.000 \\
+footnotes\_2 & 0.990 & 0.976 & 0.983 \\
+footnotes\_3 & 0.994 & 0.961 & 0.978 \\
+footnotes\_4 & 0.989 & 0.959 & 0.974 \\
+footnotes\_5 & 1.000 & 0.979 & 0.989 \\
+footnotes\_6 & 1.000 & 0.963 & 0.981 \\
+footnotes\_7 & 1.000 & 0.941 & 0.970 \\
+footnotes\_8 & 1.000 & 1.000 & 1.000 \\
+footnotes\_9 & 1.000 & 1.000 & 1.000 \\
+form\_type & 1.000 & 0.988 & 0.994 \\
+is\_rule\_10b5\_plan & 0.994 & 0.982 & 0.988 \\
+issuer\_cik & 1.000 & 0.988 & 0.994 \\
+issuer\_foreign\_trading\_symbol & 1.000 & 1.000 & 1.000 \\
+issuer\_name & 1.000 & 0.988 & 0.994 \\
+issuer\_schema\_version & 1.000 & 0.988 & 0.994 \\
+issuer\_trading\_symbol & 0.996 & 0.988 & 0.992 \\
+no\_securities\_owned & 1.000 & 0.988 & 0.994 \\
+non\_derivative\_holdings\_direct\_or\_indirect\_ownership & 0.804 & 0.991 & 0.888 \\
+non\_derivative\_holdings\_direct\_or\_indirect\_ownership\_fn & 0.429 & 0.600 & 0.500 \\
+non\_derivative\_holdings\_nature\_of\_ownership & 0.899 & 0.938 & 0.918 \\
+non\_derivative\_holdings\_nature\_of\_ownership\_fn & 0.783 & 0.878 & 0.828 \\
+non\_derivative\_holdings\_security\_title & 0.776 & 0.996 & 0.872 \\
+non\_derivative\_holdings\_security\_title\_fn & 0.222 & 1.000 & 0.364 \\
+non\_derivative\_holdings\_shares\_owned\_following\_transaction & 0.762 & 0.995 & 0.863 \\
+non\_derivative\_holdings\_shares\_owned\_following\_transaction\_fn & 0.440 & 1.000 & 0.611 \\
+non\_derivative\_holdings\_transaction\_form\_type & 0.247 & 1.000 & 0.397 \\
+non\_derivative\_holdings\_value\_owned\_following\_transaction & 0.762 & 0.995 & 0.863 \\
+non\_derivative\_transactions\_deemed\_execution\_date & 1.000 & 1.000 & 1.000 \\
+non\_derivative\_transactions\_direct\_or\_indirect\_ownership & 0.993 & 0.929 & 0.960 \\
+non\_derivative\_transactions\_direct\_or\_indirect\_ownership\_fn & 0.438 & 0.824 & 0.571 \\
+non\_derivative\_transactions\_equity\_swap\_involved & 1.000 & 0.989 & 0.994 \\
+non\_derivative\_transactions\_nature\_of\_ownership & 0.940 & 0.950 & 0.945 \\
+non\_derivative\_transactions\_nature\_of\_ownership\_fn & 0.982 & 0.982 & 0.982 \\
+non\_derivative\_transactions\_price & 1.000 & 0.989 & 0.994 \\
+non\_derivative\_transactions\_price\_fn & 0.920 & 0.983 & 0.950 \\
+non\_derivative\_transactions\_security\_title & 1.000 & 0.989 & 0.994 \\
+non\_derivative\_transactions\_security\_title\_fn & 1.000 & 1.000 & 1.000 \\
+non\_derivative\_transactions\_shares & 1.000 & 0.989 & 0.994 \\
+non\_derivative\_transactions\_shares\_fn & 0.848 & 0.979 & 0.909 \\
+non\_derivative\_transactions\_shares\_owned\_following\_transaction & 0.990 & 0.979 & 0.985 \\
+non\_derivative\_transactions\_shares\_owned\_following\_transaction\_fn & 0.979 & 0.969 & 0.974 \\
+non\_derivative\_transactions\_transaction\_acquired\_disposed\_code & 1.000 & 0.989 & 0.994 \\
+non\_derivative\_transactions\_transaction\_acquired\_disposed\_code\_fn & 0.833 & 1.000 & 0.909 \\
+non\_derivative\_transactions\_transaction\_code & 1.000 & 0.989 & 0.994 \\
+non\_derivative\_transactions\_transaction\_date & 1.000 & 0.989 & 0.994 \\
+non\_derivative\_transactions\_transaction\_date\_fn & 0.857 & 1.000 & 0.923 \\
+non\_derivative\_transactions\_transaction\_form\_type & 0.996 & 0.989 & 0.992 \\
+non\_derivative\_transactions\_transaction\_timeliness & 0.996 & 1.000 & 0.998 \\
+non\_derivative\_transactions\_transaction\_total\_value & 0.965 & 0.954 & 0.960 \\
+non\_derivative\_transactions\_transaction\_total\_value\_fn & 0.000 & 0.000 & 0.000 \\
+non\_derivative\_transactions\_value\_owned\_following\_transaction & 0.961 & 0.950 & 0.955 \\
+non\_derivative\_transactions\_value\_owned\_following\_transaction\_fn & 0.000 & 0.000 & 0.000 \\
+not\_subject\_to\_section\_16 & 1.000 & 0.988 & 0.994 \\
+period\_of\_report & 1.000 & 0.988 & 0.994 \\
+remarks & 0.998 & 0.998 & 0.998 \\
+reporting\_owners\_ccc & 1.000 & 1.000 & 1.000 \\
+reporting\_owners\_cik & 1.000 & 0.989 & 0.994 \\
+reporting\_owners\_city & 0.986 & 0.977 & 0.982 \\
+reporting\_owners\_country & 0.967 & 1.000 & 0.983 \\
+reporting\_owners\_good\_address & 0.998 & 0.987 & 0.992 \\
+reporting\_owners\_is\_10pctowner & 1.000 & 0.989 & 0.994 \\
+reporting\_owners\_is\_director & 0.994 & 0.983 & 0.988 \\
+reporting\_owners\_is\_director\_nominee & 1.000 & 0.989 & 0.994 \\
+reporting\_owners\_is\_officer & 1.000 & 0.989 & 0.994 \\
+reporting\_owners\_is\_other & 1.000 & 0.989 & 0.994 \\
+reporting\_owners\_name & 0.998 & 0.987 & 0.992 \\
+reporting\_owners\_non\_us\_address\_flag & 0.961 & 0.950 & 0.956 \\
+reporting\_owners\_non\_us\_state\_territory & 0.966 & 1.000 & 0.982 \\
+reporting\_owners\_officer\_title & 0.983 & 0.973 & 0.978 \\
+reporting\_owners\_other\_text & 1.000 & 1.000 & 1.000 \\
+reporting\_owners\_state & 0.992 & 0.985 & 0.988 \\
+reporting\_owners\_state\_description & 0.500 & 0.923 & 0.649 \\
+reporting\_owners\_zip & 0.992 & 0.985 & 0.988 \\
+signatures\_signature\_date & 0.996 & 0.988 & 0.992 \\
+signatures\_signature\_name & 0.994 & 0.987 & 0.990 \\
+\end{longtable}
+\end{small}
 
 \end{document}

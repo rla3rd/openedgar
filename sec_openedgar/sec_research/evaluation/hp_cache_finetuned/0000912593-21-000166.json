@@ -1,0 +1,126 @@
+{
+  "issuer": {
+    "issuer_cik": "0000912593",
+    "issuer_name": "SUN COMMUNITIES INC",
+    "issuer_trading_symbol": "SUI",
+    "period_of_report": "2021-06-30",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "issuer_foreign_trading_symbol": "",
+  "date_of_original_submission": "2021-07-01",
+  "remarks": "",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001425980",
+      "rptowner_name": "McLaren John Bandini",
+      "rptowner_ccc": "OCO",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Pres & COO",
+      "rptowner_street": [
+        "27777 FRANKLIN ROAD",
+        "SUITE 200"
+      ],
+      "rptowner_city": "SOUTHFIELD",
+      "rptowner_state": "MI",
+      "rptowner_zip": "48034",
+      "rptowner_non_us_address_flag": false,
+      "original_owned_fn": [
+        "F"
+      ],
+      "transaction_summary": "Officer: Pres & COO - Ownership Fheld by the reported owner."
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "COMMON STOCK, $0.01 PAR VALUE",
+      "security_title_fn": [
+        "F"
+      ],
+      "shares": 932.0,
+      "shares_fn": [],
+      "price": 171.4,
+      "price_fn": [],
+      "transaction_total_value": 163927.0,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 0.0,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": false,
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": false,
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4",
+      "transaction_form_type_fn": [
+        "F"
+      ]
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "COMMON STOCK, $0.01 PAR VALUE",
+      "security_title_fn": [
+        "F"
+      ],
+      "shares_owned_following_transaction": false,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 272.0,
+      "value_owned_following_transaction_fn": [
+        "OCO"
+      ],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "OCO"
+      ],
+      "nature_of_ownership": false,
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "I",
+      "transaction_form_type_fn": [
+        "I"
+      ]
+    },
+    {
+      "security_title": "COMMON STOCK, $0.01 PAR VALUE",
+      "security_title_fn": [
+        "F"
+      ],
+      "shares_owned_following_transaction": false,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 272.0,
+      "value_owned_following_transaction_fn": [
+        "OCO"
+      ],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "OCO"
+      ],
+      "nature_of_ownership": false,
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "I",
+      "transaction_form_type_fn": [
+        "I"
+      ]
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {},
+  "signatures": [
+    {
+      "signature_name": "John B. McLaren",
+      "signature_date": "2021-07-01",
+      "original_owned_fn": [
+        "OCO"
+      ]
+    }
+  ]
+}

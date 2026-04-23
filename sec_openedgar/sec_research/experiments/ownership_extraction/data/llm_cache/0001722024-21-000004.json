@@ -1,0 +1,75 @@
+{
+  "issuer": {
+    "issuer_cik": "0001817229",
+    "issuer_name": "Vor Biopharma Inc.",
+    "issuer_trading_symbol": "VOR"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001722024",
+      "rptowner_name": "Alexandria Venture Investments, LLC",
+      "is_director": false,
+      "is_officer": false,
+      "is_10pctowner": true,
+      "officer_title": ""
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-02-09",
+      "transaction_date_fn": "",
+      "transaction_code": "C",
+      "transaction_code_fn": "",
+      "shares": 282804.0,
+      "shares_fn": "",
+      "price": 0.0,
+      "price_fn": "$0",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 282804.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Series B convertible preferred stock",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "[F1]",
+      "transaction_date": "2021-02-09",
+      "transaction_date_fn": "",
+      "transaction_code": "C",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "[F1]",
+      "expiration_date": "",
+      "expiration_date_fn": "[F1]",
+      "underlying_security_title": "Common stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 3846152.0,
+      "underlying_security_shares_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "footnotes": {
+    "F1": "Each share of Series B Convertible Preferred Stock automatically converted into shares of Common Stock upon the closing of the Issuer's initial public offering for no additional consideration, on a 13.6-for-one basis, and had no expiration date."
+  },
+  "signatures": [
+    {
+      "signature_name": "Dean A. Shigenaga",
+      "signature_date": "2021-02-09"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "issuer": {
+    "issuer_cik": "0001688852",
+    "issuer_name": "Safehold Inc.",
+    "issuer_trading_symbol": "SAFE",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-10-19",
+  "date_of_original_submission": "",
+  "remarks": "[NULL]",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001095651",
+      "rptowner_name": "ISTAR INC.",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": false,
+      "is_10pctowner": true,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "1114 AVENUE OF THE AMERICAS",
+      "rptowner_street2": "39TH FLOOR",
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10036",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common stock, $0.01 par value per share",
+      "security_title_fn": [],
+      "transaction_date": "2021-10-19",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "P",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 13164.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 75.96,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 36129610.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "On October 19, 2021, the Reporting Person acquired 13,164 shares of common stock of Safehold Inc. (NYSE:SAFE) in open market transactions conducted under a 'written plan for trading securities' within the meaning of Rule 10b5-1 promulgated under the Securities and Exchange Act of 1934, as amended."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "On October 19, 2021, the Reporting Person acquired 13,164 shares of common stock of Safehold Inc. (NYSE:SAFE) in open market transactions conducted under a \"written plan for trading securities\" within the meaning of Rule 10b5-1 promulgated under the Securities and Exchange Act of 1934, as amended."
+  },
+  "signatures": [
+    {
+      "signature_name": "iStar Inc., By Geoffrey M Dugan, Secretary",
+      "signature_date": "2021-10-19"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "issuer": {
+    "issuer_cik": "0001578987",
+    "issuer_name": "StoneCastle Financial Corp.",
+    "issuer_trading_symbol": "BANX",
+    "period_of_report": "2021-08-06",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001804404",
+      "rptowner_name": "Reidy Karen",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "C/O STONECASTLE FINANCIAL CORP.",
+        "100 FILLMORE STREET, SUITE 325",
+        "DENVER, CO, 80206"
+      ],
+      "rptowner_foreign_trading_symbol": "",
+      "rptowner_owned_fn": [],
+      "transaction_summary": "Director Ownership - Direct Ownership"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 11467.0,
+      "shares_fn": [],
+      "price": 21.73,
+      "price_fn": [],
+      "transaction_total_value": 11467.0,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 0.0,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4",
+      "transaction_form_type_fn": []
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": []
+}

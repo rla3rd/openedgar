@@ -1,0 +1,138 @@
+{
+  "issuer": {
+    "issuer_cik": "0000011544",
+    "issuer_name": "BERKLEY W R CORP",
+    "issuer_trading_symbol": "WRB",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-08-05",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001236253",
+      "rptowner_name": "BERKLEY WILLIAM R JR",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "is_director_nominee": false,
+      "officer_title": "President and CEO",
+      "other_text": "",
+      "rptowner_street1": "W. R. BERKLEY CORPORATION",
+      "rptowner_street2": "475 STEAMBOAT ROAD",
+      "rptowner_city": "GREENWICH",
+      "rptowner_state": "CT",
+      "rptowner_zip": "06830",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-08-05",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 30512.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 1750589.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 30512.0 shares of Common Stock at $0.0 (Code A). [Note 1: Represents the vesting of a tranche of performance-based restricted stock units (\"RSUs\") granted in 2016 under the W. R. Berkley Corporation 2018 Stock Incentive Plan (or its predecessor plan) for the three-year performance period ending June 30, 2021.]"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-08-05",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "F",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 1281.0,
+      "shares_fn": [
+        "2"
+      ],
+      "price": 72.225,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 1749308.0,
+      "shares_owned_following_transaction_fn": [
+        "3"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner disposed 1281.0 shares of Common Stock at $72.225 (Code F). [Note 2: Represents payment of tax liability by withholding securities incident to the vesting of performance-based RSUs.]"
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 600000.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "By William R. Berkley 2011 GST Trust",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": ""
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Represents the vesting of a tranche of performance-based restricted stock units (\"RSUs\") granted in 2016 under the W. R. Berkley Corporation 2018 Stock Incentive Plan (or its predecessor plan) for the three-year performance period ending June 30, 2021.",
+    "2": "Represents payment of tax liability by withholding securities incident to the vesting of performance-based RSUs.",
+    "3": "Includes 1,146,977 shares of common stock underlying RSUs, all of which have vested (the receipt of which has been deferred) and does not include unvested shares of common stock underlying performance-based RSUs."
+  },
+  "signatures": [
+    {
+      "signature_name": "William R. Berkley, Jr.",
+      "signature_date": "2021-08-09"
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "issuer": {
+    "issuer_cik": "0001813756",
+    "issuer_name": "WeWork Inc.",
+    "issuer_trading_symbol": "WE",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-10-20",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001887104",
+      "rptowner_name": "Kazanjian Maral",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "is_director_nominee": false,
+      "officer_title": "Chief People Officer",
+      "other_text": "",
+      "rptowner_street1": "575 LEXINGTON AVE, 12TH FLOOR",
+      "rptowner_street2": "",
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10022",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-10-20",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 18589.0,
+      "shares_fn": [
+        "2"
+      ],
+      "price": 0.0,
+      "price_fn": [
+        "1"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 18589.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 18589.0 shares of Common Stock at $None (Code A). [Note 2: One third of the RSUs will vest on each of January 26, 2022, January 26, 2023 and January 26, 2024.] [Note 1: On October 20, 2021, (i) BowX Acquisition Corp. (\"BowX\") consummated a business combination (the \"Business Combination\") by and among BowX, BowX Merger Subsidiary Corp., a Delaware corporation (\"Merger Sub\"), BowX Merger Subsidiary II, LLC, a Delaware limited liability company (\"Merger Sub II\") and WeWork Inc., a Delaware corporation (\"Legacy WeWork\"), (ii) BowX changed its name to \"WeWork Inc.\" and (iii) Merger Sub merged with and into Legacy WeWork (the \"First Merger\") and the surviving corporation of the First Merger merged with and into Merger Sub II. As part of the Business Combination, each Legacy WeWork RSU was exchanged for 0.82619 RSUs of WeWork Inc.]"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-10-20",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 82619.0,
+      "shares_fn": [
+        "3"
+      ],
+      "price": 0.0,
+      "price_fn": [
+        "1"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 82619.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 82619.0 shares of Common Stock at $None (Code A). [Note 3: One third of the RSUs will vest on each of July 2, 2022, July 2, 2023, and July 2, 2024.] [Note 1: On October 20, 2021, (i) BowX Acquisition Corp. (\"BowX\") consummated a business combination (the \"Business Combination\") by and among BowX, BowX Merger Subsidiary Corp., a Delaware corporation (\"Merger Sub\"), BowX Merger Subsidiary II, LLC, a Delaware limited liability company (\"Merger Sub II\") and WeWork Inc., a Delaware corporation (\"Legacy WeWork\"), (ii) BowX changed its name to \"WeWork Inc.\" and (iii) Merger Sub merged with and into Legacy WeWork (the \"First Merger\") and the surviving corporation of the First Merger merged with and into Merger Sub II. As part of the Business Combination, each Legacy WeWork RSU was exchanged for 0.82619 RSUs of WeWork Inc.]"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-10-20",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 11829.0,
+      "shares_fn": [
+        "4"
+      ],
+      "price": 0.0,
+      "price_fn": [
+        "1"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 11829.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 11829.0 shares of Common Stock at $None (Code A). [Note 4: One third of the RSUs vested and became exercisable on July 15, 2020, after which 1/12 of the RSUs vests on each October 15, January 15, April 15 and July 15 through July 15 2022.] [Note 1: On October 20, 2021, (i) BowX Acquisition Corp. (\"BowX\") consummated a business combination (the \"Business Combination\") by and among BowX, BowX Merger Subsidiary Corp., a Delaware corporation (\"Merger Sub\"), BowX Merger Subsidiary II, LLC, a Delaware limited liability company (\"Merger Sub II\") and WeWork Inc., a Delaware corporation (\"Legacy WeWork\"), (ii) BowX changed its name to \"WeWork Inc.\" and (iii) Merger Sub merged with and into Legacy WeWork (the \"First Merger\") and the surviving corporation of the First Merger merged with and into Merger Sub II. As part of the Business Combination, each Legacy WeWork RSU was exchanged for 0.82619 RSUs of WeWork Inc.]"
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Stock Option (right to buy)",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 2.55,
+      "conversion_or_exercise_price_fn": [],
+      "transaction_date": "2021-10-20",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "exercise_date": "",
+      "exercise_date_fn": [
+        "6"
+      ],
+      "expiration_date": "2030-02-10",
+      "expiration_date_fn": [],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 74962.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 74962.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 74962.0 shares of Stock Option (right to buy) at $2.55 (Code A)."
+    }
+  ],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "On October 20, 2021, (i) BowX Acquisition Corp. (\"BowX\") consummated a business combination (the \"Business Combination\") by and among BowX, BowX Merger Subsidiary Corp., a Delaware corporation (\"Merger Sub\"), BowX Merger Subsidiary II, LLC, a Delaware limited liability company (\"Merger Sub II\") and WeWork Inc., a Delaware corporation (\"Legacy WeWork\"), (ii) BowX changed its name to \"WeWork Inc.\" and (iii) Merger Sub merged with and into Legacy WeWork (the \"First Merger\") and the surviving corporation of the First Merger merged with and into Merger Sub II. As part of the Business Combination, each Legacy WeWork RSU was exchanged for 0.82619 RSUs of WeWork Inc.",
+    "2": "One third of the RSUs will vest on each of January 26, 2022, January 26, 2023 and January 26, 2024.",
+    "3": "One third of the RSUs will vest on each of July 2, 2022, July 2, 2023, and July 2, 2024.",
+    "4": "One third of the RSUs vested and became exercisable on July 15, 2020, after which 1/12 of the RSUs vests on each October 15, January 15, April 15 and July 15 through July 15 2022.",
+    "5": "As part of the Business Combination, each Legacy WeWork stock option was exchanged for a stock option to acquire 0.82619 shares of common stock of WeWork Inc.",
+    "6": "One third of the option vested and became exercisable on January 15, 2021, after which 1/12 of the option vests on each April 15, July 15, October 15 and January 15 through January 15, 2023."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Maral Kazanjian, by Jared DeMatteis as Attorney-in-Fact",
+      "signature_date": "2021-10-22"
+    }
+  ]
+}

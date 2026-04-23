@@ -1,0 +1,89 @@
+{
+  "issuer": {
+    "issuer_cik": "0001561627",
+    "issuer_name": "ExOne Co",
+    "issuer_trading_symbol": "XONE",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-08-13",
+  "date_of_original_submission": "",
+  "remarks": "Vice President, General Counsel & Corporate Secretary",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001730351",
+      "rptowner_name": "Benec Loretta Lobes",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Vice President, General Counsel & Corporate Secretary",
+      "rptowner_street1": "127 INDUSTRY BOULEVARD",
+      "rptowner_street2": "",
+      "rptowner_city": "NORTH HUNTINGDON",
+      "rptowner_state": "PA",
+      "rptowner_zip": "15642",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "Pennsylvania",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock, par value $0.01",
+      "security_title_fn": [],
+      "transaction_date": "2021-08-13",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 3465.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 0.0,
+      "price_fn": [
+        "1"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 19899.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Acquired 3,465 shares of common stock as restricted stock grant under The ExOne Company 2013 Equity Incentive Plan. Restricted stock vests in three equal annual installments beginning on the first anniversary of the grant date."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Grant of restricted stock under The ExOne Company 2013 Equity Incentive Plan. Restricted stock vests in three equal annual installments beginning on the first anniversary of the grant date.   As previously announced by The ExOne Company (the \"Company\"), on August 11, 2021 the Company entered into an Agreement and Plan of Merger with Desktop Metal, Inc. and two of its subsidiaries (the \"Merger Agreement\").  The restricted stock is subject to the terms of the Merger Agreement, and if the proposed merger transactions are consummated, will vest in accordance with the Company's Change of Control Severance Plan, as more fully described in the Company's Current Report on Form 8-K filed with the SEC on August 12, 2021."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Loretta Lobes Benec",
+      "signature_date": "2021-08-16"
+    }
+  ]
+}

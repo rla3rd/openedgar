@@ -1,0 +1,89 @@
+{
+  "issuer": {
+    "issuer_cik": "0001483510",
+    "issuer_name": "EXPRESS, INC.",
+    "issuer_trading_symbol": "EXPR",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-09-15",
+  "date_of_original_submission": "2021-09-17",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001788131",
+      "rptowner_name": "Akay Malissa",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "EVP, Chief Merch. Officer",
+      "rptowner_street": [
+        "C/O EXPRESS, INC.",
+        "1 EXPRESS DRIVE"
+      ],
+      "rptowner_city": "COLUMBUS",
+      "rptowner_state": "OH",
+      "rptowner_zip": "43230",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock, par value $0.01",
+      "security_title_fn": [],
+      "transaction_date": "2021-09-15",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "F",
+      "transaction_code_fn": [
+        "Foreign Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "transaction_form_type_fn": [
+        "Original Ownership"
+      ],
+      "equity_swap": false,
+      "equity_swap_fn": [],
+      "shares": 15402.0,
+      "shares_fn": [
+        "Exact Ownership Ownership"
+      ],
+      "price": 5.37,
+      "price_fn": [
+        "Transaction Total Value"
+      ],
+      "transaction_total_value": 298670.0,
+      "transaction_total_value_fn": [
+        "Exact Ownership Ownership"
+      ]
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Reflects shares withheld to cover the payment of taxes upon the vesting of restricted stock units granted to the reporting person on September 15, 2019."
+  },
+  "signatures": [
+    {
+      "signature_name": "Periclis Pericleous, Attorney-in-Fact",
+      "signature_date": "2021-09-17",
+      "signature_date_fn": [],
+      "owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ]
+}

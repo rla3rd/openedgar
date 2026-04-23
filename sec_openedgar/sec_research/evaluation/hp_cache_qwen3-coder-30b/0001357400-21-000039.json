@@ -1,0 +1,92 @@
+{
+  "issuer": {
+    "issuer_cik": "0000006769",
+    "issuer_name": "APACHE CORP",
+    "issuer_trading_symbol": "APA",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-02-22",
+  "date_of_original_submission": "",
+  "remarks": "[NULL]",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001754868",
+      "rptowner_name": "Ellis Juliet S",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "2000 POST OAK BLVD, STE 100",
+      "rptowner_street2": "",
+      "rptowner_city": "HOUSTON",
+      "rptowner_state": "TX",
+      "rptowner_zip": "77056",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "TX",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Phantom Stock Units",
+      "security_title_fn": [
+        "1"
+      ],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [
+        "1"
+      ],
+      "transaction_date": "2021-02-22",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "J",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 38.0,
+      "shares_fn": [],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 29348.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "D",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Acquired 38 phantom stock units representing one share of Apache common stock each, with the transaction exempt under Rule 16b-3(d) for accrued compensation under the Outside Directors Deferred Program."
+    }
+  ],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "One share of Apache common stock for each phantom stock unit.",
+    "2": "Exempt acquisition pursuant to Rule 16b-3(d) - accrued under the deferred compensation provisions of Apache's Outside Directors Deferred Program."
+  },
+  "signatures": [
+    {
+      "signature_name": "Raj Sharma Attorney-in-Fact",
+      "signature_date": "2021-02-23"
+    }
+  ]
+}

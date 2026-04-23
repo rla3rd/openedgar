@@ -1,0 +1,202 @@
+{
+  "issuer": {
+    "issuer_cik": "0001691337",
+    "issuer_name": "PCSB Financial Corp",
+    "issuer_trading_symbol": "PCSB",
+    "period_of_report": "2021-07-28",
+    "date_of_original_submission": "2021-07-29",
+    "remarks": "",
+    "not_subject_to_section_16": false,
+    "is_rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001703694",
+      "rptowner_name": "Lusardi Robert C.",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "2651 STRANG BOULEVARD, SUITE 100",
+        "YORKTOWN HEIGHTS, NY, 10598"
+      ],
+      "rptowner_foreign_trading_territory": "",
+      "state_territory": "",
+      "good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 19001.0,
+      "shares_owned_following_transaction_fn": [
+        "^1"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Common Stock owned at 19001.0, value unknown"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 20000.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I (By IRA)",
+      "direct_or_indirect_ownership_fn": [
+        "I"
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Common Stock owned at 20000.0, value unknown"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 2500.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I (By Spouse)",
+      "direct_or_indirect_ownership_fn": [
+        "I"
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Common Stock owned at 2500.0, value unknown"
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 19001.0,
+      "shares_owned_following_transaction_fn": [
+        "^1"
+      ],
+      "value_owned_following_transaction": 2529.5812,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Common Stock owned at 19001.0, value 2529.5812"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 20000.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I (By IRA)",
+      "direct_or_indirect_ownership_fn": [
+        "I"
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Common Stock owned at 20000.0, value unknown"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 2500.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I (By Spouse)",
+      "direct_or_indirect_ownership_fn": [
+        "I"
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Common Stock owned at 2500.0, value unknown"
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Phantom Stock",
+      "security_title_fn": [
+        "D"
+      ],
+      "conversion_or_exercise_price": 18.27,
+      "conversion_or_exercise_price_fn": [],
+      "transaction_date": "2021-07-28",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "[^3]",
+      "deemed_execution_date_fn": [
+        "D"
+      ],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "A",
+      "transaction_timeliness_fn": [],
+      "shares_owned_following_transaction": 66.8109,
+      "shares_owned_following_transaction_fn": [
+        "^2"
+      ],
+      "value_owned_following_transaction": 44662.0,
+      "value_owned_following_transaction_fn": [
+        "^2"
+      ],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Phantom Stock owned at 66.8109, value 44662.0"
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Stock Options",
+      "security_title_fn": [
+        "D"
+      ],
+      "conversion_or_exercise_price": 18.27,
+      "conversion_or_exercise_price_fn": [],
+      "exercise_date": "2019-10-24",
+      "exercise_date_fn": [],
+      "expiry_date": "2028-10-24",
+      "expiry_date_fn": [],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 44662.0,
+      "underlying_security_shares_fn": [
+        "^2"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Stock Options owned at 44662.0, value unknown"
+    }
+  ],
+  "footnotes": {
+    "1": "Shares of restricted stock vest at a rate of 20% per year commencing on October 24, 2019.",
+    "2": "Stock options vest at a rate of 20% per year commencing on October 24, 2019.",
+    "3": "Each share of phantom stock is the economic equivalent of one share of common stock and becomes payable upon the reporting person's termination of service as a director."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Victor L. Cangelosi, pursuant to power of attorney",
+      "signature_date": "2021-07-29",
+      "original": "/s/ Victor L. Cangelosi, pursuant to power of attorney | 2021-07-29"
+    }
+  ]
+}

@@ -78,7 +78,7 @@ def main():
             weight_decay = 0.01,
             lr_scheduler_type = "linear",
             seed = 3407,
-            output_dir = "sec_research/finetuning/outputs_qwen3_30b",
+            output_dir = "sec_research/finetuning/outputs_qwen2.5_14b",
             report_to = "none",
         ),
     )
@@ -87,11 +87,12 @@ def main():
     print("Starting Fine-Tuning on 1,500 filings...")
     trainer_stats = trainer.train()
 
-    # 7. Export to GGUF
-    print("Exporting model to GGUF (q4_k_m)...")
-    model.save_pretrained_gguf("sec_research/finetuning/Qwen3-Coder-30B-OpenEDGAR", tokenizer, quantization_method = "q4_k_m")
+    # 7. Export to GGUF (Note: Optional, can also save LoRA)
+    print("Saving model...")
+    model.save_pretrained("sec_research/finetuning/Qwen2.5-14B-OpenEDGAR-LoRA")
+    tokenizer.save_pretrained("sec_research/finetuning/Qwen2.5-14B-OpenEDGAR-LoRA")
     
-    print("Done! Model saved to sec_research/finetuning/Qwen3-Coder-30B-OpenEDGAR")
+    print("Done! Model saved to sec_research/finetuning/Qwen2.5-14B-OpenEDGAR-LoRA")
 
 if __name__ == "__main__":
     main()

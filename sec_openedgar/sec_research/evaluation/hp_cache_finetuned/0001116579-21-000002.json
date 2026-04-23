@@ -1,0 +1,31 @@
+{
+  "issuer": {
+    "issuer_cik": "0000766792",
+    "issuer_name": "CVD EQUIPMENT CORP",
+    "issuer_trading_symbol": "cvv",
+    "period_of_report": "2021-06-17",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "period_of_original_submission": "2021-06-17",
+  "date_of_original_submission": "2021-06-21",
+  "remarks": "",
+  "owner_foreign_trading_symbol": false,
+  "owned_by_foreign_good_address": false,
+  "rptowner_cik": "0001116579",
+  "rptowner_name": "ROSENBAUM LEONARD A",
+  "rptowner_ccc": "OCO",
+  "is_director": true,
+  "is_officer": false,
+  "is_10pctowner": false,
+  "is_other": false,
+  "other_text": "",
+  "is_director_nominee": false,
+  "original_owned_fn": [
+    "S"
+  ],
+  "transaction_summary": "Ownership Filing Provided"
+}

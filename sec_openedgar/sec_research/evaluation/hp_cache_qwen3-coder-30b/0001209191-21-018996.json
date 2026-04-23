@@ -1,0 +1,101 @@
+{
+  "issuer": {
+    "issuer_cik": "0001000228",
+    "issuer_name": "HENRY SCHEIN INC",
+    "issuer_trading_symbol": "HSIC",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-03-05",
+  "date_of_original_submission": "",
+  "remarks": "[NULL]",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001194347",
+      "rptowner_name": "BRESLAWSKI JAMES P",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Vice Chairman, President",
+      "rptowner_street1": "C/O HENRY SCHEIN, INC.",
+      "rptowner_street2": "135 DURYEA ROAD",
+      "rptowner_city": "MELVILLE",
+      "rptowner_state": "NY",
+      "rptowner_zip": "11747",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "New York",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock, par value $0.01 per share",
+      "security_title_fn": [],
+      "transaction_date": "2021-03-05",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "F",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 2806.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 62.57,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 254348.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting person surrendered 2,806 shares to the issuer to satisfy tax withholding obligations upon vesting of a time-based restricted stock/units grant originally awarded on March 6, 2017. The actual vesting date was March 6, 2021, which was a non-business day, so the vesting occurred on the preceding business day."
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock, par value $0.01 per share",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 254348.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Represents the surrender of shares to the Issuer to satisfy the reporting person's tax withholding obligation upon the vesting of the reporting person's March 6, 2017 grant of time-based restricted stock/units. (Actual vesting date of March 6, 2021 was a non-business day so vesting occurred on the preceding business day.)"
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Jennifer Ferrero (as Attorney-in-Fact for James P. Breslawski)",
+      "signature_date": "2021-03-09"
+    }
+  ]
+}

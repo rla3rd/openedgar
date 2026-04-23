@@ -1,0 +1,50 @@
+{
+  "issuer": {
+    "issuer_cik": "0001129155",
+    "issuer_name": "MARINE PRODUCTS CORP",
+    "issuer_trading_symbol": "MPX"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001212697",
+      "rptowner_name": "RFPS INVESTMENTS III, L.P.",
+      "is_director": false,
+      "is_officer": false,
+      "is_10pctowner": true,
+      "officer_title": ""
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock, $.10 Par Value",
+      "security_title_fn": "",
+      "transaction_date": "2021-02-03",
+      "transaction_date_fn": "",
+      "transaction_code": "J",
+      "transaction_code_fn": "",
+      "shares": 15.0,
+      "shares_fn": "",
+      "price": 0.0,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [],
+  "footnotes": {
+    "F1": "These shares were distributed to the equity holders of RFPS Investments III, L.P. for no consideration, in connection with the dissolution of RFPS Investments III, L.P."
+  },
+  "signatures": [
+    {
+      "signature_name": "LOR Investment Company, LLC, General Partner, By: LOR, INC., Class A Member, By:  W. Keith Wilkes, Jr., Assistant Vice President",
+      "signature_date": "2021-02-04"
+    }
+  ]
+}

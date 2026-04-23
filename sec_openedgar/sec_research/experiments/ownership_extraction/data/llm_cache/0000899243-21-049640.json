@@ -1,0 +1,131 @@
+{
+  "issuer": {
+    "issuer_cik": "0001792044",
+    "issuer_name": "Viatris Inc",
+    "issuer_trading_symbol": "VTRS"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001848812",
+      "rptowner_name": "Ni Xiangyang (Sean)",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "officer_title": "President, Greater China"
+    }
+  ],
+  "non_derivative_transactions": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Dividend Equivalent Units",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "[F1]",
+      "transaction_date": "2021-12-21",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "[F1]",
+      "expiration_date": "",
+      "expiration_date_fn": "[F1]",
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 24.4644,
+      "underlying_security_shares_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 68.1584,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Dividend Equivalent Units",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "[F2]",
+      "transaction_date": "2021-12-21",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "[F2]",
+      "expiration_date": "",
+      "expiration_date_fn": "[F2]",
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 105.0631,
+      "underlying_security_shares_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 292.7082,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Dividend Equivalent Units",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "[F3]",
+      "transaction_date": "2021-12-21",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "[F3]",
+      "expiration_date": "",
+      "expiration_date_fn": "[F3]",
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 511.5133,
+      "underlying_security_shares_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 1425.0881,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Dividend Equivalent Units",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "[F4]",
+      "transaction_date": "2021-12-21",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "[F4]",
+      "expiration_date": "",
+      "expiration_date_fn": "[F4]",
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 185.1556,
+      "underlying_security_shares_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 515.8479,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "footnotes": {
+    "F1": "Represents dividend equivalent units (\"DEUs\") that accrued with respect to the 2,852 restricted stock units (\"RSUs\") previously granted on November 16, 2020 and vest on the same schedule as the underlying RSUs.",
+    "F2": "Represents DEUs that accrued with respect to the 12,248 RSUs previously granted on November 16, 2020 and vest on the same schedule as the underlying RSUs.",
+    "F3": "Represents DEUs that accrued with respect to RSUs previously granted on November 23, 2020 and vest on the same schedule as the underlying RSUs.",
+    "F4": "Represents DEUs that accrued with respect to RSUs previously granted on March 2, 2021 and vest on the same schedule as the underlying RSUs."
+  },
+  "signatures": [
+    {
+      "signature_name": "Kevin Macikowski",
+      "signature_date": "2021-12-23"
+    }
+  ]
+}

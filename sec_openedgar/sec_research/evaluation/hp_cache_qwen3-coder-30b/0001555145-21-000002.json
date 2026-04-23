@@ -1,0 +1,179 @@
+{
+  "issuer": {
+    "issuer_cik": "0000034088",
+    "issuer_name": "EXXON MOBIL CORP",
+    "issuer_trading_symbol": "XOM",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-11-23",
+  "date_of_original_submission": "",
+  "remarks": "List of exhibits: Exhibit 24 - Power of Attorney",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001555145",
+      "rptowner_name": "Woods Darren W",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Chairman and CEO",
+      "rptowner_street1": "C/O EXXON MOBIL CORPORATION",
+      "rptowner_street2": "5959 LAS COLINAS BOULEVARD",
+      "rptowner_city": "IRVING",
+      "rptowner_state": "TX",
+      "rptowner_zip": "75039-2298",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "Texas",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-11-23",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 215000.0,
+      "shares_fn": [],
+      "price": 0.0,
+      "price_fn": [
+        "1"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 1215386.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Acquired 215,000 shares of Common Stock."
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 1661.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "By Family Trust 1",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 1661.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "By Family Trust 2",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 1661.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "By Family Trust 3",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 1695.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "By Family Trust 4",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 475.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "By Reporting Person IRA",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 485.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "By Spouse IRA",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 11310.7981,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "By Savings Plan",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Grant of restricted stock units to be settled in shares only."
+  },
+  "signatures": [
+    {
+      "signature_name": "Cynthia K. Guild by Power of Attorney",
+      "signature_date": "2021-11-26"
+    }
+  ]
+}

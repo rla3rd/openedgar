@@ -1,0 +1,56 @@
+{
+  "issuer": {
+    "issuer_cik": "0001411207",
+    "issuer_name": "Allison Transmission Holdings Inc",
+    "issuer_trading_symbol": "ALSN"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001543507",
+      "rptowner_name": "Scroggins Eric C.",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "officer_title": "VP, Gen. Counsel and Secretary"
+    }
+  ],
+  "non_derivative_transactions": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Dividend Equivalent Rights",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "",
+      "transaction_date": "2021-08-27",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "",
+      "expiration_date": "",
+      "expiration_date_fn": "",
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 33.0,
+      "underlying_security_shares_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 191.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": "The dividend equivalent rights accrued on previously awarded restricted stock units (\"RSUs\") and vest proportionately with the RSUs to which they relate.  Each dividend equivalent right is the economic equivalent of one share of Allison Transmission Holdings, Inc. common stock."
+    }
+  ],
+  "footnotes": {
+    "F1": "The dividend equivalent rights accrued on previously awarded restricted stock units (\"RSUs\") and vest proportionately with the RSUs to which they relate.  Each dividend equivalent right is the economic equivalent of one share of Allison Transmission Holdings, Inc. common stock."
+  },
+  "signatures": [
+    {
+      "signature_name": "Jacalyn C. Bolles",
+      "signature_date": "2021-08-31"
+    }
+  ]
+}

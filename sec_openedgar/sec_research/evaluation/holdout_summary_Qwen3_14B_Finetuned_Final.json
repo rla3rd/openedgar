@@ -1,0 +1,2039 @@
+{
+  "processed": 500,
+  "fields": {
+    "date_of_original_submission": {
+      "f1": 0.883929,
+      "precision": 0.792,
+      "recall": 1.0,
+      "tp": 396,
+      "fp": 104,
+      "fn": 0
+    },
+    "derivative_holdings_conversion_or_exercise_price": {
+      "f1": 0.412556,
+      "precision": 0.283077,
+      "recall": 0.760331,
+      "tp": 92,
+      "fp": 233,
+      "fn": 29
+    },
+    "derivative_holdings_conversion_or_exercise_price_fn": {
+      "f1": 0.388278,
+      "precision": 0.253589,
+      "recall": 0.828125,
+      "tp": 53,
+      "fp": 156,
+      "fn": 11
+    },
+    "derivative_holdings_conversion_or_exercisee_price_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "derivative_holdings_conversion_or_exercisesystem_0": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "derivative_holdings_direct_or_indirect_ownership": {
+      "f1": 0.572614,
+      "precision": 0.425926,
+      "recall": 0.873418,
+      "tp": 138,
+      "fp": 186,
+      "fn": 20
+    },
+    "derivative_holdings_direct_or_indirect_ownership_fn": {
+      "f1": 0.166667,
+      "precision": 0.1,
+      "recall": 0.5,
+      "tp": 2,
+      "fp": 18,
+      "fn": 2
+    },
+    "derivative_holdings_exercise_date": {
+      "f1": 0.846416,
+      "precision": 0.740299,
+      "recall": 0.988048,
+      "tp": 248,
+      "fp": 87,
+      "fn": 3
+    },
+    "derivative_holdings_exercise_date_fn": {
+      "f1": 0.464986,
+      "precision": 0.332,
+      "recall": 0.775701,
+      "tp": 83,
+      "fp": 167,
+      "fn": 24
+    },
+    "derivative_holdings_expiration_date": {
+      "f1": 0.739777,
+      "precision": 0.599398,
+      "recall": 0.966019,
+      "tp": 199,
+      "fp": 133,
+      "fn": 7
+    },
+    "derivative_holdings_expiration_date_fn": {
+      "f1": 0.471074,
+      "precision": 0.331395,
+      "recall": 0.814286,
+      "tp": 57,
+      "fp": 115,
+      "fn": 13
+    },
+    "derivative_holdings_nature_of_ownership": {
+      "f1": 0.939158,
+      "precision": 0.909366,
+      "recall": 0.970968,
+      "tp": 301,
+      "fp": 30,
+      "fn": 9
+    },
+    "derivative_holdings_nature_of_ownership_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "tp": 0,
+      "fp": 19,
+      "fn": 20
+    },
+    "derivative_holdings_security_title": {
+      "f1": 0.56051,
+      "precision": 0.406154,
+      "recall": 0.90411,
+      "tp": 132,
+      "fp": 193,
+      "fn": 14
+    },
+    "derivative_holdings_security_title_fn": {
+      "f1": 0.023952,
+      "precision": 0.01227,
+      "recall": 0.5,
+      "tp": 2,
+      "fp": 161,
+      "fn": 2
+    },
+    "derivative_holdings_shares_owned_following_transaction": {
+      "f1": 0.394619,
+      "precision": 0.270769,
+      "recall": 0.727273,
+      "tp": 88,
+      "fp": 237,
+      "fn": 33
+    },
+    "derivative_holdings_shares_owned_following_transaction_fn": {
+      "f1": 0.157895,
+      "precision": 0.096774,
+      "recall": 0.428571,
+      "tp": 3,
+      "fp": 28,
+      "fn": 4
+    },
+    "derivative_holdings_transaction_form_type": {
+      "f1": 0.976096,
+      "precision": 0.953307,
+      "recall": 1.0,
+      "tp": 245,
+      "fp": 12,
+      "fn": 0
+    },
+    "derivative_holdings_underlying_security_shares": {
+      "f1": 0.295964,
+      "precision": 0.203077,
+      "recall": 0.545455,
+      "tp": 66,
+      "fp": 259,
+      "fn": 55
+    },
+    "derivative_holdings_underlying_security_shares_fn": {
+      "f1": 0.134831,
+      "precision": 0.075,
+      "recall": 0.666667,
+      "tp": 6,
+      "fp": 74,
+      "fn": 3
+    },
+    "derivative_holdings_underlying_security_title": {
+      "f1": 0.449541,
+      "precision": 0.291667,
+      "recall": 0.98,
+      "tp": 98,
+      "fp": 238,
+      "fn": 2
+    },
+    "derivative_holdings_underlying_security_title_fn": {
+      "f1": 0.206897,
+      "precision": 0.115385,
+      "recall": 1.0,
+      "tp": 3,
+      "fp": 23,
+      "fn": 0
+    },
+    "derivative_holdings_underlying_security_value": {
+      "f1": 0.484305,
+      "precision": 0.332308,
+      "recall": 0.892562,
+      "tp": 108,
+      "fp": 217,
+      "fn": 13
+    },
+    "derivative_holdings_underlying_security_value_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 72,
+      "fn": 0
+    },
+    "derivative_holdings_value_owned_following_ownership": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 5,
+      "fn": 0
+    },
+    "derivative_holdings_value_owned_following_system": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "derivative_holdings_value_owned_following_transaction": {
+      "f1": 0.493151,
+      "precision": 0.340694,
+      "recall": 0.892562,
+      "tp": 108,
+      "fp": 209,
+      "fn": 13
+    },
+    "derivative_holdings_value_owned_following_transaction_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 27,
+      "fn": 0
+    },
+    "derivative_holdings_value_owned_followingsystem": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "derivative_transactions_conversion_or_exercise_price": {
+      "f1": 0.871951,
+      "precision": 0.843658,
+      "recall": 0.902208,
+      "tp": 286,
+      "fp": 53,
+      "fn": 31
+    },
+    "derivative_transactions_conversion_or_exercise_price_fn": {
+      "f1": 0.614286,
+      "precision": 0.54661,
+      "recall": 0.701087,
+      "tp": 129,
+      "fp": 107,
+      "fn": 55
+    },
+    "derivative_transactions_conversion_or_exercise_system_0": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "derivative_transactions_conversion_or_exercise_system_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "derivative_transactions_conversion_or_exercisesystem_0": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "derivative_transactions_conversion_or_exercisesystem_price_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "derivative_transactions_deemed_execution_date": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 365,
+      "fp": 0,
+      "fn": 0
+    },
+    "derivative_transactions_deemed_execution_date_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 14,
+      "fn": 0
+    },
+    "derivative_transactions_direct_or_indirect_ownership": {
+      "f1": 0.873282,
+      "precision": 0.877301,
+      "recall": 0.869301,
+      "tp": 286,
+      "fp": 40,
+      "fn": 43
+    },
+    "derivative_transactions_direct_or_indirect_ownership_fn": {
+      "f1": 0.105263,
+      "precision": 0.058824,
+      "recall": 0.5,
+      "tp": 1,
+      "fp": 16,
+      "fn": 1
+    },
+    "derivative_transactions_equity_swap_involved": {
+      "f1": 0.887195,
+      "precision": 0.858407,
+      "recall": 0.917981,
+      "tp": 291,
+      "fp": 48,
+      "fn": 26
+    },
+    "derivative_transactions_exercise_date": {
+      "f1": 0.910448,
+      "precision": 0.847222,
+      "recall": 0.983871,
+      "tp": 305,
+      "fp": 55,
+      "fn": 5
+    },
+    "derivative_transactions_exercise_date_fn": {
+      "f1": 0.802947,
+      "precision": 0.825758,
+      "recall": 0.781362,
+      "tp": 218,
+      "fp": 46,
+      "fn": 61
+    },
+    "derivative_transactions_expiration_date": {
+      "f1": 0.918759,
+      "precision": 0.90407,
+      "recall": 0.933934,
+      "tp": 311,
+      "fp": 33,
+      "fn": 22
+    },
+    "derivative_transactions_expiration_date_fn": {
+      "f1": 0.764873,
+      "precision": 0.706806,
+      "recall": 0.833333,
+      "tp": 135,
+      "fp": 56,
+      "fn": 27
+    },
+    "derivative_transactions_nature_of_ownership": {
+      "f1": 0.963068,
+      "precision": 0.933884,
+      "recall": 0.994135,
+      "tp": 339,
+      "fp": 24,
+      "fn": 2
+    },
+    "derivative_transactions_nature_of_ownership_fn": {
+      "f1": 0.4,
+      "precision": 0.388889,
+      "recall": 0.411765,
+      "tp": 7,
+      "fp": 11,
+      "fn": 10
+    },
+    "derivative_transactions_price": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "derivative_transactions_price_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "derivative_transactions_security_title": {
+      "f1": 0.864865,
+      "precision": 0.849558,
+      "recall": 0.880734,
+      "tp": 288,
+      "fp": 51,
+      "fn": 39
+    },
+    "derivative_transactions_security_title_fn": {
+      "f1": 0.22449,
+      "precision": 0.127168,
+      "recall": 0.956522,
+      "tp": 22,
+      "fp": 151,
+      "fn": 1
+    },
+    "derivative_transactions_shares": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "derivative_transactions_shares_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "derivative_transactions_shares_owned_following_transaction": {
+      "f1": 0.878049,
+      "precision": 0.849558,
+      "recall": 0.908517,
+      "tp": 288,
+      "fp": 51,
+      "fn": 29
+    },
+    "derivative_transactions_shares_owned_following_transaction_fn": {
+      "f1": 0.512195,
+      "precision": 0.428571,
+      "recall": 0.636364,
+      "tp": 21,
+      "fp": 28,
+      "fn": 12
+    },
+    "derivative_transactions_transaction_acquired_disposed_code": {
+      "f1": 0.857562,
+      "precision": 0.915361,
+      "recall": 0.80663,
+      "tp": 292,
+      "fp": 27,
+      "fn": 70
+    },
+    "derivative_transactions_transaction_acquired_disposed_code_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 30,
+      "fn": 0
+    },
+    "derivative_transactions_transaction_code": {
+      "f1": 0.949928,
+      "precision": 0.985163,
+      "recall": 0.917127,
+      "tp": 332,
+      "fp": 5,
+      "fn": 30
+    },
+    "derivative_transactions_transaction_code_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 11,
+      "fn": 0
+    },
+    "derivative_transactions_transaction_date": {
+      "f1": 0.934688,
+      "precision": 0.958333,
+      "recall": 0.912181,
+      "tp": 322,
+      "fp": 14,
+      "fn": 31
+    },
+    "derivative_transactions_transaction_date_fn": {
+      "f1": 0.285714,
+      "precision": 0.166667,
+      "recall": 1.0,
+      "tp": 3,
+      "fp": 15,
+      "fn": 0
+    },
+    "derivative_transactions_transaction_form_type": {
+      "f1": 0.672535,
+      "precision": 0.545714,
+      "recall": 0.876147,
+      "tp": 191,
+      "fp": 159,
+      "fn": 27
+    },
+    "derivative_transactions_transaction_timeliness": {
+      "f1": 0.997253,
+      "precision": 0.994521,
+      "recall": 1.0,
+      "tp": 363,
+      "fp": 2,
+      "fn": 0
+    },
+    "derivative_transactions_transaction_timeliness_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "derivative_transactions_transaction_total_value": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "derivative_transactions_underlying_security_shares": {
+      "f1": 0.840979,
+      "precision": 0.816024,
+      "recall": 0.867508,
+      "tp": 275,
+      "fp": 62,
+      "fn": 42
+    },
+    "derivative_transactions_underlying_security_shares_fn": {
+      "f1": 0.23622,
+      "precision": 0.15,
+      "recall": 0.555556,
+      "tp": 15,
+      "fp": 85,
+      "fn": 12
+    },
+    "derivative_transactions_underlying_security_title": {
+      "f1": 0.894578,
+      "precision": 0.881306,
+      "recall": 0.908257,
+      "tp": 297,
+      "fp": 40,
+      "fn": 30
+    },
+    "derivative_transactions_underlying_security_title_fn": {
+      "f1": 0.157895,
+      "precision": 0.085714,
+      "recall": 1.0,
+      "tp": 3,
+      "fp": 32,
+      "fn": 0
+    },
+    "derivative_transactions_underlying_security_value": {
+      "f1": 0.83792,
+      "precision": 0.813056,
+      "recall": 0.864353,
+      "tp": 274,
+      "fp": 63,
+      "fn": 43
+    },
+    "derivative_transactions_underlying_security_value_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 89,
+      "fn": 0
+    },
+    "derivative_transactions_value_owned_following_system_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "derivative_transactions_value_owned_following_transaction": {
+      "f1": 0.777439,
+      "precision": 0.752212,
+      "recall": 0.804416,
+      "tp": 255,
+      "fp": 84,
+      "fn": 62
+    },
+    "derivative_transactions_value_owned_following_transaction_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 34,
+      "fn": 0
+    },
+    "derivative_transactions_value_owned_followingsystem_0": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "derivative_transactions_value_owned_followingsystem_transaction_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_1": {
+      "f1": 0.938272,
+      "precision": 0.967593,
+      "recall": 0.910675,
+      "tp": 418,
+      "fp": 14,
+      "fn": 41
+    },
+    "footnotes_10": {
+      "f1": 0.869565,
+      "precision": 1.0,
+      "recall": 0.769231,
+      "tp": 10,
+      "fp": 0,
+      "fn": 3
+    },
+    "footnotes_100": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_101": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_102": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_103": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_104": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_105": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_106": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_107": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_108": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_11": {
+      "f1": 0.888889,
+      "precision": 1.0,
+      "recall": 0.8,
+      "tp": 8,
+      "fp": 0,
+      "fn": 2
+    },
+    "footnotes_12": {
+      "f1": 0.769231,
+      "precision": 0.833333,
+      "recall": 0.714286,
+      "tp": 5,
+      "fp": 1,
+      "fn": 2
+    },
+    "footnotes_13": {
+      "f1": 0.444444,
+      "precision": 0.5,
+      "recall": 0.4,
+      "tp": 2,
+      "fp": 2,
+      "fn": 3
+    },
+    "footnotes_14": {
+      "f1": 0.444444,
+      "precision": 0.5,
+      "recall": 0.4,
+      "tp": 2,
+      "fp": 2,
+      "fn": 3
+    },
+    "footnotes_15": {
+      "f1": 0.5,
+      "precision": 0.5,
+      "recall": 0.5,
+      "tp": 2,
+      "fp": 2,
+      "fn": 2
+    },
+    "footnotes_16": {
+      "f1": 0.571429,
+      "precision": 0.5,
+      "recall": 0.666667,
+      "tp": 2,
+      "fp": 2,
+      "fn": 1
+    },
+    "footnotes_17": {
+      "f1": 0.571429,
+      "precision": 0.5,
+      "recall": 0.666667,
+      "tp": 2,
+      "fp": 2,
+      "fn": 1
+    },
+    "footnotes_18": {
+      "f1": 0.571429,
+      "precision": 0.5,
+      "recall": 0.666667,
+      "tp": 2,
+      "fp": 2,
+      "fn": 1
+    },
+    "footnotes_19": {
+      "f1": 0.4,
+      "precision": 0.333333,
+      "recall": 0.5,
+      "tp": 1,
+      "fp": 2,
+      "fn": 1
+    },
+    "footnotes_2": {
+      "f1": 0.941176,
+      "precision": 0.992248,
+      "recall": 0.895105,
+      "tp": 256,
+      "fp": 2,
+      "fn": 30
+    },
+    "footnotes_20": {
+      "f1": 0.4,
+      "precision": 0.333333,
+      "recall": 0.5,
+      "tp": 1,
+      "fp": 2,
+      "fn": 1
+    },
+    "footnotes_21": {
+      "f1": 0.4,
+      "precision": 0.333333,
+      "recall": 0.5,
+      "tp": 1,
+      "fp": 2,
+      "fn": 1
+    },
+    "footnotes_22": {
+      "f1": 0.4,
+      "precision": 0.333333,
+      "recall": 0.5,
+      "tp": 1,
+      "fp": 2,
+      "fn": 1
+    },
+    "footnotes_23": {
+      "f1": 0.4,
+      "precision": 0.333333,
+      "recall": 0.5,
+      "tp": 1,
+      "fp": 2,
+      "fn": 1
+    },
+    "footnotes_24": {
+      "f1": 0.4,
+      "precision": 0.333333,
+      "recall": 0.5,
+      "tp": 1,
+      "fp": 2,
+      "fn": 1
+    },
+    "footnotes_25": {
+      "f1": 0.4,
+      "precision": 0.333333,
+      "recall": 0.5,
+      "tp": 1,
+      "fp": 2,
+      "fn": 1
+    },
+    "footnotes_26": {
+      "f1": 0.4,
+      "precision": 0.333333,
+      "recall": 0.5,
+      "tp": 1,
+      "fp": 2,
+      "fn": 1
+    },
+    "footnotes_27": {
+      "f1": 0.4,
+      "precision": 0.333333,
+      "recall": 0.5,
+      "tp": 1,
+      "fp": 2,
+      "fn": 1
+    },
+    "footnotes_28": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 1
+    },
+    "footnotes_29": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "footnotes_3": {
+      "f1": 0.9375,
+      "precision": 1.0,
+      "recall": 0.882353,
+      "tp": 165,
+      "fp": 0,
+      "fn": 22
+    },
+    "footnotes_30": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "footnotes_31": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "footnotes_32": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "footnotes_33": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "footnotes_34": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "footnotes_35": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "footnotes_36": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "footnotes_37": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "footnotes_38": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "footnotes_39": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "footnotes_4": {
+      "f1": 0.929577,
+      "precision": 1.0,
+      "recall": 0.868421,
+      "tp": 99,
+      "fp": 0,
+      "fn": 15
+    },
+    "footnotes_40": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "footnotes_41": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "footnotes_42": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "footnotes_43": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+    },
+    "footnotes_44": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_45": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_46": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_47": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_48": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_49": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_5": {
+      "f1": 0.913043,
+      "precision": 1.0,
+      "recall": 0.84,
+      "tp": 63,
+      "fp": 0,
+      "fn": 12
+    },
+    "footnotes_50": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_51": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_52": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_53": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_54": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_55": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_56": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_57": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_58": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_59": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_6": {
+      "f1": 0.917647,
+      "precision": 0.975,
+      "recall": 0.866667,
+      "tp": 39,
+      "fp": 1,
+      "fn": 6
+    },
+    "footnotes_60": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_61": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_62": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_63": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_64": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_65": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_66": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_67": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_68": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_69": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_7": {
+      "f1": 0.903226,
+      "precision": 0.965517,
+      "recall": 0.848485,
+      "tp": 28,
+      "fp": 1,
+      "fn": 5
+    },
+    "footnotes_70": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_71": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_72": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_73": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_74": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_75": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_76": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_77": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_78": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_79": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_8": {
+      "f1": 0.883721,
+      "precision": 0.95,
+      "recall": 0.826087,
+      "tp": 19,
+      "fp": 1,
+      "fn": 4
+    },
+    "footnotes_80": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_81": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_82": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_83": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_84": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_85": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_86": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_87": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_88": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_89": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_9": {
+      "f1": 0.848485,
+      "precision": 0.933333,
+      "recall": 0.777778,
+      "tp": 14,
+      "fp": 1,
+      "fn": 4
+    },
+    "footnotes_90": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_91": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_92": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_93": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_94": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_95": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_96": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_97": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_98": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_99": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "footnotes_NULL": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    "form_type": {
+      "f1": 0.895553,
+      "precision": 0.927195,
+      "recall": 0.866,
+      "tp": 433,
+      "fp": 34,
+      "fn": 67
+    },
+    "is_rule_10b5_plan": {
+      "f1": 0.910031,
+      "precision": 0.942184,
+      "recall": 0.88,
+      "tp": 440,
+      "fp": 27,
+      "fn": 60
+    },
+    "issuer_cik": {
+      "f1": 0.881075,
+      "precision": 0.912206,
+      "recall": 0.852,
+      "tp": 426,
+      "fp": 41,
+      "fn": 74
+    },
+    "issuer_foreign_trading_symbol": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 500,
+      "fp": 0,
+      "fn": 0
+    },
+    "issuer_name": {
+      "f1": 0.955533,
+      "precision": 0.989293,
+      "recall": 0.924,
+      "tp": 462,
+      "fp": 5,
+      "fn": 38
+    },
+    "issuer_schema_version": {
+      "f1": 0.752795,
+      "precision": 0.623457,
+      "recall": 0.949843,
+      "tp": 303,
+      "fp": 183,
+      "fn": 16
+    },
+    "issuer_trading_symbol": {
+      "f1": 0.712082,
+      "precision": 0.568789,
+      "recall": 0.95189,
+      "tp": 277,
+      "fp": 210,
+      "fn": 14
+    },
+    "no_securities_owned": {
+      "f1": 0.930714,
+      "precision": 0.963597,
+      "recall": 0.9,
+      "tp": 450,
+      "fp": 17,
+      "fn": 50
+    },
+    "non_derivative_holdings_direct_or_indirect_ownership": {
+      "f1": 0.606218,
+      "precision": 0.472727,
+      "recall": 0.844765,
+      "tp": 234,
+      "fp": 261,
+      "fn": 43
+    },
+    "non_derivative_holdings_direct_or_indirect_ownership_fn": {
+      "f1": 0.06383,
+      "precision": 0.0375,
+      "recall": 0.214286,
+      "tp": 3,
+      "fp": 77,
+      "fn": 11
+    },
+    "non_derivative_holdings_nature_of_ownership": {
+      "f1": 0.808706,
+      "precision": 0.726337,
+      "recall": 0.912145,
+      "tp": 353,
+      "fp": 133,
+      "fn": 34
+    },
+    "non_derivative_holdings_nature_of_ownership_fn": {
+      "f1": 0.481752,
+      "precision": 0.464789,
+      "recall": 0.5,
+      "tp": 33,
+      "fp": 38,
+      "fn": 33
+    },
+    "non_derivative_holdings_security_title": {
+      "f1": 0.676166,
+      "precision": 0.527273,
+      "recall": 0.942238,
+      "tp": 261,
+      "fp": 234,
+      "fn": 16
+    },
+    "non_derivative_holdings_security_title_fn": {
+      "f1": 0.184615,
+      "precision": 0.107143,
+      "recall": 0.666667,
+      "tp": 6,
+      "fp": 50,
+      "fn": 3
+    },
+    "non_derivative_holdings_shares_owned_following_transaction": {
+      "f1": 0.622163,
+      "precision": 0.470707,
+      "recall": 0.917323,
+      "tp": 233,
+      "fp": 262,
+      "fn": 21
+    },
+    "non_derivative_holdings_shares_owned_following_transaction_fn": {
+      "f1": 0.484848,
+      "precision": 0.390244,
+      "recall": 0.64,
+      "tp": 32,
+      "fp": 50,
+      "fn": 18
+    },
+    "non_derivative_holdings_transaction_form_type": {
+      "f1": 0.984488,
+      "precision": 0.96945,
+      "recall": 1.0,
+      "tp": 476,
+      "fp": 15,
+      "fn": 0
+    },
+    "non_derivative_holdings_value_owned_following_transaction": {
+      "f1": 0.635514,
+      "precision": 0.480808,
+      "recall": 0.937008,
+      "tp": 238,
+      "fp": 257,
+      "fn": 16
+    },
+    "non_derivative_holdings_value_owned_following_transaction_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 33,
+      "fn": 0
+    },
+    "non_derivative_transactions_deemed_execution_date": {
+      "f1": 0.999425,
+      "precision": 0.998851,
+      "recall": 1.0,
+      "tp": 869,
+      "fp": 1,
+      "fn": 0
+    },
+    "non_derivative_transactions_direct_or_indirect_ownership": {
+      "f1": 0.876979,
+      "precision": 0.930233,
+      "recall": 0.829493,
+      "tp": 720,
+      "fp": 54,
+      "fn": 148
+    },
+    "non_derivative_transactions_direct_or_indirect_ownership_fn": {
+      "f1": 0.051282,
+      "precision": 0.028302,
+      "recall": 0.272727,
+      "tp": 3,
+      "fp": 103,
+      "fn": 8
+    },
+    "non_derivative_transactions_equity_swap_involved": {
+      "f1": 0.938377,
+      "precision": 0.99354,
+      "recall": 0.889017,
+      "tp": 769,
+      "fp": 5,
+      "fn": 96
+    },
+    "non_derivative_transactions_nature_of_ownership": {
+      "f1": 0.894902,
+      "precision": 0.864964,
+      "recall": 0.926988,
+      "tp": 711,
+      "fp": 111,
+      "fn": 56
+    },
+    "non_derivative_transactions_nature_of_ownership_fn": {
+      "f1": 0.588785,
+      "precision": 0.65625,
+      "recall": 0.533898,
+      "tp": 63,
+      "fp": 33,
+      "fn": 55
+    },
+    "non_derivative_transactions_price": {
+      "f1": 0.927395,
+      "precision": 0.981912,
+      "recall": 0.878613,
+      "tp": 760,
+      "fp": 14,
+      "fn": 105
+    },
+    "non_derivative_transactions_price_fn": {
+      "f1": 0.678899,
+      "precision": 0.706107,
+      "recall": 0.65371,
+      "tp": 185,
+      "fp": 77,
+      "fn": 98
+    },
+    "non_derivative_transactions_security_title": {
+      "f1": 0.937881,
+      "precision": 0.994832,
+      "recall": 0.887097,
+      "tp": 770,
+      "fp": 4,
+      "fn": 98
+    },
+    "non_derivative_transactions_security_title_fn": {
+      "f1": 0.390625,
+      "precision": 0.265957,
+      "recall": 0.735294,
+      "tp": 25,
+      "fp": 69,
+      "fn": 9
+    },
+    "non_derivative_transactions_shares": {
+      "f1": 0.933496,
+      "precision": 0.988372,
+      "recall": 0.884393,
+      "tp": 765,
+      "fp": 9,
+      "fn": 100
+    },
+    "non_derivative_transactions_shares_fn": {
+      "f1": 0.630705,
+      "precision": 0.59144,
+      "recall": 0.675556,
+      "tp": 152,
+      "fp": 105,
+      "fn": 73
+    },
+    "non_derivative_transactions_shares_owned_following_transaction": {
+      "f1": 0.935937,
+      "precision": 0.990956,
+      "recall": 0.886705,
+      "tp": 767,
+      "fp": 7,
+      "fn": 98
+    },
+    "non_derivative_transactions_shares_owned_following_transaction_fn": {
+      "f1": 0.683128,
+      "precision": 0.619403,
+      "recall": 0.761468,
+      "tp": 83,
+      "fp": 51,
+      "fn": 26
+    },
+    "non_derivative_transactions_transaction_acquired_disposed_code": {
+      "f1": 0.939099,
+      "precision": 0.997413,
+      "recall": 0.887227,
+      "tp": 771,
+      "fp": 2,
+      "fn": 98
+    },
+    "non_derivative_transactions_transaction_acquired_disposed_code_fn": {
+      "f1": 0.090909,
+      "precision": 0.051282,
+      "recall": 0.4,
+      "tp": 2,
+      "fp": 37,
+      "fn": 3
+    },
+    "non_derivative_transactions_transaction_code": {
+      "f1": 0.939099,
+      "precision": 0.997413,
+      "recall": 0.887227,
+      "tp": 771,
+      "fp": 2,
+      "fn": 98
+    },
+    "non_derivative_transactions_transaction_code_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 108,
+      "fn": 0
+    },
+    "non_derivative_transactions_transaction_date": {
+      "f1": 0.939099,
+      "precision": 0.997413,
+      "recall": 0.887227,
+      "tp": 771,
+      "fp": 2,
+      "fn": 98
+    },
+    "non_derivative_transactions_transaction_date_fn": {
+      "f1": 0.5,
+      "precision": 1.0,
+      "recall": 0.333333,
+      "tp": 3,
+      "fp": 0,
+      "fn": 6
+    },
+    "non_derivative_transactions_transaction_form_type": {
+      "f1": 0.718361,
+      "precision": 0.592995,
+      "recall": 0.910946,
+      "tp": 491,
+      "fp": 337,
+      "fn": 48
+    },
+    "non_derivative_transactions_transaction_timeliness": {
+      "f1": 0.979472,
+      "precision": 0.95977,
+      "recall": 1.0,
+      "tp": 835,
+      "fp": 35,
+      "fn": 0
+    },
+    "non_derivative_transactions_transaction_timeliness_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "non_derivative_transactions_transaction_total_value": {
+      "f1": 0.678462,
+      "precision": 0.718346,
+      "recall": 0.642775,
+      "tp": 556,
+      "fp": 218,
+      "fn": 309
+    },
+    "non_derivative_transactions_transaction_total_value_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 123,
+      "fn": 0
+    },
+    "non_derivative_transactions_value_owned_following_transaction": {
+      "f1": 0.854179,
+      "precision": 0.904393,
+      "recall": 0.809249,
+      "tp": 700,
+      "fp": 74,
+      "fn": 165
+    },
+    "non_derivative_transactions_value_owned_following_transaction_fn": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 35,
+      "fn": 0
+    },
+    "non_derivative_transactions_value_owned_followingsystem_0": {
+      "f1": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+    },
+    "not_subject_to_section_16": {
+      "f1": 0.959669,
+      "precision": 0.993576,
+      "recall": 0.928,
+      "tp": 464,
+      "fp": 3,
+      "fn": 36
+    },
+    "period_of_report": {
+      "f1": 0.957601,
+      "precision": 0.991435,
+      "recall": 0.926,
+      "tp": 463,
+      "fp": 4,
+      "fn": 37
+    },
+    "remarks": {
+      "f1": 0.984864,
+      "precision": 0.987854,
+      "recall": 0.981891,
+      "tp": 488,
+      "fp": 6,
+      "fn": 9
+    },
+    "reporting_owners_ccc": {
+      "f1": 0.99639,
+      "precision": 0.992806,
+      "recall": 1.0,
+      "tp": 552,
+      "fp": 4,
+      "fn": 0
+    },
+    "reporting_owners_cik": {
+      "f1": 0.938852,
+      "precision": 0.984221,
+      "recall": 0.897482,
+      "tp": 499,
+      "fp": 8,
+      "fn": 57
+    },
+    "reporting_owners_city": {
+      "f1": 0.706837,
+      "precision": 0.561694,
+      "recall": 0.953125,
+      "tp": 305,
+      "fp": 238,
+      "fn": 15
+    },
+    "reporting_owners_country": {
+      "f1": 0.990926,
+      "precision": 0.982014,
+      "recall": 1.0,
+      "tp": 546,
+      "fp": 10,
+      "fn": 0
+    },
+    "reporting_owners_good_address": {
+      "f1": 0.022578,
+      "precision": 0.023669,
+      "recall": 0.021583,
+      "tp": 12,
+      "fp": 495,
+      "fn": 544
+    },
+    "reporting_owners_is_10pctowner": {
+      "f1": 0.953904,
+      "precision": 1.0,
+      "recall": 0.911871,
+      "tp": 507,
+      "fp": 0,
+      "fn": 49
+    },
+    "reporting_owners_is_director": {
+      "f1": 0.94826,
+      "precision": 0.994083,
+      "recall": 0.906475,
+      "tp": 504,
+      "fp": 3,
+      "fn": 52
+    },
+    "reporting_owners_is_director_nominee": {
+      "f1": 0.953904,
+      "precision": 1.0,
+      "recall": 0.911871,
+      "tp": 507,
+      "fp": 0,
+      "fn": 49
+    },
+    "reporting_owners_is_officer": {
+      "f1": 0.94826,
+      "precision": 0.994083,
+      "recall": 0.906475,
+      "tp": 504,
+      "fp": 3,
+      "fn": 52
+    },
+    "reporting_owners_is_other": {
+      "f1": 0.950141,
+      "precision": 0.996055,
+      "recall": 0.908273,
+      "tp": 505,
+      "fp": 2,
+      "fn": 51
+    },
+    "reporting_owners_name": {
+      "f1": 0.944497,
+      "precision": 0.990138,
+      "recall": 0.902878,
+      "tp": 502,
+      "fp": 5,
+      "fn": 54
+    },
+    "reporting_owners_non_us_address_flag": {
+      "f1": 0.931326,
+      "precision": 0.976331,
+      "recall": 0.890288,
+      "tp": 495,
+      "fp": 12,
+      "fn": 61
+    },
+    "reporting_owners_non_us_state_territory": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 556,
+      "fp": 0,
+      "fn": 0
+    },
+    "reporting_owners_officer_title": {
+      "f1": 0.940202,
+      "precision": 0.956929,
+      "recall": 0.924051,
+      "tp": 511,
+      "fp": 23,
+      "fn": 42
+    },
+    "reporting_owners_other_text": {
+      "f1": 0.988171,
+      "precision": 0.978378,
+      "recall": 0.998162,
+      "tp": 543,
+      "fp": 12,
+      "fn": 1
+    },
+    "reporting_owners_state": {
+      "f1": 0.707657,
+      "precision": 0.562731,
+      "recall": 0.953125,
+      "tp": 305,
+      "fp": 237,
+      "fn": 15
+    },
+    "reporting_owners_state_description": {
+      "f1": 0.820296,
+      "precision": 0.704174,
+      "recall": 0.982278,
+      "tp": 388,
+      "fp": 163,
+      "fn": 7
+    },
+    "reporting_owners_zip": {
+      "f1": 0.709154,
+      "precision": 0.563536,
+      "recall": 0.95625,
+      "tp": 306,
+      "fp": 237,
+      "fn": 14
+    },
+    "signatures_signature_date": {
+      "f1": 0.697248,
+      "precision": 0.551867,
+      "recall": 0.946619,
+      "tp": 266,
+      "fp": 216,
+      "fn": 15
+    },
+    "signatures_signature_name": {
+      "f1": 0.694626,
+      "precision": 0.549793,
+      "recall": 0.94306,
+      "tp": 265,
+      "fp": 217,
+      "fn": 16
+    }
+  },
+  "avg_rougeL": 0.253546,
+  "avg_semantic_sim": 0.509979
+}

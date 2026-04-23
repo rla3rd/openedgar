@@ -1,0 +1,151 @@
+{
+  "issuer": {
+    "issuer_cik": "0001492422",
+    "issuer_name": "Apellis Pharmaceuticals, Inc.",
+    "issuer_trading_symbol": "APLS",
+    "period_of_report": "2021-09-28",
+    "date_of_original_submission": "2021-09-29",
+    "remarks": "",
+    "not_subject_to_section_16": false,
+    "is_rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001720634",
+      "rptowner_name": "Grossi Federico",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "CHIEF MEDICAL OFFICER",
+      "rptowner_street": [
+        "C/O APELLIS PHARMACEUTICALS, INC.",
+        "100 FIFTH AVENUE, 3RD FLOOR",
+        "WALTHAM, MA, 02451"
+      ],
+      "rptowner_foreign_trading_territory": "",
+      "state_territory": "MA",
+      "county": "",
+      "city": "WALTHAM",
+      "state": "MASSACHUSETTS",
+      "zip": "02451",
+      "non_us_flag": false,
+      "ownership_fn": [],
+      "transaction_summary": "Officer: CHIEF MEDICAL OFFICER"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 4000.0,
+      "shares_fn": [],
+      "price": 3.76,
+      "price_fn": [],
+      "transaction_total_value": 66930.0,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 10661.0,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_original_owned_owned": false,
+      "nature_of_original_owned_owned_fn": [],
+      "transaction_summary": "Common Stock"
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 4000.0,
+      "shares_fn": [],
+      "price": 3.76,
+      "price_fn": [],
+      "transaction_total_value": 66930.0,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 10661.0,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_original_owned_owned": false,
+      "nature_of_original_owned_owned_fn": [],
+      "transaction_summary": "Common Stock"
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Stock Option (Right to Buy)",
+      "security_title_fn": [
+        "Stock Option",
+        "(Right to Buy)"
+      ],
+      "shares": 4000.0,
+      "shares_fn": [],
+      "price": 3.76,
+      "price_fn": [],
+      "transaction_total_value": 10661.0,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 0.0,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_original_owned_owned": false,
+      "nature_of_original_owned_owned_fn": [],
+      "transaction_summary": "Stock Option (Right to Buy)"
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Stock Option (Right to Buy)",
+      "security_title_fn": [
+        "Stock Option",
+        "(Right to Buy)"
+      ],
+      "shares": 4000.0,
+      "shares_fn": [],
+      "price": 3.76,
+      "price_fn": [],
+      "transaction_total_value": 10661.0,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 0.0,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_original_owned_owned": false,
+      "nature_of_original_owned_owned_fn": [],
+      "transaction_summary": "Stock Option (Right to Buy)"
+    }
+  ],
+  "footnotes": {
+    "1": "This option was granted on February 8, 2016 and is fully vested."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ David Watson, attorney-in-fact for Dr. Federico Grossi",
+      "signature_date": "2021-09-29",
+      "original": "/s/ David Watson, attorney-in-fact for Dr. Federico Grossi | 2021-09-29"
+    }
+  ]
+}

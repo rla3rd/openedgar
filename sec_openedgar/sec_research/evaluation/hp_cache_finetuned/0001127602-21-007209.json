@@ -1,0 +1,252 @@
+{
+  "issuer": {
+    "issuer_cik": "0001100682",
+    "issuer_name": "CHARLES RIVER LABORATORIES INTERNATIONAL, INC.",
+    "issuer_trading_symbol": "CRL",
+    "period_of_report": "2021-02-19",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001732091",
+      "rptowner_name": "Girshick Birgit",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Corporate Executive VP",
+      "rptowner_street": [
+        "251 BALLARDVALE STREET"
+      ],
+      "rptowner_city": "WILMINGTON",
+      "rptowner_state": "MA",
+      "rptowner_zip": "01887",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-02-19",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "M",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 1675.0,
+      "shares_fn": [
+        "Owned Following Transaction"
+      ],
+      "price": 73.7,
+      "price_fn": [
+        "Nominal Ownership"
+      ],
+      "total_value": 31680.0,
+      "total_value_fn": [
+        "Owned Following Transaction"
+      ],
+      "shares_owned_following_transaction": true,
+      "value_owned_following_transaction": true
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-02-19",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 1675.0,
+      "shares_fn": [
+        "Owned Following Transaction"
+      ],
+      "price": 293.9168,
+      "price_fn": [
+        "Nominal Ownership"
+      ],
+      "total_value": 30005.0,
+      "total_value_fn": [
+        "Owned Following Transaction"
+      ],
+      "shares_owned_following_transaction": true,
+      "value_owned_following_transaction": true
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-02-22",
+      "transaction_date_fn": [
+        "Original Ownership"
+      ],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "F",
+      "transaction_code_fn": [
+        "Foreign Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 308.0,
+      "shares_fn": [
+        "Owned Following Transaction"
+      ],
+      "price": 289.55,
+      "price_fn": [
+        "Nominal Ownership"
+      ],
+      "total_value": 29697.0,
+      "total_value_fn": [
+        "Owned Following Transaction"
+      ],
+      "shares_owned_following_transaction": true,
+      "value_owned_following_transaction": true
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-02-23",
+      "transaction_date_fn": [
+        "Original Ownership"
+      ],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "F",
+      "transaction_code_fn": [
+        "Foreign Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 315.0,
+      "shares_fn": [
+        "Owned Following Transaction"
+      ],
+      "price": 283.59,
+      "price_fn": [
+        "Nominal Ownership"
+      ],
+      "total_value": 29382.0,
+      "total_value_fn": [
+        "Owned Following Transaction"
+      ],
+      "shares_owned_following_transaction": true,
+      "value_owned_following_transaction": true
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0,
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": ""
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0,
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": ""
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0,
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": ""
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0,
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": ""
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Stock Options (Right to Buy)",
+      "security_title_fn": [
+        "Original Ownership"
+      ],
+      "conversion_or_exercise_price": 73.7,
+      "conversion_or_exercise_price_fn": [],
+      "transaction_date": "2021-02-19",
+      "transaction_date_fn": [
+        "Original Ownership"
+      ],
+      "deemed_execution_date": "2017-02-26",
+      "deemed_execution_date_fn": [
+        "Original Ownership"
+      ],
+      "transaction_code": "M",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0,
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": ""
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0,
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": ""
+    }
+  ],
+  "footnotes": {},
+  "signatures": [
+    {
+      "signature_name": "/s/ Birgit Girshick",
+      "signature_date": "2021-02-23",
+      "original": "/s/ Birgit Girshick | 2021-02-23"
+    }
+  ]
+}

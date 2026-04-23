@@ -1,0 +1,87 @@
+{
+  "issuer": {
+    "issuer_cik": "0001145197",
+    "issuer_name": "INSULET CORP",
+    "issuer_trading_symbol": "PODD",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-05-27",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001199735",
+      "rptowner_name": "CRAWFORD SALLY",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "is_director_nominee": false,
+      "officer_title": "",
+      "other_text": "",
+      "rptowner_street1": "C/O INSULET CORPORATION",
+      "rptowner_street2": "100 NAGOG PARK",
+      "rptowner_city": "ACTON",
+      "rptowner_state": "MA",
+      "rptowner_zip": "01720",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-27",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 808.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 30306.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 808.0 shares of Common Stock at $0.0 (Code A). [Note 1: Annual equity award in the form of restricted stock units (\"RSUs\"). RSUs vest in full on April 30, 2022 and are settled in shares of common stock on a one-for-one basis.]"
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Annual equity award in the form of restricted stock units (\"RSUs\"). RSUs vest in full on April 30, 2022 and are settled in shares of common stock on a one-for-one basis."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ John W. Kapples, attorney-in-fact",
+      "signature_date": "2021-05-28"
+    }
+  ]
+}

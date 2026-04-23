@@ -1,0 +1,184 @@
+{
+  "issuer": {
+    "issuer_cik": "0000832428",
+    "issuer_name": "E.W. SCRIPPS Co",
+    "issuer_trading_symbol": "SSP",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-03-12",
+  "date_of_original_submission": "",
+  "remarks": "[NULL]",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001186940",
+      "rptowner_name": "BOEHNE RICHARD A",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "312 WALNUT STREET, 28TH FLOOR",
+      "rptowner_street2": "",
+      "rptowner_city": "CINCINNATI",
+      "rptowner_state": "OH",
+      "rptowner_zip": "45202",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Class A Common Shares, $.01 par value per share",
+      "security_title_fn": [],
+      "transaction_date": "2021-03-12",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 100000.0,
+      "shares_fn": [],
+      "price": 24.3042,
+      "price_fn": [],
+      "transaction_total_value": 26170.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 287500.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "Investment LLC",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Richard A. Boehne sold 100,000 Class A Common Shares at a price of $24.3042 per share, resulting in a total transaction value of $26,170. The ownership following the transaction was 287,500 shares."
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Class A Common Shares, $.01 par value per share",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 287500.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "D",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    },
+    {
+      "security_title": "Common Voting Shares, $.01 par value per share",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "D",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [
+    {
+      "security_title": "Phantom Stock",
+      "security_title_fn": [
+        "1"
+      ],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [
+        "1"
+      ],
+      "exercise_date": "",
+      "exercise_date_fn": [
+        "1"
+      ],
+      "expiration_date": "",
+      "expiration_date_fn": [
+        "1"
+      ],
+      "underlying_security_title": "Class A Common",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 34272.89,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 34272.92,
+      "shares_owned_following_transaction_fn": [
+        "1"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "D",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    },
+    {
+      "security_title": "Restricted Stock Units",
+      "security_title_fn": [
+        "2"
+      ],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [
+        "2"
+      ],
+      "exercise_date": "2020-05-04",
+      "exercise_date_fn": [
+        "2"
+      ],
+      "expiration_date": "2021-05-04",
+      "expiration_date_fn": [
+        "2"
+      ],
+      "underlying_security_title": "Restricted Stock Units",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 12978.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 12978.0,
+      "shares_owned_following_transaction_fn": [
+        "2"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "D",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    }
+  ],
+  "footnotes": {
+    "1": "Pursuant to the company's 1997 Deferred Compensation and Stock Plan for Directors, directors may defer fees into a phantom stock fund.  Under this plan, fees are allocated to a phantom shares account based on the fair market value of the company's Class A Common Shares on the last trading day of each quarter.  Balances are paid in either shares or cash at the time a director leaves the Board.",
+    "2": "This restricted stock unit award will vest in 2021.  Upon vesting, each restricted stock unit will convert into one Class A Common Share of the Company."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ William Appleton, Attorney-in-fact for Richard A. Boehne",
+      "signature_date": "2021-03-15"
+    }
+  ]
+}

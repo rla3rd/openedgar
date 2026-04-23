@@ -1,0 +1,101 @@
+{
+  "issuer": {
+    "issuer_cik": "0000040545",
+    "issuer_name": "GENERAL ELECTRIC CO",
+    "issuer_trading_symbol": "GE",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-04-01",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001595268",
+      "rptowner_name": "Seidman Leslie",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "is_director_nominee": false,
+      "officer_title": "",
+      "other_text": "",
+      "rptowner_street1": "GENERAL ELECTRIC COMPANY",
+      "rptowner_street2": "5 NECCO STREET",
+      "rptowner_city": "BOSTON",
+      "rptowner_state": "MA",
+      "rptowner_zip": "02210",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Deferred Fee Phantom Stock Units",
+      "security_title_fn": [
+        "1"
+      ],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [
+        "2"
+      ],
+      "transaction_date": "2021-04-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "exercise_date": "",
+      "exercise_date_fn": [
+        "3"
+      ],
+      "expiration_date": "",
+      "expiration_date_fn": [
+        "3"
+      ],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 3529.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 93559.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 3529.0 shares of Deferred Fee Phantom Stock Units at $None (Code A). [Note 1: Acquired at a price of $13.18 per unit pursuant to the terms of the 2007 Long-Term Incentive Plan. Payable beginning one year after termination of service as a director.]"
+    }
+  ],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Acquired at a price of $13.18 per unit pursuant to the terms of the 2007 Long-Term Incentive Plan. Payable beginning one year after termination of service as a director.",
+    "2": "Each unit of phantom stock is the economic equivalent of one share of common stock.",
+    "3": "Payable beginning one year after termination of service as a director."
+  },
+  "signatures": [
+    {
+      "signature_name": "Brandon Smith on behalf of Leslie F. Seidman",
+      "signature_date": "2021-04-01"
+    }
+  ]
+}

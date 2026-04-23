@@ -1,0 +1,404 @@
+{
+  "issuer": {
+    "issuer_cik": "0001466301",
+    "issuer_name": "Clovis Oncology, Inc.",
+    "issuer_trading_symbol": "CLVS",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-11-01",
+  "date_of_original_submission": "",
+  "remarks": "Senior Vice President and Chief Scientific Officer",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001834833",
+      "rptowner_name": "Harding Thomas C.",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Senior Vice President and Chief Scientific Officer",
+      "rptowner_street1": "C/O CLOVIS ONCOLOGY, INC.",
+      "rptowner_street2": "5500 FLATIRON PARKWAY, SUITE 100",
+      "rptowner_city": "BOULDER",
+      "rptowner_state": "CO",
+      "rptowner_zip": "80301",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-11-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "M",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 1562.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 0.0,
+      "price_fn": [
+        "1"
+      ],
+      "transaction_total_value": 5125.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 5125.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Acquired 1,562 shares of Common Stock through a merger transaction (Code M)."
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-11-02",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 779.0,
+      "shares_fn": [
+        "2"
+      ],
+      "price": 4.55,
+      "price_fn": [
+        "2"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 4346.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Sold 779 shares of Common Stock at $4.55 per share."
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-11-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "M",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 1812.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 0.0,
+      "price_fn": [
+        "1"
+      ],
+      "transaction_total_value": 6158.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 6158.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Acquired 1,812 shares of Common Stock through a merger transaction (Code M)."
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-11-02",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 903.0,
+      "shares_fn": [
+        "2"
+      ],
+      "price": 4.55,
+      "price_fn": [
+        "2"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 5255.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Sold 903 shares of Common Stock at $4.55 per share."
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-11-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "M",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 181.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 0.0,
+      "price_fn": [
+        "1"
+      ],
+      "transaction_total_value": 1593.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 1593.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I (By wife)",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Acquired 181 shares of Common Stock through a merger transaction (Code M) as indirect ownership by the reporting person's wife."
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-11-02",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 62.0,
+      "shares_fn": [
+        "2"
+      ],
+      "price": 4.55,
+      "price_fn": [
+        "2"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 1531.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I (By wife)",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Sold 62 shares of Common Stock at $4.55 per share as indirect ownership by the reporting person's wife."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Restricted Stock Units",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [
+        "1"
+      ],
+      "transaction_date": "2021-11-01",
+      "transaction_date_fn": [
+        "3"
+      ],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "M",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "exercise_date": "",
+      "exercise_date_fn": [
+        "3"
+      ],
+      "expiration_date": "",
+      "expiration_date_fn": [
+        "3"
+      ],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 1562.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 7813.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 7813.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Disposed of 1,562 Restricted Stock Units representing underlying Common Stock through a merger transaction (Code M)."
+    },
+    {
+      "security_title": "Restricted Stock Units",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [
+        "1"
+      ],
+      "transaction_date": "2021-11-01",
+      "transaction_date_fn": [
+        "4"
+      ],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "M",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "exercise_date": "",
+      "exercise_date_fn": [
+        "4"
+      ],
+      "expiration_date": "",
+      "expiration_date_fn": [
+        "4"
+      ],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 1812.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 16313.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 16313.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Disposed of 1,812 Restricted Stock Units representing underlying Common Stock through a merger transaction (Code M)."
+    },
+    {
+      "security_title": "Restricted Stock Units",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [
+        "1"
+      ],
+      "transaction_date": "2021-11-01",
+      "transaction_date_fn": [
+        "5"
+      ],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "M",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "exercise_date": "",
+      "exercise_date_fn": [
+        "5"
+      ],
+      "expiration_date": "",
+      "expiration_date_fn": [
+        "5"
+      ],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 181.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 1632.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 1632.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I (By wife)",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Disposed of 181 Restricted Stock Units representing underlying Common Stock through a merger transaction (Code M) as indirect ownership by the reporting person's wife."
+    }
+  ],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Each Restricted Stock Unit represents the right to receive one share of Common Stock.",
+    "2": "Represents the shares automatically sold by the reporting person pursuant to an election to satisfy tax withholding obligations in connection with the vesting of the Restricted Stock Units listed in Table II. This sale does not represent a discretionary trade by the reporting person.",
+    "3": "On February 1, 2019, the reporting person was granted 25,000 Restricted Stock Units. 25% of such Restricted Stock Units vested on February 1, 2020, and the remainder vests in substantially equal installments over the 12 quarters immediately following such date.",
+    "4": "On January 31, 2020, the reporting person was granted 29,000 Restricted Stock Units. 25% of such Restricted Stock Units vested on February 1, 2021, and the remainder vests in substantially equal installments over the 12 quarters immediately following such date.",
+    "5": "On January 31, 2020, the reporting person's wife was granted 2,900 Restricted Stock Units. 25% of such Restricted Stock Units vested on February 1, 2021, and the remainder vests in substantially equal installments over the 12 quarters immediately following such date."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Thomas Harding",
+      "signature_date": "2021-11-02"
+    }
+  ]
+}

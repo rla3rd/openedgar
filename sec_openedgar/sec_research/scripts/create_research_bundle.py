@@ -68,26 +68,50 @@ def export_surgical_metadata(accessions, dataset_type, output_file):
     print(f"Exported {len(all_objects)} objects to {output_file}")
     return all_objects
 
-def bundle_files(accessions, metadata_file, bundle_name, data_root):
+def bundle_files(accessions, metadata_file, bundle_name, data_root, extra_files=None):
     file_list_path = "sec_research/finetuning/bundle_files.txt"
-    with open(file_list_path, "w") as f:
-        f.write(f"{metadata_file}\n")
+    with open(file_list_path, "w") as bundle_list_file:
+        bundle_list_file.write(f"{metadata_file}\n")
+        if extra_files:
+            for ef in extra_files:
+                if os.path.exists(ef):
+                    bundle_list_file.write(f"{ef}\n")
         
         # Find and add markdown sidecars
         found_count = 0
+        print(f"Indexing sidecars in {data_root}... (Single Pass Optimization)")
+        
+        # Build a map of accession -> path
+        accession_map = {}
+        for root, dirs, files in os.walk(data_root):
+            # Check directories
+            for d in dirs:
+                if d in accessions:
+                    accession_map[d] = os.path.join(root, d)
+            
+            # Check files (for the YEAR/QTR/MONTH/DAY/ACC.md.zst structure)
+            for f in files:
+                acc_prefix = f.split('.')[0]
+                if acc_prefix in accessions:
+                    file_path = os.path.join(root, f)
+                    if acc_prefix not in accession_map:
+                        accession_map[acc_prefix] = [file_path]
+                    else:
+                        if isinstance(accession_map[acc_prefix], list):
+                            accession_map[acc_prefix].append(file_path)
+        
         for acc in accessions:
-            found = False
-            # Search in data/filings/YEAR/QX/ACC/
-            for year_dir in pathlib.Path(data_root).glob("*"):
-                if not year_dir.is_dir(): continue
-                for q_dir in year_dir.glob("Q*"):
-                    acc_dir = q_dir / acc
-                    if acc_dir.exists():
-                        f.write(f"{acc_dir}\n")
-                        found = True
-                        found_count += 1
-                        break
-                if found: break
+            if acc in accession_map:
+                paths = accession_map[acc]
+                if isinstance(paths, list):
+                    for p in paths:
+                        bundle_list_file.write(f"{p}\n")
+                else:
+                    bundle_list_file.write(f"{paths}\n")
+                found_count += 1
+            else:
+                # print(f"Warning: Could not find sidecar for {acc}")
+                pass
     
     print(f"Bundled {found_count}/{len(accessions)} sidecar directories.")
     
@@ -102,12 +126,19 @@ if __name__ == "__main__":
     parser.add_argument("--accessions", required=True, help="Path to file with accessions OR comma-separated list")
     parser.add_argument("--type", default="Ownership", help="Dataset type (default: Ownership)")
     parser.add_argument("--output", default="research_bundle.tar.zst", help="Output bundle filename")
-    parser.add_argument("--data-root", default="data/filings", help="Path to filing sidecars root")
+    default_data_root = os.getenv("EDGAR_LOCAL_DATA_DIR", "data/filings")
+    if os.path.exists(os.path.join(default_data_root, "data")):
+        default_data_root = os.path.join(default_data_root, "data")
+        
+    parser.add_argument("--data-root", default=default_data_root, help="Path to filing sidecars root")
+    parser.add_argument("--include", help="Comma-separated list of extra files to include")
     
     args = parser.parse_args()
     
     acc_list = get_accessions(args.accessions)
     meta_file = "sec_research/finetuning/surgical_metadata.json"
     
+    extra_files = args.include.split(",") if args.include else []
+    
     export_surgical_metadata(acc_list, args.type, meta_file)
-    bundle_files(acc_list, meta_file, args.output, args.data_root)
+    bundle_files(acc_list, meta_file, args.output, args.data_root, extra_files=extra_files)

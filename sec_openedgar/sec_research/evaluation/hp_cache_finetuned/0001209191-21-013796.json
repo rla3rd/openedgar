@@ -1,0 +1,166 @@
+{
+  "issuer": {
+    "issuer_cik": "0000880417",
+    "issuer_name": "CSB BANCORP INC /OH",
+    "issuer_trading_symbol": "CSBB",
+    "period_of_report": "2021-02-24",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001202390",
+      "rptowner_name": "STEINER EDDIE L",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "President & CEO",
+      "rptowner_street": [
+        "91 N. CLAY ST."
+      ],
+      "rptowner_city": "MILLERSBURG",
+      "rptowner_state": "OH",
+      "rptowner_zip": "44654",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-02-24",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "P",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 500.0,
+      "shares_fn": [],
+      "price": 37.74,
+      "price_fn": [],
+      "transaction_total_value": 8797.7755,
+      "transaction_total_value_fn": [
+        "Good"
+      ],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-02-24",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "P",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 200.0,
+      "shares_fn": [],
+      "price": 37.74,
+      "price_fn": [],
+      "transaction_total_value": 32977.0,
+      "transaction_total_value_fn": [
+        "Good"
+      ],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 8797.7755,
+      "value_owned_following_transaction_fn": [
+        "Good"
+      ],
+      "direct_or_indirect_ownership": "Director",
+      "direct_or_indirect_ownership_fn": [
+        "Original Ownership"
+      ],
+      "nature_of_ownership": "Ownership",
+      "nature_of_ownership_fn": [
+        "Ownership"
+      ],
+      "transaction_form_type": "4"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 32977.0,
+      "value_owned_following_transaction_fn": [
+        "Good"
+      ],
+      "direct_or_indirect_ownership": "Officer",
+      "direct_or_indirect_ownership_fn": [
+        "Original Ownership"
+      ],
+      "nature_of_ownership": "Ownership",
+      "nature_of_ownership_fn": [
+        "Ownership"
+      ],
+      "transaction_form_type": "4"
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "",
+      "security_title_fn": [],
+      "transaction_date": "",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": ""
+    }
+  ],
+  "footnotes": {
+    "1": "Allocated to the reporting person's account pursuant to a dividend reinvestment feature of the CSB Bancorp, Inc. Dividend Reinvestment Plan."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/Eddie L. Steiner by Margaret L. Conn, Attorney-in-Fact, pursuant to Power of Attorney, filed herewith",
+      "signature_date": "2021-02-24",
+      "signature_date_fn": [],
+      "provided_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ]
+}

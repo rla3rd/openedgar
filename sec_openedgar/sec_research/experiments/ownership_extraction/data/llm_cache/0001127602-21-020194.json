@@ -1,0 +1,68 @@
+{
+  "issuer": {
+    "issuer_cik": "0000354190",
+    "issuer_name": "Arthur J. Gallagher & Co.",
+    "issuer_trading_symbol": "AJG"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001482241",
+      "rptowner_name": "Hudson Scott R",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "officer_title": "Vice President"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-06-15",
+      "transaction_date_fn": "",
+      "transaction_code": "S",
+      "transaction_code_fn": "",
+      "shares": 9500.0,
+      "shares_fn": "",
+      "price": 143.93,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 34752.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "",
+      "transaction_date_fn": "",
+      "transaction_code": "",
+      "transaction_code_fn": "",
+      "shares": 0.0,
+      "shares_fn": "",
+      "price": 0.0,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "I",
+      "shares_owned_following_transaction": 121.1,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": "Gallagher 401(k) plan account"
+    }
+  ],
+  "derivative_transactions": [],
+  "footnotes": {
+    "F1": ""
+  },
+  "signatures": [
+    {
+      "signature_name": "Seth Diehl",
+      "signature_date": "2021-06-17"
+    }
+  ]
+}

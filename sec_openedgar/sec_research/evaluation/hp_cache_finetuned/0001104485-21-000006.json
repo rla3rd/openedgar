@@ -1,0 +1,102 @@
+{
+  "issuer": {
+    "issuer_cik": "0001104485",
+    "issuer_name": "NORTHERN OIL & GAS, INC.",
+    "issuer_trading_symbol": "N O G",
+    "period_of_report": "2021-02-05",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": 4,
+  "schema_version": "X0306",
+  "issuer_foreign_trading_symbol": "",
+  "date_of_original_submission": "2021-02-09",
+  "remarks": "",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001804333",
+      "rptowner_name": "Lasher Stuart G.",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "601 CARLSON PKWY, SUITE 990",
+      "rptowner_street2": "",
+      "rptowner_city": "MINNETONKA",
+      "rptowner_state": "MN",
+      "rptowner_zip": "55305",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_owned_following_transaction": false,
+      "value_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-02-05",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "original_owned_following_transaction": false,
+      "value_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "owned_following_transaction": false,
+      "value_following_transaction": 258333.0
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "owned_following_transaction": true,
+      "value_following_transaction": 32622.0
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "",
+      "security_title_fn": [],
+      "transaction_date": "",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "original_owned_following_transaction": false,
+      "value_following_transaction": 0.0
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "",
+      "security_title_fn": [],
+      "owned_following_transaction": false,
+      "value_following_transaction": 0.0
+    },
+    {
+      "security_title": "",
+      "security_title_fn": [],
+      "owned_following_transaction": false,
+      "value_following_transaction": 0.0
+    }
+  ],
+  "footnotes": {
+    "1": "Shares purchased pursuant to Issuer's public offering of common stock, which closed on February 9, 2021.",
+    "2": "The reporting person disclaims beneficial ownership of these securities, except to the extent of his pecuinary interest therein, and the inclusion of these shares in this report shall not be deemed an admission of beneficial ownership of all of the reported shares for purposes of Section 16 or for any other purpose."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Stephanie L. Horton, as attorney-in-fact",
+      "signature_date": "2021-02-09",
+      "original_owned_following_transaction": false,
+      "value_following_transaction": 0.0
+    }
+  ]
+}

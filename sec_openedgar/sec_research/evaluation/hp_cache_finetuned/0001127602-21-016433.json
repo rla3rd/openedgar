@@ -1,0 +1,73 @@
+{
+  "issuer": {
+    "issuer_cik": "0000882796",
+    "issuer_name": "BIOCRYST PHARMACEUTICALS INC",
+    "issuer_trading_symbol": "BCRX",
+    "period_of_report": "2021-05-10",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001485939",
+      "rptowner_name": "ABERCROMBIE GEORGE B",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "PO BOX 16069",
+        "CHAPEL HILL, NC, 27516"
+      ],
+      "rptowner_city": "",
+      "rptowner_state": "",
+      "rptowner_zip": "",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-10",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "transaction_form_type_fn": [
+        "Foreign Ownership"
+      ],
+      "equity_swap_involved": false
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "The price in column 4 is a weighted average price. These shares were sold in multiple transactions ranging from $12.69 to $12.72. The reporting person will provide to the issuer, any security holder of the issuer, or the SEC staff, upon request, full information regarding the number of shares sold at each price within the range set forth in this footnote."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Alane P. Barnes, by power of attorney",
+      "signature_date": "2021-05-12",
+      "signature_date_fn": [],
+      "owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ]
+}

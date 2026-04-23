@@ -1,0 +1,164 @@
+{
+  "issuer": {
+    "issuer_cik": "0000825324",
+    "issuer_name": "Good Times Restaurants Inc.",
+    "issuer_trading_symbol": "GTIM",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-02-16",
+  "date_of_original_submission": "",
+  "remarks": "[NULL]",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001232587",
+      "rptowner_name": "JOBSON CHARLES E",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "39 LIVINGSTON ROAD",
+      "rptowner_street2": "",
+      "rptowner_city": "WELLESLEY",
+      "rptowner_state": "MA",
+      "rptowner_zip": "02842",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "MA",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-02-16",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "P",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 20949.0,
+      "shares_fn": [],
+      "price": 3.328,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 229282.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "By Jobson Foundation",
+      "nature_of_ownership_fn": [
+        "1"
+      ],
+      "transaction_summary": "Purchased 20,949 shares of Common Stock at $3.328 per share, resulting in a total value of $70,000.00. Ownership is indirect through the Jobson Family Foundation."
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 5468.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "By Delta Advisors",
+      "nature_of_ownership_fn": [
+        "2"
+      ],
+      "transaction_form_type": "4"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 128320.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "By Charles E. Jobson Irrevocable Trust",
+      "nature_of_ownership_fn": [
+        "3"
+      ],
+      "transaction_form_type": "4"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 1810839.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [
+    {
+      "security_title": "Restricted Stock Un",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [],
+      "exercise_date": "2021-11-16",
+      "exercise_date_fn": [
+        "4"
+      ],
+      "expiration_date": "2021-11-16",
+      "expiration_date_fn": [
+        "4"
+      ],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 913.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 914.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    }
+  ],
+  "footnotes": {
+    "1": "Common shares held by the Jobson Family Foundation, an entity controlled by Mr. Jobson",
+    "2": "Common shares held by Delta Advisors, LLC.  Mr. Jobson is the managing member of Delta Advisors, LLC",
+    "3": "Charles E. Jobson Irrevocable Trust, a trust in which the reporting person's children beneficially own 100%. The reporting person's spouse is the Trustee.",
+    "4": "The Reporting Person was granted 2,740 Restricted Stock Units on November 16, 2018 vesting at 1/3 of the total granted amount over three years.  Such Restricted Stock Units were previously reported in Table II on a Form 4 filed with the Securities and Exchange Commission."
+  },
+  "signatures": [
+    {
+      "signature_name": "Charles Jobson",
+      "signature_date": "2021-02-18"
+    }
+  ]
+}

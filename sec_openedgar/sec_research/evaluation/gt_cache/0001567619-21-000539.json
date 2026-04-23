@@ -1,0 +1,88 @@
+{
+  "issuer": {
+    "issuer_cik": "0001029800",
+    "issuer_name": "URSTADT BIDDLE PROPERTIES INC",
+    "issuer_trading_symbol": "UBP",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-01-04",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001222954",
+      "rptowner_name": "URSTADT CHARLES D",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "is_director_nominee": false,
+      "officer_title": "Chairman",
+      "other_text": "",
+      "rptowner_street1": "321 RAILROAD AVENUE",
+      "rptowner_street2": "",
+      "rptowner_city": "GREEENWICH",
+      "rptowner_state": "CT",
+      "rptowner_zip": "06830",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-01-04",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 3000.0,
+      "shares_fn": [],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 46876.0,
+      "shares_owned_following_transaction_fn": [
+        "2"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 3000.0 shares of Common Stock at $0.0 (Code A)."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "On January 4, 2021, the Issuer entered into an agreement with Charles D. Urstadt (the \"Reporting Person\") whereby the Reporting Person was granted a restricted stock award of 3,000 shares of Common Stock that vests on January 4, 2026, pursuant to the Issuer's Amended and Restated Restricted Stock Award Plan (the \"Restricted Stock Award Plan\").",
+    "2": "Of such shares, 18,150 are restricted shares, subject to vesting, issued pursuant to the Restricted Stock Award Plan. The number of shares reported does not include shares of Common Stock of the Issuer owned by Urstadt Realty Associates Co LP (\"URACO\"), of which the Charles D. Urstadt Irrevocable Trust (the \"CDU Trust\") is a limited partner. The Reporting Person is the sole beneficiary of the CDU Trust. The number of shares reported also does not include shares of Common Stock of the Issuer owned by Urstadt Property Company, Inc. (\"UPCO\"), of which the Reporting Person is an officer and shareholder. Shares held by URACO and UPCO are separately reported by Charles J. Urstadt and UPCO, the general partner of URACO."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Charles D. Urstadt by Miyun Sung as Attorney-in-Fact",
+      "signature_date": "2021-01-06"
+    }
+  ]
+}

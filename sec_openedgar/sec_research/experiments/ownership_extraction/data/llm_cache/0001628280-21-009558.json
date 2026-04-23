@@ -1,0 +1,86 @@
+{
+  "issuer": {
+    "issuer_cik": "0001747748",
+    "issuer_name": "Qualtrics International Inc.",
+    "issuer_trading_symbol": "XM"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001842543",
+      "rptowner_name": "Beckstead Chris",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "officer_title": "President"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Class A Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-05-05",
+      "transaction_date_fn": "",
+      "transaction_code": "S",
+      "transaction_code_fn": "",
+      "shares": 1491.0,
+      "shares_fn": "",
+      "price": 36.19,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 6158274.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Class A Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-05-05",
+      "transaction_date_fn": "",
+      "transaction_code": "S",
+      "transaction_code_fn": "",
+      "shares": 92.0,
+      "shares_fn": "",
+      "price": 37.18,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 6158182.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Class A Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-05-05",
+      "transaction_date_fn": "",
+      "transaction_code": "S",
+      "transaction_code_fn": "",
+      "shares": 15650.0,
+      "shares_fn": "",
+      "price": 35.4,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 6142532.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [],
+  "footnotes": {
+    "F1": "Shares sold by the Reporting Person to cover tax withholding obligations in connection with the vesting of Restricted Stock Units (RSUs)."
+  },
+  "signatures": [
+    {
+      "signature_name": "Blake Tierney",
+      "signature_date": "2021-05-07"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "issuer": {
+    "issuer_cik": "0000936528",
+    "issuer_name": "WASHINGTON FEDERAL INC",
+    "issuer_trading_symbol": "WAFD"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001325174",
+      "rptowner_name": "KELLEY THOMAS J",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "officer_title": ""
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-01-01",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "shares": 3108.0,
+      "shares_fn": "",
+      "price": 25.74,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 29514.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-01-01",
+      "transaction_date_fn": "",
+      "transaction_code": "F",
+      "transaction_code_fn": "",
+      "shares": 1150.0,
+      "shares_fn": "",
+      "price": 25.74,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 28364.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [],
+  "footnotes": {
+    "F1": ""
+  },
+  "signatures": [
+    {
+      "signature_name": "Vincent L. Beatty",
+      "signature_date": "2021-01-05"
+    }
+  ]
+}

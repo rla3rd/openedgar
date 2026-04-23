@@ -1,0 +1,93 @@
+{
+  "issuer": {
+    "issuer_cik": "0000789570",
+    "issuer_name": "MGM Resorts International",
+    "issuer_trading_symbol": "MGM"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001440053",
+      "rptowner_name": "McManus John",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "officer_title": "EVP GENERAL COUNSEL AND SECY"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock $.01 Par Value ND",
+      "security_title_fn": "",
+      "transaction_date": "2021-04-01",
+      "transaction_date_fn": "",
+      "transaction_code": "M",
+      "transaction_code_fn": "",
+      "shares": 6528.0,
+      "shares_fn": "",
+      "price": 0.0,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 41575.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Common Stock $.01 Par Value ND",
+      "security_title_fn": "",
+      "transaction_date": "2021-04-01",
+      "transaction_date_fn": "",
+      "transaction_code": "F",
+      "transaction_code_fn": "",
+      "shares": 1590.0,
+      "shares_fn": "",
+      "price": 39.7,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 39985.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Restricted Stock Units",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "[F1]",
+      "transaction_date": "2021-04-01",
+      "transaction_date_fn": "",
+      "transaction_code": "M",
+      "transaction_code_fn": "",
+      "exercise_date": "2021-04-01",
+      "exercise_date_fn": "",
+      "expiration_date": "2024-04-01",
+      "expiration_date_fn": "",
+      "underlying_security_title": "Common Stock $.01 Par Value ND",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 6528.0,
+      "underlying_security_shares_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 19581.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "footnotes": {
+    "F1": "Restricted Stock Units (\"RSUs\") granted under the MGM Resorts International (\"Company\") Amended and Restated 2005 Omnibus Incentive Plan. Each RSU represents the right to receive, following vesting, one share of Company common stock. Any fractional shares are paid in cash upon settlement."
+  },
+  "signatures": [
+    {
+      "signature_name": "Jessica Cunningham",
+      "signature_date": "2021-04-05"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "issuer": {
+    "issuer_cik": "0001598674",
+    "issuer_name": "Casper Sleep Inc.",
+    "issuer_trading_symbol": "CSPR",
+    "period_of_report": "2021-03-05",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001791898",
+      "rptowner_name": "Truppman Jonathan",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "General Counsel and Secretary",
+      "rptowner_street": [
+        "C/O CASPER SLEEP INC.",
+        "3 WTC, 175 GREENWICH ST. FL. 39",
+        "NEW YORK, NY, 10007"
+      ],
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10007",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-03-05",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 81878.0,
+      "shares_fn": [
+        "Restricted Stock Units"
+      ],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 214225.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": false
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": []
+}

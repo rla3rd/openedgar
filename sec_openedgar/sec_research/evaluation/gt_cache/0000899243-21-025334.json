@@ -1,0 +1,93 @@
+{
+  "issuer": {
+    "issuer_cik": "0001661998",
+    "issuer_name": "Homology Medicines, Inc.",
+    "issuer_trading_symbol": "FIXX",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-06-17",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001664281",
+      "rptowner_name": "PARMAR KUSH",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "is_director_nominee": false,
+      "officer_title": "",
+      "other_text": "",
+      "rptowner_street1": "501 2ND STREET, SUITE 350",
+      "rptowner_street2": "",
+      "rptowner_city": "SAN FRANCISCO",
+      "rptowner_state": "CA",
+      "rptowner_zip": "94107",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Option (Right to Buy)",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 7.26,
+      "conversion_or_exercise_price_fn": [],
+      "transaction_date": "2021-06-17",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "exercise_date": "",
+      "exercise_date_fn": [
+        "1"
+      ],
+      "expiration_date": "2031-06-17",
+      "expiration_date_fn": [],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 18000.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 18000.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 18000.0 shares of Option (Right to Buy) at $7.26 (Code A)."
+    }
+  ],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "This option shall vest and become exercisable on the earlier of June 17, 2022 or the day immediately prior to the date of the Issuer's next annual meeting of stockholders occurring after the date of grant, in either case subject to the Reporting Person continuing in service on the Board as a Non-Employee Director through such vesting date."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Bradford Smith, Attorney-in-Fact for Kush M. Parmar",
+      "signature_date": "2021-06-22"
+    }
+  ]
+}

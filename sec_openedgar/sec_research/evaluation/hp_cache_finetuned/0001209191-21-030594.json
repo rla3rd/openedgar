@@ -1,0 +1,147 @@
+{
+  "issuer": {
+    "issuer_cik": "0000040987",
+    "issuer_name": "GENUINE PARTS CO",
+    "issuer_trading_symbol": "GPC",
+    "period_of_report": "2021-05-05",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001848123",
+      "rptowner_name": "Rutledge Napoleon B JR",
+      "rptowner_ccc": "OCO",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "SVP Finance & Chief Acctg Off",
+      "rptowner_street": [
+        "2999 WILDWOOD PKWY"
+      ],
+      "rptowner_city": "ATLANTA",
+      "rptowner_state": "GA",
+      "rptowner_zip": "30339",
+      "rptowner_non_us_address_flag": false,
+      "original_owned_fn": [
+        "M"
+      ]
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 1500.0,
+      "shares_fn": [],
+      "price": 63.28,
+      "price_fn": [],
+      "transaction_total_value": 6230.0,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 0.0,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_ownership": "Direct Ownership",
+      "nature_of_ownership_fn": [
+        "D"
+      ],
+      "transaction_summary": "Common Stock owned following transaction"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 957.0,
+      "shares_fn": [],
+      "price": 131.32,
+      "price_fn": [],
+      "transaction_total_value": 5273.0,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 0.0,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_ownership": "Direct Ownership",
+      "nature_of_ownership_fn": [
+        "D"
+      ],
+      "transaction_summary": "Common Stock owned following transaction"
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Stock Appreciation Right",
+      "security_title_fn": [
+        "F"
+      ],
+      "shares": 1500.0,
+      "shares_fn": [],
+      "price": 63.28,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 0.0,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_ownership": "Direct Ownership",
+      "nature_of_ownership_fn": [
+        "D"
+      ],
+      "transaction_summary": "Stock Appreciation Right owned following transaction"
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 0.0,
+      "shares_fn": [],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 0.0,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_ownership": "Direct Ownership",
+      "nature_of_ownership_fn": [
+        "D"
+      ],
+      "transaction_summary": "Common Stock owned following transaction"
+    }
+  ],
+  "footnotes": {},
+  "signatures": [
+    {
+      "signature_name": "Jennifer Ellis Attorney in Fact",
+      "signature_date": "2021-05-06",
+      "signature_date_fn": [],
+      "original": "Jennifer Ellis Attorney in Fact 2021-05-06"
+    }
+  ]
+}

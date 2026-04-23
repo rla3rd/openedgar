@@ -1,0 +1,320 @@
+{
+  "issuer": {
+    "issuer_cik": "0001110611",
+    "issuer_name": "ON24 INC.",
+    "issuer_trading_symbol": "ONTF",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-11-01",
+  "date_of_original_submission": "",
+  "remarks": "[NULL]",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001841654",
+      "rptowner_name": "Sharan Sharat",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "President and Chief Executive",
+      "rptowner_street1": "C/O ON24, INC.",
+      "rptowner_street2": "50 BEALE STREET, 8TH FLOOR",
+      "rptowner_city": "SAN FRANCISCO",
+      "rptowner_state": "CA",
+      "rptowner_zip": "94015",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "California",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-11-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "2021-11-01",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "M",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 46875.0,
+      "shares_fn": [],
+      "price": 19.13,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 1980047.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 1980047.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting person acquired 46,875 shares of common stock through a method that resulted in the withholding of shares by the issuer to satisfy tax obligations on November 1, 2021."
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-11-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "2021-11-01",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "F",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 23634.0,
+      "shares_fn": [],
+      "price": 19.13,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 1956413.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 1956413.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting person disposed of 23,634 shares of common stock through a method that resulted in the withholding of shares by the issuer to satisfy tax obligations on November 1, 2021."
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-11-02",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "2021-11-02",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "M",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 46875.0,
+      "shares_fn": [],
+      "price": 19.03,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 2003288.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 2003288.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting person acquired 46,875 shares of common stock through a method that resulted in the withholding of shares by the issuer to satisfy tax obligations on November 2, 2021."
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-11-02",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "2021-11-02",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "F",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 23241.0,
+      "shares_fn": [],
+      "price": 19.03,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 1980047.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 1980047.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting person disposed of 23,241 shares of common stock through a method that resulted in the withholding of shares by the issuer to satisfy tax obligations on November 2, 2021."
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 92500.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "Held by daughter",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": ""
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Restricted Stock Units",
+      "security_title_fn": [
+        "3"
+      ],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [
+        "3"
+      ],
+      "transaction_date": "2021-11-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "M",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "exercise_date": "",
+      "exercise_date_fn": [
+        "4"
+      ],
+      "expiration_date": "",
+      "expiration_date_fn": [
+        "4"
+      ],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 46875.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 140625.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 140625.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting person exercised 46,875 restricted stock units that vested upon satisfaction of service and liquidity conditions on November 1, 2021."
+    },
+    {
+      "security_title": "Restricted Stock Units",
+      "security_title_fn": [
+        "3"
+      ],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [
+        "3"
+      ],
+      "transaction_date": "2021-11-02",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "M",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "exercise_date": "",
+      "exercise_date_fn": [
+        "4"
+      ],
+      "expiration_date": "",
+      "expiration_date_fn": [
+        "4"
+      ],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 46875.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 93750.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 93750.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting person exercised 46,875 restricted stock units that vested upon satisfaction of service and liquidity conditions on November 2, 2021."
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Restricted Stock Units",
+      "security_title_fn": [
+        "3"
+      ],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [
+        "3"
+      ],
+      "exercise_date": "",
+      "exercise_date_fn": [
+        "4"
+      ],
+      "expiration_date": "",
+      "expiration_date_fn": [
+        "4"
+      ],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 93750.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 93750.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 93750.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": ""
+    }
+  ],
+  "footnotes": {
+    "1": "This transaction is not a sale of shares by the Reporting Person. Instead, the shares were withheld by the Issuer, to satisfy withholding taxes in connection with the release on November 1, 2021 of restricted stock units held by the Reporting Person.",
+    "2": "This transaction is not a sale of shares by the Reporting Person. Instead, the shares were withheld by the Issuer, to satisfy withholding taxes in connection with the release on November 2, 2021 of restricted stock units held by the Reporting Person.",
+    "3": "Each restricted stock unit represents the contingent right to receive one share of the issuer's common stock.",
+    "4": "Each restricted stock unit vested upon satisfaction of a service condition and a liquidity condition and settles for one share of the issuer's common stock. The remaining RSUs will settle on December 1, 2021 and December 2, 2021."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Sharat Sharan, William Weesner, Attorney-in-Fact",
+      "signature_date": "2021-11-03"
+    }
+  ]
+}

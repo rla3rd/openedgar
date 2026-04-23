@@ -1,0 +1,90 @@
+{
+  "issuer": {
+    "issuer_cik": "0000077360",
+    "issuer_name": "PENTAIR plc",
+    "issuer_trading_symbol": "PNR",
+    "period_of_report": "2021-01-04",
+    "date_of_original_submission": "2021-01-06",
+    "remarks": "",
+    "not_subject_to_section_16": false,
+    "is_rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": 4.0,
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001657299",
+      "rptowner_name": "Stephenson Mona Abutaleb",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "5500 WAYZATA BLVD., SUITE 900",
+        "GOLDEN VALLEY, MN, 55416"
+      ],
+      "rptowner_foreign_trading_territory": "",
+      "schema_version": "X0306"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Shares - Restricted Stock Units",
+      "security_title_fn": [],
+      "transaction_date": "2021-01-04",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 2717.0,
+      "shares_fn": [
+        "Owned Following Transaction"
+      ],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 2717.0,
+      "transaction_total_value_fn": [
+        "Owned Following Transaction"
+      ]
+    },
+    {
+      "security_title": "Common Shares",
+      "security_title_fn": [],
+      "transaction_date": "2021-01-04",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "F",
+      "transaction_code_fn": [
+        "Final Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 221.0,
+      "shares_fn": [
+        "Owned Following Transaction"
+      ],
+      "price": 51.53,
+      "price_fn": [
+        "Nominal Ownership"
+      ],
+      "transaction_total_value": 6109.0,
+      "transaction_total_value_fn": [
+        "Owned Following Transaction"
+      ]
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": []
+}

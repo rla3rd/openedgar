@@ -1,0 +1,129 @@
+{
+  "issuer": {
+    "issuer_cik": "0000079879",
+    "issuer_name": "PPG INDUSTRIES INC",
+    "issuer_trading_symbol": "PPG"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001748676",
+      "rptowner_name": "Foulkes Anne M.",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "officer_title": "Sr. VP and General Counsel"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-02-17",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "shares": 295.0,
+      "shares_fn": "",
+      "price": 0.0,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 7353.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-02-17",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "shares": 690.0,
+      "shares_fn": "",
+      "price": 0.0,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 8043.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-02-17",
+      "transaction_date_fn": "",
+      "transaction_code": "F",
+      "transaction_code_fn": "",
+      "shares": 307.0,
+      "shares_fn": "",
+      "price": 136.6,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 7736.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "",
+      "transaction_date_fn": "",
+      "transaction_code": "",
+      "transaction_code_fn": "",
+      "shares": 0.0,
+      "shares_fn": "I",
+      "price": 0.0,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "I",
+      "shares_owned_following_transaction": 3404.552,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": "By 401(k) Plan"
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Employee Stock Options",
+      "security_title_fn": "[^4]",
+      "conversion_or_exercise_price": 136.6,
+      "conversion_or_exercise_price_fn": "",
+      "transaction_date": "2021-02-17",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "exercise_date": "2024-02-17",
+      "exercise_date_fn": "",
+      "expiration_date": "2031-02-16",
+      "expiration_date_fn": "",
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 12527.0,
+      "underlying_security_shares_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 12527.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "footnotes": {
+    "F1": "Settlement of 2018 total shareholder return contingent shares award."
+  },
+  "signatures": [
+    {
+      "signature_name": "Greg E. Gordon",
+      "signature_date": "2021-02-19"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "issuer": {
+    "issuer_cik": "0001494259",
+    "issuer_name": "CarGurus, Inc.",
+    "issuer_trading_symbol": "CARG",
+    "period_of_report": "2021-04-01",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001801139",
+      "rptowner_name": "Eldridge Andrea Lee",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Chief People Officer",
+      "rptowner_street": [
+        "2 CANAL PARK",
+        "4TH FLOOR"
+      ],
+      "rptowner_city": "CAMBRIDGE",
+      "rptowner_state": "MA",
+      "rptowner_zip": "02140",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Class A Common Stock",
+      "security_title_fn": [
+        "F"
+      ],
+      "transaction_date": "2021-04-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "4",
+      "transaction_code_fn": [
+        "4"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 769.0,
+      "shares_fn": [
+        "D"
+      ],
+      "price": 24.505,
+      "price_fn": [
+        ""
+      ],
+      "total_value": 52076.0,
+      "total_value_fn": [
+        ""
+      ],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Shares withheld for payment of tax liability upon vesting of restricted stock units."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Kathleen Patton, as attorney-in-fact",
+      "signature_date": "2021-04-05",
+      "signature_date_fn": [],
+      "owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ]
+}

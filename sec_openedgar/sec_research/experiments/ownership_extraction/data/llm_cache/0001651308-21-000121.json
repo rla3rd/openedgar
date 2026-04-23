@@ -1,0 +1,96 @@
+{
+  "issuer": {
+    "issuer_cik": "0001651308",
+    "issuer_name": "BeiGene, Ltd.",
+    "issuer_trading_symbol": "BGNE"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001403322",
+      "rptowner_name": "Malley Thomas",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "officer_title": ""
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Ordinary Shares",
+      "security_title_fn": "[F1]",
+      "transaction_date": "2021-06-16",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "shares": 7800.0,
+      "shares_fn": "",
+      "price": 0.0,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 17082.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "American Depositary Shares",
+      "security_title_fn": "[F2]",
+      "transaction_date": "",
+      "transaction_date_fn": "",
+      "transaction_code": "",
+      "transaction_code_fn": "",
+      "shares": 0.0,
+      "shares_fn": "",
+      "price": 0.0,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "",
+      "shares_owned_following_transaction": 30000.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Share Option (Right to Buy)",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 26.53,
+      "conversion_or_exercise_price_fn": "[F3]",
+      "transaction_date": "2021-06-16",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "[F4]",
+      "expiration_date": "2031-06-15",
+      "expiration_date_fn": "",
+      "underlying_security_title": "Ordinary Shares",
+      "underlying_security_title_fn": "[F1]",
+      "underlying_security_shares": 17498.0,
+      "underlying_security_shares_fn": "[F4]",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 17498.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "footnotes": {
+    "F1": "Represents securities underlying restricted share units. The restricted share units shall become fully vested on the earlier to occur of the first anniversary of the grant date or the date of the next annual general meeting; provided, however, that all vesting shall cease if the director resigns from the board of directors or otherwise ceases to serve as a director, unless the board determines otherwise. Unvested securities are subject to accelerated vesting upon a change in control or certain termination events.",
+    "F2": "Each American Depositary Share (\"ADS\") represents 13 ordinary shares.",
+    "F3": "The number of securities underlying each option and the exercise price therefor are represented in ordinary shares.",
+    "F4": "The option shall become exercisable in full upon the earlier to occur of the first anniversary of the grant date or the date of the next annual general meeting; provided, however, that all vesting shall cease if the Reporting Person resigns from the board of directors or otherwise ceases to serve as a director, unless the board determines otherwise. Unvested securities are subject to accelerated vesting upon a change in control or certain termination events."
+  },
+  "signatures": [
+    {
+      "signature_name": "Qing Nian",
+      "signature_date": "2021-06-21"
+    }
+  ]
+}

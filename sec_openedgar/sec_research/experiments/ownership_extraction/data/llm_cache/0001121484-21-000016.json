@@ -1,0 +1,68 @@
+{
+  "issuer": {
+    "issuer_cik": "0001121484",
+    "issuer_name": "OIL STATES INTERNATIONAL, INC",
+    "issuer_trading_symbol": "OIS"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001281566",
+      "rptowner_name": "HAJDIK LLOYD A",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "officer_title": "Executive VP, CFO & Treasurer"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-02-13",
+      "transaction_date_fn": "",
+      "transaction_code": "F",
+      "transaction_code_fn": "",
+      "shares": 8029.0,
+      "shares_fn": "",
+      "price": 6.38,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 203261.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-02-14",
+      "transaction_date_fn": "",
+      "transaction_code": "F",
+      "transaction_code_fn": "",
+      "shares": 4910.0,
+      "shares_fn": "",
+      "price": 6.38,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 198351.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [],
+  "footnotes": {
+    "F1": "Shares surrendered for payment of tax liability incident to vesting of prior restricted stock award."
+  },
+  "signatures": [
+    {
+      "signature_name": "Cindy B. Taylor",
+      "signature_date": "2021-02-16"
+    }
+  ]
+}

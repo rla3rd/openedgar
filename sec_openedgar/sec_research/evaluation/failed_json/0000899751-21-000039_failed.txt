@@ -1,0 +1,169 @@
+{
+ "issuer": {
+  "issuer_cik": "0000899751",
+  "issuer_name": "TITAN INTERNATIONAL INC",
+  "issuer_trading_symbol": "TWI",
+  "period_of_report": "2019-08-13",
+  "not_subject_to_section_16": false,
+  "rule_10b5_1_plan": false,
+  "no_securities_owned": false
+ },
+ "form_type": "4",
+ "schema_version": "X0306",
+ "reporting_owners": [
+  {
+   "rptowner_cik": "0000940455",
+   "rptowner_name": "TAYLOR MAURICE M JR",
+   "rptowner_ccc": "",
+   "is_director": true,
+   "is_officer": false,
+   "is_10pctowner": false,
+   "is_other": false,
+   "other_text": "",
+   "is_director_nominee": false,
+   "officer_title": "",
+   "rptowner_street": [
+    "C/O TITAN INTERNATIONAL INC.",
+    "2701 SPRUCE STREET",
+    "QUINCY, IL, 62301"
+   ],
+   "rptowner_city": "QUINCY",
+   "rptowner_state": "IL",
+   "rptowner_zip": "62301",
+   "rptowner_non_us_address_flag": false,
+   "rptowner_owned_foreign_territory": false,
+   "rptowner_state_territory": "",
+   "good_address": False
+  }
+ ],
+ "non_derivative_transactions": [
+  {
+   "security_title": "Common stock",
+   "security_title_fn": [],
+   "transaction_date": "2019-08-13",
+   "transaction_date_fn": [],
+   "deemed_execution_date": "",
+   "deemed_execution_date_fn": [],
+   "transaction_code": "P",
+   "transaction_code_fn": ["Original Ownership"],
+   "transaction_timeliness": "",
+   "transaction_timeliness_fn": [],
+   "shares": 37134.0,
+   "shares_fn": [],
+   "price": 3.104,
+   "price_fn": [],
+   "transaction_total_value": 1001871.0,
+   "transaction_total_value_fn": ["Includes 15,856 shares not previously reported that were acquired in exempt (Rule 16b-3(c)) transactions.", "Includes 23,841 shares not previously reported based on an April 2021 reconciliation of the Reporting Person's ownership records."],
+   "shares_owned_following_transaction": 20000.0,
+   "shares_owned_following_transaction_fn": [],
+   "value_owned_following_transaction": 20000.0,
+   "value_owned_following_transaction_fn": [],
+   "direct_or_indirect_ownership": "Director",
+   "direct_or_indirect_ownership_fn": ["Original Ownership"],
+   "nature_of_ownership": "D",
+   "nature_of_ownership_fn": ["Direct Ownership"],
+   "transaction_summary": "Common stock owned following Original Ownership of 37134.0 at 3.104"
+  }
+ ],
+ "non_derivative_holdings": [
+  {
+   "security_title": "Common stock",
+   "security_title_fn": [],
+   "shares_owned_following_transaction": 20000.0,
+   "shares_owned_following_transaction_fn": [],
+   "value_owned_following_transaction": 20000.0,
+   "value_owned_following_transaction_fn": [],
+   "direct_or_indirect_ownership": "Director",
+   "direct_or_indirect_ownership_fn": ["Original Ownership"],
+   "nature_of_ownership": "D",
+   "nature_of_ownership_fn": ["Direct Ownership"],
+   "transaction_form_type": "4"
+  }
+ ],
+ "derivative_transactions": [
+  {
+   "security_title": "Stock options",
+   "security_title_fn": [],
+   "conversion_or_exercise_price": 11.845,
+   "conversion_or_exercise_price_fn": ["Original Ownership"],
+   "transaction_date": "2018-06-13",
+   "transaction_date_fn": ["Original Ownership"],
+   "deemed_execution_date": "2028-06-13",
+   "deemed_execution_date_fn": ["Original Ownership"],
+   "transaction_code": "P",
+   "transaction_code_fn": ["Original Ownership"],
+   "transaction_timeliness": "",
+   "transaction_timeliness_fn": [],
+   "shares_owned_following_transaction": 20000.0,
+   "shares_owned_following_transaction_fn": [],
+   "value_owned_following_transaction": 20000.0,
+   "value_owned_following_transaction_fn": [],
+   "direct_or_indirect_ownership": "Director",
+   "direct_or_indirect_ownership_fn": ["Original Ownership"],
+   "nature_of_ownership": "D",
+   "nature_of_ownership_fn": ["Direct Ownership"],
+   "transaction_summary": "Stock options owned following Original Ownership of 20000.0 at 11.845"
+  },
+  {
+   "security_title": "Stock options",
+   "security_title_fn": [],
+   "conversion_or_exercise_price": 11.79,
+   "conversion_or_exercise_price_fn": ["Original Ownership"],
+   "transaction_date": "2017-06-14",
+   "transaction_date_fn": ["Original Ownership"],
+   "deemed_execution_date": "2027-06-14",
+   "deemed_execution_date_fn": ["Original Ownership"],
+   "transaction_code": "P",
+   "transaction_code_fn": ["Original Ownership"],
+   "transaction_timeliness": "",
+   "transaction_timeliness_fn": [],
+   "shares_owned_following_transaction": 29200.0,
+   "shares_owned_following_transaction_fn": [],
+   "value_owned_following_transaction": 29200.0,
+   "value_owned_following_transaction_fn": [],
+   "direct_or_indirect_ownership": "Director",
+   "direct_or_indirect_ownership_fn": ["Original Ownership"],
+   "nature_of_ownership": "D",
+   "nature_of_ownership_fn": ["Direct Ownership"],
+   "transaction_summary": "Stock options owned following Original Ownership of 29200.0 at 11.79"
+  }
+ ],
+ "derivative_holdings": [
+  {
+   "security_title": "Common stock",
+   "security_title_fn": [],
+   "shares_owned_following_transaction": 20000.0,
+   "shares_owned_following_transaction_fn": [],
+   "value_owned_following_transaction": 20000.0,
+   "value_owned_following_transaction_fn": [],
+   "direct_or_indirect_ownership": "Director",
+   "direct_or_indirect_ownership_fn": ["Original Ownership"],
+   "nature_of_ownership": "D",
+   "nature_of_ownership_fn": ["Direct Ownership"],
+   "transaction_form_type": "4"
+  },
+  {
+   "security_title": "Common stock",
+   "security_title_fn": [],
+   "shares_owned_following_transaction": 29200.0,
+   "shares_owned_following_transaction_fn": [],
+   "value_owned_following_transaction": 29200.0,
+   "value_owned_following_transaction_fn": [],
+   "direct_or_indirect_ownership": "Director",
+   "direct_or_indirect_ownership_fn": ["Original Ownership"],
+   "nature_of_ownership": "D",
+   "nature_of_ownership_fn": ["Direct Ownership"],
+   "transaction_form_type": "4"
+  }
+ ],
+ "footnotes": {
+  "1": "Includes 15,856 shares not previously reported that were acquired in exempt (Rule 16b-3(c)) transactions.",
+  "2": "Includes 23,841 shares not previously reported based on an April 2021 reconciliation of the Reporting Person's ownership records."
+ },
+ "signatures": [
+  {
+   "signature_name": "/s/ Maurice M. Taylor Jr.",
+   "signature_date": "2021-04-29",
+   "original": " SEC Ownership Filing - TITAN INTERNATIONAL INC\nissuer_cik: 0000899751\nissuer_name: TITAN INTERNATIONAL INC\nissuer_trading_symbol: TWI\nperiod_of_report: 2019-08-13\nnot_subject_to_section_16: false\nrule_10b5_1_plan: false\nno_securities_owned: false\n\n## Reporting Owners\n### Reporting Person: TAYLOR MAURICE M JR\n * CIK: 0000940455\n * Address:\n   * C/O TITAN INTERNATIONAL INC.\n   * 2701 SPRUCE STREET\n   * QUINCY, IL, 62301\n * Position(s): Director\n\n## Table I - Non-Derivative Securities\n| Security | Date | Deemed Exec | Code | Form Type | A/D | Equity Swap | Timeliness | Shares | Price | Total Value | Owned After | Value After | Nature |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| Common stock| 2019-08-13|| P | 4| A | 0 | | 37134| 3.104|| 1001871 [^1][^2]| | D |\n\n## Table II - Derivative Holdings\n| Security | Conv/Exer Price | Exercise Date | Expiry Date | Underlying Title | Underlying Shares | Underlying Value | Owned After | Value After | Nature |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| Stock options| 11.845| 2018-06-13| 2028-06-13| Common stock| 20000.0|| 20000| | D |\n| Stock options| 11.79| 2017-06-14| 2027-06-14| Common stock| 29200.0|| 29200| | D |\n\n## Filing Remarks\n[NULL]\n\n## Footnotes\n[^1]: Includes 15,856 shares not previously reported that were acquired in exempt (Rule 16b-3(c)) transactions.\n[^2]: Includes 23,841 shares not previously reported based on an April 2021 reconciliation of the Reporting Person's ownership records.\n\n## Signatures\n| Signature Name | Date |\n| :--- | :--- |\n| /s/ Maurice M. Taylor Jr. | 2021-04-29 |"
+ }
+}

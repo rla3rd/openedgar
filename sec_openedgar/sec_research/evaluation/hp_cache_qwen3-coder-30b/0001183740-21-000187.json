@@ -1,0 +1,87 @@
+{
+  "issuer": {
+    "issuer_cik": "0001715611",
+    "issuer_name": "BODY & MIND INC.",
+    "issuer_trading_symbol": "BAMM",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-06-08",
+  "date_of_original_submission": "",
+  "remarks": "[NULL]",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001758409",
+      "rptowner_name": "AUSTRALIS CAPITAL INC",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": false,
+      "is_10pctowner": true,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "376 EAST WARM SPRINGS ROAD, SUITE 190",
+      "rptowner_street2": "",
+      "rptowner_city": "LAS VEGAS",
+      "rptowner_state": "NV",
+      "rptowner_zip": "89119",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "Nevada",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-06-08",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 29000.0,
+      "shares_fn": [],
+      "price": 0.3331,
+      "price_fn": [
+        "1"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 18550049.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Sold 29,000 shares of Common Stock at a price of $0.3331 per share."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Based on a USD/CAD exchange rate of 1.2097 and a purchase price of CAD$0.4029."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Jon Paul, CFO",
+      "signature_date": "2021-06-28"
+    }
+  ]
+}

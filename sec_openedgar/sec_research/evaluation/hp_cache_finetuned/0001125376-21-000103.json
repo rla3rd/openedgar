@@ -1,0 +1,70 @@
+{
+  "issuer": {
+    "issuer_cik": "0001125376",
+    "issuer_name": "ENSIGN GROUP, INC",
+    "issuer_trading_symbol": "ENSG",
+    "period_of_report": "2021-05-28",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001609878",
+      "rptowner_name": "Keetch Chad",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "CIO, EVP and Secretary",
+      "rptowner_street1": "29222 RANCHO VIEJO ROAD",
+      "rptowner_street2": "SUITE 127",
+      "rptowner_city": "SAN JUAN CAPISTRANO",
+      "rptowner_state": "CA",
+      "rptowner_zip": "92675",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-28",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "original_owned_following_transaction": false,
+      "value_owned_following_transaction": 80025.0
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-06-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "original_owned_following_transaction": false,
+      "value_owned_following_transaction": 79628.0
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-06-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "original_owned_following_transaction": false,
+      "value_owned_following_transaction": 77149.0
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": []
+}

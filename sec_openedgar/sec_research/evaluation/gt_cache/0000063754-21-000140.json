@@ -1,0 +1,124 @@
+{
+  "issuer": {
+    "issuer_cik": "0000063754",
+    "issuer_name": "MCCORMICK & CO INC",
+    "issuer_trading_symbol": "MKC",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-09-20",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001642708",
+      "rptowner_name": "Manzone Lisa",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "is_director_nominee": false,
+      "officer_title": "Sr. VP Global Human Relations",
+      "other_text": "",
+      "rptowner_street1": "MCCORMICK & COMPANY, INCORPORATED",
+      "rptowner_street2": "24 SCHILLING ROAD, SUITE 1",
+      "rptowner_city": "HUNT VALLEY",
+      "rptowner_state": "MD",
+      "rptowner_zip": "21031",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock - Voting",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 34632.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": ""
+    },
+    {
+      "security_title": "Common Stock - Non Voting",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 1736.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": ""
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Phantom Stock",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [
+        "1"
+      ],
+      "transaction_date": "2021-09-20",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "exercise_date": "",
+      "exercise_date_fn": [
+        "1"
+      ],
+      "expiration_date": "",
+      "expiration_date_fn": [
+        "1"
+      ],
+      "underlying_security_title": "Common Stock - Voting",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 61.745,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 8661.612,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "Non Qualified Retirement Savings Plan",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 61.745 shares of Phantom Stock at $None (Code A)."
+    }
+  ],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Each share of phantom stock represents the right to receive one share of Common Stock - Voting.  Shares of Phantom Stock are payable in shares of Common Stock - Voting in accordance with the terms of the Non-Qualified Retirement Savings Plan."
+  },
+  "signatures": [
+    {
+      "signature_name": "Jason E. Wynn, Attorney-in-fact",
+      "signature_date": "2021-09-22"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "issuer": {
+    "issuer_cik": "0000350698",
+    "issuer_name": "AUTONATION, INC.",
+    "issuer_trading_symbol": "AN"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001052192",
+      "rptowner_name": "CASCADE INVESTMENT, L.L.C.",
+      "is_director": false,
+      "is_officer": false,
+      "is_10pctowner": true,
+      "officer_title": ""
+    },
+    {
+      "rptowner_cik": "0000902012",
+      "rptowner_name": "GATES WILLIAM H III",
+      "is_director": false,
+      "is_officer": false,
+      "is_10pctowner": true,
+      "officer_title": ""
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-10-06",
+      "transaction_date_fn": "",
+      "transaction_code": "S",
+      "transaction_code_fn": "",
+      "shares": 3882.0,
+      "shares_fn": "",
+      "price": 113.7675,
+      "price_fn": "[F1]",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 11413872.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Common stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-10-06",
+      "transaction_date_fn": "",
+      "transaction_code": "S",
+      "transaction_code_fn": "",
+      "shares": 14622.0,
+      "shares_fn": "",
+      "price": 114.7471,
+      "price_fn": "[F2]",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 11399250.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Common stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-10-06",
+      "transaction_date_fn": "",
+      "transaction_code": "S",
+      "transaction_code_fn": "",
+      "shares": 7155.0,
+      "shares_fn": "",
+      "price": 115.4023,
+      "price_fn": "[F3]",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 11392095.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [],
+  "footnotes": {
+    "F1": "This transaction was executed in multiple trades at prices ranging from $113.12 to $114.11. The price set forth above reflects the weighted-average price per share. The reporting person hereby undertakes to provide upon request to the SEC staff, the issuer, or a security holder of the issuer full information regarding the number of shares and prices at which the transactions were effected.",
+    "F2": "This transaction was executed in multiple trades at prices ranging from $114.12 to $115.11. The price set forth above reflects the weighted-average price per share. The reporting person hereby undertakes to provide upon request to the SEC staff, the issuer, or a security holder of the issuer full information regarding the number of shares and prices at which the transactions were effected.",
+    "F3": "This transaction was executed in multiple trades at prices ranging from $115.12 to $115.71. The price set forth above reflects the weighted-average price per share. The reporting person hereby undertakes to provide upon request to the SEC staff, the issuer, or a security holder of the issuer full information regarding the number of shares and prices at which the transactions were effected."
+  },
+  "signatures": [
+    {
+      "signature_name": "Alan Heuberger",
+      "signature_date": "2021-10-08"
+    },
+    {
+      "signature_name": "Alan Heuberger",
+      "signature_date": "2021-10-08"
+    }
+  ]
+}

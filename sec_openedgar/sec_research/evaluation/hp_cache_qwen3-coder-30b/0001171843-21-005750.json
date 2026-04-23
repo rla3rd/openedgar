@@ -1,0 +1,91 @@
+{
+  "issuer": {
+    "issuer_cik": "0001108236",
+    "issuer_name": "AMERICAN RIVER BANKSHARES",
+    "issuer_trading_symbol": "AMRB",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-08-06",
+  "date_of_original_submission": "",
+  "remarks": "[NULL]",
+  "not_subject_to_section_16": true,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001693295",
+      "rptowner_name": "Owensby Jeffery",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "3100 ZINFANDEL DR., STE. 450",
+      "rptowner_street2": "",
+      "rptowner_city": "RANCHO CORDOVA",
+      "rptowner_state": "CA",
+      "rptowner_zip": "95670",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-08-06",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "2021-08-06",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "D",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 14147.0,
+      "shares_fn": [],
+      "price": 0.0,
+      "price_fn": [
+        "1",
+        "2",
+        "3"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "D",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "On August 6, 2021, the reporting person disposed of 14,147 shares of AMRB common stock in connection with the merger of AMRB with Bank of Marin Bancorp, receiving 8,134 shares of BMRC common stock and $17.80 in cash, subject to applicable tax withholding."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "On August 6, 2021, pursuant to the Agreement and Plan of Merger (\"Merger Agreement\"), dated as of April 16, 2021 by and between Bank of Marin Bancorp (\"BMRC\") and American River Bankshares (\"AMRB\"), AMRB merged with and into BMRC (\"Merger\"), and each outstanding AMRB common share was converted into the right to receive 0.575 of a share of BMRC common stock, with cash payable in lieu of a fractional share in an amount equal to the fraction of a share of BMRC common stock which the holder would otherwise be entitled to receive multiplied by $33.59. In connection with the Merger, the reporting person has the right to receive, in exchange for all of the AMRB common shares reported in Table I, an aggregate of 8,134 shares of BMRC common stock and $17.80 in cash, with cash payable in lieu of a fractional share of BMRC common stock, subject to any required tax withholding under applicable law. [Contd. in FN2]",
+    "2": "[Continued from FN1] On August 6, 2021, the effective date of the Merger, the closing price of BMRC common stock was $36.15 per share.",
+    "3": "Amount of securities disposed of, pursuant to the Merger Agreement, includes AMRB restricted shares. At the effective time of the Merger, any vesting conditions applicable to outstanding restricted share awards under AMRB's equity incentive plans automatically accelerated in full and such restricted shares converted into, and will be exchanged for, the merger consideration as described in note (1) above, less any applicable taxes required to be withheld with respect to such vesting."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/Jeffery Owensby",
+      "signature_date": "2021-08-09"
+    }
+  ]
+}

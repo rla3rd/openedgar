@@ -1,0 +1,93 @@
+{
+  "issuer": {
+    "issuer_cik": "0001636282",
+    "issuer_name": "Aeglea BioTherapeutics, Inc.",
+    "issuer_trading_symbol": "AGLE",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-02-17",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001719455",
+      "rptowner_name": "Sloan Leslie",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "is_director_nominee": false,
+      "officer_title": "Chief Operating Officer",
+      "other_text": "",
+      "rptowner_street1": "805 LAS CIMAS PARKWAY",
+      "rptowner_street2": "SUITE 100",
+      "rptowner_city": "AUSTIN",
+      "rptowner_state": "TX",
+      "rptowner_zip": "78746",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Employee Stock Option (right to buy)",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 7.35,
+      "conversion_or_exercise_price_fn": [],
+      "transaction_date": "2021-02-17",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "exercise_date": "",
+      "exercise_date_fn": [
+        "1"
+      ],
+      "expiration_date": "2031-02-16",
+      "expiration_date_fn": [],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 160000.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 160000.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 160000.0 shares of Employee Stock Option (right to buy) at $7.35 (Code A)."
+    }
+  ],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "The stock option vests and becomes exercisable in 48 equal monthly installments beginning on March 17, 2021, until such time as the option is 100% vested, subject to the Reporting Person's provision of service to the Issuer on each vesting date."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Joey Perrone, by power of attorney",
+      "signature_date": "2021-02-19"
+    }
+  ]
+}

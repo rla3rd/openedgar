@@ -1,0 +1,87 @@
+{
+  "issuer": {
+    "issuer_cik": "0000049600",
+    "issuer_name": "EASTGROUP PROPERTIES INC",
+    "issuer_trading_symbol": "EGP",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-06-04",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001189265",
+      "rptowner_name": "BOLTON H ERIC JR",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "is_director_nominee": false,
+      "officer_title": "",
+      "other_text": "",
+      "rptowner_street1": "C/O EASTGROUP PROPERTIES, INC.",
+      "rptowner_street2": "400 W. PARKWAY PLACE, SUITE 100",
+      "rptowner_city": "RIDGELAND",
+      "rptowner_state": "MS",
+      "rptowner_zip": "39157",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-06-04",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 638.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 12570.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 638.0 shares of Common Stock at $0.0 (Code A). [Note 1: Reflects shares of common stock granted under the Issuer's 2013 Equity Incentive Plan, as amended, in respect of the annual equity retainer due to the Reporting Person for the Reporting Person's service as an independent director, in accordance with the Issuer's Independent Director Compensation Policy.]"
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Reflects shares of common stock granted under the Issuer's 2013 Equity Incentive Plan, as amended, in respect of the annual equity retainer due to the Reporting Person for the Reporting Person's service as an independent director, in accordance with the Issuer's Independent Director Compensation Policy."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Whitney Denham, Attorney-in-Fact for H. Eric Bolton, Jr.",
+      "signature_date": "2021-06-07"
+    }
+  ]
+}

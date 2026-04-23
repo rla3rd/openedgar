@@ -1,0 +1,86 @@
+{
+  "issuer": {
+    "issuer_cik": "0000733269",
+    "issuer_name": "LiveRamp Holdings, Inc.",
+    "issuer_trading_symbol": "RAMP",
+    "period_of_report": "2021-11-10",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001550404",
+      "rptowner_name": "CADOGAN TIMOTHY R.",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "LIVERAMP HOLDINGS, INC.",
+        "225 BUSH STREET, 17TH FLOOR",
+        "SAN FRANCISCO, CA, 94104"
+      ],
+      "rptowner_foreign_trading_territory": "",
+      "rptowner_state": "CA",
+      "rptowner_county": "",
+      "rptowner_city": "SAN FRANCISCO",
+      "rptowner_state_description": "STATE",
+      "rptowner_good_address": true
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "COMMON STOCK, $.10 PAR VALUE",
+      "security_title_fn": [],
+      "transaction_date": "2021-11-10",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "transaction_form_type_fn": [
+        "Non-Derivative Securities"
+      ],
+      "equity_swap_involved": false,
+      "equity_swap_involved_fn": [],
+      "shares": 940.0,
+      "shares_fn": [
+        "Exact Ownership"
+      ],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 39345.0,
+      "transaction_total_value_fn": [
+        "Owned Following Transaction"
+      ],
+      "shares_owned_following_transaction": 39345.0,
+      "shares_owned_following_transaction_fn": [
+        "Owned Following Transaction"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "DIRECT Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "Direct Ownership"
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "COMMON STOCK, $.10 PAR VALUE owned following Transaction"
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": []
+}

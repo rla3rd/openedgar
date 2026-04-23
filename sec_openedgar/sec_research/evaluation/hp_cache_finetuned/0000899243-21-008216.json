@@ -1,0 +1,145 @@
+{
+  "issuer": {
+    "issuer_cik": "0001599617",
+    "issuer_name": "NOW Inc.",
+    "issuer_trading_symbol": "DNOW",
+    "period_of_report": "2021-02-23",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001337685",
+      "rptowner_name": "Chang Raymond W",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "VP and General Counsel",
+      "rptowner_street": [
+        "7402 NORTH ELDRIDGE PARKWAY"
+      ],
+      "rptowner_city": "HOUSTON",
+      "rptowner_state": "TX",
+      "rptowner_zip": "77041",
+      "rptowner_non_us_address_flag": false,
+      "original_owned_fn": [
+        "Officer: VP and General Counsel"
+      ]
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 15839.0,
+      "shares_fn": [],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 161671.0,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 161671.0,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "D",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Common Stock owned following Transaction"
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": false,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 161671.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "D",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Non-Qualified Stock Option (Right to Buy)",
+      "security_title_fn": [
+        "Non-Qualified Stock Option (Right to Buy)"
+      ],
+      "conversion_or_exercise_price": 10.26,
+      "conversion_or_exercise_price_fn": [
+        "A"
+      ],
+      "transaction_date": "2021-02-23",
+      "transaction_date_fn": [
+        "A"
+      ],
+      "deemed_execution_date": "2022-02-23 [^1]",
+      "deemed_execution_date_fn": [
+        "A",
+        "^1"
+      ],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "A"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares_owned_following_transaction": false,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 32617.0,
+      "value_owned_following_transaction_fn": [
+        "A"
+      ],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "D",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Non-Qualified Stock Option (Right to Buy) owned following Transaction"
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [
+        "Common Stock"
+      ],
+      "shares_owned_following_transaction": false,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 32617.0,
+      "value_owned_following_transaction_fn": [
+        "A"
+      ],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "D",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    }
+  ],
+  "footnotes": {
+    "1": "Options vest in three (3) equal installments commencing on the date indicated."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Raymond W. Chang",
+      "signature_date": "2021-02-25",
+      "signature_date_fn": [
+        "A"
+      ],
+      "original_owned_fn": [
+        "Officer: VP and General Counsel"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "issuer": {
+    "issuer_cik": "0000216085",
+    "issuer_name": "HAVERTY FURNITURE COMPANIES INC",
+    "issuer_trading_symbol": "HVT",
+    "period_of_report": "2021-05-09",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001142394",
+      "rptowner_name": "PALMER VICKI R",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "780 JOHNSON FERRY RD.",
+        "SUITE 800"
+      ],
+      "rptowner_city": "ATLANTA",
+      "rptowner_state": "GA",
+      "rptowner_zip": "30342-",
+      "rptowner_non_us_address_flag": false,
+      "original_owned_fn": [
+        "Director"
+      ]
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 428.0,
+      "shares_fn": [
+        "^1"
+      ],
+      "price": 46.63,
+      "price_fn": [],
+      "transaction_total_value": 49988.0,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 428.0,
+      "shares_fn": [
+        "^2"
+      ],
+      "price": 46.63,
+      "price_fn": [],
+      "transaction_total_value": 50416.0,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 1072.0,
+      "shares_fn": [
+        "^3"
+      ],
+      "price": 46.63,
+      "price_fn": [],
+      "transaction_total_value": 51488.0,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": false
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": []
+}

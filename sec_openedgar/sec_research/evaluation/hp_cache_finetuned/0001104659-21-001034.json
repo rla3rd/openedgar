@@ -1,0 +1,124 @@
+{
+  "issuer": {
+    "issuer_cik": "0001442626",
+    "issuer_name": "Bluerock Residential Growth REIT, Inc.",
+    "issuer_trading_symbol": "BRG",
+    "period_of_report": "2021-01-01",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": 4,
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001748059",
+      "rptowner_name": "Harrison Elizabeth Scott",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "1345 AVENUE OF THE AMERICAS",
+        "32ND FLOOR"
+      ],
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10105",
+      "rptowner_non_us_address_flag": false,
+      "original_owned_fn": [
+        "Director"
+      ]
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "LTIP Units",
+      "security_title_fn": [
+        "Represents long-term incentive plan units (\"LTIP Units\") in Bluerock Residential Holdings, LP (the \"Operating Partnership\"), of which the Issuer is the general partner. These LTIP Units will be fully vested upon issuance, and may convert to units of limited partnership interest in the Operating Partnership (\"OP Units\") upon reaching capital account equivalency with the OP Units held by the Issuer, and may then be redeemed for cash or, at the option of the Issuer and after a one year holding period (including any period during which the LTIP Units were held), settled in shares of the Issuer's Class A common stock on a one-for-one basis."
+      ],
+      "transaction_date": "2021-01-01",
+      "transaction_date_fn": [
+        "A"
+      ],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "A"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "",
+      "transaction_form_type_fn": [],
+      "equity_swap_involved": false
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Class A Common Stock",
+      "security_title_fn": [
+        "Class A Common Stock"
+      ],
+      "conversion_or_exercise_price": 7381.0,
+      "conversion_or_exercise_price_fn": [
+        "A"
+      ],
+      "transaction_date": "",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "I (See Footnote)",
+      "transaction_form_type_fn": [
+        "I",
+        "Represents long-term incentive plan units (\"LTIP Units\") in Bluerock Residential Holdings, LP (the \"Operating Partnership\"), of which the Issuer is the general partner. These LTIP Units will be fully vested upon issuance, and may convert to units of limited partnership interest in the Operating Partnership (\"OP Units\") upon reaching capital account equivalency with the OP Units held by the Issuer, and may then be redeemed for cash or, at the option of the Issuer and after a one year holding period (including any period during which the LTIP Units were held), settled in shares of the Issuer's Class A common stock on a one-for-one basis."
+      ],
+      "equity_swap_involved": false
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Class A Common Stock",
+      "security_title_fn": [
+        "Class A Common Stock"
+      ],
+      "shares_owned_following_transaction": 7381.0,
+      "shares_owned_following_transaction_fn": [
+        "A"
+      ],
+      "value_owned_following_transaction": 24508.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "Issuer",
+      "direct_or_indirect_ownership_fn": [
+        "Issuer"
+      ],
+      "nature_of_ownership": "Legal Ownership",
+      "nature_of_ownership_fn": [
+        "Legal Ownership"
+      ],
+      "transaction_form_type": "I (See Footnote)",
+      "transaction_form_type_fn": [
+        "I",
+        "Represents long-term incentive plan units (\"LTIP Units\") in Bluerock Residential Holdings, LP (the \"Operating Partnership\"), of which the Issuer is the general partner. These LTIP Units will be fully vested upon issuance, and may convert to units of limited partnership interest in the Operating Partnership (\"OP Units\") upon reaching capital account equivalency with the OP Units held by the Issuer, and may then be redeemed for cash or, at the option of the Issuer and after a one year holding period (including any period during which the LTIP Units were held), settled in shares of the Issuer's Class A common stock on a one-for-one basis."
+      ]
+    }
+  ],
+  "footnotes": {
+    "1": "Represents long-term incentive plan units (\"LTIP Units\") in Bluerock Residential Holdings, LP (the \"Operating Partnership\"), of which the Issuer is the general partner. These LTIP Units will be fully vested upon issuance, and may convert to units of limited partnership interest in the Operating Partnership (\"OP Units\") upon reaching capital account equivalency with the OP Units held by the Issuer, and may then be redeemed for cash or, at the option of the Issuer and after a one year holding period (including any period during which the LTIP Units were held), settled in shares of the Issuer's Class A common stock on a one-for-one basis."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Christopher J. Vohs, Attorney-in-fact",
+      "signature_date": "2021-01-05"
+    }
+  ]
+}

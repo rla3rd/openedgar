@@ -1,0 +1,57 @@
+{
+  "issuer": {
+    "issuer_cik": "0001570827",
+    "issuer_name": "Victory Capital Holdings, Inc.",
+    "issuer_trading_symbol": "VCTR"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001730106",
+      "rptowner_name": "Cliff Kelly Stevenson",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "officer_title": "Pres., Investment Franchises"
+    }
+  ],
+  "non_derivative_transactions": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Class B Common Stock",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "[F1][F2]",
+      "transaction_date": "2021-03-10",
+      "transaction_date_fn": "",
+      "transaction_code": "F",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "[F1][F2]",
+      "expiration_date": "",
+      "expiration_date_fn": "[F1][F2]",
+      "underlying_security_title": "Class A Common Stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 3211.0,
+      "underlying_security_shares_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 409932.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "footnotes": {
+    "F1": "The shares of Class B Common Stock of the Issuer (\"Class B Common Stock\") are convertible into Class A Common Stock of the Issuer (\"Class A Common Stock\") on a one-to-one basis at the option of the holder and have no expiration date. Class B Common Stock will convert automatically into Class A Common Stock on the date on which the number of outstanding shares of Class B Common Stock represents less than 10% of the aggregate combined number of outstanding shares of Class A Common Stock and Class B Common Stock",
+    "F2": "In addition, (i) each share of Class B Common Stock will convert automatically into one share of Class A Common Stock upon any transfer, whether or not for value, except for certain \"Permitted Transfers\" as defined in the Issuer's amended and restated certificate of incorporation, or (ii) in the event of the death of Mr. Cliff each share of Class B Common Stock held by Mr. Cliff or Mr. Cliff's permitted estate planning entities will convert into one share of Class A Common Stock."
+  },
+  "signatures": [
+    {
+      "signature_name": "Nina Gupta",
+      "signature_date": "2021-03-11"
+    }
+  ]
+}

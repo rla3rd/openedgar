@@ -1,0 +1,93 @@
+{
+  "issuer": {
+    "issuer_cik": "0001690536",
+    "issuer_name": "FS Credit Real Estate Income Trust, Inc.",
+    "issuer_trading_symbol": "NONE",
+    "period_of_report": "2021-05-20",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001477523",
+      "rptowner_name": "Buchholz Karen Dougherty",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "C/O FS CREDIT REAL ESTATE INCOME TRUST",
+        "201 ROUSE BOULEVARD",
+        "PHILADELPHIA, PA, 19112"
+      ],
+      "rptowner_city": "PHILADELPHIA",
+      "rptowner_state": "PA",
+      "rptowner_zip": "19112",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_foreign_trading_territory": "",
+      "rptowner_good_address": true
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Class I Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-20",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "2021-05-03",
+      "deemed_execution_date_fn": [
+        "Original Ownership"
+      ],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "Acquired Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "transaction_form_type_fn": [
+        "Rule 10pctowner"
+      ],
+      "equity_swap_involved": false
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Class I Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 83.989,
+      "shares_owned_following_transaction_fn": [
+        "Original Ownership"
+      ],
+      "value_owned_following_transaction": 618.877,
+      "value_owned_following_transaction_fn": [
+        "Original Ownership"
+      ],
+      "direct_or_indirect_ownership": "Director",
+      "direct_or_indirect_ownership_fn": [
+        "Director"
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Director acquired Ownership 83.989 at Original Ownership on 2021-05-03"
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {},
+  "signatures": [
+    {
+      "signature_name": "/s/ Karen D. Buchholz",
+      "signature_date": "2021-05-24",
+      "signature_date_fn": [],
+      "good_signature": true
+    }
+  ]
+}

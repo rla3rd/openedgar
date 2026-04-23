@@ -1,0 +1,99 @@
+{
+  "issuer": {
+    "issuer_cik": "0001746466",
+    "issuer_name": "Equillium, Inc.",
+    "issuer_trading_symbol": "EQ",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-01-04",
+  "date_of_original_submission": "2021-01-06",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001797818",
+      "rptowner_name": "Zedelmayer Christine",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Sr. Vice President and COO",
+      "rptowner_street": [
+        "2223 AVENIDA DE LA PLAYA, SUITE 105"
+      ],
+      "rptowner_city": "LA JOLLA",
+      "rptowner_state": "CA",
+      "rptowner_zip": "92037",
+      "rptowner_non_us_address_flag": false,
+      "original_owned_fn": [
+        ""
+      ]
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Stock Option (right to buy)",
+      "security_title_fn": [
+        "Original Ownership"
+      ],
+      "transaction_date": "2021-01-04",
+      "transaction_date_fn": [
+        "Date of Original Ownership"
+      ],
+      "deemed_execution_date": "[^1]",
+      "deemed_execution_date_fn": [
+        "Transaction Date"
+      ],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "Acquired Ownership"
+      ],
+      "transaction_timeliness": "A",
+      "transaction_timeliness_fn": [
+        "Immediately Following Ownership Filing"
+      ],
+      "shares": 100000.0,
+      "shares_fn": [
+        "Owned Following Transaction"
+      ],
+      "price": 5.03,
+      "price_fn": [
+        "Conv/Exer Price"
+      ],
+      "transaction_total_value": 100000.0,
+      "transaction_total_value_fn": [
+        "Owned Following Transaction"
+      ]
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [
+        "Owned Following Transaction"
+      ],
+      "shares_owned_following_transaction": 100000.0,
+      "shares_owned_following_transaction_fn": [
+        "Owned Following Transaction"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [
+        "Direct Ownership"
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "A"
+    }
+  ]
+}

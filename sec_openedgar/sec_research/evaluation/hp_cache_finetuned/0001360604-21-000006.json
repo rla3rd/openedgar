@@ -1,0 +1,245 @@
+{
+  "issuer": {
+    "issuer_cik": "0001360604",
+    "issuer_name": "HEALTHCARE TRUST OF AMERICA, INC.",
+    "issuer_trading_symbol": "HTA",
+    "period_of_report": "2021-01-02",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": 4,
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001287505",
+      "rptowner_name": "PETERS SCOTT D",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Chief Executive Officer",
+      "rptowner_street": [
+        "C/O HEALTHCARE TRUST OF AMERICA, INC.",
+        "16435 N. SCOTTSDALE ROAD, SUITE 320",
+        "SCOTTSDALE, AZ, 85254"
+      ],
+      "rptowner_foreign_trading_territory": "",
+      "rptowner_state": "AZ",
+      "rptowner_county": "MARICOPA",
+      "rptowner_city": "SCOTTSDALE",
+      "rptowner_state_territory": "",
+      "rptowner_good_address": true
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-01-02",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "F",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 40330.0,
+      "shares_fn": [],
+      "price": 27.54,
+      "price_fn": [],
+      "transaction_total_value": 266092.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 40330.0,
+      "shares_owned_following_transaction_fn": [
+        "Original Ownership"
+      ],
+      "value_owned_following_transaction": 266092.0,
+      "value_owned_following_transaction_fn": [
+        "Original Ownership"
+      ],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "Direct Ownership"
+      ],
+      "nature_of_ownership": "Director",
+      "nature_of_ownership_fn": [
+        "Director"
+      ],
+      "transaction_summary": "Common Stock owned following Original Ownership"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-01-05",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "Acquired Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 161805.0,
+      "shares_fn": [],
+      "price": 26.2,
+      "price_fn": [],
+      "transaction_total_value": 427897.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 161805.0,
+      "shares_owned_following_transaction_fn": [
+        "Acquired Ownership"
+      ],
+      "value_owned_following_transaction": 427897.0,
+      "value_owned_following_transaction_fn": [
+        "Acquired Ownership"
+      ],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "Direct Ownership"
+      ],
+      "nature_of_ownership": "Officer",
+      "nature_of_ownership_fn": [
+        "Officer"
+      ],
+      "transaction_summary": "Common Stock owned following Acquired Ownership"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-01-05",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "F",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 25538.0,
+      "shares_fn": [],
+      "price": 26.2,
+      "price_fn": [],
+      "transaction_total_value": 402359.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 25538.0,
+      "shares_owned_following_transaction_fn": [
+        "Original Ownership"
+      ],
+      "value_owned_following_transaction": 402359.0,
+      "value_owned_following_transaction_fn": [
+        "Original Ownership"
+      ],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "Direct Ownership"
+      ],
+      "nature_of_ownership": "Officer",
+      "nature_of_ownership_fn": [
+        "Officer"
+      ],
+      "transaction_summary": "Common Stock owned following Original Ownership"
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 161805.0,
+      "shares_owned_following_transaction_fn": [
+        "Acquired Ownership"
+      ],
+      "value_owned_following_transaction": 427897.0,
+      "value_owned_following_transaction_fn": [
+        "Acquired Ownership"
+      ],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "Direct Ownership"
+      ],
+      "nature_of_ownership": "Officer",
+      "nature_of_ownership_fn": [
+        "Officer"
+      ],
+      "transaction_form_type": 4
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 25538.0,
+      "shares_owned_following_transaction_fn": [
+        "Original Ownership"
+      ],
+      "value_owned_following_transaction": 402359.0,
+      "value_owned_following_transaction_fn": [
+        "Original Ownership"
+      ],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "Direct Ownership"
+      ],
+      "nature_of_ownership": "Officer",
+      "nature_of_ownership_fn": [
+        "Officer"
+      ],
+      "transaction_form_type": 4
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Ownership Filler",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [],
+      "transaction_date": "",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": 0
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Ownership Filler",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": 0
+    }
+  ],
+  "footnotes": {
+    "1": "This transaction represents shares withheld by the issuer to satisfy its minimum tax withholding obligation in connection with the vesting of restricted shares previously granted to the reporting person.",
+    "2": "Represents the grant of restricted shares of the issuer's common stock, such grant to vest in three installments with 53,935 shares vesting on the grant date and 53,935 vesting on each of January 5, 2022 and January 5, 2023."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Scott D. Peters by Robert A. Milligan,\nas attorney-in-fact, for Scott D. Peters",
+      "signature_date": "2021-01-05"
+    }
+  ]
+}

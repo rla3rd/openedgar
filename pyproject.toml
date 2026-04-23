@@ -67,6 +67,7 @@ dependencies = [
     "pytest-mock>=3.15.1",
     "selectolax>=0.4.7",
     "aiofiles>=25.1.0",
+    "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git",
 ]
 
 [project.optional-dependencies]

@@ -1,0 +1,87 @@
+{
+  "issuer": {
+    "issuer_cik": "0001413837",
+    "issuer_name": "First Foundation Inc.",
+    "issuer_trading_symbol": "FFWM",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-05-18",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001594288",
+      "rptowner_name": "ROSENBERG MITCHELL M.",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "is_director_nominee": false,
+      "officer_title": "",
+      "other_text": "",
+      "rptowner_street1": "200 CRESCENT COURT",
+      "rptowner_street2": "STE 1400",
+      "rptowner_city": "DALLAS",
+      "rptowner_state": "TX",
+      "rptowner_zip": "75201",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-18",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "M",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 1285.0,
+      "shares_fn": [],
+      "price": 0.0,
+      "price_fn": [
+        "1"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "A",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 57388.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "Trust",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner acquired 1285.0 shares of Common Stock at $None (Code M). [Note 1: Vesting of restricted stock unit.  No exercise price.]"
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Vesting of restricted stock unit.  No exercise price."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Robert Sjogren attorney in fact for Mitchell M. Rosenberg",
+      "signature_date": "2021-05-19"
+    }
+  ]
+}

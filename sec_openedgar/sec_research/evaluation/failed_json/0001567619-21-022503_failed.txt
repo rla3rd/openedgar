@@ -1,0 +1,585 @@
+{
+ "issuer": {
+  "issuer_cik": "0001770787",
+  "issuer_name": "10x Genomics, Inc.",
+  "issuer_trading_symbol": "TXG",
+  "period_of_report": "2021-12-21",
+  "date_of_original_submission": "2023-05-04T17:06:08.970Z",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false
+ },
+ "form_type": "SEC Ownership Filing",
+ "period_of_original_submission": "2021-12-21",
+ "date_of_original_submission": "2023-05-04T17:06:08.970Z",
+ "remarks": "",
+ "not_subject_to_section_16": false,
+ "is_rule_10b5_1_plan": false,
+ "no_securities_owned": false,
+ "reporting_owners": [
+  {
+   "rptowner_cik": "0001246406",
+   "rptowner_name": "CRUTCHFIELD BRADFORD",
+   "rptowner_ccc": "",
+   "is_director": true,
+   "is_director_nominee": false,
+   "officer_title": "Officer: Chief Commercial Officer",
+   "officer_title_fn": [
+    "Officer",
+    "Chief Commercial Officer"
+   ],
+   "rptowner_street": [
+    "C/O 10X GENOMICS, INC.",
+    "6230 STONERIDGE MALL ROAD"
+   ],
+   "rptowner_street_fn": [
+    "C/O 10X GENOMICS, INC.",
+    "6230 STONERIDGE MALL ROAD"
+   ],
+   "rptowner_city": "PLEASANTON",
+   "rptowner_city_fn": [
+    "PLEASANTON"
+   ],
+   "rptowner_state": "CA",
+   "rptowner_state_fn": [
+    "CA"
+   ],
+   "rptowner_foreign_state_territory": "",
+   "rptowner_foreign_territory": "",
+   "rptowner_foreign_territory_fn": [],
+   "state_description": "California",
+   "state_description_fn": [
+    "California"
+   ],
+   "good_address": False
+  }
+ ],
+ "non_derivative_transactions": [
+  {
+   "security_title": "Class A Common Stock",
+   "security_title_fn": [
+    "Class A Common Stock"
+   ],
+   "date": "2021-12-21",
+   "date_fn": [
+    "2021-12-21"
+   ],
+   "deemed_execution_date": "",
+   "deemed_execution_date_fn": [],
+   "transaction_code": "M",
+   "transaction_code_fn": [
+    "M"
+   ],
+   "transaction_timeliness": "",
+   "transaction_timeliness_fn": [],
+   "shares": 4688.0,
+   "shares_fn": [
+    4688.0
+   ],
+   "price": 1.2,
+   "price_fn": [
+    1.2
+   ],
+   "total_value": 47743.0,
+   "total_value_fn": [
+    47743.0
+   ],
+   "owned_following_transaction": False,
+   "owned_following_transaction_fn": [],
+   "value_following_transaction": 0.0,
+   "value_following_transaction_fn": [
+    0.0
+   ],
+   "direct_or_indirect_ownership": "Direct Ownership",
+   "direct_or_indirect_ownership_fn": [
+    "Direct Ownership"
+   ],
+   "nature_of_ownership": "D",
+   "nature_of_ownership_fn": [
+    "D"
+   ],
+   "original_owned_following_transaction": False,
+   "original_owned_following_transaction_fn": [],
+   "original_value_following_transaction": 0.0,
+   "original_value_following_transaction_fn": [
+    0.0
+   ]
+  },
+  {
+   "security_title": "Class A Common Stock",
+   "security_title_fn": [
+    "Class A Common Stock"
+   ],
+   "date": "2021-12-21",
+   "date_fn": [
+    "2021-12-21"
+   ],
+   "deemed_execution_date": "",
+   "deemed_execution_date_fn": [],
+   "transaction_code": "M",
+   "transaction_code_fn": [
+    "M"
+   ],
+   "transaction_timeliness": "",
+   "transaction_timeliness_fn": [],
+   "shares": 49910.0,
+   "shares_fn": [
+    49910.0
+   ],
+   "price": 5.04,
+   "price_fn": [
+    5.04
+   ],
+   "total_value": 97653.0,
+   "total_value_fn": [
+    97653.0
+   ],
+   "owned_following_transaction": False,
+   "owned_following_transaction_fn": [],
+   "value_following_transaction": 0.0,
+   "value_following_transaction_fn": [
+    0.0
+   ],
+   "direct_or_indirect_ownership": "Direct Ownership",
+   "direct_or_indirect_ownership_fn": [
+    "Direct Ownership"
+   ],
+   "nature_of_ownership": "D",
+   "nature_of_ownership_fn": [
+    "D"
+   ],
+   "original_owned_following_transaction": False,
+   "original_owned_following_transaction_fn": [],
+   "original_value_following_transaction": 0.0,
+   "original_value_following_transaction_fn": [
+    0.0
+   ]
+  }
+ ],
+ "non_derivative_holdings": [
+  {
+   "security_title": "Class A Common Stock",
+   "security_title_fn": [
+    "Class A Common Stock"
+   ],
+   "date": "2021-12-21",
+   "date_fn": [
+    "2021-12-21"
+   ],
+   "deemed_execution_date": "",
+   "deemed_execution_date_fn": [],
+   "transaction_code": "M",
+   "transaction_code_fn": [
+    "M"
+   ],
+   "transaction_timeliness": "",
+   "transaction_timeliness_fn": [],
+   "shares": 4688.0,
+   "shares_fn": [
+    4688.0
+   ],
+   "price": 1.2,
+   "price_fn": [
+    1.2
+   ],
+   "total_value": 47743.0,
+   "total_value_fn": [
+    47743.0
+   ],
+   "owned_following_transaction": False,
+   "owned_following_transaction_fn": [],
+   "value_following_transaction": 0.0,
+   "value_following_transaction_fn": [
+    0.0
+   ],
+   "direct_or_indirect_ownership": "Direct Ownership",
+   "direct_or_indirect_ownership_fn": [
+    "Direct Ownership"
+   ],
+   "nature_of_ownership": "D",
+   "nature_of_ownership_fn": [
+    "D"
+   ],
+   "original_owned_following_transaction": False,
+   "original_owned_following_transaction_fn": [],
+   "original_value_following_transaction": 0.0,
+   "original_value_following_transaction_fn": [
+    0.0
+   ]
+  },
+  {
+   "security_title": "Class A Common Stock",
+   "security_title_fn": [
+    "Class A Common Stock"
+   ],
+   "date": "2021-12-21",
+   "date_fn": [
+    "2021-12-21"
+   ],
+   "deemed_execution_date": "",
+   "deemed_execution_date_fn": [],
+   "transaction_code": "M",
+   "transaction_code_fn": [
+    "M"
+   ],
+   "transaction_timeliness": "",
+   "transaction_timeliness_fn": [],
+   "shares": 49910.0,
+   "shares_fn": [
+    49910.0
+   ],
+   "price": 5.04,
+   "price_fn": [
+    5.04
+   ],
+   "total_value": 97653.0,
+   "total_value_fn": [
+    97653.0
+   ],
+   "owned_following_transaction": False,
+   "owned_following_transaction_fn": [],
+   "value_following_transaction": 0.0,
+   "value_following_transaction_fn": [
+    0.0
+   ],
+   "direct_or_indirect_ownership": "Direct Ownership",
+   "direct_or_indirect_ownership_fn": [
+    "Direct Ownership"
+   ],
+   "nature_of_ownership": "D",
+   "nature_of_ownership_fn": [
+    "D"
+   ],
+   "original_owned_following_transaction": False,
+   "original_owned_following_transaction_fn": [],
+   "original_value_following_transaction": 0.0,
+   "original_value_following_transaction_fn": [
+    0.0
+   ]
+  }
+ ],
+ "derivative_transactions": [
+  {
+   "security_title": "Stock Option (right to buy)",
+   "security_title_fn": [
+    "Stock Option (right to buy)"
+   ],
+   "conversion_or_exercise_price": 1.2,
+   "conversion_or_exercise_price_fn": [
+    1.2
+   ],
+   "transaction_date": "2021-12-21",
+   "transaction_date_fn": [
+    "2021-12-21"
+   ],
+   "deemed_execution_date": "[^1]",
+   "deemed_execution_date_fn": [
+    "^1"
+   ],
+   "transaction_code": "M",
+   "transaction_code_fn": [
+    "M"
+   ],
+   "transaction_timeliness": "",
+   "transaction_timeliness_fn": [],
+   "shares_owned_following_transaction": 4688.0,
+   "shares_owned_following_transaction_fn": [
+    4688.0
+   ],
+   "value_owned_following_transaction": 0.0,
+   "value_owned_following_transaction_fn": [
+    0.0
+   ],
+   "direct_or_indirect_ownership": "Direct Ownership",
+   "direct_or_indirect_ownership_fn": [
+    "Direct Ownership"
+   ],
+   "nature_of_ownership": "D",
+   "nature_of_ownership_fn": [
+    "D"
+   ],
+   "original_owned_following_transaction": False,
+   "original_owned_following_transaction_fn": [],
+   "original_value_following_transaction": 0.0,
+   "original_value_following_transaction_fn": [
+    0.0
+   ]
+  },
+  {
+   "security_title": "Stock Option (right to buy)",
+   "security_title_fn": [
+    "Stock Option (right to buy)"
+   ],
+   "conversion_or_exercise_price": 5.04,
+   "conversion_or_exercise_price_fn": [
+    5.04
+   ],
+   "transaction_date": "2021-12-21",
+   "transaction_date_fn": [
+    "2021-12-21"
+   ],
+   "deemed_execution_date": "[^2]",
+   "deemed_execution_date_fn": [
+    "^2"
+   ],
+   "transaction_code": "M",
+   "transaction_code_fn": [
+    "M"
+   ],
+   "transaction_timeliness": "",
+   "transaction_timeliness_fn": [],
+   "shares_owned_following_transaction": 49910.0,
+   "shares_owned_following_transaction_fn": [
+    49910.0
+   ],
+   "value_owned_following_transaction": 61757.0,
+   "value_owned_following_transaction_fn": [
+    61757.0
+   ],
+   "direct_or_indirect_ownership": "Direct Ownership",
+   "direct_or_indirect_ownership_fn": [
+    "Direct Ownership"
+   ],
+   "nature_of_ownership": "D",
+   "nature_of_ownership_fn": [
+    "D"
+   ],
+   "original_owned_following_transaction": False,
+   "original_owned_following_transaction_fn": [],
+   "original_value_following_transaction": 0.0,
+   "original_value_following_transaction_fn": [
+    0.0
+   ]
+  }
+]
+
+## Ownership Filing Ownership Ownership
+{
+ "issuer": {
+  "issuer_cik": "0001770787",
+  "issuer_name": "10x Genomics, Inc.",
+  "issuer_trading_symbol": "TXG",
+  "period_of_report": "2021-12-21",
+  "date_of_original_submission": "2021-12-23",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false
+ },
+ "form_type": "4",
+ "schema_version": "X0306",
+ "reporting_owners": [
+  {
+   "rptowner_cik": "0001246406",
+   "rptowner_name": "CRUTCHFIELD BRADFORD",
+   "rptowner_ccc": "",
+   "is_director": false,
+   "is_officer": true,
+   "is_10pctowner": false,
+   "is_other": false,
+   "other_text": "",
+   "is_director_nominee": false,
+   "officer_title": "Chief Commercial Officer",
+   "rptowner_street": [
+    "C/O 10X GENOMICS, INC.",
+    "6230 STONERIDGE MALL ROAD"
+   ],
+   "rptowner_city": "PLEASANTON",
+   "rptowner_state": "CA",
+   "rptowner_foreign_state_territory": "",
+   "rptowner_good_address": False
+  }
+ ],
+ "non_derivative_transactions": [
+  {
+   "security_title": "Class A Common Stock",
+   "security_title_fn": [],
+   "shares": 4688.0,
+   "shares_fn": [],
+   "price": 1.20,
+   "price_fn": [],
+   "transaction_total_value": 47743.0,
+   "transaction_total_value_fn": [],
+   "owned_following_transaction": False,
+   "owned_following_transaction_fn": [],
+   "value_following_transaction": 0.0,
+   "value_following_transaction_fn": [],
+   "direct_or_indirect_ownership": True,
+   "direct_or_indirect_ownership_fn": ["D"],
+   "nature_of_ownership": True,
+   "nature_of_ownership_fn": ["D"],
+   "transaction_summary": "Ownership following Exercise of Stock Option (right to buy)"
+  },
+  {
+   "security_title": "Class A Common Stock",
+   "security_title_fn": [],
+   "shares": 49910.0,
+   "shares_fn": [],
+   "price": 5.04,
+   "price_fn": [],
+   "transaction_total_value": 97653.0,
+   "transaction_total_value_fn": [],
+   "owned_following_transaction": False,
+   "owned_following_transaction_fn": [],
+   "value_following_transaction": 0.0,
+   "value_following_transaction_fn": [],
+   "direct_or_indirect_ownership": True,
+   "direct_or_indirect_ownership_fn": ["D"],
+   "nature_of_ownership": True,
+   "nature_of_ownership_fn": ["D"],
+   "transaction_summary": "Ownership following Exercise of Stock Option (right to buy)"
+  }
+ ],
+ "non_derivative_holdings": [
+  {
+   "security_title": "Class A Common Stock",
+   "security_title_fn": [],
+   "shares": 4688.0,
+   "shares_fn": [],
+   "price": 1.20,
+   "price_fn": [],
+   "transaction_total_value": 47743.0,
+   "transaction_total_value_fn": [],
+   "owned_following_transaction": False,
+   "owned_following_transaction_fn": [],
+   "value_following_transaction": 0.0,
+   "value_following_transaction_fn": [],
+   "direct_or_indirect_ownership": True,
+   "direct_or_indirect_ownership_fn": ["D"],
+   "nature_of_ownership": True,
+   "nature_of_ownership_fn": ["D"],
+   "transaction_summary": "Ownership following Exercise of Stock Option (right to buy)"
+  },
+  {
+   "security_title": "Class A Common Stock",
+   "security_title_fn": [],
+   "shares": 49910.0,
+   "shares_fn": [],
+   "price": 5.04,
+   "price_fn": [],
+   "transaction_total_value": 97653.0,
+   "transaction_total_value_fn": [],
+   "owned_following_transaction": False,
+   "owned_following_transaction_fn": [],
+   "value_following_transaction": 0.0,
+   "value_following_transaction_fn": [],
+   "direct_or_indirect_ownership": True,
+   "direct_or_indirect_ownership_fn": ["D"],
+   "nature_of_ownership": True,
+   "nature_of_ownership_fn": ["D"],
+   "transaction_summary": "Ownership following Exercise of Stock Option (right to buy)"
+  }
+ ],
+ "derivative_transactions": [
+  {
+   "security_title": "Stock Option (right to buy)",
+   "security_title_fn": [],
+   "conversion_or_exercise_price": 1.2,
+   "conversion_or_exercise_price_fn": [],
+   "transaction_date": "2021-12-21",
+   "transaction_date_fn": [],
+   "deemed_execution_date": "[^1]",
+   "deemed_execution_date_fn": ["This option, originally for 25,000 shares, of which 25,000 shares have been exercised, vested as to 1/48th of the shares on October 1, 2017, and 1/48th of the shares subject to the option vested each month thereafter, subject to the Reporting Person continuing as a service provider through each such date."],
+   "expiration_date": "2027-10-18",
+   "expiration_date_fn": [],
+   "underlying_security_title": "Class A Common Stock",
+   "underlying_security_title_fn": [],
+   "underlying_security_shares": 4688.0,
+   "underlying_security_shares_fn": [],
+   "underlying_security_value": 0.0,
+   "underlying_security_value_fn": [],
+   "owned_following_transaction": False,
+   "owned_following_transaction_fn": [],
+   "value_following_transaction": 0.0,
+   "value_following_transaction_fn": [],
+   "direct_or_indirect_ownership": True,
+   "direct_or_indirect_ownership_fn": ["D"],
+   "nature_of_ownership": True,
+   "nature_of_ownership_fn": ["D"],
+   "transaction_summary": "Stock Option (right to buy) owned following Ownership Filing into Class A Common Stock"
+  },
+  {
+   "security_title": "Stock Option (right to buy)",
+   "security_title_fn": [],
+   "conversion_or_exercise_price": 5.04,
+   "conversion_or_exercise_price_fn": [],
+   "transaction_date": "2021-12-21",
+   "transaction_date_fn": [],
+   "deemed_execution_date": "[^2]",
+   "deemed_execution_date_fn": ["This option, originally for 125,000 shares, of which 63,243 shares have been exercised, vested as to 1/48th of the shares on October 1, 2018, and 1/48th of the shares subject to the option vested each month thereafter, subject to the Reporting Person continuing as a service provider through each such date."],
+   "expiration_date": "2028-11-02",
+   "expiration_date_fn": [],
+   "underlying_security_title": "Class A Common Stock",
+   "underlying_security_title_fn": [],
+   "underlying_security_shares": 49910.0,
+   "underlying_security_shares_fn": [],
+   "underlying_security_value": 61757.0,
+   "underlying_security_value_fn": [],
+   "owned_following_transaction": False,
+   "owned_following_transaction_fn": [],
+   "value_following_transaction": 61757.0,
+   "value_following_transaction_fn": [],
+   "direct_or_indirect_ownership": True,
+   "direct_or_indirect_ownership_fn": ["D"],
+   "nature_of_ownership": True,
+   "nature_of_ownership_fn": ["D"],
+   "transaction_summary": "Stock Option (right to buy) owned following Ownership Filing into Class A Common Stock"
+  }
+ ],
+ "derivative_holdings": [
+  {
+   "security_title": "Stock Option (right to buy)",
+   "security_title_fn": [],
+   "conversion_or_exercise_price": 1.2,
+   "conversion_or_exercise_price_fn": [],
+   "transaction_date": "2021-12-21",
+   "transaction_date_fn": [],
+   "deemed_execution_date": "[^1]",
+   "deemed_execution_date_fn": ["This option, originally for 25,000 shares, of which 25,000 shares have been exercised, vested as to 1/48th of the shares on October 1, 2017, and 1/48th of the shares subject to the option vested each month thereafter, subject to the Reporting Person continuing as a service provider through each such date."],
+   "expiration_date": "2027-10-18",
+   "expiration_date_fn": [],
+   "underlying_security_title": "Class A Common Stock",
+   "underlying_security_title_fn": [],
+   "underlying_security_shares": 4688.0,
+   "underlying_security_shares_fn": [],
+   "underlying_security_value": 0.0,
+   "underlying_security_value_fn": [],
+   "owned_following_transaction": False,
+   "owned_following_transaction_fn": [],
+   "value_following_transaction": 0.0,
+   "value_following_transaction_fn": [],
+   "direct_or_indirect_ownership": True,
+   "direct_or_indirect_ownership_fn": ["D"],
+   "nature_of_ownership": True,
+   "nature_of_ownership_fn": ["D"],
+   "transaction_form_type": 4
+  },
+  {
+   "security_title": "Stock Option (right to buy)",
+   "security_title_fn": [],
+   "conversion_or_exercise_price": 5.04,
+   "conversion_or_exercise_price_fn": [],
+   "transaction_date": "2021-12-21",
+   "transaction_date_fn": [],
+   "deemed_execution_date": "[^2]",
+   "deemed_execution_date_fn": ["This option, originally for 125,000 shares, of which 63,243 shares have been exercised, vested as to 1/48th of the shares on October 1, 2018, and 1/48th of the shares subject to the option vested each month thereafter, subject to the Reporting Person continuing as a service provider through each such date."],
+   "expiration_date": "2028-11-02",
+   "expiration_date_fn": [],
+   "underlying_security_title": "Class A Common Stock",
+   "underlying_security_title_fn": [],
+   "underlying_security_shares": 49910.0,
+   "underlying_security_shares_fn": [],
+   "underlying_security_value": 61757.0,
+   "underlying_security_value_fn": [],
+   "owned_following_transaction": False,
+   "owned_following_transaction_fn": [],
+   "value_following_transaction": 61757.0,
+   "value_following_transaction_fn": [],
+   "direct_or_indirect_ownership": True,
+   "direct_or_indirect_ownership_fn": ["D"],
+   "nature_of_ownership": True,
+   "nature_of_ownership_fn": ["D"],
+   "transaction_form_type": 4
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "issuer": {
+    "issuer_cik": "0000075252",
+    "issuer_name": "OWENS & MINOR INC/VA/",
+    "issuer_trading_symbol": "OMI"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001164770",
+      "rptowner_name": "MCGETTRICK MARK F",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "officer_title": ""
+    }
+  ],
+  "non_derivative_transactions": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Phantom Stock",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "[F1]",
+      "transaction_date": "2020-12-31",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "[F1]",
+      "expiration_date": "",
+      "expiration_date_fn": "[F1]",
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 8.0,
+      "underlying_security_shares_fn": "[F1]",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 106728.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "footnotes": {
+    "F1": "The shares of phantom stock are convertible on a 1-for-1 basis and become payable, in cash or common stock, at the election of the reporting person, upon the occurrence of one of the following (as elected in advance by the reporting person): (a) death, (b) disability, (c) termination of service as director, (d) specified future delivery date, or (e) the earliest to occur of (a), (b), (c) or (d)."
+  },
+  "signatures": [
+    {
+      "signature_name": "Mark F. McGettrick",
+      "signature_date": "2021-01-05"
+    }
+  ]
+}

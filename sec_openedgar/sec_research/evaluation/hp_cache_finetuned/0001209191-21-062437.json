@@ -1,0 +1,64 @@
+{
+  "issuer": {
+    "issuer_cik": "0000110621",
+    "issuer_name": "RPM INTERNATIONAL INC/DE/",
+    "issuer_trading_symbol": "RPM",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-10-29",
+  "date_of_original_submission": "2021-11-01",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001388816",
+      "rptowner_name": "Nance Frederick R.",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "C/O RPM INTERNATIONAL INC.",
+        "2628 PEARL ROAD, P.O. BOX 777",
+        "MEDINA, OH, 44258"
+      ],
+      "rptowner_city": "MEDINA",
+      "rptowner_state": "OH",
+      "rptowner_zip": "44258",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_owned_following_transaction": [
+        11649.0,
+        0.0
+      ]
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock, $0.01 par value",
+      "security_title_fn": [
+        "F"
+      ],
+      "shares": 478.0,
+      "shares_fn": [],
+      "price": 87.2,
+      "price_fn": [],
+      "transaction_total_value": 11649.0,
+      "transaction_total_value_fn": [],
+      "owned_following_transaction": [
+        11649.0,
+        0.0
+      ]
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": []
+}

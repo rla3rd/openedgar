@@ -1,0 +1,211 @@
+{
+  "issuer": {
+    "issuer_cik": "0001361983",
+    "issuer_name": "ORBCOMM Inc.",
+    "issuer_trading_symbol": "ORBC",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-01-01",
+  "date_of_original_submission": "2021-01-05",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001743533",
+      "rptowner_name": "Gould Karen O.",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "C/O ORBCOMM INC.",
+        "395 W. PASSAIC STREET, SUITE 325",
+        "ROCHELLE PARK, NJ, 07662"
+      ],
+      "rptowner_foreign_state_territory": "",
+      "rptowner_good_address": true
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 24449.0,
+      "shares_fn": [],
+      "price": [
+        "^1"
+      ],
+      "price_fn": [
+        "^1"
+      ],
+      "transaction_total_value": 42534.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of Ownership": "",
+      "nature_of Ownership_fn": [],
+      "transaction_summary": "Common Stock owned following Transaction"
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of Ownership": "",
+      "nature_of Ownership_fn": [],
+      "transaction_form_type": "4"
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Restricted Stock Unit (Time Vested)",
+      "security_title_fn": [
+        "Restricted Stock Unit (Time Vested)"
+      ],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [
+        "^1"
+      ],
+      "transaction_date": "2021-01-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": [
+        "^1"
+      ],
+      "deemed_execution_date_fn": [
+        "^1"
+      ],
+      "transaction_code": "M",
+      "transaction_code_fn": [
+        "M"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares_owned_following_transaction": 24449.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of Ownership": "",
+      "nature_of Ownership_fn": [],
+      "transaction_summary": "Restricted Stock Unit (Time Vested) owned following Transaction"
+    },
+    {
+      "security_title": "Restricted Stock Unit (Time Vested)",
+      "security_title_fn": [
+        "Restricted Stock Unit (Time Vested)"
+      ],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [
+        "^2"
+      ],
+      "transaction_date": "2021-01-04",
+      "transaction_date_fn": [],
+      "deemed_execution_date": [
+        "^2"
+      ],
+      "deemed_execution_date_fn": [
+        "^2"
+      ],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "A"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares_owned_following_transaction": 14598.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 14598.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of Ownership": "",
+      "nature_of Ownership_fn": [],
+      "transaction_form_type": "4"
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Restricted Stock Unit (Time Vested)",
+      "security_title_fn": [
+        "Restricted Stock Unit (Time Vested)"
+      ],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [],
+      "transaction_date": "",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "shares_owned_following_transaction": 24449.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of Ownership": "",
+      "nature_of Ownership_fn": [],
+      "transaction_form_type": "4"
+    },
+    {
+      "security_title": "Restricted Stock Unit (Time Vested)",
+      "security_title_fn": [
+        "Restricted Stock Unit (Time Vested)"
+      ],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [],
+      "transaction_date": "",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "shares_owned_following_transaction": 14598.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 14598.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of Ownership": "",
+      "nature_of Ownership_fn": [],
+      "transaction_form_type": "4"
+    }
+  ],
+  "footnotes": {
+    "1": "Each Time Vested Restricted Stock Unit (\"TV RSU\") represented the right to receive one share of ORBCOMM Inc. (\"Company\") common stock or its cash equivalent, all of which vested on January 1, 2021.",
+    "2": "Each TV RSU represents the right to receive one share of Company common stock or its cash equivalent. The number of TV RSUs was determined by dividing $100,000 by the closing price of Company common stock on January 4, 2021 of $6.85 per share. The TV RSUs vest on January 1, 2022."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/Christian Le Brun, by power of attorney",
+      "signature_date": "2021-01-05"
+    }
+  ]
+}

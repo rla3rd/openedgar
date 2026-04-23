@@ -1,0 +1,71 @@
+{
+  "issuer": {
+    "issuer_cik": "0000921557",
+    "issuer_name": "REPUBLIC BANCORP INC /KY/",
+    "issuer_trading_symbol": "RBCAA",
+    "period_of_report": "2021-05-19",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001242469",
+      "rptowner_name": "TAMME STOUT SUE",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "601 W MARKET ST",
+      "rptowner_street2": "",
+      "rptowner_city": "LOUISVILLE",
+      "rptowner_state": "KY",
+      "rptowner_zip": "40202",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_foreign_trading_symbol": false,
+      "schema_version": "X0306"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Class A Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-19",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "4"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 553.0,
+      "shares_fn": [],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 19507.895,
+      "transaction_total_value_fn": [
+        "[^1]"
+      ],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Class A Common Stock owned following transaction"
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": []
+}

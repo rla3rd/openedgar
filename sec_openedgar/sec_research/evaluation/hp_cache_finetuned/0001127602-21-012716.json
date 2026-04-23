@@ -1,0 +1,143 @@
+{
+  "issuer": {
+    "issuer_cik": "0000004962",
+    "issuer_name": "AMERICAN EXPRESS CO",
+    "issuer_trading_symbol": "AXP",
+    "period_of_report": "2021-03-31",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001570677",
+      "rptowner_name": "Lauvergeon Anne",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "C/O AMERICAN EXPRESS COMPANY",
+        "200 VESEY STREET"
+      ],
+      "rptowner_city": "NEW YORK",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10285-5001",
+      "rptowner_non_us_address_flag": false,
+      "original_owned_fn": [
+        "Director"
+      ]
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Share Equivalent Units",
+      "security_title_fn": [
+        "Share Equivalent Units"
+      ],
+      "transaction_date": "2021-03-31",
+      "transaction_date_fn": [
+        "2021-03-31"
+      ],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "A"
+      ],
+      "transaction_timeliness": "A",
+      "transaction_timeliness_fn": [
+        "A"
+      ],
+      "transaction_form_type": "Original Ownership",
+      "transaction_form_type_fn": [
+        "Original Ownership"
+      ],
+      "equity_swap_involved": false
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [
+        "Common Stock"
+      ],
+      "shares_owned_following_transaction": 28588.4642,
+      "shares_owned_following_transaction_fn": [
+        28588.4642
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [
+        0.0
+      ],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "Direct Ownership"
+      ],
+      "nature_of_ownership": "Legal Ownership",
+      "nature_of_ownership_fn": [
+        "Legal Ownership"
+      ],
+      "transaction_summary": "Share Equivalent Units acquired pursuant to the Directors' Deferred Compensation Plan and will be settled in cash following termination of service as a Director. The Share Equivalent Units are convertible immediately and have no expiration date."
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [],
+      "transaction_date": "",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "",
+      "transaction_form_type_fn": [],
+      "equity_swap_involved": false
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": ""
+    }
+  ],
+  "footnotes": {
+    "1": "Each Share Equivalent Unit reflects the value of one common share.",
+    "2": "The reported Share Equivalent Units were acquired pursuant to the Directors' Deferred Compensation Plan and will be settled in cash following termination of service as a Director.",
+    "3": "The Share Equivalent Units are convertible immediately and have no expiration date.",
+    "4": "Includes Share Equivalent Units acquired pursuant to a dividend reinvestment feature of the Directors' Deferred Compensation Plan and/or the 2003 Share Equivalent Unit Plan for Directors."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Kristina V. Fink, attorney-in-fact",
+      "signature_date": "2021-04-02",
+      "signature_date_fn": [
+        "2021-04-02"
+      ],
+      "original_owned_fn": [
+        "Direct Ownership",
+        "Legal Ownership"
+      ]
+    }
+  ]
+}

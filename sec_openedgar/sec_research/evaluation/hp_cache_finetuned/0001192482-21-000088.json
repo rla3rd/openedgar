@@ -1,0 +1,149 @@
+{
+  "issuer": {
+    "issuer_cik": "0001267565",
+    "issuer_name": "COLLEGIUM PHARMACEUTICAL, INC",
+    "issuer_trading_symbol": "COLL",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-01-19",
+  "date_of_original_submission": "2021-01-21",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001772168",
+      "rptowner_name": "Malamut Richard",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "EVP and Chief Medical Officer",
+      "rptowner_street1": "C/O COLLEGIUM PHARMACEUTICAL, INC.",
+      "rptowner_street2": "100 TECHNOLOGY CENTER DRIVE",
+      "rptowner_city": "STOUGHTON",
+      "rptowner_state": "MA",
+      "rptowner_zip": "02072",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_foreign_trading_symbol": "",
+      "rptowner_good_address": true
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 96790.0,
+      "shares_owned_following_transaction_fn": [
+        "D"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_ownership": "Original Ownership",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Common Stock owned following Transaction"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 98977.0,
+      "shares_owned_following_transaction_fn": [
+        "D"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_ownership": "Transaction",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Common Stock owned following Transaction"
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 98977.0,
+      "shares_owned_following_transaction_fn": [
+        "D"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_ownership": "Original Ownership",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Stock Option (Right to Purchase)",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 105600.0,
+      "conversion_or_exercise_price_fn": [
+        "A"
+      ],
+      "transaction_date": "2021-01-19",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "value_owned_following_transaction": 105600.0,
+      "value_owned_following_transaction_fn": [
+        "D"
+      ],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_ownership": "Original Ownership",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Stock Option (Right to Purchase) owned following Transaction"
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 105600.0,
+      "shares_owned_following_transaction_fn": [
+        "D"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_ownership": "Original Ownership",
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    }
+  ],
+  "footnotes": {
+    "1": "Reflects the grant of restricted stock units. Each restricted stock unit represents a contingent right to receive one share of the issuer's common stock. Twenty-five percent (25%) of the restricted stock units vest on February 10, 2022, and the balance of the restricted stock units vest in equal annual installments over the following three-year period, subject to the reporting person's continued service with the issuer. The restricted stock units will be settled on each applicable vesting date in shares of the issuer's common stock.",
+    "2": "On January 19, 2021, the Compensation Committee of the Board of Directors of the issuer determined that performance-vesting criteria were met with regard to 2,187 performance share units granted in a prior year.",
+    "3": "Twenty-five percent (25%) of the option vests and becomes exercisable on February 10, 2022, and the balance vests in equal quarterly installments (rounded up to the nearest whole share of common stock) over the following three-year period, subject to the reporting person's continued service with the issuer."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Paul Brannelly as Attorney-In-Fact for Richard Malamut",
+      "signature_date": "2021-01-21",
+      "original": "/s/ Paul Brannelly as Attorney-In-Fact for Richard Malamut\n 2021-01-21"
+    }
+  ]
+}

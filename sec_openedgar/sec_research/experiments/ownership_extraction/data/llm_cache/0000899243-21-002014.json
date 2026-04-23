@@ -1,0 +1,78 @@
+{
+  "issuer": {
+    "issuer_cik": "0001447599",
+    "issuer_name": "FITBIT, INC.",
+    "issuer_trading_symbol": "FIT"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001680979",
+      "rptowner_name": "Bromberg Matthew S",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "officer_title": ""
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Class A Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-01-14",
+      "transaction_date_fn": "",
+      "transaction_code": "D",
+      "transaction_code_fn": "",
+      "shares": 71782.0,
+      "shares_fn": "",
+      "price": 0.0,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Restricted Stock Units",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "[F2]",
+      "transaction_date": "2021-01-14",
+      "transaction_date_fn": "",
+      "transaction_code": "D",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "[F3]",
+      "expiration_date": "",
+      "expiration_date_fn": "[F3]",
+      "underlying_security_title": "Class A Common Stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 23810.0,
+      "underlying_security_shares_fn": "[F3]",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "footnotes": {
+    "F1": "Pursuant to the Agreement and Plan of Merger (the \"Merger Agreement\"), dated November 1, 2019, by and among the Issuer, Google LLC (\"Google\"), and Magnoliophyta Inc. (the \"Merger Sub\"), the Merger Sub merged with and into the Issuer (the \"Merger\"), with the Issuer surviving the Merger as a wholly owned subsidiary of Google, effective January 14, 2021 (the \"Closing Date\"). Pursuant to the Merger Agreement, each share of the Issuer's Class A common stock was exchanged for $7.35 in cash (the \"Merger Consideration\") on the Closing Date.",
+    "F2": "Each restricted stock unit (\"RSU\") represents a contingent right to receive 1 share of the Issuer's Class A Common Stock upon settlement for no consideration.",
+    "F3": "The RSUs vest on the earliest of (i) the date of the 2021 annual meeting of stockholders (if the Reporting Person does not stand for re-election or is not re-elected at such meeting but provides continuous service to the Board until the date of such meeting), (ii) May 21, 2021, or (iii) immediately prior to the consummation of a change of control event.",
+    "F4": "Pursuant to the Merger Agreement, each RSU held by the Reporting Person (whether vested or unvested) was cancelled and converted on the Closing Date into the right to receive an amount in cash, without interest, equal to the product of (a) the Merger Consideration multiplied by (b) the aggregate number of shares underlying the RSU."
+  },
+  "signatures": [
+    {
+      "signature_name": "Andy Missan",
+      "signature_date": "2021-01-14"
+    }
+  ]
+}

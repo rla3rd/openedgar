@@ -1,0 +1,101 @@
+{
+  "issuer": {
+    "issuer_cik": "0001824734",
+    "issuer_name": "Berkshire Grey, Inc.",
+    "issuer_trading_symbol": "BGRY",
+    "period_of_report": "2021-07-21",
+    "not_subject_to_section_16": true,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001256324",
+      "rptowner_name": "MUSELES STEVEN A",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": true,
+      "other_text": "Former Director",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "C/O RAAC MANAGEMENT LLC",
+      "rptowner_street2": "1717 RHODE ISLAND AVENUE, NW 10TH FLOOR",
+      "rptowner_city": "WASHINGTON",
+      "rptowner_state": "DC",
+      "rptowner_zip": "20036",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_foreign_trading_symbol": "",
+      "schema_version": "X0306"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Class A common stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 16000.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 16000.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "This reporting person's status as a director ceased on July 21, 2021."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Class B common stock",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": [
+        "^1"
+      ],
+      "conversion_or_exercise_price_fn": [
+        "^1"
+      ],
+      "transaction_date": "2021-07-21",
+      "transaction_date_fn": [],
+      "deemed_execution_date": [
+        "^1"
+      ],
+      "deemed_execution_date_fn": [
+        "^1"
+      ],
+      "underlying_security_title": "Class A common stock",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 16000.0,
+      "underlying_security_shares_fn": [],
+      "underlying_value": 0.0,
+      "underlying_value_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [
+        "D"
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "This reporting person's status as a director ceased on July 21, 2021."
+    }
+  ],
+  "derivative_holdings": [],
+  "footnotes": {
+    "^1": "On July 21, 2021, the issuer consummated its initial business combination (the \"Business Combination\"). In connection with and at the time of the closing of the Business Combination, each share of Class B common stock of the issuer automatically converted into one share of Class A common stock of the issuer."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Steven A. Museles",
+      "signature_date": "2021-07-23",
+      "schema_version": "X0306"
+    }
+  ]
+}

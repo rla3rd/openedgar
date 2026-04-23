@@ -1,0 +1,91 @@
+{
+  "issuer": {
+    "issuer_cik": "0000310158",
+    "issuer_name": "Merck & Co., Inc.",
+    "issuer_trading_symbol": "MRK",
+    "period_of_report": "2021-02-26",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001181175",
+      "rptowner_name": "FRAZIER KENNETH C",
+      "rptowner_ccc": "OCO",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Chairman, President & CEO",
+      "rptowner_street": [
+        "MERCK & CO., INC.",
+        "2000 GALLOPING HILL ROAD"
+      ],
+      "rptowner_city": "KENILWORTH",
+      "rptowner_state": "NJ",
+      "rptowner_zip": "07033",
+      "rptowner_non_us_address_flag": false,
+      "original_owned_fn": [
+        "A",
+        "4"
+      ],
+      "transaction_summary": "Distribution of net after tax shares of common stock on satisfaction of performance criteria for performance share units granted on 3/29/18. Performance shares were paid out at 166 percent of target awards. Includes dividends accrued over the three-year performance period ending December 31, 2020."
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 175249.0,
+      "shares_fn": [
+        "^1"
+      ],
+      "price": 72.62,
+      "price_fn": [],
+      "transaction_total_value": 586795.063,
+      "transaction_total_value_fn": [
+        "^2"
+      ],
+      "owned_following_transaction": false,
+      "value_following_transaction": false
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock - 401(k) Plan",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 4240.5202,
+      "shares_owned_following_transaction_fn": [
+        "^3"
+      ],
+      "value_owned_following_transaction": false,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": true,
+      "direct_or_indirect_ownership_fn": [
+        "I (By 401(k))"
+      ],
+      "nature_of_ownership": false,
+      "nature_of_ownership_fn": [],
+      "transaction_form_type": "4"
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "^1": "Distribution of net after tax shares of common stock on satisfaction of performance criteria for performance share units granted on 3/29/18. Performance shares were paid out at 166 percent of target awards. Includes dividends accrued over the three-year performance period ending December 31, 2020.",
+    "^2": "Holdings include shares acquired and dividends earned through January 8, 2021 in the Merck U.S. Savings Plan, a 401(k) plan.",
+    "^3": "Includes shares acquired and dividends earned through January 8, 2021 in the Merck U.S. Savings Plan, a 401(k) plan."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Kelly E. W. Grez as Attorney-in-Fact for Kenneth C. Frazier",
+      "signature_date": "2021-03-02",
+      "original": "Kelly E. W. Grez as Attorney-in-Fact for Kenneth C. Frazier\nMERCK & CO., INC.\n2000 GALLOPING HILL ROAD\nKENILWORTH, NJ 07033"
+    }
+  ]
+}

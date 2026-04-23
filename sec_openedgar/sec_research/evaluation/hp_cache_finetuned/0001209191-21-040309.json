@@ -1,0 +1,136 @@
+{
+  "issuer": {
+    "issuer_cik": "0001327688",
+    "issuer_name": "OOMA INC",
+    "issuer_trading_symbol": "OOMA",
+    "period_of_report": "2021-06-10",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001429509",
+      "rptowner_name": "Narula Ravi",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Chief Financial Officer",
+      "rptowner_street": [
+        "C/O OOMA, INC.",
+        "525 ALMANOR AVE., SUITE 200",
+        "SUNNYVALE, CA, 94085"
+      ],
+      "rptowner_city": "SUNNYVALE",
+      "rptowner_state": "CA",
+      "rptowner_zip": "94085",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_owned_following_transaction": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-06-10",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 57000.0,
+      "shares_fn": [
+        "Original Ownership"
+      ],
+      "price": 22.0649,
+      "price_fn": [
+        "Final Price"
+      ],
+      "transaction_total_value": 207634.0,
+      "transaction_total_value_fn": [
+        "Final Ownership"
+      ],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": false
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [],
+      "transaction_date": "",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": false
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [],
+      "exercise_date": "",
+      "exercise_date_fn": [],
+      "expiration_date": "",
+      "expiration_date_fn": [],
+      "underlying_security_title": "",
+      "underlying_security_title_fn": [],
+      "underlying_security_shares": 0.0,
+      "underlying_security_shares_fn": [],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": false
+    }
+  ],
+  "footnotes": {
+    "1": "Sale effected under sales plan pursuant to Rule 10b5-1(c)(1) of the Securities Exchange Act of 1934, as amended.",
+    "2": "The range of prices for the shares of Common Stock is from $22.00 to $22.33. The reporting person undertakes that he will provide, upon request by the staff of the U.S. Securities and Exchange Commission, full information regarding the number of securities sold at each separate price."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Ravi Narula",
+      "signature_date": "2021-06-10",
+      "rptowner_cik": "0001429509",
+      "rptowner_name": "Narula Ravi",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Chief Financial Officer",
+      "rptowner_street": [
+        "C/O OOMA, INC.",
+        "525 ALMANOR AVE., SUITE 200",
+        "SUNNYVALE, CA, 94085"
+      ],
+      "rptowner_city": "SUNNYVALE",
+      "rptowner_state": "CA",
+      "rptowner_zip": "94085",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_owned_following_transaction": false
+    }
+  ]
+}

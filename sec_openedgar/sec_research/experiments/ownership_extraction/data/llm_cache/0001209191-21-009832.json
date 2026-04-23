@@ -1,0 +1,124 @@
+{
+  "issuer": {
+    "issuer_cik": "0001207074",
+    "issuer_name": "VIRTUSA CORP",
+    "issuer_trading_symbol": "VRTU"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001406395",
+      "rptowner_name": "Holler Thomas R",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "officer_title": "EVP and CSO"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-02-11",
+      "transaction_date_fn": "",
+      "transaction_code": "D",
+      "transaction_code_fn": "",
+      "shares": 88158.0,
+      "shares_fn": "",
+      "price": 0.0,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Performance-based restricted stock unit awards",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "[F1][F2]",
+      "transaction_date": "2021-02-11",
+      "transaction_date_fn": "",
+      "transaction_code": "D",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "[F1][F2]",
+      "expiration_date": "",
+      "expiration_date_fn": "[F1][F2]",
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 23450.0,
+      "underlying_security_shares_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Performance-based restricted stock unit awards",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "[F1][F2]",
+      "transaction_date": "2021-02-11",
+      "transaction_date_fn": "",
+      "transaction_code": "D",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "[F1][F2]",
+      "expiration_date": "",
+      "expiration_date_fn": "[F1][F2]",
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 22718.0,
+      "underlying_security_shares_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Performance-based restricted stock unit awards",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "[F1][F2]",
+      "transaction_date": "2021-02-11",
+      "transaction_date_fn": "",
+      "transaction_code": "D",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "[F1][F2]",
+      "expiration_date": "",
+      "expiration_date_fn": "[F1][F2]",
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 35000.0,
+      "underlying_security_shares_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "footnotes": {
+    "F1": "This Form 4 reports securities disposed of pursuant to the terms of the Agreement and Plan of Merger, dated as of September 9, 2020 (the \"Merger Agreement\"), by and among Austin HoldCo Inc., Austin BidCo Inc. (\"Sub\"), and the Issuer, pursuant to which Sub merged with and into the Issuer (the \"Merger\") effective as of February 11, 2021 (the \"Effective Time\"). At the Effective Time, each issued and outstanding share of common stock of the Issuer and 70% of the unvested restricted stock units and performance stock units (the \"Units\") held by the Reporting Person were cancelled and converted into the right to receive $51.35 per share in cash without interest and net of any withholding of taxes thereon.",
+    "F2": "Pursuant to the terms of the Merger Agreement, at the Effective Time, 30% of the unvested Units were cancelled and replaced with the right to receive $51.35 in cash per Unit, without interest and net of any withholding taxes thereon, which payment shall be made following the earliest of (a) the applicable vesting date, (b) the date that is 12 months following the Effective Time or (c) the date that is 60 days after the date the Reporting Person's employment is terminated by the Issuer without cause (as defined in the Merger Agreement) or by the Reporting Person for good reason (as defined in the Merger Agreement)."
+  },
+  "signatures": [
+    {
+      "signature_name": "Paul D. Tutun, Attorney in Fact",
+      "signature_date": "2021-02-11"
+    }
+  ]
+}

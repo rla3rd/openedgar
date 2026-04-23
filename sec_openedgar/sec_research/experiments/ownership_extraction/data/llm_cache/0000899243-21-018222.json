@@ -1,0 +1,50 @@
+{
+  "issuer": {
+    "issuer_cik": "0001711929",
+    "issuer_name": "Starwood Real Estate Income Trust, Inc.",
+    "issuer_trading_symbol": ""
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001034657",
+      "rptowner_name": "STERNLICHT BARRY S",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "officer_title": ""
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Class I Common Shares",
+      "security_title_fn": "",
+      "transaction_date": "2021-05-04",
+      "transaction_date_fn": "",
+      "transaction_code": "J",
+      "transaction_code_fn": "",
+      "shares": 126892.28,
+      "shares_fn": "",
+      "price": 0.0,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 1259615.53,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": "By Starwood REIT Advisors L.L.C., Starwood Real Estate Income Holdings, L.P. and Barry Sternlicht."
+    }
+  ],
+  "derivative_transactions": [],
+  "footnotes": {
+    "F1": "Reflects shares paid to the advisor in settlement of management fees pursuant to the Issuer's advisory agreement."
+  },
+  "signatures": [
+    {
+      "signature_name": "Matthew Guttin",
+      "signature_date": "2021-05-04"
+    }
+  ]
+}

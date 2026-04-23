@@ -1,0 +1,68 @@
+{
+  "issuer": {
+    "issuer_cik": "0001121142",
+    "issuer_name": "Maxar Technologies Inc.",
+    "issuer_trading_symbol": "MAXR"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001566217",
+      "rptowner_name": "FRAZIER LEON ANTHONY",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "officer_title": "EVP, Global Field Operations"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-04-19",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "shares": 29800.0,
+      "shares_fn": "",
+      "price": 0.0,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 195149.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": "",
+      "transaction_date": "2021-04-19",
+      "transaction_date_fn": "",
+      "transaction_code": "F",
+      "transaction_code_fn": "",
+      "shares": 13442.0,
+      "shares_fn": "",
+      "price": 37.82,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "D",
+      "shares_owned_following_transaction": 181707.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [],
+  "footnotes": {
+    "F1": "On April 19, 2021, the Compensation Committee of the Board of Directors of the Issuer determined the attainment of the relative total stockholder return and adjusted cash leverage performance goals underlying the performance stock units.  Represents shares issued pursuant to settlement of performance stock units."
+  },
+  "signatures": [
+    {
+      "signature_name": "Patricia Lamm, attorney-in-fact for Leon Anthony Frazier",
+      "signature_date": "2021-04-21"
+    }
+  ]
+}

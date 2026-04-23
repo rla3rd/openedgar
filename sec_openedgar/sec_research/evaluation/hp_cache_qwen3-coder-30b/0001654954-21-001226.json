@@ -1,0 +1,87 @@
+{
+  "issuer": {
+    "issuer_cik": "0001129155",
+    "issuer_name": "MARINE PRODUCTS CORP",
+    "issuer_trading_symbol": "MPX",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-02-03",
+  "date_of_original_submission": "",
+  "remarks": "[NULL]",
+  "not_subject_to_section_16": true,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001212697",
+      "rptowner_name": "RFPS INVESTMENTS III, L.P.",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": false,
+      "is_10pctowner": true,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "C/O RFA MANAGEMENT COMPANY, LLC",
+      "rptowner_street2": "1908 CLIFF VALLEY WAY NE",
+      "rptowner_city": "ATLANTA",
+      "rptowner_state": "GA",
+      "rptowner_zip": "30329",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "Georgia",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock, $.10 Par Value",
+      "security_title_fn": [],
+      "transaction_date": "2021-02-03",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "J",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 15.0,
+      "shares_fn": [],
+      "price": 0.0,
+      "price_fn": [
+        "1"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "RFPS Investments III, L.P. acquired 15 shares of Common Stock, $.10 Par Value through a distribution in connection with the dissolution of the entity."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "These shares were distributed to the equity holders of RFPS Investments III, L.P. for no consideration, in connection with the dissolution of RFPS Investments III, L.P."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ RFPS Investments III, L.P., By: LOR Investment Company, LLC, General Partner, By: LOR, INC., Class A Member, By:  W. Keith Wilkes, Jr., Assistant Vice President",
+      "signature_date": "2021-02-04"
+    }
+  ]
+}

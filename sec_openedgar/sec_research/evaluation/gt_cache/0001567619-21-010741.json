@@ -1,0 +1,171 @@
+{
+  "issuer": {
+    "issuer_cik": "0000716634",
+    "issuer_name": "READING INTERNATIONAL INC",
+    "issuer_trading_symbol": "RDI",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-05-17",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001654688",
+      "rptowner_name": "James J. Cotter Living Trust",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": false,
+      "is_10pctowner": true,
+      "is_other": true,
+      "is_director_nominee": false,
+      "officer_title": "",
+      "other_text": "Member of Sec.13(d)(3) Group",
+      "rptowner_street1": "5995 SEPULVEDA BLVD",
+      "rptowner_street2": "SUITE 300",
+      "rptowner_city": "CULVER CITY",
+      "rptowner_state": "CA",
+      "rptowner_zip": "90230",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Class A Non-Voting Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-17",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 4000.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 6.0574,
+      "price_fn": [
+        "3"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 1468649.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [
+        "2"
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner disposed 4000.0 shares of Class A Non-Voting Common Stock at $6.0574 (Code S). [Note 1: The sale was effected pursuant to a Rule 10b5-1 trading plan adopted on December 23, 2019.] [Note 3: The price reported in Column 4 is a weighted average price. The reporting person undertakes to provide to Reading International, Inc. (\"Reading\"), any security holder of Reading, or the staff of the Securities and Exchange Commission, upon request, full information regarding the number of shares sold at each separate price within the range set forth in this footnote (3) to this Form 4.  These shares were sold in multiple transactions at prices ranging from:\n(a) on May 17, 2021, $5.95 to $6.15, inclusive?\n(b) on May 18, 2021, $6.04 to $6.15, inclusive; and\n(c) on May 19, 2021, $5.95 to $6.115, inclusive.]"
+    },
+    {
+      "security_title": "Class A Non-Voting Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-18",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 4000.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 6.1155,
+      "price_fn": [
+        "3"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 1464649.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [
+        "2"
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner disposed 4000.0 shares of Class A Non-Voting Common Stock at $6.1155 (Code S). [Note 1: The sale was effected pursuant to a Rule 10b5-1 trading plan adopted on December 23, 2019.] [Note 3: The price reported in Column 4 is a weighted average price. The reporting person undertakes to provide to Reading International, Inc. (\"Reading\"), any security holder of Reading, or the staff of the Securities and Exchange Commission, upon request, full information regarding the number of shares sold at each separate price within the range set forth in this footnote (3) to this Form 4.  These shares were sold in multiple transactions at prices ranging from:\n(a) on May 17, 2021, $5.95 to $6.15, inclusive?\n(b) on May 18, 2021, $6.04 to $6.15, inclusive; and\n(c) on May 19, 2021, $5.95 to $6.115, inclusive.]"
+    },
+    {
+      "security_title": "Class A Non-Voting Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-19",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 4000.0,
+      "shares_fn": [
+        "1"
+      ],
+      "price": 6.0287,
+      "price_fn": [
+        "3"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 1460649.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [
+        "2"
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "The reporting owner disposed 4000.0 shares of Class A Non-Voting Common Stock at $6.0287 (Code S). [Note 1: The sale was effected pursuant to a Rule 10b5-1 trading plan adopted on December 23, 2019.] [Note 3: The price reported in Column 4 is a weighted average price. The reporting person undertakes to provide to Reading International, Inc. (\"Reading\"), any security holder of Reading, or the staff of the Securities and Exchange Commission, upon request, full information regarding the number of shares sold at each separate price within the range set forth in this footnote (3) to this Form 4.  These shares were sold in multiple transactions at prices ranging from:\n(a) on May 17, 2021, $5.95 to $6.15, inclusive?\n(b) on May 18, 2021, $6.04 to $6.15, inclusive; and\n(c) on May 19, 2021, $5.95 to $6.115, inclusive.]"
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "The sale was effected pursuant to a Rule 10b5-1 trading plan adopted on December 23, 2019.",
+    "2": "The James J. Cotter Living Trust (the \"Trust\") is a trust organized under the laws of CA. During the lifetime of James J. Cotter, Sr., the Trust was revocable by James J. Cotter, Sr., but the Trust became irrevocable upon the death of James J. Cotter, Sr. on September 13, 2014. The Trust serves as a vehicle for the management and distribution of the assets of James J. Cotter, Sr. Ellen Cotter and Margaret Cotter, acting together as co-trustees of the Trust, may be deemed to share voting and investment power over the shares of the Class A Non-Voting Common Stock directly beneficially owned by the Trust. Margaret Cotter and Ellen Cotter disclaim beneficial ownership in Class A Non-Voting Common Stock reported herein, except to the extent of their respective pecuniary interest therein.",
+    "3": "The price reported in Column 4 is a weighted average price. The reporting person undertakes to provide to Reading International, Inc. (\"Reading\"), any security holder of Reading, or the staff of the Securities and Exchange Commission, upon request, full information regarding the number of shares sold at each separate price within the range set forth in this footnote (3) to this Form 4.  These shares were sold in multiple transactions at prices ranging from:\n(a) on May 17, 2021, $5.95 to $6.15, inclusive?\n(b) on May 18, 2021, $6.04 to $6.15, inclusive; and\n(c) on May 19, 2021, $5.95 to $6.115, inclusive."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Ellen Marie Cotter, as Co-Trustee of the James J. Cotter Living Trust",
+      "signature_date": "2021-05-19"
+    },
+    {
+      "signature_name": "/s/ Margaret Cotter, as Co-Trustee of the James J. Cotter Living Trust",
+      "signature_date": "2021-05-19"
+    }
+  ]
+}

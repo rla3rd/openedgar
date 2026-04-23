@@ -1,0 +1,106 @@
+{
+  "issuer": {
+    "issuer_cik": "0001436425",
+    "issuer_name": "HOME BANCORP, INC.",
+    "issuer_trading_symbol": "HBCP",
+    "period_of_report": "2021-05-12",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001724577",
+      "rptowner_name": "GUIDRY DANIEL G",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "503 KALISTE SALOOM ROAD",
+      "rptowner_street2": "",
+      "rptowner_city": "LAFAYETTE",
+      "rptowner_state": "LA",
+      "rptowner_zip": "70508",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_foreign_trading_symbol": "",
+      "schema_version": "X0306"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-12",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "4"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 550.0,
+      "shares_fn": [],
+      "price": [
+        109.26,
+        113.78
+      ],
+      "price_fn": [
+        [
+          "^1"
+        ],
+        [
+          "^2"
+        ]
+      ],
+      "transaction_total_value": 61206.0,
+      "transaction_total_value_fn": [
+        [
+          "^1"
+        ],
+        [
+          "^2"
+        ]
+      ],
+      "shares_owned_following_transaction": 61206.0,
+      "shares_owned_following_transaction_fn": [
+        [
+          "^1"
+        ],
+        [
+          "^2"
+        ]
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [
+        [
+          "^1"
+        ],
+        [
+          "^2"
+        ],
+        [
+          "^3"
+        ],
+        [
+          "^4"
+        ]
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Common Stock Ownership - Original Ownership"
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": []
+}

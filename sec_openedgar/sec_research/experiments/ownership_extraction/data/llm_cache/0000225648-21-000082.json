@@ -1,0 +1,56 @@
+{
+  "issuer": {
+    "issuer_cik": "0000225648",
+    "issuer_name": "COVANTA HOLDING CORP",
+    "issuer_trading_symbol": "CVA"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001024193",
+      "rptowner_name": "ZELL SAMUEL",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "officer_title": ""
+    }
+  ],
+  "non_derivative_transactions": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Common Stock, $.10 par value",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "",
+      "transaction_date": "2021-06-15",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "",
+      "expiration_date": "",
+      "expiration_date_fn": "",
+      "underlying_security_title": "Common Stock, $.10 par value",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 2138.0,
+      "underlying_security_shares_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 42071.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": "The restricted stock units were issued to the reporting person pursuant to the Issuer's 2014 Equity Compensation Plan in lieu of quarterly retainer fees of $37,500 for the period beginning April 1, 2021 and ending June 30, 2021. [F1]"
+    }
+  ],
+  "footnotes": {
+    "F1": "The restricted stock units were issued to the reporting person pursuant to the Issuer's 2014 Equity Compensation Plan in lieu of quarterly retainer fees of $37,500 for the period beginning April 1, 2021 and ending June 30, 2021."
+  },
+  "signatures": [
+    {
+      "signature_name": "Samuel Zell",
+      "signature_date": "2021-06-15"
+    }
+  ]
+}

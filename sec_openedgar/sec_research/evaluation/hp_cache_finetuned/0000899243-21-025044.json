@@ -1,0 +1,107 @@
+{
+  "issuer": {
+    "issuer_cik": "0001593899",
+    "issuer_name": "Atea Pharmaceuticals, Inc.",
+    "issuer_trading_symbol": "AVIR",
+    "period_of_report": "2021-06-18",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001273885",
+      "rptowner_name": "BERGER FRANKLIN M",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street": [
+        "125 SUMMER STREET",
+        "16TH FLOOR"
+      ],
+      "rptowner_city": "BOSTON",
+      "rptowner_state": "MA",
+      "rptowner_zip": "02110",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_owned_following_transaction": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Stock Option (Right to Buy)",
+      "security_title_fn": [
+        "Stock Option (Right to Buy)"
+      ],
+      "transaction_date": "2021-06-18",
+      "transaction_date_fn": [
+        "2021-06-18"
+      ],
+      "deemed_execution_date": "[^1]",
+      "deemed_execution_date_fn": [
+        "^1"
+      ],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "A"
+      ],
+      "transaction_timeliness": "A",
+      "transaction_timeliness_fn": [
+        "A"
+      ],
+      "transaction_form_type": "Original Ownership",
+      "transaction_form_type_fn": [
+        "Original Ownership"
+      ]
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [
+        "Common Stock"
+      ],
+      "shares_owned_following_transaction": 34025.0,
+      "shares_owned_following_transaction_fn": [
+        34025.0
+      ],
+      "value_owned_following_transaction": 34025.0,
+      "value_owned_following_transaction_fn": [
+        34025.0
+      ],
+      "direct_or_indirect_ownership": "Director",
+      "direct_or_indirect_ownership_fn": [
+        "Director"
+      ],
+      "nature_of_ownership": "Legal Ownership",
+      "nature_of_ownership_fn": [
+        "Legal Ownership"
+      ],
+      "transaction_form_type": "Original Ownership",
+      "transaction_form_type_fn": [
+        "Original Ownership"
+      ]
+    }
+  ],
+  "footnotes": {
+    "1": "The option vests and becomes exercisable in twelve (12) equal monthly installments following June 18, 2021, such that the option shall be fully vested on the first anniversary of the date of grant, subject to the Reporting Person's continued service through each such vesting date."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Andrea Corcoran, as Attorney-in-Fact for Franklin M. Berger",
+      "signature_date": "2021-06-21",
+      "signature_date_fn": [
+        "2021-06-21"
+      ],
+      "good_address": false
+    }
+  ]
+}

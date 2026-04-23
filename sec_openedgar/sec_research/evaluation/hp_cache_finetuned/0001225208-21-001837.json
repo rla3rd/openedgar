@@ -1,0 +1,74 @@
+{
+  "issuer": {
+    "issuer_cik": "0000230557",
+    "issuer_name": "SELECTIVE INSURANCE GROUP INC",
+    "issuer_trading_symbol": "SIGI",
+    "period_of_report": "2021-02-05",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001355452",
+      "rptowner_name": "Wilcox Mark Alexander",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "EVP & CFO",
+      "rptowner_street1": "40 WANTAGE AVENUE",
+      "rptowner_street2": "BRANCHVILLE, NJ, 07890",
+      "rptowner_city": "",
+      "rptowner_state": "",
+      "rptowner_zip": "",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_foreign_trading_symbol": "",
+      "schema_version": "X0306"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-02-05",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "F",
+      "transaction_code_fn": [
+        "Foreign Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "transaction_form_type_fn": [
+        4.0
+      ],
+      "a_owned_following_transaction": false,
+      "a_owned_following_transaction_fn": [],
+      "value_following_transaction": 26727.0955,
+      "value_following_transaction_fn": [
+        26727.0955,
+        "^1"
+      ],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "Direct Ownership"
+      ],
+      "nature_of_ownership": "Legal Ownership",
+      "nature_of_ownership_fn": [
+        "Legal Ownership"
+      ],
+      "transaction_summary": "Common Stock owned through the Company's Employee Stock Purchase Plan. Also includes 325.1608 dividend equivalent units. Each dividend equivalent unit is the economic equivalent of one share of Selective Insurance Group, Inc. common stock."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": []
+}

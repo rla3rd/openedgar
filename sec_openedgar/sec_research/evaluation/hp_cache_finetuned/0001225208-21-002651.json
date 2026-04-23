@@ -1,0 +1,135 @@
+{
+  "issuer": {
+    "issuer_cik": "0001383312",
+    "issuer_name": "BROADRIDGE FINANCIAL SOLUTIONS, INC.",
+    "issuer_trading_symbol": "BR",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-02-12",
+  "date_of_original_submission": "2021-02-17",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001658677",
+      "rptowner_name": "Mayadas Vijay",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Officer: Corporate Vice President",
+      "rptowner_street": [
+        "5 DAKOTA DRIVE"
+      ],
+      "rptowner_city": "LAKE SUCCESS",
+      "rptowner_state": "NY",
+      "rptowner_zip": "11042",
+      "rptowner_non_us_address_flag": false,
+      "original_owned_fn": [
+        "Officer: Corporate Vice President"
+      ]
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Stock Option (Right to Buy)",
+      "security_title_fn": [
+        "Stock Option (Right to Buy)"
+      ],
+      "transaction_date": "2021-02-12",
+      "transaction_date_fn": [
+        "2021-02-12"
+      ],
+      "deemed_execution_date": "2022-02-12 [^1]",
+      "deemed_execution_date_fn": [
+        "2022-02-12",
+        "^1"
+      ],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "A"
+      ],
+      "transaction_timeliness": "A",
+      "transaction_timeliness_fn": [
+        "A"
+      ],
+      "transaction_form_type": "Original Ownership",
+      "transaction_form_type_fn": [
+        "Original Ownership"
+      ]
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [
+        "Common Stock"
+      ],
+      "shares_owned_following_transaction": 6223.0,
+      "shares_owned_following_transaction_fn": [
+        6223.0
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [
+        0.0
+      ],
+      "direct_or_indirect_ownership": "Director",
+      "direct_or_indirect_ownership_fn": [
+        "Director"
+      ],
+      "nature_of_ownership": "Corporate Vice President",
+      "nature_of_ownership_fn": [
+        "Corporate Vice President"
+      ],
+      "transaction_summary": "Stock Option (Right to Buy) owned following transaction with Corporate Vice President ownership"
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [
+        "Common Stock"
+      ],
+      "shares_owned_following_transaction": 6223.0,
+      "shares_owned_following_transaction_fn": [
+        6223.0
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [
+        0.0
+      ],
+      "direct_or_indirect_ownership": "Director",
+      "direct_or_indirect_ownership_fn": [
+        "Director"
+      ],
+      "nature_of_ownership": "Corporate Vice President",
+      "nature_of_ownership_fn": [
+        "Corporate Vice President"
+      ],
+      "transaction_form_type": "Original Ownership",
+      "transaction_form_type_fn": [
+        "Original Ownership"
+      ]
+    }
+  ],
+  "footnotes": {
+    "1": "Stock options vest equally over 4 years beginning February 12, 2022."
+  },
+  "signatures": [
+    {
+      "signature_name": "Adam D. Amsterdam, Power of Attorney",
+      "signature_date": "2021-02-17",
+      "signature_date_fn": [
+        "2021-02-17"
+      ]
+    }
+  ]
+}

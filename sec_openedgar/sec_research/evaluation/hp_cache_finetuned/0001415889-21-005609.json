@@ -1,0 +1,165 @@
+{
+  "issuer": {
+    "issuer_cik": "0001535527",
+    "issuer_name": "CrowdStrike Holdings, Inc.",
+    "issuer_trading_symbol": "CRWD",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-11-29",
+  "date_of_original_submission": "2021-12-01",
+  "remarks": "All transactions were executed pursuant to a Rule 10b5-1 plan entered into by the Reporting Person.",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": true,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001445832",
+      "rptowner_name": "Watzinger Gerhard",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "C/O CROWDSTRIKE HOLDINGS, INC.",
+      "rptowner_street2": "150 MATHILDA PLACE, SUITE 300",
+      "rptowner_city": "SUNNYVALE",
+      "rptowner_state": "CA",
+      "rptowner_zip": "94068",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_county": "",
+      "rptowner_state_territory": "",
+      "rptowner_good_address": true
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Class A common stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 5000.0,
+      "shares_owned_following_transaction_fn": [
+        "A"
+      ],
+      "value_owned_following_transaction": 5000.0,
+      "value_owned_following_transaction_fn": [
+        1
+      ],
+      "direct_or_indirect_ownership": "I (By Clavius Capital LLC)",
+      "direct_or_indirect_ownership_fn": [
+        2
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_total_value": 5000.0,
+      "transaction_total_value_fn": [
+        1
+      ]
+    },
+    {
+      "security_title": "Class A common stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 5000.0,
+      "shares_owned_following_transaction_fn": [
+        "D"
+      ],
+      "value_owned_following_transaction": 235.0,
+      "value_owned_following_transaction_fn": [
+        1
+      ],
+      "direct_or_indirect_ownership": "I (By Clavius Capital LLC)",
+      "direct_or_indirect_ownership_fn": [
+        2
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": []
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Class A common stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 2580.0,
+      "shares_owned_following_transaction_fn": [
+        3
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_total_value": 2580.0,
+      "transaction_total_value_fn": [
+        3
+      ]
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Class B common stock",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [],
+      "shares_owned_following_transaction": 5000.0,
+      "shares_owned_following_transaction_fn": [
+        "D"
+      ],
+      "value_owned_following_transaction": 80000.0,
+      "value_owned_following_transaction_fn": [
+        1
+      ],
+      "direct_or_indirect_ownership": "I (By Clavius Capital LLC)",
+      "direct_or_indirect_ownership_fn": [
+        2
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_total_value": 80000.0,
+      "transaction_total_value_fn": [
+        1
+      ]
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Class B common stock",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [],
+      "shares_owned_following_transaction": 100000.0,
+      "shares_owned_following_transaction_fn": [
+        4
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I (By Clavius AP, LLC)",
+      "direct_or_indirect_ownership_fn": [
+        2
+      ],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_total_value": 100000.0,
+      "transaction_total_value_fn": [
+        4
+      ]
+    }
+  ],
+  "footnotes": {
+    "1": "The Class B common stock was converted into Class A common stock on a one-for-one basis.",
+    "2": "The Reporting Person disclaims beneficial ownership of the shares except to the extent of his pecuniary interest in such shares.",
+    "3": "Includes shares to be issued in connection with the vesting of one or more restricted stock units (\"RSUs\").",
+    "4": "Each share of Class B common stock is convertible at any time at the option of the Reporting Person into one share of Class A common stock and has no expiration date. All shares of Class B common stock will automatically convert into shares of Class A common stock upon the occurrence of certain specified events."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Remie Solano, Attorney-in-Fact",
+      "signature_date": "2021-12-01"
+    }
+  ]
+}

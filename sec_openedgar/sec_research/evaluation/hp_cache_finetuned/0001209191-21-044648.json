@@ -1,0 +1,146 @@
+{
+  "issuer": {
+    "issuer_cik": "0000879169",
+    "issuer_name": "INCYTE CORP",
+    "issuer_trading_symbol": "INCY",
+    "period_of_report": "2021-06-30",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001177917",
+      "rptowner_name": "HARRIGAN EDMUND",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "1801 AUGUSTINE CUT-OFF",
+      "rptowner_street2": "WILMINGTON, DE, 19803",
+      "rptowner_city": "",
+      "rptowner_state": "",
+      "rptowner_zip": "",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_foreign_trading_symbol": "",
+      "schema_version": "X0306"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [
+        "Restricted shares issued to the Reporting Person under the Issuer's Amended and Restated 2010 Stock Incentive Plan in lieu of quarterly director retainer fees pursuant to an election by the Reporting Person intended to comply with Rule 10b5-1. Restricted shares are fully vested."
+      ],
+      "transaction_date": "2021-06-30",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "A",
+      "transaction_code_fn": [
+        "4"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 208.0,
+      "shares_fn": [],
+      "price": 84.13,
+      "price_fn": [],
+      "transaction_total_value": 4842.0,
+      "transaction_total_value_fn": [
+        "Restricted shares issued to the Reporting Person under the Issuer's Amended and Restated 2010 Stock Incentive Plan in lieu of quarterly director retainer fees pursuant to an election by the Reporting Person intended to comply with Rule 10b5-1. Restricted shares are fully vested."
+      ],
+      "shares_owned_following_transaction": 4842.0,
+      "shares_owned_following_transaction_fn": [
+        "Restricted shares issued to the Reporting Person under the Issuer's Amended and Restated 2010 Stock Incentive Plan in lieu of quarterly director retainer fees pursuant to an election by the Reporting Person intended to comply with Rule 10b5-1. Restricted shares are fully vested."
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Restricted shares issued to the Reporting Person under the Issuer's Amended and Restated 2010 Stock Incentive Plan in lieu of quarterly director retainer fees pursuant to an election by the Reporting Person intended to comply with Rule 10b5-1. Restricted shares are fully vested."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "",
+      "security_title_fn": [],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [],
+      "transaction_date": "",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [
+        "Restricted shares issued to the Reporting Person under the Issuer's Amended and Restated 2010 Stock Incentive Plan in lieu of quarterly director retainer fees pursuant to an election by the Reporting Person intended to comply with Rule 10b5-1. Restricted shares are fully vested."
+      ],
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": [],
+      "exercise_date": "",
+      "exercise_date_fn": [],
+      "expiration_date": "",
+      "expiration_date_fn": [],
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": [
+        "Restricted shares issued to the Reporting Person under the Issuer's Amended and Restated 2010 Stock Incentive Plan in lieu of quarterly director retainer fees pursuant to an election by the Reporting Person intended to comply with Rule 10b5-1. Restricted shares are fully vested."
+      ],
+      "underlying_security_shares": 4842.0,
+      "underlying_security_shares_fn": [
+        "Restricted shares issued to the Reporting Person under the Issuer's Amended and Restated 2010 Stock Incentive Plan in lieu of quarterly director retainer fees pursuant to an election by the Reporting Person intended to comply with Rule 10b5-1. Restricted shares are fully vested."
+      ],
+      "underlying_security_value": 0.0,
+      "underlying_security_value_fn": [],
+      "shares_owned_following_transaction": 4842.0,
+      "shares_owned_following_transaction_fn": [
+        "Restricted shares issued to the Reporting Person under the Issuer's Amended and Restated 2010 Stock Incentive Plan in lieu of quarterly director retainer fees pursuant to an election by the Reporting Person intended to comply with Rule 10b5-1. Restricted shares are fully vested."
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "Restricted Stock Units",
+      "nature_of_ownership_fn": [
+        "Restricted shares issued to the Reporting Person under the Issuer's Amended and Restated 2010 Stock Incentive Plan in lieu of quarterly director retainer fees pursuant to an election by the Reporting Person intended to comply with Rule 10b5-1. Restricted shares are fully vested."
+      ],
+      "transaction_summary": "Restricted shares issued to the Reporting Person under the Issuer's Amended and Restated 2010 Stock Incentive Plan in lieu of quarterly director retainer fees pursuant to an election by the Reporting Person intended to comply with Rule 10b5-1. Restricted shares are fully vested."
+    }
+  ],
+  "footnotes": {
+    "1": "Restricted shares issued to the Reporting Person under the Issuer's Amended and Restated 2010 Stock Incentive Plan in lieu of quarterly director retainer fees pursuant to an election by the Reporting Person intended to comply with Rule 10b5-1. Restricted shares are fully vested.",
+    "2": "Includes an aggregate of 1,923 shares of common stock issuable pursuant to previously reported restricted stock units that have not vested."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Maria Pasquale, Attorney-In-Fact",
+      "signature_date": "2021-07-02",
+      "original": "/s/ Maria Pasquale, Attorney-In-Fact | 2021-07-02"
+    }
+  ]
+}

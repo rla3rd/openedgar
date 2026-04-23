@@ -1,0 +1,85 @@
+{
+  "issuer": {
+    "issuer_cik": "0000709337",
+    "issuer_name": "FARMERS NATIONAL BANC CORP /OH/",
+    "issuer_trading_symbol": "FMNB",
+    "period_of_report": "2021-05-03",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001545218",
+      "rptowner_name": "Nicastro Mark A",
+      "rptowner_ccc": "",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "SVP/Human Resource Director",
+      "rptowner_street": [
+        "20 SOUTH BROAD ST",
+        "PO BOX 555"
+      ],
+      "rptowner_city": "CANFIELD",
+      "rptowner_state": "OH",
+      "rptowner_zip": "44406",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Farmers National Banc Corp. Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-03",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "P",
+      "transaction_code_fn": [
+        "Original Ownership"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 6.0,
+      "shares_fn": [],
+      "price": 16.88,
+      "price_fn": [],
+      "transaction_total_value": 18648.0,
+      "transaction_total_value_fn": [
+        "Original Ownership"
+      ],
+      "shares_owned_following_transaction": false,
+      "value_owned_following_transaction": 0.0
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Farmers National Banc Corp. Common Stock",
+      "security_title_fn": [],
+      "owned_following_transaction": false,
+      "value_following_transaction": 0.0
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Shares acquired pursuant to the terms of the Farmers National Banc Corp. Share Ownership Plan."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Carl D. Culp attorney in fact for Mark A. Nicastro",
+      "signature_date": "2021-05-05",
+      "signature_date_fn": [],
+      "owned_following_transaction": false,
+      "value_following_transaction": 0.0
+    }
+  ]
+}

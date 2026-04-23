@@ -1,0 +1,177 @@
+{
+  "issuer": {
+    "issuer_cik": "0001569345",
+    "issuer_name": "Sprinklr, Inc.",
+    "issuer_trading_symbol": "CXM",
+    "period_of_report": "2021-06-22",
+    "date_of_original_submission": "2021-06-24",
+    "remarks": "",
+    "not_subject_to_section_16": false,
+    "is_rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001867888",
+      "rptowner_name": "Kundra Vivek",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "Chief Operating Officer",
+      "rptowner_street": [
+        "C/O SPRINKLR, INC.",
+        "29 WEST 35TH STREET, 7TH FLOOR",
+        "NEW YORK, NY"
+      ],
+      "rptowner_state": "New York",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 600000.0,
+      "shares_fn": [
+        "^1"
+      ],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 617173.0,
+      "transaction_total_value_fn": [
+        "^2"
+      ],
+      "shares_owned_following_transaction": 617173.0,
+      "shares_owned_following_transaction_fn": [
+        "^2"
+      ],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "Direct Ownership"
+      ],
+      "nature_of_ownership": "Restricted Stock Unit",
+      "nature_of_ownership_fn": [
+        "Restricted Stock Unit"
+      ],
+      "transaction_form_type": 4.0,
+      "transaction_form_type_fn": [
+        4.0
+      ]
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 0.0,
+      "shares_fn": [],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "Direct Ownership"
+      ],
+      "nature_of_ownership": "Restricted Stock Unit",
+      "nature_of_ownership_fn": [
+        "Restricted Stock Unit"
+      ],
+      "transaction_form_type": 4.0,
+      "transaction_form_type_fn": [
+        4.0
+      ]
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares": 0.0,
+      "shares_fn": [],
+      "price": 0.0,
+      "price_fn": [],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "Direct Ownership"
+      ],
+      "nature_of_ownership": "Performance Stock Unit",
+      "nature_of_ownership_fn": [
+        "Performance Stock Unit"
+      ],
+      "transaction_form_type": 4.0,
+      "transaction_form_type_fn": [
+        4.0
+      ]
+    }
+  ],
+  "derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "Direct Ownership"
+      ],
+      "nature_of_ownership": "Restricted Stock Unit",
+      "nature_of_ownership_fn": [
+        "Restricted Stock Unit"
+      ],
+      "transaction_form_type": 4.0,
+      "transaction_form_type_fn": [
+        4.0
+      ]
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "Direct Ownership",
+      "direct_or_indirect_ownership_fn": [
+        "Direct Ownership"
+      ],
+      "nature_of_ownership": "Performance Stock Unit",
+      "nature_of_ownership_fn": [
+        "Performance Stock Unit"
+      ],
+      "transaction_form_type": 4.0,
+      "transaction_form_type_fn": [
+        4.0
+      ]
+    }
+  ],
+  "footnotes": {
+    "1": "50,000 shares represent a restricted stock unit (\u201cRSU\u201d) award. One fifth (1/5th) of the RSUs shall vest on January 28, 2022, and one sixteenth (1/16th) of the remaining RSUs shall vest every three (3) months thereafter. 550,000 shares represent a performance stock unit (\u201cPSU\u201d) award. The PSUs vest upon both the achievement of certain stock prices and the passage of time. 100,000 PSUs shall vest upon the Issuer\u2019s Class A Common Stock trading at each of $30, $40 and $50, as measured on a 45 day weighted average trading price; 50,000 PSUs shall vest upon the Issuer\u2019s Class A Common Stock trading at each of $60, $70, $80, $90 and $100, as measured on a 45 day weighted average trading price and one fifth (1/5th) of the PSUs (that meet the stock price achievement) shall vest on January 28, 2022, and one sixteenth (1/16th) of the remaining PSUs shall vest every three (3) months thereafter. The vesting of the RSUs and PSUs are subject to the Reporting Person\u2019s continuous service.",
+    "2": "Each share of Common Stock shall be reclassified into one share of Class B Common Stock immediately prior to the completion of the Issuer\u2019s initial public offering of Class A Common Stock."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Jason Minio, Attorney-in-Fact",
+      "signature_date": "2021-06-24"
+    }
+  ]
+}

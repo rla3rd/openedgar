@@ -1,0 +1,78 @@
+{
+  "issuer": {
+    "issuer_cik": "0000924901",
+    "issuer_name": "MACK CALI REALTY CORP",
+    "issuer_trading_symbol": "CLI"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001609399",
+      "rptowner_name": "Wagner Gary T",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "officer_title": "General Counsel & Secretary"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Time Vesting Restricted Stock Units",
+      "security_title_fn": "",
+      "transaction_date": "2021-04-21",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "shares": 15366.0,
+      "shares_fn": "",
+      "price": 0.0,
+      "price_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 28245.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "derivative_transactions": [
+    {
+      "security_title": "Performance Vesting Restricted Stock Units",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "[F3]",
+      "transaction_date": "2021-04-21",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "[F4]",
+      "expiration_date": "",
+      "expiration_date_fn": "[F4]",
+      "underlying_security_title": "Common Stock, $0.01 par value",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 28474.0,
+      "underlying_security_shares_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 28474.0,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": ""
+    }
+  ],
+  "footnotes": {
+    "F1": "On April 21, 2021, the reporting person was granted time vesting restricted stock units (each, a \"TVRSU\"). Each TVRSU represents a contingent right to receive one share of common stock, $0.01 par value (the \"Common Stock\"), of Mack-Cali Realty Corporation (the \"Company\").",
+    "F2": "The TVRSUs vest in three equal annual installments beginning April 21, 2022.",
+    "F3": "On April 21, 2021, the reporting person was granted performance vesting restricted stock units (each, a \"PVRSU\").  Each PVRSU represents represents a contingent right to receive one share of Common Stock.",
+    "F4": "Seventy-five percent (75%) of the PVRSUs may vest over a three year period based on the attainment of absolute total stockholder return (\"TSR\") metrics by the Company over a three year performance period. The remaining twenty-five percent (25%) of the PVRSUs may vest over a three year period based on the Company's TSR relative to the TSR of a select group of twenty-four (24) peer REITs over the same three year performance period."
+  },
+  "signatures": [
+    {
+      "signature_name": "Gary T. Wagner",
+      "signature_date": "2021-04-23"
+    }
+  ]
+}

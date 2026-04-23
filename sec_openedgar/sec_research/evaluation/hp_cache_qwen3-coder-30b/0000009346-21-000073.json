@@ -1,0 +1,125 @@
+{
+  "issuer": {
+    "issuer_cik": "0000009346",
+    "issuer_name": "Protective Insurance Corp",
+    "issuer_trading_symbol": "PTVCA/B",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-06-01",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": true,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001256130",
+      "rptowner_name": "NICHOLS JOHN DRAKE",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "",
+      "rptowner_street1": "111 CONGRESSIONAL BLVD.",
+      "rptowner_street2": "STE 500",
+      "rptowner_city": "CARMEL",
+      "rptowner_state": "IN",
+      "rptowner_zip": "46032",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Class B Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-06-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "D",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 83303.0,
+      "shares_fn": [],
+      "price": 23.3,
+      "price_fn": [
+        "1"
+      ],
+      "transaction_total_value": 21250.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 21250.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Acquired 83,303 shares of Class B Common Stock at $23.30 per share, totaling $21,250, in a transaction related to the merger agreement with The Progressive Corporation."
+    },
+    {
+      "security_title": "Class B Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-06-01",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "D",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares": 21250.0,
+      "shares_fn": [
+        "2",
+        "3"
+      ],
+      "price": 23.3,
+      "price_fn": [
+        "3"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "shares_owned_following_transaction": 0.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "D",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "",
+      "nature_of_ownership_fn": [],
+      "transaction_summary": "Acquired 21,250 shares of Class B Common Stock at $23.30 per share, representing the cancellation and conversion of restricted stock awards under the merger agreement with The Progressive Corporation."
+    }
+  ],
+  "non_derivative_holdings": [],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "Pursuant to the Agreement and Plan of Merger, dated as of February 14, 2021 (the \"Merger Agreement\"), by and among Protective Insurance Corporation (the \"Company\"), The Progressive Corporation (\"Progressive\") and Carnation Merger Sub Inc., a wholly-owned indirect subsidiary of Progressive (\"Merger Sub\"), at the effective time (the \"Effective Time\") of the merger of Merger Sub with and into the Company, which Effective Time occurred on June 1, 2021, each outstanding share of the Company's Class A Common Stock and Class B Common Stock (other than certain excluded shares and the outstanding time-based restricted stock awards granted under the Company's equity incentive plan (the \"Company RSAs\")) was cancelled and automatically converted into the right to receive an amount in cash equal to $23.30, without interest and less any applicable withholding taxes.",
+    "2": "Includes the following Company RSAs:  21250 restricted shares that were to vest on October 17, 2021.",
+    "3": "Pursuant to the Merger Agreement, immediately prior to the Effective Time, the restrictions on each of these Company RSAs automatically lapsed and each Company RSA was canceled and automatically converted into the right to receive an amount in cash equal to the product of (i) the total number of shares of the Company's Class B Common subject to the Company RSA, multiplied by (ii) an amount in cash, without interest, equal to $23.30, plus any cash dividends or cash dividend equivalents accrued on such Company RSA, less any applicable withholding taxes."
+  },
+  "signatures": [
+    {
+      "signature_name": "John R. Barnett on behalf of John Drake Nichols",
+      "signature_date": "2021-06-03"
+    }
+  ]
+}

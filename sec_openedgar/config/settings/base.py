@@ -159,11 +159,22 @@ MANAGERS = ADMINS
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
-# Uses django-environ to accept uri format
-# See: https://django-environ.readthedocs.io/en/latest/#supported-types
-DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///sec_openedgar'),
-}
+USE_SQLITE = env.bool('USE_SQLITE', default=False)
+
+if USE_SQLITE:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': str(ROOT_DIR.path('db.sqlite3')),
+        }
+    }
+else:
+    # Uses django-environ to accept uri format
+    # See: https://django-environ.readthedocs.io/en/latest/#supported-types
+    DATABASES = {
+        'default': env.db('DATABASE_URL', default='postgres:///sec_openedgar'),
+    }
+
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 # GENERAL CONFIGURATION

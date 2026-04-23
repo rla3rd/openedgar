@@ -1,0 +1,58 @@
+{
+  "issuer": {
+    "issuer_cik": "0000079879",
+    "issuer_name": "PPG INDUSTRIES INC",
+    "issuer_trading_symbol": "PPG"
+  },
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001438852",
+      "rptowner_name": "MCGARRY MICHAEL H",
+      "is_director": true,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "officer_title": "Chairman of the Board and CEO"
+    }
+  ],
+  "non_derivative_transactions": [],
+  "derivative_transactions": [
+    {
+      "security_title": "Phantom Stock Units",
+      "security_title_fn": "",
+      "conversion_or_exercise_price": 0.0,
+      "conversion_or_exercise_price_fn": "[F1]",
+      "transaction_date": "2021-02-12",
+      "transaction_date_fn": "",
+      "transaction_code": "A",
+      "transaction_code_fn": "",
+      "exercise_date": "",
+      "exercise_date_fn": "[F2]",
+      "expiration_date": "",
+      "expiration_date_fn": "[F2]",
+      "underlying_security_title": "Common Stock",
+      "underlying_security_title_fn": "",
+      "underlying_security_shares": 4.121,
+      "underlying_security_shares_fn": "",
+      "transaction_acquired_disposed_code": "A",
+      "shares_owned_following_transaction": 4095.9591,
+      "shares_owned_following_transaction_fn": "",
+      "direct_or_indirect_ownership": "",
+      "direct_or_indirect_ownership_fn": "",
+      "transaction_summary": "[F3]"
+    }
+  ],
+  "footnotes": {
+    "F1": "The security converts to common stock on a one-for-one basis.",
+    "F2": "After termination of employment with PPG.",
+    "F3": "Total of all phantom stock units held by the reporting person in the PPG Industries, Inc. Deferred Compensation Plan."
+  },
+  "signatures": [
+    {
+      "signature_name": "Greg E. Gordon",
+      "signature_date": "2021-02-17"
+    }
+  ]
+}

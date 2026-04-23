@@ -1,0 +1,233 @@
+{
+  "issuer": {
+    "issuer_cik": "0001720580",
+    "issuer_name": "Adicet Bio, Inc.",
+    "issuer_trading_symbol": "ACET",
+    "issuer_foreign_trading_symbol": "",
+    "schema_version": "X0306"
+  },
+  "form_type": "4",
+  "period_of_report": "2021-05-18",
+  "date_of_original_submission": "",
+  "remarks": "",
+  "not_subject_to_section_16": false,
+  "is_rule_10b5_1_plan": false,
+  "no_securities_owned": false,
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001823901",
+      "rptowner_name": "Jakobovits Aya",
+      "rptowner_ccc": "",
+      "is_director": true,
+      "is_officer": false,
+      "is_10pctowner": false,
+      "is_other": false,
+      "is_director_nominee": false,
+      "officer_title": "",
+      "other_text": "",
+      "rptowner_street1": "C/O ADICET BIO, INC.",
+      "rptowner_street2": "500 BOYLSTON STREET, 13TH FLOOR",
+      "rptowner_city": "BOSTON",
+      "rptowner_state": "MA",
+      "rptowner_zip": "02116",
+      "rptowner_non_us_address_flag": false,
+      "rptowner_non_us_state_territory": "",
+      "rptowner_country": "",
+      "rptowner_state_description": "",
+      "rptowner_good_address": false
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-18",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 3108.0,
+      "shares_fn": [],
+      "price": 14.0527,
+      "price_fn": [
+        "2"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 218699.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "See Footnote",
+      "nature_of_ownership_fn": [
+        "3"
+      ],
+      "transaction_summary": "The reporting owner disposed 3108.0 shares of Common Stock at $14.0527 (Code S). [Note 2: The price reported in Column 4 is a weighted average price. The shares were sold in multiple transactions at prices ranging from $14.00 to $14.18. Full information regarding the number of shares sold at each separate price can be furnished to the SEC staff upon request.]"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-18",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 3100.0,
+      "shares_fn": [],
+      "price": 14.0558,
+      "price_fn": [
+        "4"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 218706.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "See Footnote",
+      "nature_of_ownership_fn": [
+        "5"
+      ],
+      "transaction_summary": "The reporting owner disposed 3100.0 shares of Common Stock at $14.0558 (Code S). [Note 4: The price reported in Column 4 is a weighted average price. The shares were sold in multiple transactions at prices ranging from $14.00 to $14.18. Full information regarding the number of shares sold at each separate price can be furnished to the SEC staff upon request.]"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-20",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 892.0,
+      "shares_fn": [],
+      "price": 14.2291,
+      "price_fn": [
+        "6"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 217807.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "See Footnote",
+      "nature_of_ownership_fn": [
+        "3"
+      ],
+      "transaction_summary": "The reporting owner disposed 892.0 shares of Common Stock at $14.2291 (Code S). [Note 6: The price reported in Column 4 is a weighted average price. The shares were sold in multiple transactions at prices ranging from $14.00 to $14.47. Full information regarding the number of shares sold at each separate price can be furnished to the SEC staff upon request.]"
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-05-20",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "S",
+      "transaction_code_fn": [],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "transaction_form_type": "4",
+      "equity_swap_involved": false,
+      "shares": 900.0,
+      "shares_fn": [],
+      "price": 14.228,
+      "price_fn": [
+        "7"
+      ],
+      "transaction_total_value": 0.0,
+      "transaction_total_value_fn": [],
+      "transaction_acquired_disposed_code": "D",
+      "transaction_acquired_disposed_code_fn": [],
+      "shares_owned_following_transaction": 217806.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "See Footnote",
+      "nature_of_ownership_fn": [
+        "5"
+      ],
+      "transaction_summary": "The reporting owner disposed 900.0 shares of Common Stock at $14.228 (Code S). [Note 7: The price reported in Column 4 is a weighted average price. The shares were sold in multiple transactions at prices ranging from $14.00 to $14.48. Full information regarding the number of shares sold at each separate price can be furnished to the SEC staff upon request.]"
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 329199.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "See Footnote",
+      "nature_of_ownership_fn": [
+        "8"
+      ],
+      "transaction_form_type": ""
+    },
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "shares_owned_following_transaction": 135799.0,
+      "shares_owned_following_transaction_fn": [],
+      "value_owned_following_transaction": 0.0,
+      "value_owned_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [],
+      "nature_of_ownership": "See Footnote",
+      "nature_of_ownership_fn": [
+        "9"
+      ],
+      "transaction_form_type": ""
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {
+    "1": "These sales were effected pursuant to Rule 10b5-1 trading plans previously adopted by the Reporting Person.",
+    "2": "The price reported in Column 4 is a weighted average price. The shares were sold in multiple transactions at prices ranging from $14.00 to $14.18. Full information regarding the number of shares sold at each separate price can be furnished to the SEC staff upon request.",
+    "3": "Shares held in a trust of which Dr. Jakobovits spouse is the trustee and Dr. Jakobovits child is the beneficiary.",
+    "4": "The price reported in Column 4 is a weighted average price. The shares were sold in multiple transactions at prices ranging from $14.00 to $14.18. Full information regarding the number of shares sold at each separate price can be furnished to the SEC staff upon request.",
+    "5": "Shares held in a trust of which Dr. Jakobovits spouse is the trustee and Dr. Jakobovits child is the beneficiary.",
+    "6": "The price reported in Column 4 is a weighted average price. The shares were sold in multiple transactions at prices ranging from $14.00 to $14.47. Full information regarding the number of shares sold at each separate price can be furnished to the SEC staff upon request.",
+    "7": "The price reported in Column 4 is a weighted average price. The shares were sold in multiple transactions at prices ranging from $14.00 to $14.48. Full information regarding the number of shares sold at each separate price can be furnished to the SEC staff upon request.",
+    "8": "Shares held in a grantor retained annuity trust (\"GRAT\") of which Dr. Jakobovits spouse is the trustee and Dr. Jakobovits is the sole annuitant and current beneficiary.",
+    "9": "Shares held in a GRAT of which Dr. Jakobovits spouse is the trustee and Dr. Jakobovits is the sole annuitant and current beneficiary."
+  },
+  "signatures": [
+    {
+      "signature_name": "/s/ Nick Harvey, Attorney-in-Fact for Aya Jakobovits",
+      "signature_date": "2021-05-20"
+    }
+  ]
+}

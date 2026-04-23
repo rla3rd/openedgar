@@ -1,0 +1,116 @@
+{
+  "issuer": {
+    "issuer_cik": "0000872589",
+    "issuer_name": "REGENERON PHARMACEUTICALS, INC.",
+    "issuer_trading_symbol": "REGN",
+    "period_of_report": "2021-12-11",
+    "not_subject_to_section_16": false,
+    "rule_10b5_1_plan": false,
+    "no_securities_owned": false
+  },
+  "form_type": "4",
+  "schema_version": "X0306",
+  "period_of_original_submission": "2021-12-11",
+  "date_of_original_submission": "2021-12-11",
+  "remarks": "",
+  "reporting_owners": [
+    {
+      "rptowner_cik": "0001411984",
+      "rptowner_name": "Van Plew Daniel P",
+      "rptowner_ccc": "OC",
+      "is_director": false,
+      "is_officer": true,
+      "is_10pctowner": false,
+      "is_other": false,
+      "other_text": "",
+      "is_director_nominee": false,
+      "officer_title": "EVP & General Mgr, Industrial",
+      "rptowner_street": [
+        "777 OLD SAW MILL RIVER ROAD"
+      ],
+      "rptowner_city": "TARRYTOWN",
+      "rptowner_state": "NY",
+      "rptowner_zip": "10591",
+      "rptowner_non_us_address_flag": false,
+      "original_owned_fn": [
+        "F"
+      ],
+      "transaction_summary": "Officer: EVP & General Mgr, Industrial - Ownership Fheld by 401(k) Plan"
+    }
+  ],
+  "non_derivative_transactions": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "transaction_date": "2021-12-11",
+      "transaction_date_fn": [],
+      "deemed_execution_date": "",
+      "deemed_execution_date_fn": [],
+      "transaction_code": "F",
+      "transaction_code_fn": [
+        "F"
+      ],
+      "transaction_timeliness": "",
+      "transaction_timeliness_fn": [],
+      "shares": 697.0,
+      "shares_fn": [
+        697.0
+      ],
+      "price": 664.34,
+      "price_fn": [
+        664.34
+      ],
+      "total_value": 30578.0,
+      "total_value_fn": [
+        30578.0
+      ],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 0.0,
+      "value_following_transaction_fn": [],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [
+        "I"
+      ],
+      "nature_of_ownership": "(By 401(k) Plan)",
+      "nature_of_ownership_fn": [
+        "(By 401(k) Plan)"
+      ],
+      "transaction_summary": "Officer: EVP & General Mgr, Industrial - Ownership Fheld by 401(k) Plan"
+    }
+  ],
+  "non_derivative_holdings": [
+    {
+      "security_title": "Common Stock",
+      "security_title_fn": [],
+      "owned_following_transaction": false,
+      "owned_following_transaction_fn": [],
+      "value_following_transaction": 1048.0,
+      "value_following_transaction_fn": [
+        1048.0
+      ],
+      "direct_or_indirect_ownership": "I",
+      "direct_or_indirect_ownership_fn": [
+        "I"
+      ],
+      "nature_of_ownership": "(By 401(k) Plan)",
+      "nature_of_ownership_fn": [
+        "(By 401(k) Plan)"
+      ],
+      "transaction_summary": "Officer: EVP & General Mgr, Industrial - Ownership Fheld by 401(k) Plan"
+    }
+  ],
+  "derivative_transactions": [],
+  "derivative_holdings": [],
+  "footnotes": {},
+  "signatures": [
+    {
+      "signature_name": "/s/** Daniel P. Van Plew",
+      "signature_date": "2021-12-13",
+      "signature_date_fn": [
+        "2021-12-13"
+      ],
+      "original": "Officer: EVP & General Mgr, Industrial - Ownership Fheld by 401(k) Plan"
+    }
+  ]
+}
