@@ -185,8 +185,8 @@ class OwnershipParser(BaseFormParser):
 
             if non_deriv_hold:
                 md.append("### Holdings")
-                md.append("| Security | Owned After | Value After | Nature |")
-                md.append("| :--- | :--- | :--- | :--- |")
+                md.append("| Security | Owned After | Value After | Nature | Summary |")
+                md.append("| :--- | :--- | :--- | :--- | :--- |")
                 for item in non_deriv_hold:
                     title, title_fn = self.get_tag_text(item, 'securityTitle'), self.resolve_fn(item.find('securityTitle'))
                     post_node = item.find('postTransactionAmounts')
@@ -196,7 +196,7 @@ class OwnershipParser(BaseFormParser):
                     direct, direct_fn = self.get_tag_text(own_nature, 'directOrIndirectOwnership'), self.resolve_fn(own_nature.find('directOrIndirectOwnership') if own_nature is not None else None)
                     nature_text, nature_fn = self.get_tag_text(own_nature, 'natureOfOwnership'), self.resolve_fn(own_nature.find('natureOfOwnership') if own_nature is not None else None)
                     nature_cell = f"{direct} ({nature_text}) {direct_fn} {nature_fn}".strip().replace(" ()", "")
-                    md.append(f"| {title} {title_fn}".strip() + f" | {owned} {owned_fn}".strip() + f" | {value_owned} {value_owned_fn}".strip() + f" | {nature_cell} |")
+                    md.append(f"| {title} {title_fn}".strip() + f" | {owned} {owned_fn}".strip() + f" | {value_owned} {value_owned_fn}".strip() + f" | {nature_cell} | [NONE] |")
 
         # Table II — split into explicit transaction/holding tables.
         deriv_table = root.find('derivativeTable')
@@ -208,8 +208,8 @@ class OwnershipParser(BaseFormParser):
             md.append("\n## Table II - Derivative Securities")
             if deriv_tx:
                 md.append("### Transactions")
-                md.append("| Security | Conv/Exer Price | Date | Code | A/D | Shares | Exercise Date | Expiry Date | Underlying Title | Underlying Shares | Underlying Value | Owned After | Value After | Nature |")
-                md.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
+                md.append("| Security | Conv/Exer Price | Date | Code | A/D | Shares | Exercise Date | Expiry Date | Underlying Title | Underlying Shares | Underlying Value | Owned After | Value After | Nature | Summary |")
+                md.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | : :--- | :--- | :--- | :--- | :--- | :--- |")
                 for item in deriv_tx:
                     title, title_fn = self.get_tag_text(item, 'securityTitle'), self.resolve_fn(item.find('securityTitle'))
                     post_node = item.find('postTransactionAmounts')
@@ -235,12 +235,12 @@ class OwnershipParser(BaseFormParser):
                     shares_cell = f"{shares or total_val} {shares_fn or total_val_fn}".strip()
                     ad_node = amt_node.find('transactionAcquiredDisposedCode') if amt_node is not None else None
                     ad, ad_fn = self.get_tag_text(amt_node, 'transactionAcquiredDisposedCode'), self.resolve_fn(ad_node)
-                    md.append(f"| {title} {title_fn}".strip() + f" | {price} {price_fn}".strip() + f" | {date} {date_fn}".strip() + f" | {code} {code_fn}".strip() + f" | {ad} {ad_fn}".strip() + f" | {shares_cell}" + f" | {exer} {exer_fn}".strip() + f" | {expr} {expr_fn}".strip() + f" | {u_title} {u_title_fn}".strip() + f" | {u_shares} {u_shares_fn}".strip() + f" | {u_value} {u_value_fn}".strip() + f" | {owned} {owned_fn}".strip() + f" | {value_owned} {value_owned_fn}".strip() + f" | {nature_cell} |")
+                    md.append(f"| {title} {title_fn}".strip() + f" | {price} {price_fn}".strip() + f" | {date} {date_fn}".strip() + f" | {code} {code_fn}".strip() + f" | {ad} {ad_fn}".strip() + f" | {shares_cell}" + f" | {exer} {exer_fn}".strip() + f" | {expr} {expr_fn}".strip() + f" | {u_title} {u_title_fn}".strip() + f" | {u_shares} {u_shares_fn}".strip() + f" | {u_value} {u_value_fn}".strip() + f" | {owned} {owned_fn}".strip() + f" | {value_owned} {value_owned_fn}".strip() + f" | {nature_cell} | [NONE] |")
 
             if deriv_hold:
                 md.append("### Holdings")
-                md.append("| Security | Conv/Exer Price | Exercise Date | Expiry Date | Underlying Title | Underlying Shares | Underlying Value | Owned After | Value After | Nature |")
-                md.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
+                md.append("| Security | Conv/Exer Price | Exercise Date | Expiry Date | Underlying Title | Underlying Shares | Underlying Value | Owned After | Value After | Nature | Summary |")
+                md.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
                 for item in deriv_hold:
                     title, title_fn = self.get_tag_text(item, 'securityTitle'), self.resolve_fn(item.find('securityTitle'))
                     post_node = item.find('postTransactionAmounts')
@@ -257,7 +257,7 @@ class OwnershipParser(BaseFormParser):
                     u_title, u_title_fn = self.get_tag_text(under_node, 'underlyingSecurityTitle'), self.resolve_fn(under_node.find('underlyingSecurityTitle') if under_node is not None else None)
                     u_shares, u_shares_fn = self.get_tag_text(under_node, 'underlyingSecurityShares'), self.resolve_fn(under_node.find('underlyingSecurityShares') if under_node is not None else None)
                     u_value, u_value_fn = self.get_tag_text(under_node, 'underlyingSecurityValue'), self.resolve_fn(under_node.find('underlyingSecurityValue') if under_node is not None else None)
-                    md.append(f"| {title} {title_fn}".strip() + f" | {price} {price_fn}".strip() + f" | {exer} {exer_fn}".strip() + f" | {expr} {expr_fn}".strip() + f" | {u_title} {u_title_fn}".strip() + f" | {u_shares} {u_shares_fn}".strip() + f" | {u_value} {u_value_fn}".strip() + f" | {owned} {owned_fn}".strip() + f" | {value_owned} {value_owned_fn}".strip() + f" | {nature_cell} |")
+                    md.append(f"| {title} {title_fn}".strip() + f" | {price} {price_fn}".strip() + f" | {exer} {exer_fn}".strip() + f" | {expr} {expr_fn}".strip() + f" | {u_title} {u_title_fn}".strip() + f" | {u_shares} {u_shares_fn}".strip() + f" | {u_value} {u_value_fn}".strip() + f" | {owned} {owned_fn}".strip() + f" | {value_owned} {value_owned_fn}".strip() + f" | {nature_cell} | [NONE] |")
 
         # Remarks (SEC XSL order: remarks before footnotes)
         md.append("\n## Filing Remarks")
@@ -281,4 +281,111 @@ class OwnershipParser(BaseFormParser):
         return "\n".join(md)
 
     def extract_ground_truth(self, buffer: Union[bytes, str]) -> Dict[str, Any]:
-        return {"form_type": "Ownership"}
+        """Extract structured ground truth data from SEC Ownership XML."""
+        content = buffer.decode('utf-8', errors='ignore') if isinstance(buffer, bytes) else buffer
+        try:
+            match = re.search(r'(<ownershipDocument.*?</ownershipDocument>)', content, re.DOTALL | re.IGNORECASE)
+            if not match: return {}
+            
+            xml_data = match.group(1).strip()
+            parser = etree.XMLParser(recover=True, encoding='utf-8')
+            root = etree.fromstring(xml_data.encode('utf-8'), parser=parser)
+            for el in root.iter():
+                if isinstance(el.tag, str) and '}' in el.tag:
+                    el.tag = el.tag.split('}', 1)[1]
+        except:
+            return {}
+
+        data = {
+            "issuer": {
+                "issuer_cik": self.get_tag_text(root.find('issuer'), 'issuerCik'),
+                "issuer_name": self.get_tag_text(root.find('issuer'), 'issuerName'),
+                "issuer_trading_symbol": self.get_tag_text(root.find('issuer'), 'issuerTradingSymbol'),
+                "issuer_foreign_trading_symbol": self.get_tag_text(root.find('issuer'), 'issuerForeignTradingSymbol'),
+            },
+            "form_type": self.get_tag_text(root, 'documentType'),
+            "period_of_report": self.get_tag_text(root, 'periodOfReport'),
+            "date_of_original_submission": self.get_tag_text(root, 'dateOfOriginalSubmission'),
+            "remarks": self.get_tag_text(root, 'remarks'),
+            "not_subject_to_section_16": self.get_tag_text(root, 'notSubjectToSection16') in ('1', 'true'),
+            "is_rule_10b5_1_plan": self.get_tag_text(root, 'aff10b5One') in ('1', 'true'),
+            "no_securities_owned": self.get_tag_text(root, 'noSecuritiesOwned') in ('1', 'true'),
+            "reporting_owners": [],
+            "non_derivative_transactions": [],
+            "non_derivative_holdings": [],
+            "derivative_transactions": [],
+            "derivative_holdings": [],
+            "signatures": [],
+            "footnotes": {}
+        }
+
+        # Signatures
+        for sig in root.findall('ownerSignature'):
+            data["signatures"].append({
+                "signature_name": self.get_tag_text(sig, 'signatureName'),
+                "signature_date": self.get_tag_text(sig, 'signatureDate')
+            })
+
+        # Footnotes
+        fn_node = root.find('footnotes')
+        if fn_node is not None:
+            for fn in fn_node.findall('footnote'):
+                fid = fn.get('id', '').upper().replace('F', '')
+                data["footnotes"][fid] = fn.text
+
+        # Reporting Owners
+        for owner in root.findall('reportingOwner'):
+            id_info = owner.find('reportingOwnerId')
+            rel_info = owner.find('reportingOwnerRelationship')
+            addr_info = owner.find('reportingOwnerAddress')
+            data["reporting_owners"].append({
+                "rptowner_cik": self.get_tag_text(id_info, 'rptOwnerCik'),
+                "rptowner_name": self.get_tag_text(id_info, 'rptOwnerName'),
+                "rptowner_ccc": self.get_tag_text(id_info, 'rptOwnerCcc'),
+                "is_director": self.get_tag_text(rel_info, 'isDirector') in ('1', 'true'),
+                "is_officer": self.get_tag_text(rel_info, 'isOfficer') in ('1', 'true'),
+                "is_10pctowner": self.get_tag_text(rel_info, 'isTenPercentOwner') in ('1', 'true'),
+                "is_other": self.get_tag_text(rel_info, 'isOther') in ('1', 'true'),
+                "officer_title": self.get_tag_text(rel_info, 'officerTitle'),
+                "other_text": self.get_tag_text(rel_info, 'otherText'),
+                "rptowner_street1": self.get_tag_text(addr_info, 'rptOwnerStreet1'),
+                "rptowner_street2": self.get_tag_text(addr_info, 'rptOwnerStreet2'),
+                "rptowner_city": self.get_tag_text(addr_info, 'rptOwnerCity'),
+                "rptowner_state": self.get_tag_text(addr_info, 'rptOwnerState'),
+                "rptowner_zip": self.get_tag_text(addr_info, 'rptOwnerZipCode'),
+                "rptowner_country": self.get_tag_text(addr_info, 'rptOwnerCountry'),
+                "rptowner_non_us_address_flag": self.get_tag_text(addr_info, 'rptOwnerNonUSStateTerritory') != "",
+                "rptowner_non_us_state_territory": self.get_tag_text(addr_info, 'rptOwnerNonUSStateTerritory'),
+            })
+
+        # Table I
+        nd_table = root.find('nonDerivativeTable')
+        if nd_table is not None:
+            for item in nd_table:
+                if item.tag == 'nonDerivativeTransaction':
+                    post = item.find('postTransactionAmounts')
+                    nature = item.find('ownershipNature')
+                    amt = item.find('transactionAmounts')
+                    coding = item.find('transactionCoding')
+                    data["non_derivative_transactions"].append({
+                        "security_title": self.get_tag_text(item, 'securityTitle'),
+                        "transaction_date": self.get_tag_text(item, 'transactionDate'),
+                        "transaction_code": self.get_tag_text(coding, 'transactionCode'),
+                        "transaction_shares": float(self.get_tag_text(amt, 'transactionShares') or 0),
+                        "price": float(self.get_tag_text(amt, 'transactionPricePerShare') or 0),
+                        "transaction_acquired_disposed_code": self.get_tag_text(amt, 'transactionAcquiredDisposedCode'),
+                        "shares_owned_following_transaction": float(self.get_tag_text(post, 'sharesOwnedFollowingTransaction') or 0),
+                        "direct_or_indirect_ownership": self.get_tag_text(nature, 'directOrIndirectOwnership'),
+                        "nature_of_ownership": self.get_tag_text(nature, 'natureOfOwnership'),
+                    })
+                else:
+                    post = item.find('postTransactionAmounts')
+                    nature = item.find('ownershipNature')
+                    data["non_derivative_holdings"].append({
+                        "security_title": self.get_tag_text(item, 'securityTitle'),
+                        "shares_owned_following_transaction": float(self.get_tag_text(post, 'sharesOwnedFollowingTransaction') or 0),
+                        "direct_or_indirect_ownership": self.get_tag_text(nature, 'directOrIndirectOwnership'),
+                        "nature_of_ownership": self.get_tag_text(nature, 'natureOfOwnership'),
+                    })
+
+        return data

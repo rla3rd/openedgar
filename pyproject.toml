@@ -68,6 +68,9 @@ dependencies = [
     "selectolax>=0.4.7",
     "aiofiles>=25.1.0",
     "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git",
+    "torch==2.10.0",
+    "torchvision==0.25.0",
+    "gunicorn>=23.0.0",
 ]
 
 [project.optional-dependencies]

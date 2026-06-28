@@ -20,26 +20,45 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{albright_openedgar}
-R.~Albright, ``Openedgar: Modern data pipeline for sec edgar filings (inspired by lexpredict),'' \url{https://github.com/rla3rd/openedgar}, 2026.
+\bibitem{vaswani2017attention}
+A.~Vaswani, N.~Shazeer, N.~Parmar, J.~Uszkoreit, L.~Jones, A.~N. Gomez, {\L}.~Kaiser, and I.~Polosukhin, ``Attention is all you need,'' in \emph{Advances in neural information processing systems}, 2017, pp. 5998--6008.
 
-\bibitem{lexpredict_openedgar}
-LexPredict, ``Openedgar: An open source framework for sec edgar data extraction,'' \url{https://github.com/LexPredict/openedgar}, 2018.
+\bibitem{radford2019language}
+A.~Radford, J.~Wu, R.~Child, D.~Luan, D.~Amodei, I.~Sutskever \emph{et~al.}, ``Language models are unsupervised multitask learners,'' \emph{OpenAI blog}, vol.~1, no.~8, p.~9, 2019.
 
-\bibitem{albright_hyperstreamdb}
-R.~Albright, ``Hyperstreamdb: Serverless index-streaming database with overlay indexing,'' \url{https://github.com/rla3rd/hyperstreamdb}, 2026.
+\bibitem{sec_edgar_docs}
+{U.S. Securities and Exchange Commission}, ``Edgar - electronic data gathering, analysis, and retrieval system,'' \url{https://www.sec.gov/edgar/aboutedgar.htm}, 2024.
+
+\bibitem{bigeard2025financeagentbenchmarkbenchmarking}
+\BIBentryALTinterwordspacing
+A.~Bigeard, L.~Nashold, R.~Krishnan, and S.~Wu, ``Finance agent benchmark: Benchmarking llms on real-world financial research tasks,'' 2025. [Online]. Available: \url{https://arxiv.org/abs/2508.00828}
+\BIBentrySTDinterwordspacing
 
 \bibitem{wu2023bloomberggpt}
 S.~Wu, O.~Irsoy, S.~Lu, V.~Dabravolski, M.~Dredze, S.~Gehrmann, P.~Kambadur, D.~Rosenberg, and G.~Mann, ``Bloomberggpt: A large language model for finance,'' \emph{arXiv preprint arXiv:2303.17564}, 2023.
 
+\bibitem{eval_table_extraction_2025}
+N.~Nguyen, L.~Kammermann, and T.~Hanne, ``Evaluating large language models for table data extraction from annual reports in pdf,'' \emph{Journal of Advances in Information Technology}, vol.~16, pp. 1118--1126, 01 2025.
+
 \bibitem{islam2023financebench}
 P.~Islam \emph{et~al.}, ``Financebench: A new benchmark for financial question answering,'' \emph{arXiv preprint arXiv:2311.11944}, 2023.
 
-\bibitem{gu2023findocrag}
-Y.~Gu \emph{et~al.}, ``Findoc-rag: Retrieval-augmented generation for financial document comprehension,'' \emph{arXiv preprint arXiv:2312.XXXXX}, 2023.
+\bibitem{lewis2020rag}
+P.~Lewis, E.~Perez, A.~Piktus, F.~Petroni, V.~Karpukhin, N.~Goyal, H.~K{\"u}ttler, M.~Lewis, W.-t. Yih, T.~Rockt{\"a}schel \emph{et~al.}, ``Retrieval-augmented generation for knowledge-intensive nlp tasks,'' in \emph{Advances in Neural Information Processing Systems}, vol.~33, 2020, pp. 9459--9474.
 
-\bibitem{yulianti2023structural}
-E.~Yulianti \emph{et~al.}, ``Structural understanding capabilities (suc) of llms: Html vs markdown,'' \emph{arXiv preprint arXiv:2311.XXXXX}, 2023.
+\bibitem{gu2025findocrag}
+\BIBentryALTinterwordspacing
+Y.~Gu \emph{et~al.}, ``Findoc-rag: Retrieval-augmented generation for financial document comprehension,'' in \emph{Proceedings of The 10th Workshop on Financial Technology and Natural Language. EMNLP-2025}, Suzhou, China, 2025. [Online]. Available: \url{https://aclanthology.org/2025.finnlp-2.9.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{salunke2024finrag}
+A.~Salunke, ``Finrag: A retrieval-augmented intelligence system for 10-k reports,'' \url{https://github.com/aatmaj28/FinRAG}, 2024.
+
+\bibitem{yoash2025secque}
+N.~B. Yoash, M.~Brief, O.~Ovadia, G.~Shenderovitz, M.~Mishaeli, R.~Lemberg, and E.~Sheetrit, ``Secque: A benchmark for evaluating real-world financial analysis capabilities,'' \emph{arXiv preprint arXiv:2504.04596}, 2025.
+
+\bibitem{sui2024table}
+Y.~Sui, M.~Zhou, M.~Zhou, S.~Han, and D.~Zhang, ``Table meets llm: Can large language models understand structured table data? a benchmark and empirical study,'' \emph{arXiv preprint arXiv:2305.13062}, 2024.
 
 \bibitem{zhong2020publaynet}
 X.~Zhong, J.~Tang, and A.~J. Yepes, ``Publaynet: largest dataset ever for document layout analysis,'' in \emph{2019 International Conference on Document Analysis and Recognition (ICDAR)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2019, pp. 1015--1022.
@@ -50,25 +69,13 @@ Y.~A. Malkov and D.~A. Yashunin, ``Efficient and robust approximate nearest neig
 \bibitem{lemire2016roaring}
 D.~Lemire, G.~Ssi-Yan-Kai, and O.~Kaser, ``Consistently faster and smaller compressed bitmaps with roaring,'' \emph{Software: Practice and Experience}, vol.~46, no.~11, pp. 1547--1569, 2016.
 
-\bibitem{kamalloo2023evaluating}
-E.~Kamalloo \emph{et~al.}, ``Evaluating retrieval-augmented generation systems,'' \emph{arXiv preprint arXiv:2312.XXXXX}, 2023.
+\bibitem{albright_hyperstreamdb}
+R.~Albright, ``Hyperstreamdb: Serverless index-streaming database with overlay indexing,'' \url{https://github.com/rla3rd/hyperstreamdb}, 2026.
+
+\bibitem{es2023ragas}
+S.~Es, J.~James, L.~Espinosa-Anke, and S.~Schockaert, ``Ragas: Automated evaluation of retrieval augmented generation,'' \emph{arXiv preprint arXiv:2309.15217}, 2023.
 
 \bibitem{zhang2025pageindex}
-M.~Zhang, Y.~Tang, and P.~Team, ``Pageindex: Next-generation vectorless, reasoning-based rag,'' \emph{PageIndex Blog}, September 2025, \url{https://pageindex.ai/blog/pageindex-intro}.
-
-\bibitem{hu2021lora}
-E.~J. Hu, Y.~Shen, P.~Wallis, Z.~Allen-Zhu, Y.~Li, S.~Wang, L.~Wang, and W.~Chen, ``Lora: Low-rank adaptation of large language models,'' in \emph{International Conference on Learning Representations}, 2022.
-
-\bibitem{radford2019language}
-A.~Radford, J.~Wu, R.~Child, D.~Luan, D.~Amodei, I.~Sutskever \emph{et~al.}, ``Language models are unsupervised multitask learners,'' \emph{OpenAI blog}, vol.~1, no.~8, p.~9, 2019.
-
-\bibitem{brown2020language}
-T.~Brown, B.~Mann, N.~Ryder, M.~Subbiah, J.~D. Kaplan, P.~Dhariwal, A.~Neelakantan, P.~Shyam, G.~Sastry, A.~Askell \emph{et~al.}, ``Language models are few-shot learners,'' \emph{Advances in neural information processing systems}, vol.~33, pp. 1877--1901, 2020.
-
-\bibitem{muc4_1992}
-``Proceedings of the fourth message understanding conference (muc-4),'' in \emph{Proceedings of the Fourth Message Understanding Conference (MUC-4)}.\hskip 1em plus 0.5em minus 0.4em\relax DARPA, 1992.
-
-\bibitem{lample2016neural}
-G.~Lample, M.~Ballesteros, S.~Subramanian, K.~Kawakami, and C.~Dyer, ``Neural architectures for named entity recognition,'' in \emph{Proceedings of the 2016 Conference on Empirical Methods in Natural Language Processing}, 2016, pp. 260--270.
+M.~Zhang, Y.~Tang, and {PageIndex Team}, ``Pageindex: Next-generation vectorless, reasoning-based rag,'' PageIndex Blog, \url{https://pageindex.ai/blog/pageindex-intro}, Sep 2025.
 
 \end{thebibliography}

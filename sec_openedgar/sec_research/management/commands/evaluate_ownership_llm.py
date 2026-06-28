@@ -7,10 +7,15 @@ import requests
 import pyzstd
 from django.core.management.base import BaseCommand
 from openedgar.models import OwnershipSubmission, Filing
-from sec_research.experiments.ownership_extraction.synthesizers.ownership import OwnershipMarkdownSynthesizer
+from openedgar.parsers.ownership_parser import OwnershipParser as OwnershipMarkdownSynthesizer
 from sec_research.utils.prompts import get_ownership_extraction_prompt
 from tqdm import tqdm
+import logging
 from typing import Dict, Any, List
+from sec_research.utils.inference import InferenceProvider
+
+logging.basicConfig(level=logging.DEBUG, format='%(levelname)s:%(name)s:%(message)s')
+logger = logging.getLogger(__name__)
 
 try:
     from rouge_score import rouge_scorer
@@ -34,6 +39,9 @@ class Command(BaseCommand):
         parser.add_argument("--cache-dir", type=str, default="scratch/hp_cache_final")
         parser.add_argument("--summary-out", type=str, help="JSON path for metrics summary.")
         parser.add_argument("--limit", type=int, default=500)
+        parser.add_argument("--provider", type=str, default="local", help="Inference provider type (local, openai, groq, anthropic, google)")
+        parser.add_argument("--api-key", type=str, help="API key for the provider.")
+        parser.add_argument("--mode", type=str, default="markdown", choices=["markdown", "xml"], help="Data format to feed the LLM.")
 
     STATE_TO_ABBR = {
         "alabama": "al", "alaska": "ak", "arizona": "az", "arkansas": "ar",
@@ -130,9 +138,9 @@ class Command(BaseCommand):
         if truth_val == llm_val:
             return True
 
-        # Name fields: allow llm value to be substring of ground truth.
+        # Name fields: allow bidirectional substring matching (handles verbosity vs brevity)
         if 'name' in field and truth_val != null_sentinel and llm_val != null_sentinel:
-            return llm_val in truth_val
+            return llm_val in truth_val or truth_val in llm_val
 
         return False
 
@@ -201,21 +209,39 @@ class Command(BaseCommand):
         except:
             return []
 
-    def generate_rationale(self, transaction, footnotes):
-        """Synthetic Auditor: explain the transaction based on data and footnotes."""
-        desc = transaction.security_title or "Security"
-        code = transaction.transaction_code or "?"
-        shares = getattr(transaction, 'transaction_shares', getattr(transaction, 'underlying_security_shares', 0))
-        price = getattr(transaction, 'transaction_price_per_share', getattr(transaction, 'conversion_or_exercise_price', 0))
-        ad = getattr(transaction, 'transaction_acquired_disposed_code', '')
+    def generate_rationale(self, item, footnotes):
+        """Synthetic Auditor: explain the item (transaction or holding) based on data and footnotes."""
+        desc = item.security_title or "Security"
         
-        action = "acquired" if ad == 'A' else "disposed" if ad == 'D' else "held"
-        summary = f"The reporting owner {action} {shares} shares of {desc} at ${price} (Code {code})."
+        # Determine if it's a transaction or a holding
+        is_transaction = hasattr(item, 'transaction_date') and item.transaction_date is not None
+        
+        if is_transaction:
+            code = item.transaction_code or "?"
+            shares = getattr(item, 'transaction_shares', getattr(item, 'underlying_security_shares', 0))
+            price = getattr(item, 'transaction_price_per_share', getattr(item, 'conversion_or_exercise_price', 0))
+            ad = getattr(item, 'transaction_acquired_disposed_code', '')
+            action = "acquired" if ad == 'A' else "disposed" if ad == 'D' else "held"
+            summary = f"The reporting owner {action} {shares} shares of {desc} at ${price} (Code {code})."
+        else:
+            shares = getattr(item, 'shares_owned_following_transaction', getattr(item, 'underlying_security_shares', 0))
+            summary = f"The reporting owner holds {shares} shares of {desc}."
         
         # Append relevant footnote text
-        fn_ids = self.parse_fn_list(getattr(transaction, 'security_title_fn', '')) + \
-                 self.parse_fn_list(getattr(transaction, 'transaction_shares_fn', '')) + \
-                 self.parse_fn_list(getattr(transaction, 'transaction_price_per_share_fn', ''))
+        # Collect all potential fn fields
+        fn_fields = [
+            'security_title_fn', 'transaction_shares_fn', 'transaction_price_per_share_fn', 
+            'shares_owned_following_transaction_fn', 'value_owned_following_transaction_fn',
+            'direct_or_indirect_ownership_fn', 'nature_of_ownership_fn',
+            'exercise_date_fn', 'expiration_date_fn', 'underlying_security_title_fn',
+            'underlying_security_shares_fn', 'underlying_security_value_fn'
+        ]
+        
+        fn_ids = []
+        for field in fn_fields:
+            raw_fn = getattr(item, field, '')
+            if raw_fn:
+                fn_ids.extend(self.parse_fn_references(raw_fn))
         
         added_fns = []
         for fid in fn_ids:
@@ -228,7 +254,14 @@ class Command(BaseCommand):
         """Convert comma-separated footnote references to array. E.g., '1,2,3' -> ['1', '2', '3']"""
         if not fn_str or not isinstance(fn_str, str):
             return []
-        return [f.strip() for f in fn_str.split(',') if f.strip()]
+        # Handle JSON arrays or comma-separated strings
+        try:
+            if fn_str.startswith('['):
+                import json
+                return [str(x).upper().replace('F', '') for x in json.loads(fn_str)]
+            return [x.strip().upper().replace('F', '') for x in fn_str.split(',') if x.strip()]
+        except:
+            return [x.strip().upper().replace('F', '') for x in fn_str.split(',') if x.strip()]
 
     def serialize_ground_truth(self, submission: OwnershipSubmission) -> dict:
         """Exhaustive ground truth serialization matching the PostgreSQL schema."""
@@ -300,7 +333,7 @@ class Command(BaseCommand):
                 "nature_of_ownership_fn": self.parse_fn_references(t.nature_of_ownership_fn),
                 "transaction_summary": self.generate_rationale(t, footnotes)
             })
-        
+
         deriv = []
         for d in submission.deriv_transactions.all():
             deriv.append({
@@ -354,7 +387,8 @@ class Command(BaseCommand):
                 "direct_or_indirect_ownership_fn": self.parse_fn_references(h.direct_or_indirect_ownership_fn),
                 "nature_of_ownership": h.nature_of_ownership or "",
                 "nature_of_ownership_fn": self.parse_fn_references(h.nature_of_ownership_fn),
-                "transaction_form_type": h.transaction_form_type or ""
+                "transaction_form_type": h.transaction_form_type or "",
+                "holding_summary": self.generate_rationale(h, footnotes)
             })
 
         deriv_holdings = []
@@ -382,7 +416,8 @@ class Command(BaseCommand):
                 "direct_or_indirect_ownership_fn": self.parse_fn_references(h.direct_or_indirect_ownership_fn),
                 "nature_of_ownership": h.nature_of_ownership or "",
                 "nature_of_ownership_fn": self.parse_fn_references(h.nature_of_ownership_fn),
-                "transaction_form_type": h.transaction_form_type or ""
+                "transaction_form_type": h.transaction_form_type or "",
+                "holding_summary": self.generate_rationale(h, footnotes)
             })
 
         signatures = []
@@ -410,6 +445,34 @@ class Command(BaseCommand):
             "signatures": signatures
         }
 
+    def sort_submission_lists(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        """Sort common list fields to ensure order-invariant comparison."""
+        if not data: return data
+        
+        # Sort Reporting Owners by CIK
+        if "reporting_owners" in data and isinstance(data["reporting_owners"], list):
+            data["reporting_owners"].sort(key=lambda x: str(x.get("rptowner_cik", "")))
+            
+        # Sort Signatures by Name (with robust normalization for sort key)
+        if "signatures" in data and isinstance(data["signatures"], list):
+            data["signatures"].sort(key=lambda x: re.sub(r'^/s/\s*', '', str(x.get("signature_name", ""))).strip().lower())
+            
+        # Sort Transactions by Date + Shares + Title
+        for k in ["non_derivative_transactions", "derivative_transactions"]:
+            if k in data and isinstance(data[k], list):
+                data[k].sort(key=lambda x: (
+                    str(x.get("transaction_date", "")),
+                    float(x.get("transaction_shares", 0.0)) if x.get("transaction_shares") else float(x.get("underlying_security_shares", 0.0)),
+                    str(x.get("security_title", ""))
+                ))
+                
+        # Sort Holdings by Security Title
+        for k in ["non_derivative_holdings", "derivative_holdings"]:
+            if k in data and isinstance(data[k], list):
+                data[k].sort(key=lambda x: str(x.get("security_title", "")))
+                
+        return data
+
     def flatten(self, x, n=''):
         """Flatten nested dict/list structure into flattened key-value pairs."""
         res = {}
@@ -429,15 +492,20 @@ class Command(BaseCommand):
         normalized = {}
         for k, v in flat_dict.items():
             # Strip redundant prefix patterns
-            # e.g., issuer_issuer_* -> issuer_*
             clean_k = re.sub(r'^(\w+)_\1_', r'\1_', k)
-            # e.g., reporting_owners_rptowner_* -> reporting_owners_*
             clean_k = re.sub(r'_rptowner_', '_', clean_k)
-            # e.g., non_derivative_transactions_transaction_* -> non_derivative_transactions_*
             clean_k = re.sub(r'_(\w+)_\1_', r'_', clean_k)
-            # e.g., non_derivative_holdings_shares_owned_shares_owned_* -> non_derivative_holdings_shares_owned_*
             clean_k = re.sub(r'(shares_owned)_\1', r'\1', clean_k)
             clean_k = re.sub(r'(nature_of_ownership)_\1', r'\1', clean_k)
+            
+            # Alias derivative transaction fields that models often name generically
+            if clean_k.startswith('derivative_transactions'):
+                if clean_k.endswith('_price'):
+                    clean_k = clean_k.replace('_price', '_conversion_or_exercise_price')
+                elif clean_k.endswith('_shares') and not clean_k.endswith('_underlying_security_shares'):
+                    # Only replace if it's the bare 'shares' field, not underlying
+                    clean_k = clean_k.replace('_shares', '_underlying_security_shares')
+            
             # Final deduplication of any remaining patterns
             clean_k = re.sub(r'([a-z_]+?)_\1(?=_|$)', r'\1', clean_k)
             normalized[clean_k] = v
@@ -488,89 +556,61 @@ class Command(BaseCommand):
 
         return out
 
-    def call_llm(self, content: str, model: str, url: str, acc: str = None, cache_dir: str = None) -> dict:
+    def call_llm(self, md_content: str, model: str, url: str, acc: str = None, cache_dir: str = None) -> Dict[str, Any]:
+        base_prompt = get_ownership_extraction_prompt()
+        # Safety truncation for local context windows
+        md_content_limited = md_content[:12000]
+        prompt = f"{base_prompt}\n\n# SEC FILING CONTENT:\n{md_content_limited}"
+        
+        # Check cache
         if cache_dir and acc:
             cache_path = pathlib.Path(cache_dir) / f"{acc}.json"
             if cache_path.exists():
-                with open(cache_path, 'r') as f:
-                    try:
-                        data = json.load(f)
-                        if data: return data
-                    except: pass
+                try:
+                    with open(cache_path, 'r') as f:
+                        return json.load(f)
+                except:
+                    pass
 
-        prompt = get_ownership_extraction_prompt()
-        
-        text = ""
         for attempt in range(3):
             try:
-                r = requests.post(url, json={
-                    "model": model, 
-                    "messages": [{"role": "user", "content": f"{prompt}\n\n{content}"}], 
-                    "temperature": 0.0,
-                    "max_tokens": 32768
-                }, timeout=600)
-                if r.status_code != 200: continue
-                text = r.json()['choices'][0]['message'].get('content', '')
+                text = self.provider.call(prompt, temperature=0.0, max_tokens=2048)
                 
-                # 1. Try to extract JSON from markdown code block
+                # Extract JSON
                 m = re.search(r'```(?:json)?\s*\n?(.*?)\n?```', text, re.DOTALL)
                 raw_json = m.group(1).strip() if m else None
-                
-                # 2. If no code block, find the first '{' and last '}'
                 if not raw_json:
                     start = text.find('{')
                     end = text.rfind('}')
                     if start >= 0 and end > start:
                         raw_json = text[start:end+1].strip()
                 
-                if not raw_json or len(raw_json) < 10:
-                    continue
+                if not raw_json: continue
                 
-                # Clean up the JSON string for common LLM artifacts
                 try:
-                    # Strip reasoning block if present (<thought>...</thought>)
                     raw_json = re.sub(r'<thought>.*?</thought>', '', raw_json, flags=re.DOTALL)
-                    
-                    # Strip hash comments: e.g., "value": 100, # Comment -> "value": 100,
                     raw_json = re.sub(r'(?m)\s*#.*$', '', raw_json)
-                    
-                    # Fix numbers with commas: e.g., 1,000.0 -> 1000.0
-                    # This regex finds commas between digits that are NOT inside quotes
-                    # We do this by finding patterns like : 1,234.56
                     raw_json = re.sub(r'(:\s*)(-?\d+(?:,\d+)+(?:\.\d+)?)', lambda m: m.group(1) + m.group(2).replace(',', ''), raw_json)
-                    
                     data = json.loads(raw_json, strict=False)
-                except (json.JSONDecodeError, ValueError):
-                    # Attempt to fix unescaped newlines inside strings
+                except:
+                    # Unescaped newline fix
                     parts = raw_json.split('"')
-                    for i in range(1, len(parts), 2):  # odd indices are inside strings
+                    for i in range(1, len(parts), 2):
                         parts[i] = parts[i].replace('\n', '\\n').replace('\r', '\\r').replace('\t', '\\t')
-                    fixed_json = '"'.join(parts)
-                    try:
-                        data = json.loads(fixed_json, strict=False)
-                    except:
-                        continue
+                    data = json.loads('"'.join(parts), strict=False)
                 
                 data = self.sanitize_llm_output(data)
-
                 if data and cache_dir and acc:
                     pathlib.Path(cache_dir).mkdir(parents=True, exist_ok=True)
                     with open(pathlib.Path(cache_dir) / f"{acc}.json", 'w') as f:
                         json.dump(data, f, indent=2)
                 return data
             except Exception as e:
-                import sys
-                print(f"DEBUG: Failed to parse JSON for {acc}: {str(e)[:300]}", file=sys.stderr)
-                # Save the raw failed response for debugging
-                if cache_dir and acc:
-                    fail_dir = pathlib.Path(cache_dir).parent / "failed_json"
-                    fail_dir.mkdir(parents=True, exist_ok=True)
-                    with open(fail_dir / f"{acc}_failed.txt", 'w') as f:
-                        f.write(text)
+                if attempt == 2:
+                    self.stdout.write(f"DEBUG: Failed to parse JSON for {acc} after 3 attempts: {str(e)}")
         return {}
 
     def handle(self, *args, **options):
-        base_dir = pathlib.Path("/home/ralbright/data/openedgar/edgar")
         queryset = OwnershipSubmission.objects.all()
         if options['holdout']:
             with open(options['holdout'], 'r') as f:
@@ -584,6 +624,13 @@ class Command(BaseCommand):
         else:
             queryset = queryset.select_related('accession_number').prefetch_related('reporting_owners', 'non_deriv_transactions', 'non_deriv_holdings', 'deriv_transactions', 'deriv_holdings', 'footnotes', 'signatures')
         
+        self.provider = InferenceProvider(
+            provider_type=options['provider'],
+            model=options['model'],
+            api_url=options['url'],
+            api_key=options['api_key']
+        )
+        
         metrics = collections.defaultdict(lambda: {"tp": 0, "fp": 0, "fn": 0})
 
         processed = 0
@@ -591,20 +638,75 @@ class Command(BaseCommand):
         rationale_scores = []
         bert_pairs = []
 
+        from sec_research.utils.rag_engine import get_context_for_accession
+        
         for sub in queryset:
             acc = sub.accession_number_id
-            md_path = base_dir / pathlib.Path(sub.accession_number.path).parent / f"{acc}.out.md.zst"
-            if not md_path.exists():
-                self.stdout.write(f"DEBUG: Skipping {acc} - Markdown NOT FOUND at {md_path}")
-                continue
             
-            self.stdout.write(f"DEBUG: Processing {acc}...")
-            with open(md_path, "rb") as f: md = pyzstd.decompress(f.read()).decode('utf-8')
+            # FAST SKIP: Check cache before HDB retrieval
+            llm_cached = None
+            if options['cache_dir']:
+                cache_path = pathlib.Path(options['cache_dir']).resolve() / f"{acc}.json"
+                if cache_path.exists():
+                    try:
+                        with open(cache_path, 'r') as f:
+                            llm_cached = json.load(f)
+                    except Exception as e:
+                        self.stdout.write(f"DEBUG: Cache load error for {acc}: {str(e)}")
+            
+            if llm_cached:
+                self.stdout.write(f"DEBUG: Using cached result for {acc}. Skipping HDB and LLM.")
+                md = "" # Not needed for cached result
+                llm = llm_cached
+            else:
+                if options['mode'] == 'xml':
+                    self.stdout.write(f"DEBUG: Processing {acc} via raw XML...")
+                    sgml_path = sub.accession_number.resolved_sgml_path
+                    if not sgml_path:
+                        self.stdout.write(f"DEBUG: Skipping {acc} - SGML path resolution failed")
+                        continue
+                    
+                    p = pathlib.Path(sgml_path)
+                    # Try to find the document XML. Usually {acc}.401.zst or similar.
+                    # We look for files starting with the accession number in the same directory.
+                    parent = p.parent
+                    doc_files = list(parent.glob(f"{acc}.*01.zst")) + list(parent.glob(f"{acc}.[345].zst"))
+                    
+                    # Sort to prefer lower sequence numbers or specific patterns
+                    doc_files = sorted([f for f in doc_files if ".md" not in f.name and ".sgml" not in f.name])
+                    
+                    md = ""
+                    if doc_files:
+                        target_file = doc_files[0]
+                        # self.stdout.write(f"DEBUG: Found document file: {target_file.name}")
+                        try:
+                            with open(target_file, "rb") as zf:
+                                md = pyzstd.decompress(zf.read()).decode('utf-8', errors='ignore')
+                        except Exception as e:
+                            self.stdout.write(f"DEBUG: Error reading {target_file.name}: {e}")
+                    
+                    if not md:
+                        # Fallback to the main SGML file
+                        if p.exists():
+                            try:
+                                with open(p, "rb") as zf:
+                                    raw_sgml = pyzstd.decompress(zf.read()).decode('utf-8', errors='ignore')
+                                    xml_match = re.search(r'<XML>(.*?)</XML>', raw_sgml, re.DOTALL | re.IGNORECASE)
+                                    md = xml_match.group(1).strip() if xml_match else raw_sgml
+                            except:
+                                pass
+                else:
+                    self.stdout.write(f"DEBUG: Processing {acc} via HDB...")
+                    md = get_context_for_accession(acc)
+                if not md:
+                    self.stdout.write(f"DEBUG: Skipping {acc} - No content found")
+                    continue
+                llm = self.call_llm(md, options['model'], options['url'], acc=acc, cache_dir=options['cache_dir'])
             
             truth = self.serialize_ground_truth(sub)
-            llm = self.call_llm(md, options['model'], options['url'], acc=acc, cache_dir=options['cache_dir'])
             processed += 1
-            self.stdout.write(f"DEBUG: Finished {acc}. Total processed: {processed}")
+            if not llm_cached:
+                self.stdout.write(f"DEBUG: Finished {acc}. Total processed: {processed}")
             
             def is_nullish(v):
                 if v is None:
@@ -613,6 +715,10 @@ class Command(BaseCommand):
                     return len(v) == 0
                 sv = str(v).strip().lower()
                 return sv in self.NULLISH_STRINGS
+
+            # Sort signatures to ensure order-invariant comparison
+            truth = self.sort_submission_lists(truth)
+            llm = self.sort_submission_lists(llm)
 
             t_flat_raw = self.canonicalize_flat_dict(self.flatten(truth))
             l_flat_raw = self.canonicalize_flat_dict(self.flatten(llm))
@@ -694,9 +800,9 @@ class Command(BaseCommand):
                 t_val = t_all.get(k, NULL_SENTINEL)
                 l_val = l_all.get(k, NULL_SENTINEL)
 
-                # Nullish (or missing) on both sides is treated as a match.
+                # Honesty Filter: Do NOT count NULL-NULL matches as TPs.
+                # We only care about extraction accuracy for data that actually exists.
                 if t_val == NULL_SENTINEL and l_val == NULL_SENTINEL:
-                    metrics[field]["tp"] += 1
                     continue
 
                 if self.values_match(k, t_val, l_val, NULL_SENTINEL):
@@ -714,6 +820,7 @@ class Command(BaseCommand):
         }
         for field in sorted(metrics.keys()):
             m = metrics[field]
+            support = m["tp"] + m["fn"]
             p = m["tp"]/(m["tp"]+m["fp"]) if m["tp"]+m["fp"]>0 else 0
             r = m["tp"]/(m["tp"]+m["fn"]) if m["tp"]+m["fn"]>0 else 0
             f1 = 2*p*r/(p+r) if p+r>0 else 0
@@ -721,11 +828,12 @@ class Command(BaseCommand):
                 "f1": round(f1, 6),
                 "precision": round(p, 6),
                 "recall": round(r, 6),
+                "support": support,
                 "tp": m["tp"],
                 "fp": m["fp"],
                 "fn": m["fn"],
             }
-            self.stdout.write(f"[{field:45}] F1: {f1:.3f} | P: {p:.3f} | R: {r:.3f}")
+            self.stdout.write(f"[{field:45}] F1: {f1:.3f} | P: {p:.3f} | R: {r:.3f} | S: {support}")
 
         if rationale_scores:
             avg_rouge = sum(rationale_scores) / len(rationale_scores)

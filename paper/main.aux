@@ -2,63 +2,89 @@
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
-\citation{albright_openedgar,lexpredict_openedgar}
-\citation{albright_hyperstreamdb}
+\citation{vaswani2017attention,radford2019language}
+\citation{sec_edgar_docs}
+\citation{bigeard2025financeagentbenchmarkbenchmarking}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{1}{section.2}\protected@file@percent }
 \citation{wu2023bloomberggpt}
+\citation{eval_table_extraction_2025}
 \citation{islam2023financebench}
-\citation{gu2023findocrag}
-\citation{yulianti2023structural}
+\citation{lewis2020rag}
+\citation{gu2025findocrag}
+\citation{salunke2024finrag}
+\citation{yoash2025secque}
+\citation{sui2024table}
 \citation{zhong2020publaynet}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}LLMs in Financial Document Processing}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Structural Preservation and Document Representation}{2}{subsection.2.2}\protected@file@percent }
 \citation{malkov2018hnsw}
 \citation{lemire2016roaring}
 \citation{albright_hyperstreamdb}
-\citation{kamalloo2023evaluating}
+\citation{es2023ragas}
 \citation{zhang2025pageindex}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}LLMs in Financial Document Processing}{2}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Structural Preservation and Document Representation}{2}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Hybrid Database Architectures for RAG}{2}{subsection.2.3}\protected@file@percent }
-\citation{hu2021lora}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Hybrid Database Architectures for RAG}{3}{subsection.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {III}Methodology}{3}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Phase 1: Ground Truth Normalization and Markdown Synthesis}{3}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Phase 2: Agentic Extraction Engine (The "AI" Layer)}{3}{subsection.3.3}\protected@file@percent }
-\citation{radford2019language,brown2020language}
-\citation{muc4_1992,lample2016neural}
-\@writefile{toc}{\contentsline {section}{\numberline {IV}Experiments and Results}{4}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Field-Level Extraction Accuracy}{4}{subsection.4.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Sectional Extraction Performance: Qwen3-Coder-30B-A3B (N=500 Filings)}}{4}{table.1}\protected@file@percent }
-\newlabel{tab:extraction_results}{{I}{4}{Sectional Extraction Performance: Qwen3-Coder-30B-A3B (N=500 Filings)}{table.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Analysis of Performance Gaps}{4}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Textual Alignment: Lexical vs. Semantic Similarity}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}HyperStreamDB: High-Performance Ingestion}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Rationale Synthesis and Footnote Grounding}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces System Architecture: High-Fidelity RAG Pipeline with HyperStreamDB Integration.}}{4}{figure.1}\protected@file@percent }
+\newlabel{fig:rag_pipeline}{{1}{4}{System Architecture: High-Fidelity RAG Pipeline with HyperStreamDB Integration}{figure.1}{}}
+\newlabel{fig:prompt}{{1}{4}{Agentic Extraction Prompt: The system prompt defines the target schema, field-level mapping rules, and grounding constraints for the LLM}{lstlisting.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}Agentic Extraction Prompt: The system prompt defines the target schema, field-level mapping rules, and grounding constraints for the LLM.}{4}{lstlisting.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Phase 1: Ground Truth Normalization and Markdown Synthesis}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}Phase 2: Agentic Extraction Engine (The "AI" Layer)}{5}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-E}}Algorithm Design: Agentic Extraction Loop}{5}{subsection.3.5}\protected@file@percent }
+\newlabel{alg:rag_loop}{{2}{5}{Pseudo-code: Agentic RAG Extraction Loop}{lstlisting.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}Pseudo-code: Agentic RAG Extraction Loop}{5}{lstlisting.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Experiments and Results}{6}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Model Selection and JSON Schema Adherence}{6}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Field-Level Extraction Accuracy}{6}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Ablation Study: Pure XML vs. Synthesized Markdown}{6}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Field Level Sectional Extraction Performance}}{7}{table.1}\protected@file@percent }
+\newlabel{tab:extraction_results}{{I}{7}{Field Level Sectional Extraction Performance}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Ablation Study: Sectional F1-Scores (Pure XML vs. Markdown)}}{7}{table.2}\protected@file@percent }
+\newlabel{tab:ablation_results}{{II}{7}{Ablation Study: Sectional F1-Scores (Pure XML vs. Markdown)}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Semantic Grounding: Natural Language Rationale Alignment}}{7}{table.3}\protected@file@percent }
+\newlabel{tab:semantic_results}{{III}{7}{Semantic Grounding: Natural Language Rationale Alignment}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Analysis of Performance Gaps}{7}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}The Table II Footnote Bottleneck}{7}{subsection.4.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Extraction Performance by Section: The model achieves near-parity with ground truth on Table I data, while experiencing a performance drop on Table II Footnote Alignment due to instrument-level ambiguity.}}{8}{figure.2}\protected@file@percent }
+\newlabel{fig:sectional_f1}{{2}{8}{Extraction Performance by Section: The model achieves near-parity with ground truth on Table I data, while experiencing a performance drop on Table II Footnote Alignment due to instrument-level ambiguity}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-F}}Textual Alignment: Lexical vs. Semantic Similarity}{8}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-G}}Case Study: Footnote Grounding in Complex Derivative Chains}{8}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-H}}Computational Efficiency and Throughput}{8}{subsection.4.8}\protected@file@percent }
 \bibstyle{IEEEtran}
 \bibdata{references}
-\bibcite{albright_openedgar}{1}
-\bibcite{lexpredict_openedgar}{2}
-\bibcite{albright_hyperstreamdb}{3}
-\bibcite{wu2023bloomberggpt}{4}
-\bibcite{islam2023financebench}{5}
-\bibcite{gu2023findocrag}{6}
-\bibcite{yulianti2023structural}{7}
-\bibcite{zhong2020publaynet}{8}
-\bibcite{malkov2018hnsw}{9}
-\bibcite{lemire2016roaring}{10}
-\bibcite{kamalloo2023evaluating}{11}
-\bibcite{zhang2025pageindex}{12}
-\bibcite{hu2021lora}{13}
-\bibcite{radford2019language}{14}
-\bibcite{brown2020language}{15}
-\bibcite{muc4_1992}{16}
-\bibcite{lample2016neural}{17}
+\bibcite{vaswani2017attention}{1}
+\bibcite{radford2019language}{2}
+\bibcite{sec_edgar_docs}{3}
+\bibcite{bigeard2025financeagentbenchmarkbenchmarking}{4}
+\bibcite{wu2023bloomberggpt}{5}
+\bibcite{eval_table_extraction_2025}{6}
+\bibcite{islam2023financebench}{7}
+\bibcite{lewis2020rag}{8}
+\bibcite{gu2025findocrag}{9}
+\bibcite{salunke2024finrag}{10}
+\bibcite{yoash2025secque}{11}
+\bibcite{sui2024table}{12}
+\bibcite{zhong2020publaynet}{13}
+\bibcite{malkov2018hnsw}{14}
+\bibcite{lemire2016roaring}{15}
+\bibcite{albright_hyperstreamdb}{16}
+\bibcite{es2023ragas}{17}
+\bibcite{zhang2025pageindex}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusions}{9}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{References}{9}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  A: Sample High-Fidelity Markdown Synthesis}{10}{section*.2}\protected@file@percent }
+\newlabel{fig:md_example}{{3}{10}{HyperStreamDB Retrieval Logic and Resulting Markdown Synthesis (Accession: 0001127602-21-016253). (SGML Header + Filing)}{lstlisting.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3}HyperStreamDB Retrieval Logic and Resulting Markdown Synthesis (Accession: 0001127602-21-016253). (SGML Header + Filing)}{10}{lstlisting.3}\protected@file@percent }
 \gdef \LT@i {\LT@entry 
     {4}{263.19647pt}\LT@entry 
     {1}{47.33353pt}\LT@entry 
     {1}{35.99368pt}\LT@entry 
-    {1}{46.32578pt}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusions and Future Work}{5}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{References}{5}{section*.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  A: Full Field-Level Extraction Metrics (Qwen3-Coder-30B-A3B)}{5}{section*.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {II}{Exhaustive Field-Level Metrics (Qwen3-Coder-30B-A3B)}}{5}{table.2}\protected@file@percent }
-\newlabel{tab:full_metrics}{{II}{5}{Exhaustive Field-Level Metrics (Qwen3-Coder-30B-A3B)}{table.2}{}}
-\gdef \@abspage@last{7}
+    {1}{46.32578pt}\LT@entry 
+    {1}{43.50867pt}}
+\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  B: Full Field-Level Extraction Metrics (Qwen3-Coder-30B-A3B)}{11}{section*.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{Exhaustive Field-Level Metrics (N=1,638 Filings)}}{11}{table.4}\protected@file@percent }
+\newlabel{tab:full_metrics}{{IV}{11}{Exhaustive Field-Level Metrics (N=1,638 Filings)}{table.4}{}}
+\gdef \@abspage@last{12}

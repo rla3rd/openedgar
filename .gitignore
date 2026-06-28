@@ -111,3 +111,16 @@ ENV/
 .mypy_cache/
 
 benchmarks
+paper/
+hdb_data/
+*.sql
+paper/
+hdb_data/
+*.sql
+
+# Local exclusions
+/sec_research/
+/scratch/
+test_output.json
+paper.zip
+sec_openedgar/sec_research/evaluation/

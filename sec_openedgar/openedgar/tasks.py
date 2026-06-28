@@ -183,35 +183,16 @@ class AsyncDownloader:
             if tmp_path.exists(): tmp_path.unlink()
             return False
             
-        # 2. Extract into final zstd chunks in the background
+        # 2. Move to final destination
         try:
             if tmp_path.exists():
-                final_dest = output_path
-                if download_only:
-                    # Move directly to RAW as a cache for later processing
-                    raw_dir = output_path.parent / "RAW"
-                    raw_dir.mkdir(parents=True, exist_ok=True)
-                    final_dest = raw_dir / output_path.name
-                    
-                final_dest.parent.mkdir(parents=True, exist_ok=True)
-                shutil.move(str(tmp_path), str(final_dest))
+                output_path.parent.mkdir(parents=True, exist_ok=True)
+                shutil.move(str(tmp_path), str(output_path))
                 
-            if download_only:
-                if verbose: print(f"  Download complete for {output_path.name} (Staged in RAW mode).")
-                if pbar: pbar.update(1)
-                return True
-                
-            # Trigger background extraction and track the future
-            if verbose: print(f"  Download complete. Queuing extraction for {output_path.name}...")
-            loop = asyncio.get_event_loop()
-            task = loop.run_in_executor(None, extract_and_compress_tar_feed, str(output_path), True, verbose, replace, forms)
-            
-            # Store metadata for potential retries
-            self.extractions.append({
-                "url": url,
-                "path": output_path,
-                "future": task
-            })
+            if verbose:
+                mode = "Staged in RAW mode" if download_only else "Ready for extraction"
+                print(f"  Download complete for {output_path.name} ({mode}).")
+            if pbar: pbar.update(1)
             return True
         except Exception as e:
             logger.error(f"Error handling SEC feed {url}: {e}")
@@ -420,12 +401,15 @@ def _process_and_archive_filing(content_bytes: bytes, output_dir: pathlib.Path, 
 
         # Sync to PostgreSQL
         try:
+            from django.db import close_old_connections
             from openedgar.models import Filing
+            close_old_connections()
             Filing.objects.filter(accession_number=acc_num).update(
                 documents_index=documents_index_data,
                 is_processed=True,
                 processed_document_count=processed_count
             )
+            close_old_connections()
         except Exception as e:
             logger.error(f"Failed to sync Golden Source index for {acc_num}: {e}")
 
@@ -434,13 +418,14 @@ def _process_and_archive_filing(content_bytes: bytes, output_dir: pathlib.Path, 
         logger.error(f"Error processing filing {fallback_acc}: {e}")
         return False
 
-def extract_and_compress_tar_feed(tar_file_path: str, remove_after: bool = False, verbose: bool = False, replace: bool = True, forms: List[str] = None, destination_dir: pathlib.Path = None, extract_only: bool = False):
+def extract_and_compress_tar_feed(tar_file_path: str, remove_after: bool = False, verbose: bool = False, replace: bool = True, forms: List[str] = None, destination_dir: pathlib.Path = None, extract_only: bool = False, use_buffer: bool = True):
     """
     Extracts SEC Bulk Feed archives (.tar.gz or .tar.zst) and streams each record into Zstandard chunks.
     """
     import tarfile
     import os
     import gzip
+    from concurrent.futures import ThreadPoolExecutor
     try:
         import pyzstd
     except ImportError:
@@ -450,9 +435,19 @@ def extract_and_compress_tar_feed(tar_file_path: str, remove_after: bool = False
     if not tar_path.exists():
         return False
         
-    output_dir = destination_dir or tar_path.parent
+    final_output_dir = destination_dir or tar_path.parent
+    
+    if use_buffer:
+        import tempfile
+        # Create a temporary directory on the NVMe (main filesystem /tmp)
+        buffer_root = pathlib.Path("/tmp/openedgar_buffer")
+        buffer_root.mkdir(parents=True, exist_ok=True)
+        output_dir = pathlib.Path(tempfile.mkdtemp(dir=buffer_root, prefix=f"ext_{tar_path.name}_"))
+    else:
+        output_dir = final_output_dir
+
     output_dir.mkdir(parents=True, exist_ok=True)
-    if verbose: print(f"Extracting {tar_path.name} to {output_dir}...")
+    if verbose: print(f"Extracting {tar_path.name} to buffer {output_dir}...")
     
     try:
         processed_tally = 0
@@ -469,9 +464,7 @@ def extract_and_compress_tar_feed(tar_file_path: str, remove_after: bool = False
             # Fallback to direct opening (e.g. for uncompressed .tar)
             zf = open(tar_path, "rb")
 
-        from concurrent.futures import ThreadPoolExecutor
-        # Use a reasonable number of threads to overlap I/O and CPU (pyzstd/gzip release GIL)
-        # We cap it at 10 to avoid overwhelming the DB connection pool in a single process
+        # Extraction is now on NVMe buffer, so we can use 10 workers for speed
         with ThreadPoolExecutor(max_workers=10) as executor:
             futures = []
             with zf:
@@ -507,6 +500,21 @@ def extract_and_compress_tar_feed(tar_file_path: str, remove_after: bool = False
                     future.result()
                 except Exception as e:
                     logger.error(f"Error in filing worker thread: {e}")
+
+        # Final step: Move from NVMe buffer to HDD destination
+        if use_buffer and output_dir.exists():
+            import shutil
+            if verbose: print(f"  Moving processed filings from buffer to HDD: {final_output_dir}...")
+            final_output_dir.mkdir(parents=True, exist_ok=True)
+            for item in output_dir.iterdir():
+                # Overwrite if exists if replace is True, else skip
+                dest_item = final_output_dir / item.name
+                if dest_item.exists() and not replace:
+                    continue
+                shutil.move(str(item), str(dest_item))
+            
+            # Clean up empty buffer dir
+            shutil.rmtree(str(output_dir))
         
         if remove_after:
             # Move to RAW folder relative to the original location or as specified
@@ -518,10 +526,17 @@ def extract_and_compress_tar_feed(tar_file_path: str, remove_after: bool = False
         return True
     except Exception as e:
         logger.error(f"Failed processing tarball {tar_file_path}: {e}")
+        # Clean up buffer dir on failure
+        if use_buffer and output_dir.exists():
+            import shutil
+            shutil.rmtree(str(output_dir), ignore_errors=True)
         # If the file is corrupted or failed to extract, delete it so it can be re-downloaded
-        if tar_path.exists():
-            logger.warning(f"Corrupted archive detected; deleting {tar_path.name} for re-download retry.")
-            tar_path.unlink()
+        try:
+            if tar_path.exists():
+                logger.warning(f"Corrupted archive detected; deleting {tar_path.name} for re-download retry.")
+                tar_path.unlink()
+        except FileNotFoundError:
+            pass  # Already deleted by another concurrent task
         return False
 
 def convert_legacy_zstd_worker(zstd_file_path: str, forms: List[str] = None) -> bool:
@@ -632,7 +647,11 @@ def get_text_quarter(month):
     elif month in ("10", "11", "12"):
         return "QTR4"
 
+# SEC EDGAR specific constants
+begin_year = 1997
+
 async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbose=False, days=None, replace=False, forms: List[str] = None, download_only=False):
+
     base_url = 'https://www.sec.gov/Archives/edgar/Feed/'
     downloader = AsyncDownloader()
     
@@ -649,7 +668,7 @@ async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbos
              target_years = sorted(list(set(int(str(d)[:4]) for d in days)))
         else:
              import datetime
-             target_years = list(range(1997, datetime.datetime.now().year + 1))
+             target_years = list(range(begin_year, datetime.datetime.now().year + 1))
              
         for yr in target_years:
             qtrs = [qtr] if qtr else [1, 2, 3, 4]
@@ -860,8 +879,12 @@ async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbos
                     zst_filename = filename.replace('.gz', '.zst')
                     file_url = f"{base_url}{year}/{quarter}/{filename}"
                     
-                    # Extract MM/DD for granular extraction
-                    month, day = day_prefix[4:6], day_prefix[6:8]
+                    # Extract MM/DD for granular extraction - Only if it matches YYYYMMDD pattern
+                    if len(day_prefix) == 8 and day_prefix.isdigit():
+                        month, day = day_prefix[4:6], day_prefix[6:8]
+                    else:
+                        if verbose: print(f"  Skipping non-standard feed filename pattern: {filename}")
+                        continue
                     
                     # ARCHIVE PATH: Consistent with legacy spec (YYYY/QTRX/RAW)
                     archive_path = data_dir / "data" / str(year) / quarter / "RAW" / zst_filename
@@ -941,10 +964,27 @@ async def download_bulk_filings_async(year=None, qtr=None, backfill=True, verbos
                                 retry_tasks.append(downloader.download_and_compress(session, item["url"], item["path"], verbose=verbose, replace=True, download_only=download_only, forms=forms))
                             
                             if retry_tasks:
-                                await asyncio.gather(*retry_tasks)
+                                retry_results = await asyncio.gather(*retry_tasks)
+                                # Dispatch extraction for successful re-downloads
+                                if not download_only:
+                                    for item, success in zip(failed_items, retry_results):
+                                        if success:
+                                            # Derive the extraction dir from the archive path
+                                            # Archive: .../YYYY/QTRX/RAW/YYYYMMDD.nc.tar.zst
+                                            day_prefix = item["path"].stem.split(".")[0]  # e.g. "19960102"
+                                            month_str, day_str = day_prefix[4:6], day_prefix[6:8]
+                                            retry_extraction_dir = item["path"].parent.parent / month_str / day_str
+                                            loop = asyncio.get_event_loop()
+                                            task = loop.run_in_executor(None, extract_and_compress_tar_feed, str(item["path"]), False, verbose, replace, forms, retry_extraction_dir)
+                                            downloader.extractions.append({
+                                                "url": item["url"],
+                                                "path": item["path"],
+                                                "future": task
+                                            })
                                 # Final wait for the NEW retry extractions
-                                if verbose: print(f"  Awaiting rescue extraction results...")
-                                await asyncio.gather(*[e["future"] for e in downloader.extractions])
+                                if downloader.extractions:
+                                    if verbose: print(f"  Awaiting rescue extraction results...")
+                                    await asyncio.gather(*[e["future"] for e in downloader.extractions])
                         
                         downloader.extractions = [] # Reset for next quarter
                     
@@ -1028,11 +1068,9 @@ async def process_bulk_filings_async(year=None, qtr=None, days=None, forms: List
             # Use ProcessPoolExecutor for true multi-core CPU-bound tasks
             from concurrent.futures import ProcessPoolExecutor
             cpu_count = os.cpu_count() or 4
-            # We use a slightly higher worker count than the semaphore to keep the pool warm
-            # but the semaphore controls the actual parallel I/O load.
             executor = ProcessPoolExecutor(max_workers=cpu_count)
-            # Cap parallel feeds to avoid DB connection exhaustion (10 threads per feed * 8 feeds = 80 connections)
-            sem_limit = min(cpu_count, 8)
+            # HDD Optimization: Cap parallel feeds to 2 to prevent disk saturation
+            sem_limit = 2
             sem = asyncio.Semaphore(sem_limit) 
             
             async def _process_feed(filename):

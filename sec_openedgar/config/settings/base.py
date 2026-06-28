@@ -285,7 +285,9 @@ PASSWORD_HASHERS = [
 ]
 
 # PASSWORD VALIDATION
-# https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
+# Edgar Data Settings
+EDGAR_USE_LOCAL_DATA = env.bool('EDGAR_USE_LOCAL_DATA', default=True)
+EDGAR_LOCAL_DATA_DIR = env.str('EDGAR_LOCAL_DATA_DIR', default='/home/ralbright/data/openedgar/edgar')
 # ------------------------------------------------------------------------------
 
 AUTH_PASSWORD_VALIDATORS = [

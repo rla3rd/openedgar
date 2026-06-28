@@ -196,7 +196,7 @@ class Filing(django.db.models.Model):
     processed_document_count = django.db.models.IntegerField(default=0)
     is_processed = django.db.models.BooleanField(default=False, db_index=True)
     is_error = django.db.models.BooleanField(default=False, db_index=True)
-    
+
     # High-Performance JSONB RAG Document mapping
     documents_index = django.db.models.JSONField(null=True, blank=True)
     acceptance_datetime = django.db.models.DateField(db_index=True, null=True)
@@ -204,7 +204,53 @@ class Filing(django.db.models.Model):
     document_url = django.db.models.CharField(max_length=1024, null=True)
     homepage_url = django.db.models.CharField(max_length=1024, null=True)
     text_url = django.db.models.CharField(max_length=1024, null=True)
-    
+
+    # Filesystem path components — enables O(1) sidecar lookup for any DATA_DIR.
+    # Full path = os.path.join(DATA_DIR, YEAR/QTR/MONTH/DAY/ACC.out.md.zst)
+    year = django.db.models.SmallIntegerField(db_index=True, null=True, blank=True)
+    qtr = django.db.models.SmallIntegerField(db_index=True, null=True, blank=True)
+    month = django.db.models.SmallIntegerField(db_index=True, null=True, blank=True)
+    day = django.db.models.SmallIntegerField(db_index=True, null=True, blank=True)
+
+    # DATA_DIR-relative path to the .out.md.zst sidecar.
+    # Resolved at runtime as: os.path.join(settings.DATA_DIR, filing.markdown_path)
+    markdown_path = django.db.models.CharField(max_length=2048, db_index=True, null=True, blank=True)
+
+    @property
+    def resolved_markdown_path(self):
+        """
+        Returns the absolute path to the .out.md.zst sidecar file.
+        Prefers the stored markdown_path; falls back to deriving from
+        year/qtr/month/day path components if available.
+        """
+        import os
+        from django.conf import settings
+        data_dir = getattr(settings, 'EDGAR_LOCAL_DATA_DIR', '')
+        if self.markdown_path:
+            return os.path.join(data_dir, self.markdown_path)
+        if all([self.year, self.qtr, self.month, self.day]):
+            acc = self.accession_number
+            return os.path.join(
+                data_dir,
+                "data",
+                str(self.year),
+                f"QTR{self.qtr}",
+                f"{self.month:02d}",
+                f"{self.day:02d}",
+                f"{acc}.out.md.zst"
+            )
+        return None
+
+    @property
+    def resolved_sgml_path(self):
+        """
+        Returns the absolute path to the .sgml.md.zst sidecar file.
+        """
+        path = self.resolved_markdown_path
+        if path:
+            return path.replace(".out.md.zst", ".sgml.md.zst")
+        return None
+
     def __str__(self):
         """
         String representation method

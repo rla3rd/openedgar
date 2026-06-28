@@ -81,22 +81,49 @@ class OwnershipParser(CanonicalOwnershipParser):
         return ','.join(ids)
 
     def find_ownership_xml(self, path):
-        """Core utility to find the primary XML document in a filing archive."""
-        import tarfile, io, pyzstd
-        if str(path).endswith(".zst"):
+        """Core utility to find the primary XML document in a filing archive.
+        
+        Checks two locations in order:
+        1. Inline inside the SGML wrapper (most common)
+        2. Sibling document file (e.g. .401.zst, .xml.zst) — used when EDGAR
+           stores the submission header and the form document separately.
+        """
+        import tarfile, io, pyzstd, re as _re
+        path = str(path)
+        if path.endswith(".zst"):
             with open(path, "rb") as f:
                 decompressed = pyzstd.decompress(f.read())
                 if b"<ownershipDocument" in decompressed:
-                    return decompressed.decode('utf-8', errors='ignore'), str(path)
+                    return decompressed.decode('utf-8', errors='ignore'), path
                 try:
                     with tarfile.open(fileobj=io.BytesIO(decompressed), mode="r") as tar:
                         for member in tar.getmembers():
                             if member.name.endswith(".xml"):
-                                f = tar.extractfile(member)
-                                content = f.read().decode('utf-8', errors='ignore')
+                                fc = tar.extractfile(member)
+                                content = fc.read().decode('utf-8', errors='ignore')
                                 if "<ownershipDocument" in content:
                                     return content, member.name
                 except: pass
+
+            # Fallback: look for sibling document files in the same directory
+            import pathlib
+            sgml_path = pathlib.Path(path)
+            acc = sgml_path.name.split('.sgml')[0]  # e.g. 0000002488-21-000128
+            parent = sgml_path.parent
+            # Match any .<digits>.zst sibling (e.g. .401.zst, .1.zst)
+            for sibling in sorted(parent.glob(f"{acc}.*.zst")):
+                name = sibling.name
+                # Skip our own sidecars and the sgml itself
+                if '.sgml' in name or '.out.' in name or '.md.' in name:
+                    continue
+                try:
+                    raw = pyzstd.decompress(sibling.read_bytes())
+                    text = raw.decode('utf-8', errors='ignore')
+                    if '<ownershipDocument' in text:
+                        return text, str(sibling)
+                except Exception:
+                    continue
+
         return None, None
 
     def normalize(self, xml_content, filing_obj):

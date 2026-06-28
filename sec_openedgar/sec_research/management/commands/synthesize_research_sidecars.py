@@ -3,7 +3,7 @@ import pathlib
 import pyzstd
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from sec_research.experiments.ownership_extraction.synthesizers.ownership import OwnershipMarkdownSynthesizer
+from openedgar.parsers.ownership_parser import OwnershipParser as OwnershipMarkdownSynthesizer
 from tqdm import tqdm
 import re
 

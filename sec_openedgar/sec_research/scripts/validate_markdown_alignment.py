@@ -17,7 +17,7 @@ sys.path.insert(0, '/home/ralbright/projects/openedgar/sec_openedgar')
 django.setup()
 
 from openedgar.models import OwnershipSubmission, Filing
-from sec_research.experiments.ownership_extraction.synthesizers.ownership import OwnershipMarkdownSynthesizer
+from openedgar.parsers.ownership_parser import OwnershipParser as OwnershipMarkdownSynthesizer
 
 def compare_values(field_name, ground_truth, markdown_contains_check):
     """Compare a field value between ground truth and markdown check."""

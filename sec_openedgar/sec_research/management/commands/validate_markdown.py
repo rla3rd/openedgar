@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from openedgar.models import OwnershipSubmission
-from sec_research.experiments.ownership_extraction.synthesizers.ownership import OwnershipMarkdownSynthesizer
+from openedgar.parsers.ownership_parser import OwnershipParser as OwnershipMarkdownSynthesizer
 import json
 
 

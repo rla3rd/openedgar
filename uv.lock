@@ -1570,6 +1570,18 @@ wheels = [
 ]
 
 [[package]]
+name = "gunicorn"
+version = "25.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "packaging" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c4/f4/e78fa054248fab913e2eab0332c6c2cb07421fca1ce56d8fe43b6aef57a4/gunicorn-25.3.0.tar.gz", hash = "sha256:f74e1b2f9f76f6cd1ca01198968bd2dd65830edc24b6e8e4d78de8320e2fe889", size = 634883, upload-time = "2026-03-27T00:00:26.092Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/43/c8/8aaf447698c4d59aa853fd318eed300b5c9e44459f242ab8ead6c9c09792/gunicorn-25.3.0-py3-none-any.whl", hash = "sha256:cacea387dab08cd6776501621c295a904fe8e3b7aae9a1a3cbb26f4e7ed54660", size = 208403, upload-time = "2026-03-27T00:00:27.386Z" },
+]
+
+[[package]]
 name = "h11"
 version = "0.16.0"
 source = { registry = "https://pypi.org/simple" }
@@ -3120,6 +3132,7 @@ dependencies = [
     { name = "django-werkzeug" },
     { name = "docling" },
     { name = "fake-useragent" },
+    { name = "gunicorn" },
     { name = "httpx", extra = ["http2"] },
     { name = "hyperstreamdb" },
     { name = "hypothesis" },
@@ -3152,6 +3165,8 @@ dependencies = [
     { name = "spacy" },
     { name = "sqlalchemy" },
     { name = "tabula-py" },
+    { name = "torch" },
+    { name = "torchvision" },
     { name = "typer" },
     { name = "unsloth", extra = ["colab-new"] },
     { name = "urllib3" },
@@ -3198,6 +3213,7 @@ requires-dist = [
     { name = "django-werkzeug", specifier = ">=1.0.0" },
     { name = "docling", specifier = ">=2.86.0" },
     { name = "fake-useragent", specifier = ">=1.4.0" },
+    { name = "gunicorn", specifier = ">=23.0.0" },
     { name = "httpx", extras = ["http2"], specifier = ">=0.28.1" },
     { name = "hyperstreamdb", specifier = ">=0.2.2" },
     { name = "hypothesis", specifier = ">=6.151.12" },
@@ -3232,6 +3248,8 @@ requires-dist = [
     { name = "spacy", specifier = ">=3.7.0" },
     { name = "sqlalchemy", specifier = ">=2.0.36" },
     { name = "tabula-py", specifier = ">=2.10.0" },
+    { name = "torch", specifier = "==2.10.0" },
+    { name = "torchvision", specifier = "==0.25.0" },
     { name = "typer", specifier = ">=0.21.2" },
     { name = "unsloth", extras = ["colab-new"], git = "https://github.com/unslothai/unsloth.git" },
     { name = "urllib3", specifier = ">=2.6.3" },
