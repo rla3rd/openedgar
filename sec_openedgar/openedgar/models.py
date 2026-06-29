@@ -512,7 +512,7 @@ class OwnershipSubmission(django.db.models.Model):
     Normalized Filing metadata for Ownership Forms (3, 4, 5).
     Matches SEC 'SUBMISSION' table.
     """
-    accession_number = django.db.models.ForeignKey(Filing, on_delete=django.db.models.CASCADE, primary_key=True)
+    accession_number = django.db.models.OneToOneField(Filing, on_delete=django.db.models.CASCADE, primary_key=True)
     filing_date = django.db.models.DateField(db_index=True)
     period_of_report = django.db.models.DateField(null=True, db_index=True)
     issuer_cik = django.db.models.ForeignKey(Company, related_name='issuer_ownerships', on_delete=django.db.models.CASCADE)

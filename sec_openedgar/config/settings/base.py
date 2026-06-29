@@ -377,8 +377,9 @@ EDGAR_IDENTITY="Rick Albright rla3rd@gmail.com"
 
 # RAG & LLM Configuration
 LM_STUDIO_ENDPOINT = env("LM_STUDIO_ENDPOINT", default="http://localhost:1234/v1")
-LLM_MODEL_NAME = env("LLM_MODEL_NAME", default="qwen-3-5-34b")
+LLM_MODEL_NAME = env("LLM_MODEL_NAME", default="qwen/qwen3.6-27b")
 HDB_PATH = env("HDB_PATH", default="./rag_db")
 
 # Wagtail
 WAGTAIL_SITE_NAME = 'OpenEdgar AI Analyst'
+WAGTAILADMIN_BASE_URL = env('WAGTAILADMIN_BASE_URL', default='http://localhost:8000')
