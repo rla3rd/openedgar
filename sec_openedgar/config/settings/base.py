@@ -287,7 +287,16 @@ PASSWORD_HASHERS = [
 # PASSWORD VALIDATION
 # Edgar Data Settings
 EDGAR_USE_LOCAL_DATA = env.bool('EDGAR_USE_LOCAL_DATA', default=True)
-EDGAR_LOCAL_DATA_DIR = env.str('EDGAR_LOCAL_DATA_DIR', default='/home/ralbright/data/openedgar/edgar')
+# Cross-platform default: resolves to ~/data/edgar on both Linux and macOS
+import os as _os
+EDGAR_LOCAL_DATA_DIR = env.str(
+    'EDGAR_LOCAL_DATA_DIR',
+    default=_os.path.join(_os.path.expanduser('~'), 'data', 'edgar')
+)
+# Push the resolved path back into os.environ so that any library (e.g. edgar)
+# that reads EDGAR_LOCAL_DATA_DIR directly from the environment will see it.
+_os.environ.setdefault('EDGAR_LOCAL_DATA_DIR', EDGAR_LOCAL_DATA_DIR)
+del _os
 # ------------------------------------------------------------------------------
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -313,9 +322,9 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Some really nice defaults
-ACCOUNT_LOGIN_METHODS = {'username'}
+ACCOUNT_LOGIN_METHODS = {'username', 'email'}
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
 ACCOUNT_ADAPTER = 'sec_openedgar.users.adapters.AccountAdapter'

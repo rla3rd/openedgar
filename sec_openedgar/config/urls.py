@@ -29,15 +29,25 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
-from openedgar.views import RAGChatView
+from openedgar.views import RAGChatView, FilingQAView, SaveQAEntryView, GenerateAnalystReportView, FilingHTMLView, FilingComparisonView
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
+from wagtail.views import serve as wagtail_serve
 
 urlpatterns = [
+                  # Home / Root route resolved via Wagtail
+                  re_path(r'^$', wagtail_serve, name='home'),
+                  re_path(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+
                   # API endpoints
                   re_path(r'^api/chat/$', RAGChatView.as_view(), name='rag_chat'),
+                  re_path(r'^filing/qa/$', FilingQAView.as_view(), name='filing_qa'),
+                  re_path(r'^filing/qa/save/$', SaveQAEntryView.as_view(), name='save_qa_entry'),
+                  re_path(r'^filing/report/generate/$', GenerateAnalystReportView.as_view(), name='generate_report'),
+                  re_path(r'^filing/html/$', FilingHTMLView.as_view(), name='filing_html'),
+                  re_path(r'^filing/comparison/$', FilingComparisonView.as_view(), name='filing_comparison'),
 
                   # Django Admin, use {% url 'admin:index' %}
                   re_path(settings.ADMIN_URL, admin.site.urls),

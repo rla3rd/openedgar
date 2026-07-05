@@ -14,3 +14,10 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         return reverse('users:detail', kwargs={'username': self.username})
+
+    @property
+    def profile(self):
+        from openedgar.models import AnalystProfile
+        profile, _ = AnalystProfile.objects.get_or_create(user=self)
+        return profile
+

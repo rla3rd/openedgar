@@ -1,0 +1,437 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Interactive Filing Q&A: {{ company.cik_name }} - OpenEdgar{% endblock %}
+
+{% block css %}
+{{ block.super }}
+<style>
+    :root {
+        --glass-bg: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(15, 23, 42, 0.08);
+        --accent-emerald: #059669;
+        --accent-blue: #2563eb;
+        --bg-light: #f1f5f9;
+        --card-bg: white;
+        --text-color: #0f172a;
+        --text-dim: #475569;
+    }
+
+    body {
+        background-color: var(--bg-light);
+        color: var(--text-color);
+        font-family: 'Inter', sans-serif;
+    }
+
+    .qa-container {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr;
+        gap: 1.5rem;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+        height: calc(100vh - 120px);
+        max-width: 1600px;
+    }
+
+    .glass-panel {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .panel-header {
+        padding: 1.25rem;
+        border-bottom: 1px solid var(--glass-border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #f8fafc;
+    }
+
+    .panel-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .panel-content {
+        padding: 1.5rem;
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    /* Left Panel: Raw text */
+    .raw-text-viewer {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #334155;
+        white-space: pre-wrap;
+        background: #f8fafc;
+        border: 1px solid var(--glass-border);
+        border-radius: 0.5rem;
+        padding: 1.25rem;
+        height: 100%;
+        overflow-y: auto;
+        user-select: text;
+    }
+
+    /* Middle Panel: Chat */
+    .chat-history {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .bubble {
+        padding: 1rem;
+        border-radius: 0.75rem;
+        line-height: 1.5;
+        font-size: 0.95rem;
+        position: relative;
+    }
+
+    .bubble.user {
+        background: rgba(5, 150, 105, 0.06);
+        border-right: 3px solid var(--accent-emerald);
+        align-self: flex-end;
+        max-width: 90%;
+        color: var(--text-color);
+    }
+
+    .bubble.ai {
+        background: #f8fafc;
+        border: 1px solid var(--glass-border);
+        border-left: 3px solid var(--accent-blue);
+        align-self: flex-start;
+        max-width: 90%;
+        color: var(--text-color);
+    }
+
+    .input-row {
+        padding: 1rem;
+        border-top: 1px solid var(--glass-border);
+        display: flex;
+        gap: 0.75rem;
+        background: #f8fafc;
+    }
+
+    .input-box {
+        background: white;
+        border: 1px solid var(--glass-border);
+        color: var(--text-color);
+        border-radius: 0.5rem;
+        padding: 0.75rem 1rem;
+        flex: 1;
+        outline: none;
+    }
+
+    .input-box:focus {
+        border-color: var(--accent-emerald);
+    }
+
+    .btn-premium {
+        background: linear-gradient(135deg, var(--accent-emerald), #059669);
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.6rem 1.25rem;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .btn-save-draft {
+        background: rgba(37, 99, 235, 0.08);
+        border: 1px solid rgba(37, 99, 235, 0.15);
+        color: #1d4ed8;
+        border-radius: 0.25rem;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        cursor: pointer;
+        margin-top: 0.5rem;
+        display: inline-block;
+    }
+
+    /* Right Panel: Report Builder */
+    .draft-item {
+        background: #f8fafc;
+        border: 1px solid var(--glass-border);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .draft-item-q {
+        font-weight: 700;
+        color: var(--accent-emerald);
+        margin-bottom: 0.5rem;
+    }
+
+    .draft-item-a {
+        color: #334155;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .loading-spinner {
+        display: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(0,0,0,0.1);
+        border-radius: 50%;
+        border-top-color: var(--accent-emerald);
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    .qa-container.split-active {
+        grid-template-columns: 1.2fr 1fr;
+    }
+
+    .qa-container.split-active #chatPanelContainer {
+        display: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="qa-container">
+    <!-- Left Panel: Raw Filing Viewer -->
+    <div class="glass-panel">
+        <div class="panel-header">
+            <div style="display: flex; flex-direction: column;">
+                <div class="panel-title">📄 SEC Filing: {{ filing.form_type }}</div>
+                <div style="font-size: 0.8rem; color: var(--text-dim);">Filed: {{ filing.date_filed }}</div>
+            </div>
+            <button class="btn-premium" id="toggleSplitBtn" style="font-size: 0.8rem; padding: 0.4rem 0.8rem; height: fit-content; margin: 0;" type="button" onclick="toggleSplitView()">⇆ Split View</button>
+        </div>
+        <div class="panel-content" style="padding: 0;">
+            <iframe id="filingIframe" src="{% url 'filing_html' %}?accession={{ filing.accession_number }}" style="width: 100%; height: 100%; border: none; background: white;"></iframe>
+        </div>
+    </div>
+
+    <!-- Middle Panel: Interactive Q&A Chat -->
+    <div class="glass-panel" id="chatPanelContainer">
+        <div class="panel-header">
+            <div class="panel-title">💬 Interactive AI Analyst</div>
+            <div id="loader" class="loading-spinner"></div>
+        </div>
+        <div class="panel-content" id="chatPanel">
+            <div class="chat-history" id="chatHistory">
+                <div class="bubble ai">
+                    Hello, Analyst. I have indexed this {{ filing.cik.cik_name }} {{ filing.form_type }} filing content using BGE-M3 embeddings. Ask me specific questions about risk disclosures, segment figures, or debt obligations.
+                </div>
+            </div>
+        </div>
+        <div class="input-row">
+            <input type="text" id="queryInput" class="input-box" placeholder="Ask a question about this filing...">
+            <button class="btn-premium" onclick="submitQuestion()">Ask</button>
+        </div>
+    </div>
+
+    <!-- Right Panel: Report Builder -->
+    <div class="glass-panel">
+        <div class="panel-header">
+            <div class="panel-title">📰 seeking Alpha Draft Builder</div>
+        </div>
+        <div class="panel-content">
+            <form id="reportForm" method="POST" action="{% url 'generate_report' %}">
+                {% csrf_token %}
+                <input type="hidden" name="accession" value="{{ filing.accession_number }}">
+                
+                <h6 style="font-weight: 700; margin-bottom: 1rem; color: #94a3b8;">Saved Findings</h6>
+                <div id="draftContainer">
+                    {% for entry in saved_entries %}
+                        <div class="draft-item">
+                            <div class="draft-item-q">Q: {{ entry.question }}</div>
+                            <div class="draft-item-a">{{ entry.answer }}</div>
+                        </div>
+                    {% empty %}
+                        <div id="draftPlaceholder" style="color: var(--text-dim); text-align: center; padding: 2rem 0;">
+                            No Q&A findings saved yet. Add insights from the chat panel.
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div style="margin-top: 1.5rem;">
+                    <label class="form-label" style="font-weight: 600; color: #cbd5e1; margin-bottom: 0.5rem; display: block;">Additional Analyst Commentary</label>
+                    <textarea name="notes" class="input-box" style="width: 100%; height: 120px; resize: none; margin-bottom: 1.5rem;" placeholder="Add final disclosures, recommendation, or thesis summary..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-premium" style="width: 100%;">
+                    Compile LaTeX & Publish to Wagtail
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    const queryInput = document.getElementById('queryInput');
+    const chatHistory = document.getElementById('chatHistory');
+    const chatPanel = document.getElementById('chatPanel');
+    const loader = document.getElementById('loader');
+    const draftContainer = document.getElementById('draftContainer');
+    const draftPlaceholder = document.getElementById('draftPlaceholder');
+
+    queryInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            submitQuestion();
+        }
+    });
+
+    async function submitQuestion() {
+        const query = queryInput.value.trim();
+        if (!query) return;
+
+        // Append user bubble
+        appendBubble('user', query);
+        queryInput.value = '';
+        loader.style.display = 'block';
+
+        try {
+            const response = await fetch('/filing/qa/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    accession: '{{ filing.accession_number }}',
+                    question: query
+                })
+            });
+
+            const data = await response.json();
+            loader.style.display = 'none';
+
+            if (data.error) {
+                appendBubble('ai', `Error: ${data.error}`);
+            } else {
+                appendAIBubble(query, data.response);
+            }
+        } catch (err) {
+            loader.style.display = 'none';
+            appendBubble('ai', "Error connecting to server. Ensure LM Studio model is active.");
+            console.error(err);
+        }
+    }
+
+    function appendBubble(role, text) {
+        const bubble = document.createElement('div');
+        bubble.className = `bubble ${role}`;
+        bubble.innerText = text;
+        chatHistory.appendChild(bubble);
+        chatPanel.scrollTop = chatPanel.scrollHeight;
+    }
+
+    function appendAIBubble(question, text) {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble ai';
+        
+        const responseText = document.createElement('div');
+        responseText.innerText = text;
+        bubble.appendChild(responseText);
+
+        // Get user text selection as excerpt (checking both window and filing iframe)
+        let selectedText = window.getSelection().toString().trim();
+        if (!selectedText) {
+            try {
+                const iframe = document.getElementById('filingIframe');
+                if (iframe && iframe.contentWindow) {
+                    selectedText = iframe.contentWindow.getSelection().toString().trim();
+                }
+            } catch (e) {
+                console.warn("Could not read selection from iframe", e);
+            }
+        }
+        
+        const saveBtn = document.createElement('button');
+        saveBtn.className = 'btn-save-draft';
+        saveBtn.innerText = selectedText ? 'Add to Draft with Selected Quote' : 'Add to Report Draft';
+        saveBtn.onclick = () => saveToReport(question, text, selectedText, saveBtn);
+        
+        bubble.appendChild(saveBtn);
+        chatHistory.appendChild(bubble);
+        chatPanel.scrollTop = chatPanel.scrollHeight;
+    }
+
+    async function saveToReport(question, answer, excerpt, button) {
+        button.disabled = true;
+        button.innerText = 'Saving...';
+
+        try {
+            const response = await fetch('/filing/qa/save/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    accession: '{{ filing.accession_number }}',
+                    question: question,
+                    answer: answer,
+                    excerpt: excerpt
+                })
+            });
+
+            const data = await response.json();
+            if (data.status === 'success') {
+                button.innerText = 'Added to Draft';
+                button.style.background = '#069669';
+                button.style.borderColor = '#059669';
+                button.style.color = '#fff';
+
+                // Add card to Draft builder view on the right
+                if (draftPlaceholder) {
+                    draftPlaceholder.remove();
+                }
+
+                const draftItem = document.createElement('div');
+                draftItem.className = 'draft-item';
+                
+                let quoteHtml = excerpt ? `<div style="font-size: 0.8rem; color: var(--text-dim); border-left: 2px solid var(--accent-blue); padding-left: 0.5rem; margin-bottom: 0.5rem;">Quote: "${excerpt}"</div>` : '';
+                
+                draftItem.innerHTML = `
+                    <div class="draft-item-q">Q: ${question}</div>
+                    ${quoteHtml}
+                    <div class="draft-item-a">${answer}</div>
+                `;
+                draftContainer.appendChild(draftItem);
+            } else {
+                button.innerText = 'Error Saving';
+                button.disabled = false;
+            }
+        } catch (err) {
+            button.innerText = 'Error Saving';
+            button.disabled = false;
+            console.error(err);
+        }
+    }
+
+    function toggleSplitView() {
+        const container = document.querySelector('.qa-container');
+        const btn = document.getElementById('toggleSplitBtn');
+        if (container.classList.contains('split-active')) {
+            container.classList.remove('split-active');
+            btn.innerText = '⇆ Split View';
+        } else {
+            container.classList.add('split-active');
+            btn.innerText = '⇆ Three-Column View';
+        }
+    }
+</script>
+{% endblock %}

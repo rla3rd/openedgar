@@ -130,7 +130,7 @@ class FormIndex(django.db.models.Model):
         :return:
         """
         return "FormIndex form_type={0}" \
-            .format(self.form_type) \
+            .format(self.form) \
             .encode("utf-8", "ignore") \
             .decode("utf-8", "ignore")
             
@@ -475,18 +475,75 @@ class AnalystProfile(django.db.models.Model):
     Extended user profile for financial analysts.
     Manages coverage and permissions for multi-tenant research.
     """
+
+    LLM_PROVIDER_CHOICES = [
+        ('openai', 'OpenAI (GPT-4o)'),
+        ('anthropic', 'Anthropic (Claude)'),
+        ('google', 'Google (Gemini)'),
+        ('groq', 'Groq (Fast Inference)'),
+    ]
+
     user = django.db.models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=django.db.models.CASCADE, related_name='analyst_profile')
     job_title = django.db.models.CharField(max_length=255, blank=True)
     coverage_industries = ArrayField(django.db.models.CharField(max_length=4), help_text="List of SIC codes covered by this analyst.", blank=True, default=list)
-    
+
+    # LLM Settings — each user brings their own key
+    llm_provider = django.db.models.CharField(
+        max_length=20,
+        choices=LLM_PROVIDER_CHOICES,
+        default='openai',
+        help_text="Which LLM provider to use for Q&A and report generation."
+    )
+    openai_api_key = django.db.models.CharField(
+        max_length=255, blank=True,
+        help_text="Your OpenAI API key (sk-...). Required when provider is OpenAI."
+    )
+    anthropic_api_key = django.db.models.CharField(
+        max_length=255, blank=True,
+        help_text="Your Anthropic API key (sk-ant-...). Required when provider is Claude."
+    )
+    gemini_api_key = django.db.models.CharField(
+        max_length=255, blank=True,
+        help_text="Your Google Gemini API key. Required when provider is Gemini."
+    )
+
     panels = [
         FieldPanel('user'),
         FieldPanel('job_title'),
         FieldPanel('coverage_industries'),
+        FieldPanel('llm_provider'),
     ]
 
     def __str__(self):
         return f"Analyst: {self.user.username} ({self.job_title})"
+
+    def get_llm_api_key(self):
+        """Return the API key for the currently selected provider."""
+        return {
+            'openai': self.openai_api_key,
+            'anthropic': self.anthropic_api_key,
+            'google': self.gemini_api_key,
+            'groq': self.openai_api_key,  # Groq uses the same key field
+        }.get(self.llm_provider, '')
+
+    def get_llm_api_url(self):
+        """Return the API base URL for the currently selected provider."""
+        return {
+            'openai': 'https://api.openai.com/v1/chat/completions',
+            'anthropic': 'https://api.anthropic.com/v1/messages',
+            'groq': 'https://api.groq.com/openai/v1/chat/completions',
+            'google': None,  # Google SDK handles its own endpoint
+        }.get(self.llm_provider, 'https://api.openai.com/v1/chat/completions')
+
+    def get_llm_default_model(self):
+        """Return a sensible default model for the selected provider."""
+        return {
+            'openai': 'gpt-4o-mini',
+            'anthropic': 'claude-3-5-haiku-20241022',
+            'google': 'gemini-2.0-flash',
+            'groq': 'llama-3.3-70b-versatile',
+        }.get(self.llm_provider, 'gpt-4o-mini')
+
 
 @register_snippet
 class CoverageAssignment(django.db.models.Model):

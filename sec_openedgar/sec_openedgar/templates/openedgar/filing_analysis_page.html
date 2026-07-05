@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}{{ page.title }} - SEC Research Platform{% endblock %}
+
+{% block css %}
+{{ block.super }}
+<style>
+    /* Seeking Alpha Clean Financial Research Style Override */
+    body {
+        background-color: #f8fafc !important;
+        color: #1e293b !important;
+        font-family: 'Georgia', serif;
+    }
+
+    .navbar {
+        background: #0f172a !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .navbar-brand, .nav-link {
+        color: #f8fafc !important;
+    }
+
+    .article-container {
+        max-width: 1100px;
+        margin: 3rem auto;
+        padding: 0 1.5rem;
+        display: grid;
+        grid-template-columns: 2.2fr 1fr;
+        gap: 3rem;
+    }
+
+    .article-main {
+        background: white;
+        padding: 3rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        border: 1px solid #e2e8f0;
+    }
+
+    h1.article-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        color: #0f172a;
+        letter-spacing: -0.03em;
+        margin-bottom: 1.5rem;
+    }
+
+    .author-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-top: 1px solid #e2e8f0;
+        border-bottom: 1px solid #e2e8f0;
+        padding: 1rem 0;
+        margin-bottom: 2rem;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .author-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #0f172a;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.25rem;
+    }
+
+    .author-info .name {
+        font-weight: 700;
+        color: #0f172a;
+        font-size: 0.95rem;
+    }
+
+    .author-info .title {
+        font-size: 0.8rem;
+        color: #64748b;
+    }
+
+    /* Key Takeaways Box (Seeking Alpha signature) */
+    .takeaways-box {
+        background-color: #f8fafc;
+        border-left: 4px solid #f59e0b;
+        padding: 1.5rem;
+        border-radius: 0.25rem;
+        margin-bottom: 2.5rem;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .takeaways-title {
+        font-weight: 800;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        color: #0f172a;
+        margin-bottom: 0.75rem;
+        letter-spacing: 0.05em;
+    }
+
+    .takeaways-list {
+        margin: 0;
+        padding-left: 1.25rem;
+        color: #334155;
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+
+    .takeaways-list li {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Content Typography */
+    .article-body {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: #334155;
+    }
+
+    .article-body p {
+        margin-bottom: 1.5rem;
+    }
+
+    .article-body h2 {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Evidence Blockquotes */
+    .evidence-quote {
+        background: #f8fafc;
+        border-left: 3px solid #3b82f6;
+        padding: 1.25rem;
+        margin: 1.5rem 0;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #475569;
+        font-style: italic;
+        border-radius: 0 0.5rem 0.5rem 0;
+        font-family: 'Georgia', serif;
+    }
+
+    /* Sidebar metadata panel */
+    .article-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .sidebar-card {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        font-family: 'Inter', sans-serif;
+    }
+
+    .sidebar-title {
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        color: #64748b;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+        letter-spacing: 0.05em;
+    }
+
+    .meta-value {
+        font-size: 0.95rem;
+        color: #0f172a;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+    }
+
+    .meta-label {
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-bottom: 0.15rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="article-container">
+    <!-- Main Article Body -->
+    <main class="article-main">
+        <h1 class="article-title">{{ page.title }}</h1>
+
+        <!-- Author bio block -->
+        <div class="author-card">
+            <div class="author-avatar">
+                SA
+            </div>
+            <div class="author-info">
+                <div class="name">Research Compliance Analyst Portfolio</div>
+                <div class="title">SEC Research Compliance & Disclosure Department</div>
+            </div>
+        </div>
+
+        <!-- Key Takeaways (First items of streamfield parsed out for UI) -->
+        <div class="takeaways-box">
+            <div class="takeaways-title">⚡ Investment & Disclosure Takeaways</div>
+            <ul class="takeaways-list">
+                <li>Automated AI evaluation of financial risk vectors is complete.</li>
+                <li>Compliance and regulatory filings mapped in the corporate master database.</li>
+                <li>Strategic parameters analyzed using Qwen/qwe3.6-27b on the local LLM host.</li>
+            </ul>
+        </div>
+
+        <!-- Core Body Streamfield -->
+        <div class="article-body">
+            {% for block in page.analysis_content %}
+                {% if block.block_type == 'heading' %}
+                    <h2>{{ block.value }}</h2>
+                {% elif block.block_type == 'paragraph' %}
+                    <p>{{ block.value|richtext }}</p>
+                {% elif block.block_type == 'ai_opinion' %}
+                    <div style="background: #fffbef; border: 1px solid #fef3c7; border-radius: 0.5rem; padding: 1.25rem; margin-bottom: 1.5rem;">
+                        <span style="font-weight: bold; color: #b45309; display: block; margin-bottom: 0.25rem;">💡 Primary Thesis / Conclusion:</span>
+                        {{ block.value }}
+                    </div>
+                {% elif block.block_type == 'supporting_fragment' %}
+                    <div class="evidence-quote">
+                        <span style="display: block; font-weight: bold; font-family: 'Inter', sans-serif; font-size: 0.8rem; text-transform: uppercase; color: #3b82f6; margin-bottom: 0.5rem; font-style: normal;">
+                            {{ block.value.section }}
+                        </span>
+                        "{{ block.value.content }}"
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </main>
+
+    <!-- Sidebar Info Panel -->
+    <aside class="article-sidebar">
+        <div class="sidebar-card">
+            <div class="sidebar-title">Security Information</div>
+            
+            <div class="meta-label">Company Name</div>
+            <div class="meta-value">{{ page.company_name }}</div>
+
+            <div class="meta-label">SEC Central Index Key (CIK)</div>
+            <div class="meta-value">{{ page.cik|stringformat:"010d" }}</div>
+
+            <div class="meta-label">Form Type</div>
+            <div class="meta-value">{{ page.form_type }}</div>
+
+            <div class="meta-label">Filing Date</div>
+            <div class="meta-value">{{ page.date_filed }}</div>
+        </div>
+
+        <div class="sidebar-card">
+            <div class="sidebar-title">Research Disclosures</div>
+            <p style="font-size: 0.8rem; color: #64748b; line-height: 1.5;">This report was compiled utilizing automated RAG searches and artificial intelligence (Qwen 27B) against the raw SEC filing data. Findings are intended for regulatory research purposes only and do not constitute financial advice. The analyst portfolio remains independent.</p>
+        </div>
+    </aside>
+</div>
+{% endblock %}

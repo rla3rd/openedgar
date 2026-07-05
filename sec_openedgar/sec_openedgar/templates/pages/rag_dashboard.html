@@ -7,28 +7,29 @@
 {{ block.super }}
 <style>
     :root {
-        --glass-bg: rgba(255, 255, 255, 0.05);
-        --glass-border: rgba(255, 255, 255, 0.1);
-        --accent-emerald: #10b981;
-        --accent-ruby: #ef4444;
-        --bg-dark: #0f172a;
-        --text-dim: #94a3b8;
+        --glass-bg: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(15, 23, 42, 0.08);
+        --accent-emerald: #059669;
+        --accent-ruby: #dc2626;
+        --bg-light: #f1f5f9;
+        --text-color: #0f172a;
+        --text-dim: #475569;
     }
 
     body {
-        background-color: var(--bg-dark);
-        color: #f8fafc;
+        background-color: var(--bg-light);
+        color: var(--text-color);
         font-family: 'Inter', sans-serif;
     }
 
     .navbar {
-        background: rgba(15, 23, 42, 0.8) !important;
+        background: white !important;
         backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--glass-border);
     }
 
     .navbar-brand, .nav-link {
-        color: #f8fafc !important;
+        color: var(--text-color) !important;
     }
 
     .dashboard-container {
@@ -51,6 +52,7 @@
         border: 1px solid var(--glass-border);
         border-radius: 1rem;
         padding: 1.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
         transition: transform 0.2s ease;
     }
 
@@ -61,20 +63,21 @@
     }
 
     .search-input {
-        background: rgba(0, 0, 0, 0.2);
+        background: white;
         border: 1px solid var(--glass-border);
-        color: white;
+        color: var(--text-color);
         border-radius: 0.75rem;
         padding: 1rem 1.5rem;
         width: 100%;
         font-size: 1.1rem;
         outline: none;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
         transition: border-color 0.2s;
     }
 
     .search-input:focus {
         border-color: var(--accent-emerald);
-        box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+        box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.15);
     }
 
     .chat-bubble {
@@ -84,14 +87,16 @@
 
     .chat-bubble.user {
         align-self: flex-end;
-        background: rgba(16, 185, 129, 0.1);
+        background: rgba(5, 150, 105, 0.06);
         border-right: 4px solid var(--accent-emerald);
+        color: var(--text-color);
     }
 
     .chat-bubble.ai {
         align-self: flex-start;
-        background: rgba(255, 255, 255, 0.05);
-        border-left: 4px solid #3b82f6;
+        background: white;
+        border-left: 4px solid #2563eb;
+        color: var(--text-color);
     }
 
     .source-panel {
@@ -130,9 +135,9 @@
         margin-left: 1rem;
         width: 20px;
         height: 20px;
-        border: 2px solid rgba(255,255,255,0.3);
+        border: 2px solid rgba(0,0,0,0.2);
         border-radius: 50%;
-        border-top-color: white;
+        border-top-color: var(--accent-emerald);
         animation: spin 1s linear infinite;
     }
 

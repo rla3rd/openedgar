@@ -5,6 +5,7 @@ import pandas as pd
 import hyperstreamdb as hdb
 from typing import List, Dict, Any, Optional
 import re
+import multiprocessing
 
 logger = logging.getLogger(__name__)
 
@@ -101,10 +102,20 @@ class ModernRAGPipeline:
 
     def ingest_filing_chunks(self, cik: str, accession_number: str, form_type: str, date_filed: str, markdown: str):
         """
-        Ingests atomic chunks with offsets into HyperStreamDB.
+        Process-isolated wrapper to ingest atomic chunks.
         """
+        ctx = multiprocessing.get_context('spawn')
+        p = ctx.Process(
+            target=_run_ingest_process,
+            args=(self.uri, cik, accession_number, form_type, date_filed, markdown)
+        )
+        p.start()
+        p.join()
+        if p.exitcode != 0:
+            raise RuntimeError(f"Ingestion process exited with non-zero code: {p.exitcode}")
+
+    def _raw_ingest_filing_chunks(self, cik: str, accession_number: str, form_type: str, date_filed: str, markdown: str):
         meta_chunks = self.chunk_markdown(markdown)
-        
         batch = []
         for i, m_chunk in enumerate(meta_chunks):
             batch.append({
@@ -116,7 +127,8 @@ class ModernRAGPipeline:
                 "section": "filing_content",
                 "content": m_chunk["content"],
                 "start_pos": m_chunk["start"],
-                "end_pos": m_chunk["end"]
+                "end_pos": m_chunk["end"],
+                "embedding": None
             })
             
         if batch:
@@ -125,16 +137,29 @@ class ModernRAGPipeline:
             self.table.commit()
             logger.info(f"Ingested {len(batch)} atomic chunks for {accession_number}.")
 
-    def query(self, text: str, k: int = 5, cik: str = None) -> pd.DataFrame:
+    def query(self, text: str, k: int = 5, cik: str = None, accession_number: str = None) -> pd.DataFrame:
         """
-        Vector search. Results include start_pos/end_pos for query-time window expansion.
-        To deduplicate and expand context:
-        1. Group results by accession_number.
-        2. Fetch neighboring characters from the sidecar fragments on disk using start_pos/end_pos.
+        Process-isolated wrapper for vector search.
         """
+        ctx = multiprocessing.get_context('spawn')
+        queue = ctx.Queue()
+        p = ctx.Process(
+            target=_run_query_process,
+            args=(self.uri, text, k, cik, accession_number, queue)
+        )
+        p.start()
+        p.join()
+        if p.exitcode != 0:
+            raise RuntimeError(f"Query process exited with non-zero code: {p.exitcode}")
+        records = queue.get()
+        return pd.DataFrame(records)
+
+    def _raw_query(self, text: str, k: int = 5, cik: str = None, accession_number: str = None) -> pd.DataFrame:
         search_query = self.table.query()
         if cik:
             search_query = search_query.filter(f"cik = '{str(cik).zfill(10)}'")
+        if accession_number:
+            search_query = search_query.filter(f"accession_number = '{accession_number}'")
         
         results = search_query.vector_search(text, column="embedding", k=k)
         return results.to_pandas()
@@ -154,3 +179,36 @@ class ModernRAGPipeline:
         # 2. Decompress and return the combined text slice.
         # This keeps the DB small and the Math pure.
         return f"...[Unified context expansion for {acc} at {start}-{end} with {buffer_chars} overlap]..."
+
+    async def query_local_llm(self, prompt: str) -> str:
+        """
+        Queries the local LLM running in LM Studio.
+        """
+        import asyncio
+        from sec_research.utils.inference import InferenceProvider
+        
+        provider = InferenceProvider(
+            provider_type="openai",
+            model=os.getenv("LOCAL_LLM_MODEL", "qwen/qwe3.6-27b"),
+            api_url=os.getenv("LOCAL_LLM_URL", "http://localhost:1234/v1/chat/completions"),
+            api_key="no-key"
+        )
+        
+        res = await asyncio.to_thread(provider.call, prompt, "You are a professional financial research assistant.")
+        return res
+
+
+def _run_ingest_process(uri, cik, accession_number, form_type, date_filed, markdown):
+    from openedgar.processes.rag_pipeline import ModernRAGPipeline
+    pipeline = ModernRAGPipeline(uri=uri)
+    pipeline._raw_ingest_filing_chunks(cik, accession_number, form_type, date_filed, markdown)
+
+
+def _run_query_process(uri, text, k, cik, accession_number, queue):
+    from openedgar.processes.rag_pipeline import ModernRAGPipeline
+    pipeline = ModernRAGPipeline(uri=uri)
+    results_df = pipeline._raw_query(text, k, cik, accession_number)
+    records = results_df.to_dict(orient='records')
+    queue.put(records)
+
+

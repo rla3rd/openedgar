@@ -61,30 +61,41 @@ class InferenceProvider:
         raise RuntimeError("Max retries exceeded for inference.")
 
     def _call_anthropic(self, prompt, system_prompt, temperature, max_tokens):
-        # Implementation for Anthropic API
-        pass
+        """Call Anthropic Claude via the Messages API."""
+        headers = {
+            'x-api-key': self.api_key,
+            'anthropic-version': '2023-06-01',
+            'content-type': 'application/json',
+        }
+        payload = {
+            'model': self.model,
+            'max_tokens': max_tokens,
+            'system': system_prompt,
+            'messages': [{'role': 'user', 'content': prompt}],
+            'temperature': temperature,
+        }
+        response = requests.post(
+            self.api_url or 'https://api.anthropic.com/v1/messages',
+            headers=headers, json=payload, timeout=600
+        )
+        response.raise_for_status()
+        return response.json()['content'][0]['text']
 
     def _call_google(self, prompt, system_prompt, temperature, max_tokens):
-        # Ensure necessary imports are present
-        # models to try gemma-4-31b-it, gemini-3.1-flash-lite-preview
+        """Call Google Gemini via the google-genai SDK."""
         from google import genai
         from google.genai import types
-        self.api_key = os.getenv("GEMINI_API_KEY")
-
-        # 1. Initialize the client with your instance's api_key
+        # Use the key passed in at construction (from user profile), not env var
         client = genai.Client(api_key=self.api_key)
-
-        # 2. Call generate_content with system_instruction in the config
         response = client.models.generate_content(
             model=self.model,
             contents=prompt,
             config=types.GenerateContentConfig(
-                system_instruction=system_prompt, # Correct way to set system role
+                system_instruction=system_prompt,
                 temperature=temperature,
                 max_output_tokens=max_tokens,
             ),
         )
-
         return response.text
 
     def _call_huggingface(self, prompt, system_prompt, temperature, max_tokens):

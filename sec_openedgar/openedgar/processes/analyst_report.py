@@ -96,19 +96,27 @@ class AnalystReporter:
 
     def _compile_pdf(self, tex_path: str) -> str:
         """Compiles to PDF if pdflatex is installed on the host."""
+        import os
+        env = os.environ.copy()
+        paths = env.get("PATH", "").split(os.pathsep)
+        mac_tex_path = "/Library/TeX/texbin"
+        if mac_tex_path not in paths:
+            paths.append(mac_tex_path)
+        env["PATH"] = os.pathsep.join(paths)
+
         try:
-            # Check for pdflatex (Optional dependency)
-            subprocess.run(["pdflatex", "-version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+            # Check for pdflatex
+            subprocess.run(["pdflatex", "-version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True, env=env)
             
             subprocess.run(
                 ["pdflatex", "-interaction=nonstopmode", "-output-directory", self.output_dir, tex_path],
                 stdout=subprocess.DEVNULL, 
                 stderr=subprocess.DEVNULL,
-                check=True
+                check=True,
+                env=env
             )
             pdf_path = tex_path.replace('.tex', '.pdf')
-            return f"Success! PDF generated at: {pdf_path}"
-        except FileNotFoundError:
-            return f"LaTeX (pdflatex) is not installed. Raw report saved at: {tex_path}. Install TexLive or process via Overleaf."
-        except subprocess.CalledProcessError:
-            return f"PDF Compilation failed. LaTeX syntax error likely. Raw report saved at: {tex_path}"
+            return f"Success! PDF compiled at: {pdf_path}"
+        except (FileNotFoundError, subprocess.CalledProcessError):
+            return f"LaTeX (pdflatex) is not on PATH or compilation failed. Raw report saved at: {tex_path}. Please check MacTeX."
+

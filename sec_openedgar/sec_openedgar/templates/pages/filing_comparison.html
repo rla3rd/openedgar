@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Chronological Section Comparison: {{ company.cik_name }} - OpenEdgar{% endblock %}
+
+{% block css %}
+{{ block.super }}
+<style>
+    :root {
+        --accent-emerald: #059669;
+        --accent-blue: #2563eb;
+        --bg-light: #f1f5f9;
+        --card-bg: white;
+        --text-color: #0f172a;
+        --text-dim: #475569;
+        --glass-border: rgba(15, 23, 42, 0.08);
+    }
+
+    body {
+        background-color: var(--bg-light);
+        color: var(--text-color);
+        font-family: 'Inter', sans-serif;
+    }
+
+    .comparison-container {
+        max-width: 1400px;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+    }
+
+    .header-card {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header-info h1 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.025em;
+    }
+
+    .header-info p {
+        color: var(--text-dim);
+        font-size: 0.95rem;
+        margin: 0;
+    }
+
+    .control-box {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .select-box {
+        background: white;
+        border: 1px solid var(--glass-border);
+        border-radius: 0.5rem;
+        padding: 0.6rem 1.25rem;
+        font-weight: 600;
+        color: var(--text-color);
+        outline: none;
+        cursor: pointer;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .timeline-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .timeline-card {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+    }
+
+    .card-header {
+        background: #f8fafc;
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid var(--glass-border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .card-header:hover {
+        background: #f1f5f9;
+    }
+
+    .period-badge {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--accent-emerald);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .filing-badge {
+        background: rgba(37, 99, 235, 0.08);
+        border: 1px solid rgba(37, 99, 235, 0.15);
+        color: #1d4ed8;
+        padding: 0.2rem 0.6rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+        display: block;
+    }
+
+    .card-body.collapsed {
+        display: none;
+    }
+
+    .text-content {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #334155;
+        white-space: pre-wrap;
+        background: #fafafb;
+        border: 1px solid var(--glass-border);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        max-height: 500px;
+        overflow-y: auto;
+    }
+
+    .btn-premium {
+        background: linear-gradient(135deg, var(--accent-emerald), #059669);
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.6rem 1.25rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: opacity 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .btn-premium:hover {
+        opacity: 0.9;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="comparison-container">
+    <!-- Header Card -->
+    <div class="header-card">
+        <div class="header-info">
+            <h1>📈 Chronological Section Comparison</h1>
+            <p>Analyzing: <strong>{{ company.cik_name }} (CIK: {{ company.cik }})</strong></p>
+        </div>
+        <div class="control-box">
+            <form method="GET" id="sectionForm" style="margin: 0; display: flex; gap: 1rem;">
+                <input type="hidden" name="cik" value="{{ company.cik }}">
+                <select name="section" class="select-box" onchange="document.getElementById('sectionForm').submit()">
+                    {% for value, label in section_labels.items %}
+                        <option value="{{ value }}" {% if value == section_type %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+            <a href="{% url 'users:detail' request.user.username %}" class="btn-premium">
+                ← Back to Profile
+            </a>
+        </div>
+    </div>
+
+    <!-- Timeline/Accordions -->
+    <div class="timeline-container">
+        {% for item in comparison_data %}
+            <div class="timeline-card" id="card-{{ forloop.counter }}">
+                <div class="card-header" onclick="toggleCard({{ forloop.counter }})">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <span class="period-badge">📅 {{ item.period }}</span>
+                        <span class="filing-badge">{{ item.filing.form_type_id }}</span>
+                        <span style="font-size: 0.85rem; color: var(--text-dim);">Filed: {{ item.filing.date_filed }}</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 0.8rem; font-family: monospace; background: #e2e8f0; padding: 0.2rem 0.5rem; border-radius: 0.25rem;">Key: {{ item.key_used }}</span>
+                        <span id="chevron-{{ forloop.counter }}" style="font-weight: bold; font-size: 1.1rem; color: var(--text-dim);">▲</span>
+                    </div>
+                </div>
+                <div class="card-body" id="body-{{ forloop.counter }}">
+                    <div class="text-content">{{ item.text }}</div>
+                </div>
+            </div>
+        {% empty %}
+            <div style="background: white; border: 1px solid var(--glass-border); padding: 3rem; text-align: center; border-radius: 1rem; color: var(--text-dim);">
+                No 10-K or 10-Q filings found for this company. Please ingest filings using the Command Center first.
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+{{ block.super }}
+<script>
+    function toggleCard(id) {
+        const body = document.getElementById(`body-${id}`);
+        const chevron = document.getElementById(`chevron-${id}`);
+        if (body.classList.contains('collapsed')) {
+            body.classList.remove('collapsed');
+            chevron.innerText = '▲';
+        } else {
+            body.classList.add('collapsed');
+            chevron.innerText = '▼';
+        }
+    }
+</script>
+{% endblock %}
